@@ -98,7 +98,17 @@ body {
 .hero {
     background: var(--dark-color);
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 5vh;
+}
+
+.hero .content {
     position: relative;
+    z-index: 2;
+    text-align: center;
+    transform: translateY(-10vh);
 }
 
 /* Vignette Effect */
