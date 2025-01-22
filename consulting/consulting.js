@@ -30,6 +30,18 @@ document.addEventListener('DOMContentLoaded', () => {
         ease: "power2.out"
     });
 
+    // Animate scroll cue text
+    const scrollCueText = document.querySelector('.scroll-cue .text-wrapper');
+    const text = scrollCueText.textContent.trim();
+    scrollCueText.textContent = '';
+    
+    [...text].forEach((char, i) => {
+        const span = document.createElement('span');
+        span.textContent = char === ' ' ? '\u00A0' : char;  // Use non-breaking space for spaces
+        span.style.animationDelay = `${1.5 + (i * 0.05)}s`;
+        scrollCueText.appendChild(span);
+    });
+
     // Chart initialization
     const ctx = document.getElementById('growthChart').getContext('2d');
     
