@@ -47,4 +47,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+    // GSAP Text Animation
+    gsap.set(".background-text", {
+        opacity: 0,
+        y: 50
+    });
+
+    gsap.to(".background-text", {
+        opacity: 1,
+        y: 0,
+        duration: 1.5,
+        ease: "power3.out",
+        delay: 0.3
+    });
 }); 

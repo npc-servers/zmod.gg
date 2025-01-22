@@ -1,11 +1,30 @@
 /* Consulting-specific styles */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.container {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero.section {
+    height: 100vh;
+    overflow: hidden;
+}
+
 .hero .content {
     position: relative;
     z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 .hero-content {
@@ -18,14 +37,18 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-bottom: 2rem;
+    margin: 0;
     opacity: 0;
-    animation: fadeIn 1s ease forwards;
+}
+
+.text-line {
+    display: block;
+    line-height: 1.2;
 }
 
 .chart-wrapper {
     width: 100vw;
-    height: 80vh;
+    height: 100vh;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4))
            drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6))
            drop-shadow(0 8px 16px rgba(0, 0, 0, 0.8));
