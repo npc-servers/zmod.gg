@@ -1,4 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Initial GSAP animations
+    gsap.set(".decorative-square", { opacity: 0 });
+    
+    gsap.to(".decorative-square.top-left", {
+        opacity: 1,
+        duration: 1,
+        delay: 0.2,
+        ease: "power2.out"
+    });
+
+    gsap.to(".decorative-square.top-right", {
+        opacity: 1,
+        duration: 1,
+        delay: 0.8,
+        ease: "power2.out"
+    });
+
+    gsap.to(".decorative-square.bottom-right", {
+        opacity: 1,
+        duration: 1,
+        delay: 1.4,
+        ease: "power2.out"
+    });
+
+    gsap.to(".decorative-square.bottom-left", {
+        opacity: 1,
+        duration: 1,
+        delay: 2,
+        ease: "power2.out"
+    });
+
+    // Chart initialization
     const ctx = document.getElementById('growthChart').getContext('2d');
     
     new Chart(ctx, {

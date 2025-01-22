@@ -128,4 +128,38 @@ html, body {
     .chart-wrapper {
         height: 60vh;
     }
+}
+
+.decorative-square {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 5;
+}
+
+.decorative-square.top-left {
+    top: 30px;
+    left: 30px;
+}
+
+.decorative-square.top-right {
+    top: 30px;
+    right: 30px;
+}
+
+.decorative-square.bottom-left {
+    bottom: 30px;
+    left: 30px;
+}
+
+.decorative-square.bottom-right {
+    bottom: 30px;
+    right: 30px;
+}
+
+.decorative-line {
+    height: 2px;
+    width: 100px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
 } 
