@@ -10,15 +10,43 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">ZMOD.GG</div>
         <div class="nav-links">
-            <a href="#" class="nav-link">Game Info</a>
-            <a href="#" class="nav-link">Leaderboard</a>
-            <a href="#" class="nav-link">Community</a>
-            <a href="#" class="nav-link">Merch</a>
-            <a href="#" class="nav-link">Account</a>
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#servers" class="nav-link">Servers</a>
+            <a href="#store" class="nav-link">Store</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </nav>
+
+    <div class="mobile-menu">
+        <div class="mobile-logo">
+            <img src="zmodplaceholder.png" alt="ZMOD.GG Logo">
+        </div>
+        
+        <div class="mobile-nav-links">
+            <a href="#home" class="mobile-nav-link">Home</a>
+            <a href="#about" class="mobile-nav-link">About</a>
+            <a href="#servers" class="mobile-nav-link">Servers</a>
+            <a href="#store" class="mobile-nav-link">Store</a>
+            <a href="#contact" class="mobile-nav-link">Contact</a>
+        </div>
+
+        <div class="mobile-footer">
+            <div class="mobile-social-links">
+                <a href="#" class="mobile-social-link"><i class="fab fa-discord"></i></a>
+                <a href="#" class="mobile-social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="mobile-social-link"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>&copy; 2024 ZMOD.GG. All rights reserved.</p>
+        </div>
+    </div>
 
     <main class="container">
         <section id="hero" class="section hero">
@@ -96,5 +124,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="animations.js"></script>
     <script src="script.js"></script>
+    <link rel="stylesheet" href="navbar.css">
+    <script src="navbar.js"></script>
 </body>
 </html> 

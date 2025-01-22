@@ -1,0 +1,251 @@
+.navbar {
+    position: fixed;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(-150%);
+    width: auto;
+    min-width: 320px;
+    max-width: 90%;
+    padding: 0.75rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 8px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.navbar.visible {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Add transform for scroll behavior */
+.navbar.scroll-down {
+    transform: translateX(-50%) translateY(-200%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.navbar.scroll-up {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    pointer-events: all;
+}
+
+.logo {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    z-index: 1001;
+}
+
+.logo img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-links {
+    display: none;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    width: 30px;
+    height: 20px;
+    position: relative;
+    cursor: pointer;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--text-color);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hamburger Animation */
+.hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 2rem;
+}
+
+.mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.mobile-nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav-link:hover {
+    color: var(--primary-color);
+}
+
+.mobile-logo {
+    margin-bottom: 3rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-logo img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.mobile-footer {
+    margin-top: auto;
+    text-align: center;
+}
+
+.mobile-social-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.mobile-social-link {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.mobile-social-link:hover {
+    opacity: 1;
+    color: var(--primary-color);
+}
+
+/* Desktop Styles */
+@media (min-width: 768px) {
+    .hamburger {
+        display: none;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        padding: 0 1rem;
+    }
+
+    .nav-link {
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        opacity: 0.9;
+        transition: var(--transition);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .nav-link:hover {
+        opacity: 1;
+        color: var(--primary-color);
+    }
+
+    .mobile-menu {
+        display: none;
+    }
+}
+
+/* Update mobile styles */
+@media (max-width: 768px) {
+    .navbar {
+        left: auto;
+        right: 1.5rem;
+        transform: translateY(-150%);
+        min-width: auto;
+        max-width: none;
+        background: transparent;
+        backdrop-filter: none;
+        box-shadow: none;
+        border: none;
+        padding: 0.75rem;
+        justify-content: flex-end;
+    }
+
+    .navbar.visible {
+        transform: translateY(0);
+    }
+
+    .navbar.scroll-down {
+        transform: translateY(-200%);
+    }
+
+    .navbar.scroll-up {
+        transform: translateY(0);
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .mobile-logo {
+        height: 80px;
+    }
+
+    .mobile-menu {
+        padding-top: 5rem;
+        background: var(--glass-bg);
+        backdrop-filter: blur(15px);
+    }
+} 
