@@ -62,64 +62,18 @@ document.addEventListener('DOMContentLoaded', () => {
         delay: 0.3
     });
 
-    // Notification System
+    // Simplified Notification System
     const notificationTypes = [
         {
             type: 'join',
-            messages: [
-                "joined the server",
-                "just arrived",
-                "has entered the chat",
-                "is now online",
-                "joined the community"
-            ],
-            icon: '<i class="fas fa-user-plus"></i>',
-            important: false
+            message: "joined!",
+            icon: '<i class="fas fa-user-plus"></i>'
         },
         {
             type: 'donation',
-            messages: [
-                "donated $VALUE",
-                "tipped $VALUE",
-                "supported with $VALUE",
-                "contributed $VALUE"
-            ],
-            values: [5, 10, 20, 50, 100, 200, 500, 1000],
-            icon: '<i class="fas fa-gift"></i>',
-            important: true
-        },
-        {
-            type: 'milestone',
-            messages: [
-                "Server reached VALUE members!",
-                "New milestone: VALUE members!",
-                "Growing strong: VALUE members!",
-                "Community milestone: VALUE users!"
-            ],
-            values: [1000, 2500, 5000, 10000, 25000, 50000],
-            icon: '<i class="fas fa-trophy"></i>',
-            important: true
-        },
-        {
-            type: 'online',
-            messages: [
-                "VALUE users online!",
-                "Active users: VALUE",
-                "Current online: VALUE"
-            ],
-            values: [100, 250, 500, 1000, 1500, 2000, 2500],
-            icon: '<i class="fas fa-users"></i>',
-            important: false
-        },
-        {
-            type: 'boost',
-            messages: [
-                "boosted the server",
-                "added server boost",
-                "upgraded the server"
-            ],
-            icon: '<i class="fas fa-rocket"></i>',
-            important: true
+            message: "subscribed for $VALUE!",
+            values: [4.99, 9.99, 14.99, 19.99, 24.99],
+            icon: '<i class="fas fa-star"></i>'
         }
     ];
 
@@ -137,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         duration: 8,         // Seconds to travel
         spawnInterval: 3000, // Milliseconds between spawns
         startDelay: 1000,    // Milliseconds before first notification
-        rightSideDelay: 2000 // Additional delay for right side
+        rightSideDelay: 4000 // Increased delay for right side (was 2000)
     };
 
     // Track active notifications on each side
@@ -148,18 +102,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function generateNotification() {
         const type = notificationTypes[Math.floor(Math.random() * notificationTypes.length)];
-        const message = type.messages[Math.floor(Math.random() * type.messages.length)];
         const username = usernames[Math.floor(Math.random() * usernames.length)];
         
-        let finalMessage = message;
+        let finalMessage = type.message;
         if (type.values) {
             const value = type.values[Math.floor(Math.random() * type.values.length)];
-            finalMessage = finalMessage.replace('VALUE', value.toLocaleString());
+            finalMessage = finalMessage.replace('VALUE', value.toFixed(2));
         }
 
         return {
-            html: `${type.icon} <span class="username">${username}</span> ${finalMessage}`,
-            important: type.important
+            html: `${type.icon} <span class="username">${username}</span> ${finalMessage}`
         };
     }
 
@@ -170,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const notification = document.createElement('div');
         const notificationContent = generateNotification();
         
-        notification.className = `notification-box ${notificationContent.important ? 'important' : ''}`;
+        notification.className = 'notification-box';
         notification.innerHTML = notificationContent.html;
         container.appendChild(notification);
         
