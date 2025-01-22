@@ -53,21 +53,24 @@ body {
 /* Navbar */
 .navbar {
     position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 2rem;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(-150%);
+    width: auto;
+    padding: 0.75rem 2rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     z-index: 1000;
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    transform: translateY(-100%);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 4px;
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 .navbar.visible {
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
 }
 
 .logo {
@@ -78,20 +81,23 @@ body {
 
 .nav-links {
     display: flex;
-    gap: 3rem;
+    gap: 2.5rem;
 }
 
 .nav-link {
     color: var(--text-color);
     text-decoration: none;
-    font-weight: 500;
-    font-size: 0.95rem;
-    opacity: 0.8;
+    font-weight: 600;
+    font-size: 0.9rem;
+    opacity: 0.9;
     transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .nav-link:hover {
     opacity: 1;
+    color: #fff;
 }
 
 /* Hero Section */
