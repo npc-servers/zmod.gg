@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Make sure buttons are visible initially
     gsap.set('.buttons', { autoAlpha: 1 });
     gsap.set('.buttons .btn', { autoAlpha: 0, y: 20 });
+    gsap.set('.scroll-indicator', { autoAlpha: 0, y: 20 });
 
     // Animate the grid background
     mainTimeline
@@ -57,6 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
         y: 0,
         duration: 0.4,
         stagger: 0.1,
+        ease: "power2.out"
+    }, "-=0.2")
+    // Animate scroll indicator
+    .to('.scroll-indicator', {
+        autoAlpha: 0.5,
+        y: 0,
+        duration: 0.4,
         ease: "power2.out"
     }, "-=0.2");
 
