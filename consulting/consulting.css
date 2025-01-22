@@ -30,6 +30,7 @@ html, body {
 .hero-content {
     position: relative;
     text-align: center;
+    z-index: 3;
 }
 
 .background-text {
@@ -39,6 +40,56 @@ html, body {
     letter-spacing: 2px;
     margin: 0;
     opacity: 0;
+}
+
+.notifications-left, .notifications-right {
+    position: fixed;
+    width: 300px;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.notifications-left {
+    left: 40px;
+}
+
+.notifications-right {
+    right: 40px;
+}
+
+.notification-box {
+    position: absolute;
+    background: rgba(20, 20, 20, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 15px 20px;
+    color: white;
+    font-size: 0.9rem;
+    opacity: 0;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.notification-box.important {
+    background: rgba(139, 0, 0, 0.9);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.4);
+}
+
+.notification-box i {
+    margin-right: 8px;
+    font-size: 1rem;
+}
+
+.notification-box .username {
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+.notification-box.important .username {
+    color: white;
 }
 
 .text-line {
@@ -55,6 +106,7 @@ html, body {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 1;
 }
 
 @keyframes fadeIn {
@@ -66,6 +118,10 @@ html, body {
 @media (max-width: 768px) {
     .background-text {
         font-size: 2.5rem;
+    }
+    
+    .notifications-left, .notifications-right {
+        display: none;
     }
     
     .chart-wrapper {
