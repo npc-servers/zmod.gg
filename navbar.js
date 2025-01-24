@@ -27,33 +27,37 @@ document.addEventListener('DOMContentLoaded', () => {
     let heroHeight = hero?.offsetHeight || 0;
     
     const handleScroll = () => {
-        const currentScroll = window.pageYOffset;
+        const currentScroll = document.querySelector('.container').scrollTop;
         
         // Show/hide navbar based on hero section
-        if (currentScroll > heroHeight * 0.8) {
+        if (currentScroll > heroHeight * 0.3) {
             navbar?.classList.add('visible');
+            
+            // Handle scroll direction
+            if (currentScroll < lastScroll) {
+                // Scrolling up - hide navbar
+                navbar?.classList.add('scroll-down');
+                navbar?.classList.remove('scroll-up');
+            } else {
+                // Scrolling down - show navbar
+                navbar?.classList.remove('scroll-down');
+                navbar?.classList.add('scroll-up');
+            }
         } else {
+            // At top of page - hide navbar
             navbar?.classList.remove('visible');
             navbar?.classList.remove('scroll-up');
             navbar?.classList.remove('scroll-down');
-            return;
-        }
-        
-        // Handle scroll up/down behavior
-        if (currentScroll > lastScroll && !navbar?.classList.contains('scroll-down')) {
-            // Scrolling down
-            navbar?.classList.remove('scroll-up');
-            navbar?.classList.add('scroll-down');
-        } else if (currentScroll < lastScroll && navbar?.classList.contains('scroll-down')) {
-            // Scrolling up
-            navbar?.classList.remove('scroll-down');
-            navbar?.classList.add('scroll-up');
         }
         
         lastScroll = currentScroll;
     };
 
-    window.addEventListener('scroll', handleScroll);
+    const container = document.querySelector('.container');
+    if (container) {
+        container.addEventListener('scroll', handleScroll);
+    }
+    
     window.addEventListener('resize', () => {
         heroHeight = hero?.offsetHeight || 0;
     });

@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         delay: 0.3
     });
 
-    // Simplified Notification System
+    // Notification System
     const notificationTypes = [
         {
             type: 'join',
@@ -135,14 +135,39 @@ document.addEventListener('DOMContentLoaded', () => {
         duration: 8,         // Seconds to travel
         spawnInterval: 3000, // Milliseconds between spawns
         startDelay: 1000,    // Milliseconds before first notification
-        rightSideDelay: 4000 // Increased delay for right side (was 2000)
+        rightSideDelay: 4000 // Delay for right side
     };
 
-    // Track active notifications on each side
+    // Track active notifications and animation state
     const activeNotifications = {
         left: [],
         right: []
     };
+
+    let isPageVisible = true;
+    let notificationTimers = {
+        left: null,
+        right: null
+    };
+
+    // Handle page visibility changes
+    document.addEventListener('visibilitychange', () => {
+        isPageVisible = document.visibilityState === 'visible';
+        
+        // Clear existing timers when page becomes hidden
+        if (!isPageVisible) {
+            Object.keys(notificationTimers).forEach(side => {
+                if (notificationTimers[side]) {
+                    cancelAnimationFrame(notificationTimers[side]);
+                    notificationTimers[side] = null;
+                }
+            });
+        } else {
+            // Restart notifications when page becomes visible
+            startNotifications('left');
+            startNotifications('right');
+        }
+    });
 
     function generateNotification() {
         const type = notificationTypes[Math.floor(Math.random() * notificationTypes.length)];
@@ -160,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function createNotification(side) {
-        if (activeNotifications[side].length >= NOTIFICATION_CONFIG.maxPerSide) return;
+        if (!isPageVisible || activeNotifications[side].length >= NOTIFICATION_CONFIG.maxPerSide) return;
 
         const container = document.querySelector(`.notifications-${side}`);
         const notification = document.createElement('div');
@@ -170,17 +195,15 @@ document.addEventListener('DOMContentLoaded', () => {
         notification.innerHTML = notificationContent.html;
         container.appendChild(notification);
         
-        // Add to active notifications
         activeNotifications[side].push(notification);
         
-        // Single smooth animation from bottom to top
         gsap.fromTo(notification, 
             {
-                y: window.innerHeight + 20,  // Start below viewport
+                y: window.innerHeight + 20,
                 opacity: 0
             },
             {
-                y: -100,  // End above viewport
+                y: -100,
                 opacity: 1,
                 duration: NOTIFICATION_CONFIG.duration,
                 ease: "none",
@@ -192,20 +215,84 @@ document.addEventListener('DOMContentLoaded', () => {
         );
     }
 
-    // Start notification system
-    function startNotifications(side) {
-        const spawnNotification = () => {
-            createNotification(side);
-            setTimeout(spawnNotification, NOTIFICATION_CONFIG.spawnInterval);
+    function scheduleNextNotification(side) {
+        if (!isPageVisible) return;
+
+        createNotification(side);
+        
+        // Schedule next notification using requestAnimationFrame
+        const startTime = performance.now();
+        const animate = (currentTime) => {
+            if (!isPageVisible) return;
+            
+            const elapsed = currentTime - startTime;
+            if (elapsed >= NOTIFICATION_CONFIG.spawnInterval) {
+                scheduleNextNotification(side);
+            } else {
+                notificationTimers[side] = requestAnimationFrame(animate);
+            }
         };
         
-        setTimeout(spawnNotification, 
-            NOTIFICATION_CONFIG.startDelay + 
-            (side === 'right' ? NOTIFICATION_CONFIG.rightSideDelay : 0)
-        );
+        notificationTimers[side] = requestAnimationFrame(animate);
+    }
+
+    // Start notification system
+    function startNotifications(side) {
+        if (!isPageVisible || notificationTimers[side]) return;
+        
+        setTimeout(() => {
+            scheduleNextNotification(side);
+        }, NOTIFICATION_CONFIG.startDelay + (side === 'right' ? NOTIFICATION_CONFIG.rightSideDelay : 0));
     }
 
     // Start both sides
     startNotifications('left');
     startNotifications('right');
+
+    // Scroll behavior
+    const scrollCue = document.querySelector('.scroll-cue');
+    const container = document.querySelector('.container');
+    let lastScrollTop = 0;
+    let isScrollCueVisible = true;
+    
+    container.addEventListener('scroll', () => {
+        const scrollTop = container.scrollTop;
+        
+        if (scrollTop > lastScrollTop && scrollTop > 50) {
+            // Scrolling down and past threshold
+            if (isScrollCueVisible) {
+                isScrollCueVisible = false;
+                gsap.to(scrollCue, {
+                    opacity: 0,
+                    y: 20,
+                    duration: 0.4,
+                    ease: "power2.inOut"
+                });
+            }
+        } else if (scrollTop < 50) {
+            // Back at top
+            if (!isScrollCueVisible) {
+                isScrollCueVisible = true;
+                gsap.to(scrollCue, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.4,
+                    ease: "power2.out"
+                });
+            }
+        }
+        
+        lastScrollTop = scrollTop;
+    });
+
+    // Smooth scroll handling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const section = document.querySelector(this.getAttribute('href'));
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
 }); 
