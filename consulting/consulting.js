@@ -295,4 +295,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Move scrollToAbout function outside the event listener
+    window.scrollToAbout = function() {
+        const container = document.querySelector('.container');
+        const aboutSection = document.getElementById('about');
+        container.scrollTo({
+            top: aboutSection.offsetTop,
+            behavior: 'smooth'
+        });
+    }
 }); 

@@ -234,6 +234,7 @@ html, body {
     height: 60px;
     width: 30px;
     margin: 0 auto;
+    cursor: pointer;
 }
 
 .scroll-indicator {
