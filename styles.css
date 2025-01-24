@@ -98,18 +98,13 @@ body {
 .hero::after {
     content: '';
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background: radial-gradient(
-        circle at center,
-        transparent 0%,
-        rgba(0, 0, 0, 0.4) 80%,
-        rgba(0, 0, 0, 0.8) 100%
-    );
-    z-index: 2;
+    height: 150px;
+    background: linear-gradient(to bottom, transparent, var(--darker-color));
     pointer-events: none;
+    z-index: 2;
 }
 
 .hero .content {
@@ -345,70 +340,185 @@ h1 {
     animation: ripple 0.6s linear;
 }
 
-/* About Section */
+/* Updated About Section */
 .about {
-    background: var(--darker-color);
-    padding: 8rem 2rem;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
     position: relative;
     overflow: hidden;
-}
-
-.about .content {
     width: 100%;
+    height: 100vh;
+    background: var(--darker-color);
 }
 
-.about h2 {
-    font-size: 2.5rem;
-    margin-bottom: 4rem;
-    text-align: center;
-    font-weight: 700;
-    letter-spacing: -0.5px;
+.about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(to bottom, rgba(5, 5, 5, 0.95) 0%, rgba(5, 5, 5, 0.85) 100%),
+        url('../pattern.png') repeat;
+    background-size: 60px 60px;
+    animation: gridMove 20s linear infinite;
+    opacity: 0.15;
+    pointer-events: none;
+    filter: invert(1) brightness(0.1) contrast(0.8);
+    mix-blend-mode: overlay;
+}
+
+/* Sophisticated Background Elements */
+.sophisticated-element-1 {
+    position: absolute;
+    top: 25%;
+    right: 25%;
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.1);
+    font-size: 1.25rem;
+    content: '01';
+}
+
+.sophisticated-element-2 {
+    position: absolute;
+    bottom: 20%;
+    left: 15%;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.sophisticated-element-2::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.sophisticated-element-2::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Corner Decorative Elements - now specific to main page */
+.about-page .decorative-square {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 5;
+}
+
+.about-page .decorative-square.top-left {
+    top: 30px;
+    left: 30px;
+}
+
+.about-page .decorative-square.top-right {
+    top: 30px;
+    right: 30px;
+}
+
+.about-page .decorative-square.bottom-left {
+    bottom: 30px;
+    left: 30px;
+}
+
+.about-page .decorative-square.bottom-right {
+    bottom: 30px;
+    right: 30px;
+}
+
+.about-page .decorative-square.bottom-left::before,
+.about-page .decorative-square.bottom-left::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+}
+
+.about-page .decorative-square.bottom-left::before {
+    left: -12px;
+    top: 2px;
+}
+
+.about-page .decorative-square.bottom-left::after {
+    right: -12px;
+    top: 2px;
 }
 
 .about-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
-    max-width: 1200px;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 1rem;
 }
 
-.about-card {
-    padding: 3rem 2rem;
-    background: var(--gray-darker);
-    border-radius: 4px;
-    transition: var(--transition);
-    text-align: center;
-    border: 1px solid var(--border-color);
+.about-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
 }
 
-.about-card i {
-    font-size: 2rem;
+.about-left h2 {
+    font-size: 4.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1;
+    text-align: left;
+    margin-left: 40px;
+}
+
+.stats-grid {
+    display: flex;
+    gap: 4rem;
+    margin-left: 40px;
+    margin-top: 2rem;
+}
+
+.stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+}
+
+.stat-number {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--text-color);
+    line-height: 1;
+    position: relative;
+    display: inline-block;
+}
+
+.stat-number::after {
+    content: '+';
+    position: absolute;
+    right: -20px;
     color: var(--primary-color);
-    margin-bottom: 1.5rem;
+    font-size: 2rem;
 }
 
-.about-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-}
-
-.about-card p {
-    opacity: 0.8;
-    font-size: 0.95rem;
-    font-weight: 400;
-}
-
-.about-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--gray-light);
-    background: var(--gray-dark);
+.stat-label {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #666;
+    font-weight: 500;
 }
 
 /* Social Links */
@@ -488,56 +598,6 @@ h1 {
 }
 
 /* Media Queries */
-@media (max-width: 768px) {
-    .content {
-        padding: 0 1.5rem;
-    }
-
-    h1 {
-        font-size: 3.5rem;
-    }
-    
-    .description {
-        font-size: 1.2rem;
-    }
-    
-    .buttons {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        max-width: 300px;
-        margin: 3rem auto 0;
-        gap: 1rem;
-    }
-
-    .btn {
-        width: 100%;
-        padding: 0.875rem 2rem;
-    }
-
-    .about {
-        padding: 6rem 1.5rem;
-    }
-
-    .about-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .about-card {
-        padding: 2rem 1.5rem;
-    }
-
-    .social-links {
-        bottom: 1.5rem;
-        right: 1.5rem;
-    }
-
-    .scroll-indicator {
-        display: none;
-    }
-}
-
 @media (min-width: 769px) and (max-width: 1024px) {
     .about-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -703,22 +763,413 @@ h1 {
     }
 }
 
-/* About Section Background */
-.about::before {
+/* Decorative Elements */
+.about {
+    position: relative;
+}
+
+.decorative-square {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 5;
+}
+
+.decorative-square.top-left {
+    top: 30px;
+    left: 30px;
+}
+
+.decorative-square.top-right {
+    top: 30px;
+    right: 30px;
+}
+
+.decorative-square.bottom-left {
+    bottom: 30px;
+    left: 30px;
+}
+
+.decorative-square.bottom-right {
+    bottom: 30px;
+    right: 30px;
+}
+
+.decorative-square.bottom-left::before,
+.decorative-square.bottom-left::after {
     content: '';
     position: absolute;
-    top: 0;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+}
+
+.decorative-square.bottom-left::before {
+    left: -12px;
+    top: 2px;
+}
+
+.decorative-square.bottom-left::after {
+    right: -12px;
+    top: 2px;
+}
+
+/* Corner Decorative Elements */
+.decorative-square {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 5;
+}
+
+.decorative-square.top-left {
+    top: 30px;
+    left: 30px;
+}
+
+.decorative-square.top-right {
+    top: 30px;
+    right: 30px;
+}
+
+.decorative-square.bottom-left {
+    bottom: 30px;
+    left: 30px;
+}
+
+.decorative-square.bottom-right {
+    bottom: 30px;
+    right: 30px;
+}
+
+.decorative-square.bottom-left::before,
+.decorative-square.bottom-left::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+}
+
+.decorative-square.bottom-left::before {
+    left: -12px;
+    top: 2px;
+}
+
+.decorative-square.bottom-left::after {
+    right: -12px;
+    top: 2px;
+}
+
+.server-preview {
+    position: relative;
+    background: rgba(20, 20, 20, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+    height: 100%;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.placeholder-content {
+    text-align: center;
+}
+
+.placeholder-content i {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+    .about-left h2 {
+        font-size: 3rem;
+        margin-left: 20px;
+    }
+
+    .stats-grid {
+        padding-left: 45px;
+        gap: 2rem;
+    }
+
+    .stat-number {
+        font-size: 3rem;
+    }
+}
+
+/* Keep existing styles and add these new sophisticated elements */
+
+.sophisticated-element-3 {
+    position: absolute;
+    top: 35%;
+    left: 75%;
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.1);
+    font-size: 1rem;
+    content: '>';
+}
+
+.sophisticated-element-4 {
+    position: absolute;
+    bottom: 35%;
+    right: 20%;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: rotate(45deg);
+}
+
+.sophisticated-element-5 {
+    position: absolute;
+    top: 60%;
+    left: 30%;
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.1);
+    font-size: 1.25rem;
+    content: '//';
+}
+
+.sophisticated-element-6 {
+    position: absolute;
+    top: 25%;
+    left: 40%;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sophisticated-element-7 {
+    position: absolute;
+    bottom: 15%;
+    right: 35%;
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.1);
+    font-size: 1rem;
+    content: '02';
+}
+
+/* Transition elements */
+.transition-element {
+    position: absolute;
+    bottom: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background: 
-        linear-gradient(135deg, rgba(139, 0, 0, 0.03) 0%, transparent 50%),
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 10px,
-            rgba(139, 0, 0, 0.02) 10px,
-            rgba(139, 0, 0, 0.02) 20px
-        );
-    pointer-events: none;
-} 
+    height: 200px;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.transition-line-left {
+    position: absolute;
+    bottom: 80px;
+    left: 10%;
+    width: 150px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(-45deg);
+}
+
+.transition-line-right {
+    position: absolute;
+    bottom: 80px;
+    right: 10%;
+    width: 150px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(45deg);
+}
+
+.transition-text {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.1);
+    font-size: 0.875rem;
+}
+
+/* Sophisticated text elements for server section */
+.about {
+    position: relative;
+}
+
+.server-accent-1 {
+    position: absolute;
+    top: 15%;
+    right: 10%;
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.1);
+    font-size: 1rem;
+    content: '02';
+}
+
+.server-accent-2 {
+    position: absolute;
+    bottom: 20%;
+    left: 8%;
+    width: 60px;
+    height: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.server-accent-2::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.server-accent-2::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.server-accent-3 {
+    position: absolute;
+    top: 30%;
+    right: 25%;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.server-accent-3::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 55px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.server-accent-3::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 55px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.server-accent-4 {
+    position: absolute;
+    bottom: 35%;
+    left: 30%;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.server-accent-4::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 42px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.server-accent-4::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 42px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.server-accent-5 {
+    position: absolute;
+    top: 60%;
+    right: 15%;
+    width: 25px;
+    height: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.server-accent-5::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 35px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.server-accent-5::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 35px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Add vertical text labels to squares */
+.about-page .decorative-square.top-right::after {
+    content: 'SERVERS';
+    position: absolute;
+    left: calc(100% + 12px);
+    bottom: 50%;
+    transform: rotate(90deg) translateX(-50%);
+    transform-origin: left bottom;
+    font-size: 0.75rem;
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.3);
+    white-space: nowrap;
+    letter-spacing: 2px;
+}
+
+/* Corner Decorative Elements */
+.about-page .decorative-square.bottom-left::before,
+.about-page .decorative-square.bottom-left::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    top: 2px;
+}
+
+.about-page .decorative-square.bottom-left::before {
+    left: -12px;
+}
+
+.about-page .decorative-square.bottom-left::after {
+    right: -12px;
+}

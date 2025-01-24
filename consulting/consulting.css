@@ -148,32 +148,39 @@ html, body {
     }
 }
 
-.decorative-square {
-    position: fixed;
+/* Make squares specific to consulting page */
+.consulting-page .decorative-square {
+    position: absolute;
     width: 8px;
     height: 8px;
     background: rgba(255, 255, 255, 0.9);
     z-index: 5;
 }
 
-.decorative-square.top-left {
+.consulting-page .decorative-square.top-left {
     top: 30px;
     left: 30px;
 }
 
-.decorative-square.top-right {
+.consulting-page .decorative-square.top-right {
     top: 30px;
     right: 30px;
 }
 
-.decorative-square.bottom-left {
+.consulting-page .decorative-square.bottom-left {
     bottom: 30px;
     left: 30px;
 }
 
-.decorative-square.bottom-right {
+.consulting-page .decorative-square.bottom-right {
     bottom: 30px;
     right: 30px;
+}
+
+/* Explicitly remove dots */
+.consulting-page .decorative-square.bottom-left::before,
+.consulting-page .decorative-square.bottom-left::after {
+    display: none;
 }
 
 .decorative-line {
