@@ -1173,3 +1173,254 @@ h1 {
 .about-page .decorative-square.bottom-left::after {
     right: -12px;
 }
+
+/* Circuit Branch Design */
+.circuit-branch {
+    position: absolute;
+    width: 100vw;
+    height: 2px;
+    top: 65%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.circuit-line {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%,
+        var(--gray-light) 5%,
+        var(--gray-light) 95%,
+        transparent 100%
+    );
+    opacity: 0.3;
+}
+
+.circuit-node {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--gray-light);
+    border-radius: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.3;
+}
+
+.circuit-node.left {
+    left: 5%;
+}
+
+.circuit-node.center {
+    left: 50%;
+}
+
+.circuit-node.right {
+    left: 95%;
+}
+
+.circuit-branch-vertical {
+    position: absolute;
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(180deg,
+        var(--gray-light) 0%,
+        transparent 100%
+    );
+    top: 0;
+    opacity: 0.3;
+}
+
+.circuit-branch-vertical.left {
+    left: 5%;
+    transform: translateX(-50%);
+}
+
+.circuit-branch-vertical.right {
+    left: 95%;
+    transform: translateX(-50%);
+}
+
+@keyframes pulseLine {
+    0%, 100% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 0.4;
+    }
+}
+
+/* Data Stream */
+.data-stream {
+    position: absolute;
+    top: 20%;
+    right: 5%;
+    transform: rotate(-45deg);
+    z-index: 2;
+}
+
+.stream-line {
+    position: absolute;
+    width: 2px;
+    height: 300px;
+    background: linear-gradient(180deg, transparent, var(--gray-light) 20%, var(--gray-light) 80%, transparent);
+    opacity: 0.2;
+    left: 0;
+}
+
+.stream-data {
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: var(--gray-light);
+    opacity: 0.4;
+    margin: 30px 0;
+    transform: rotate(45deg);
+    white-space: nowrap;
+    animation: streamData 8s infinite linear;
+}
+
+@keyframes streamData {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) translateY(-20px);
+    }
+    10% {
+        opacity: 0.4;
+    }
+    90% {
+        opacity: 0.4;
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(45deg) translateY(20px);
+    }
+}
+
+/* Tech Measurements */
+.tech-measurements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.measurement {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.measurement.right {
+    right: 10%;
+    top: 40%;
+}
+
+.measurement-line {
+    width: 100px;
+    height: 1px;
+    background: var(--gray-light);
+    opacity: 0.3;
+    position: relative;
+}
+
+.measurement-line::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--gray-light);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.5;
+}
+
+.measurement-text {
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: var(--gray-light);
+    opacity: 0.4;
+}
+
+.measurement-value {
+    font-family: monospace;
+    font-size: 0.875rem;
+    color: var(--gray-light);
+    opacity: 0.6;
+}
+
+/* Corner Brackets */
+.corner-bracket {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+}
+
+.corner-bracket.top-left {
+    top: 40px;
+    left: 40px;
+}
+
+.corner-bracket.top-right {
+    top: 40px;
+    right: 40px;
+    transform: scaleX(-1);
+}
+
+.corner-bracket.bottom-left {
+    bottom: 40px;
+    left: 40px;
+    transform: scaleY(-1);
+}
+
+.corner-bracket.bottom-right {
+    bottom: 40px;
+    right: 40px;
+    transform: scale(-1);
+}
+
+.bracket-line {
+    position: absolute;
+    background: var(--gray-light);
+    opacity: 0.3;
+}
+
+.bracket-line.horizontal {
+    width: 100%;
+    height: 1px;
+    top: 0;
+}
+
+.bracket-line.vertical {
+    width: 1px;
+    height: 100%;
+    left: 0;
+}
+
+.bracket-data {
+    position: absolute;
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: var(--gray-light);
+    opacity: 0.4;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Add subtle hover effects */
+.measurement:hover .measurement-line,
+.measurement:hover .measurement-text,
+.measurement:hover .measurement-value {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.corner-bracket:hover .bracket-line,
+.corner-bracket:hover .bracket-data {
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
