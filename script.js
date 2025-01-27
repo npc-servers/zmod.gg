@@ -49,4 +49,117 @@ document.addEventListener('DOMContentLoaded', () => {
         
         lastScrollTop = scrollTop;
     });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const servers = [
+        {
+            id: 'zgrad1',
+            title: 'ZGRAD US1',
+            ip: '193.243.190.18',
+            port: 27066,
+            region: 'US',
+            description: 'All Gamemodes',
+            link: '/us1/connect.html'
+        },
+        {
+            id: 'hh1',
+            title: 'Harrisons Homigrad US1',
+            ip: '193.243.190.18',
+            port: 27051,
+            region: 'US',
+            description: 'All Gamemodes',
+            link: '/hh1/connect.html'
+        },
+        {
+            id: 'hh2',
+            title: 'Harrisons Homigrad US2',
+            ip: '193.243.190.18',
+            port: 27052,
+            region: 'US',
+            description: 'All Gamemodes',
+            link: '/hh2/connect.html'
+        },
+        {
+            id: 'hh3',
+            title: 'Harrisons Homigrad US3',
+            ip: '193.243.190.18',
+            port: 27053,
+            region: 'US',
+            description: 'Homicide Only',
+            link: '/hh3/connect.html'
+        },
+    ];
+
+    function updateServerStatus(server) {
+        return fetch(`https://gameserveranalytics.com/api/v2/query?game=source&ip=${server.ip}&port=${server.port}&type=info`)
+            .then(response => response.json())
+            .then(serverInfo => {
+                const status = {
+                    online: false,
+                    players: 0,
+                    maxPlayers: 0
+                };
+
+                if (serverInfo && (serverInfo.status?.toLowerCase() === 'online' || serverInfo.players !== undefined)) {
+                    status.online = true;
+                    status.players = serverInfo.players || serverInfo.num_players || serverInfo.playercount || 0;
+                    status.maxPlayers = serverInfo.maxplayers || serverInfo.max_players || serverInfo.maxclients || "?";
+                }
+
+                return status;
+            })
+            .catch(error => {
+                console.error(`Error fetching data for ${server.id}:`, error);
+                return { online: false, players: 0, maxPlayers: 0 };
+            });
+    }
+
+    function createServerCard(server, status) {
+        const serverCard = document.createElement('div');
+        serverCard.className = `server-card ${status.online ? 'online' : 'offline'}`;
+        serverCard.innerHTML = `
+            <div class="server-gamemode">${server.description}</div>
+            <div class="server-info">
+                <div class="server-title">${server.title}</div>
+                <div class="server-players">${status.players}/${status.maxPlayers} Players</div>
+            </div>
+            <a href="${server.link}" class="connect-button">Connect</a>
+            <div class="server-status"></div>
+        `;
+        return serverCard;
+    }
+
+    function updateServerList() {
+        const serverList = document.querySelector('.server-list');
+        if (!serverList) return;
+
+        Promise.all(servers.map(server => updateServerStatus(server)))
+            .then(statuses => {
+                // Create array of servers with their status
+                const serverStatusPairs = servers.map((server, index) => ({
+                    server,
+                    status: statuses[index]
+                }));
+
+                // Sort by player count (highest first) and filter for online servers
+                const sortedServers = serverStatusPairs
+                    .filter(pair => pair.status.online)
+                    .sort((a, b) => b.status.players - a.status.players)
+                    .slice(0, 3); // Take only top 3
+
+                // Clear and update server list
+                serverList.innerHTML = '';
+                sortedServers.forEach(({ server, status }) => {
+                    const serverCard = createServerCard(server, status);
+                    serverList.appendChild(serverCard);
+                });
+            });
+    }
+
+    // Initial update
+    updateServerList();
+
+    // Update every 30 seconds
+    setInterval(updateServerList, 30000);
 }); 
