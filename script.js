@@ -146,6 +146,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
         Promise.all(servers.map(server => updateServerStatus(server)))
             .then(statuses => {
+                // Calculate total current players
+                const totalPlayers = statuses.reduce((sum, status) => sum + (status.players || 0), 0);
+                const totalServers = servers.length;
+
+                // Update the stats
+                const currentPlayersElement = document.getElementById('current-players');
+                const totalServersElement = document.getElementById('total-servers');
+                
+                if (currentPlayersElement) {
+                    currentPlayersElement.textContent = totalPlayers;
+                }
+                if (totalServersElement) {
+                    totalServersElement.textContent = totalServers;
+                }
+
                 // Create array of servers with their status
                 const serverStatusPairs = servers.map((server, index) => ({
                     server,

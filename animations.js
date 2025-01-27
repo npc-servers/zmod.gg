@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     gsap.set('.buttons', { autoAlpha: 1 });
     gsap.set('.buttons .btn', { autoAlpha: 0, y: 20 });
     gsap.set('.scroll-indicator', { autoAlpha: 0, y: 20 });
+    gsap.set('.about .highlight', { color: 'var(--primary-color)' });
 
     // Animate the grid background
     mainTimeline
@@ -43,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         opacity: 0,
         duration: 0.8
     }, "-=0.6")
-    .from('.highlight', {
+    .from('.hero .highlight', {
         color: "#fff",
         textShadow: "none",
         duration: 0.6

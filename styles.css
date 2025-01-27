@@ -504,14 +504,8 @@ h1 {
     line-height: 1;
     position: relative;
     display: inline-block;
-}
-
-.stat-number::after {
-    content: '+';
-    position: absolute;
-    right: -20px;
-    color: var(--primary-color);
-    font-size: 2rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3),
+                 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
 .stat-label {
@@ -1451,6 +1445,17 @@ h1 {
     display: inline-block;
 }
 
+/* Add corner squares to the heading */
+.server-container h3::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.9);
+}
+
 .server-container h3::before {
     content: '';
     position: absolute;
@@ -1461,6 +1466,41 @@ h1 {
     height: 1px;
     background: rgba(255, 255, 255, 0.1);
     z-index: -1;
+}
+
+.server-container h3 span::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+/* Add bottom corner squares */
+.server-container h3 span::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    right: -8px;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.server-container h3 span {
+    position: relative;
+}
+
+.server-container h3 span i {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: -8px;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.9);
 }
 
 .server-list {
