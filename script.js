@@ -55,38 +55,42 @@ document.addEventListener('DOMContentLoaded', function() {
     const servers = [
         {
             id: 'zgrad1',
-            title: 'ZGRAD US1',
+            title: 'ZGRAD',
+            number: 1,
             ip: '193.243.190.18',
             port: 27066,
             region: 'US',
-            description: 'All Gamemodes',
+            description: 'HOMIGRAD - All Gamemodes',
             link: '/us1/connect.html'
         },
         {
             id: 'hh1',
-            title: 'Harrisons Homigrad US1',
+            title: 'Harrisons Homigrad',
+            number: 1,
             ip: '193.243.190.18',
             port: 27051,
             region: 'US',
-            description: 'All Gamemodes',
+            description: 'HOMIGRAD - All Gamemodes',
             link: '/hh1/connect.html'
         },
         {
             id: 'hh2',
-            title: 'Harrisons Homigrad US2',
+            title: 'Harrisons Homigrad',
+            number: 2,
             ip: '193.243.190.18',
             port: 27052,
             region: 'US',
-            description: 'All Gamemodes',
+            description: 'HOMIGRAD - All Gamemodes',
             link: '/hh2/connect.html'
         },
         {
             id: 'hh3',
-            title: 'Harrisons Homigrad US3',
+            title: 'Harrisons Homigrad',
+            number: 3,
             ip: '193.243.190.18',
             port: 27053,
             region: 'US',
-            description: 'Homicide Only',
+            description: 'HOMIGRAD - Homicide Only',
             link: '/hh3/connect.html'
         },
     ];
@@ -118,13 +122,19 @@ document.addEventListener('DOMContentLoaded', function() {
     function createServerCard(server, status) {
         const serverCard = document.createElement('div');
         serverCard.className = `server-card ${status.online ? 'online' : 'offline'}`;
+        const playerDisplay = status.players >= status.maxPlayers ? 'FULL!' : `${status.players}/${status.maxPlayers} Players`;
+        const buttonText = status.players >= status.maxPlayers ? 'JOIN QUEUE' : 'JOIN';
         serverCard.innerHTML = `
             <div class="server-gamemode">${server.description}</div>
+            ${status.players >= status.maxPlayers ? '<a href="/store" class="reserve-slot">Reserve a slot</a>' : ''}
             <div class="server-info">
                 <div class="server-title">${server.title}</div>
-                <div class="server-players">${status.players}/${status.maxPlayers} Players</div>
+                <div class="server-stats">
+                    <div class="server-number">US${server.number}</div>
+                    <div class="server-players ${status.players >= status.maxPlayers ? 'full' : ''}">${playerDisplay}</div>
+                    <a href="${server.link}" class="connect-button">${buttonText} <i class="fas fa-sign-in-alt"></i></a>
+                </div>
             </div>
-            <a href="${server.link}" class="connect-button">Connect</a>
             <div class="server-status"></div>
         `;
         return serverCard;

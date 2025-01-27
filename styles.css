@@ -461,7 +461,7 @@ h1 {
 
 .about-grid {
     display: grid;
-    grid-template-columns: 1fr 400px;
+    grid-template-columns: 1fr 450px;
     gap: 4rem;
     max-width: 1400px;
     margin: 0 auto;
@@ -1121,12 +1121,13 @@ h1 {
 .server-accent-5::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 35px;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.1);
-    transform: translate(-50%, -50%) rotate(45deg);
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    background: var(--gray-light);
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+    z-index: 2;
 }
 
 .server-accent-5::after {
@@ -1433,6 +1434,7 @@ h1 {
 /* Server Container Styles */
 .server-container {
     width: 100%;
+    min-width: 420px;
     position: relative;
     z-index: 10;
     padding: 20px;
@@ -1445,8 +1447,8 @@ h1 {
     text-transform: uppercase;
     margin-bottom: 20px;
     position: relative;
-    padding-left: 15px;
     letter-spacing: 1px;
+    display: inline-block;
 }
 
 .server-container h3::before {
@@ -1455,10 +1457,10 @@ h1 {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    width: 4px;
-    height: 100%;
-    background: var(--primary-color);
-    border-radius: 2px;
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: -1;
 }
 
 .server-list {
@@ -1474,27 +1476,37 @@ h1 {
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 6px;
     padding: 16px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 16px;
     position: relative;
     transition: all 0.3s ease;
+    min-height: 120px;
 }
 
 .server-gamemode {
     position: absolute;
     top: -8px;
     left: -8px;
-    background: var(--primary-color);
+    background: var(--gray-dark);
     padding: 4px 12px;
     font-size: 0.75rem;
     text-transform: uppercase;
     color: #fff;
-    border-radius: 4px;
+    border-radius: 0 4px 4px 4px;
     letter-spacing: 0.5px;
     font-weight: 500;
     border: 1px solid rgba(255, 255, 255, 0.1);
     z-index: 1;
+}
+
+.server-gamemode::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    background: var(--gray-light);
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+    z-index: 2;
 }
 
 .server-card:hover {
@@ -1515,12 +1527,26 @@ h1 {
     padding-top: 16px;
 }
 
+.server-stats {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+}
+
 .server-title {
     color: #fff;
     font-size: 1.1rem;
     font-weight: 600;
     letter-spacing: 0.5px;
     text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 .server-description {
@@ -1538,17 +1564,30 @@ h1 {
 }
 
 .server-players::before {
-    content: '';
-    width: 8px;
-    height: 8px;
-    background: var(--primary-color);
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--primary-color);
-    animation: pulse 2s infinite;
+    content: '\f007';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    margin-right: 4px;
+    text-shadow: 0 0 10px var(--primary-color);
+    animation: glow 2s infinite;
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 10px var(--primary-color);
+    }
+    50% {
+        text-shadow: 0 0 15px var(--primary-color), 0 0 20px var(--primary-color);
+    }
+    100% {
+        text-shadow: 0 0 10px var(--primary-color);
+    }
 }
 
 .connect-button {
-    background: var(--primary-color);
+    background: #2ecc71;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -1562,26 +1601,24 @@ h1 {
     text-decoration: none;
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 8px;
     height: fit-content;
+    margin-left: auto;
+}
+
+.connect-button i {
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
 }
 
 .connect-button:hover {
-    background: var(--accent-color);
+    background: #27ae60;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
 }
 
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(139, 0, 0, 0.4);
-    }
-    70% {
-        box-shadow: 0 0 0 6px rgba(139, 0, 0, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(139, 0, 0, 0);
-    }
+.connect-button:hover i {
+    transform: translateX(2px);
 }
 
 /* Server status indicator */
@@ -1614,7 +1651,7 @@ h1 {
 /* Update about grid layout */
 .about-grid {
     display: grid;
-    grid-template-columns: 1fr 400px;
+    grid-template-columns: 1fr 450px;
     gap: 4rem;
     max-width: 1400px;
     margin: 0 auto;
@@ -1629,7 +1666,7 @@ h1 {
 
 @media (max-width: 1200px) {
     .about-grid {
-        grid-template-columns: 1fr 350px;
+        grid-template-columns: 1fr 400px;
         gap: 2rem;
     }
 }
@@ -1664,6 +1701,10 @@ h1 {
         width: 100%;
         text-align: center;
     }
+
+    .server-container {
+        min-width: unset;
+    }
 }
 
 /* Background Elements - Lower z-index */
@@ -1678,4 +1719,59 @@ h1 {
 .tech-measurements,
 .corner-bracket {
     z-index: 1;
+}
+
+.server-number {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding-right: 16px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.server-players.full {
+    color: #f39c12;
+    font-weight: 600;
+}
+
+.server-players.full::before {
+    color: #f39c12;
+    text-shadow: 0 0 10px #f39c12;
+}
+
+.reserve-slot {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    color: #f39c12;
+    font-size: 0.85rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 2;
+}
+
+.reserve-slot:hover {
+    color: #f1c40f;
+    text-shadow: 0 0 10px rgba(243, 156, 18, 0.3);
+}
+
+.reserve-slot::after {
+    content: '\f105';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+.reserve-slot:hover::after {
+    transform: translateX(3px);
+}
+
+/* Adjust server status position when reserve slot is present */
+.server-card .server-status {
+    top: 45px;
 }
