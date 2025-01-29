@@ -1871,3 +1871,110 @@ h1 {
 .server-card .server-status {
     top: 45px;
 }
+
+.server-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 2rem;
+    justify-content: flex-start;
+    padding-left: 45px;
+}
+
+.action-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    width: 200px;
+    justify-content: flex-start;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(10px);
+    background: transparent;
+}
+
+.action-button::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: rgba(255, 255, 255, 0.1);
+    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+    z-index: -2;
+    transition: all 0.3s ease;
+}
+
+.action-button::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(26, 26, 26, 0.6);
+    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+    z-index: -1;
+    transition: all 0.3s ease;
+}
+
+/* Add white squares in corners */
+.action-button .corner-square {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 1;
+}
+
+.action-button .corner-square-bottom {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 1;
+}
+
+.action-button:hover::before {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.action-button:hover::after {
+    background: rgba(42, 42, 42, 0.8);
+}
+
+.action-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.action-button i {
+    font-size: 1.1em;
+    color: var(--accent-color);
+    transition: all 0.3s ease;
+    width: 20px;
+    text-align: center;
+}
+
+.action-button:hover i {
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .server-actions {
+        flex-direction: column;
+        padding-left: 20px;
+    }
+    
+    .action-button {
+        width: 100%;
+    }
+}

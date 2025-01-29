@@ -93,6 +93,42 @@ document.addEventListener('DOMContentLoaded', function() {
             description: 'HOMIGRAD - Homicide Only',
             link: '/hh3/connect.html'
         },
+        {
+            id: 'npcz',
+            title: 'NPC Zombies Vs. Players',
+            ip: '193.243.190.18',
+            port: 27015,
+            region: 'US',
+            description: 'Sandbox',
+            link: '/npcz/connect.html'
+        },
+        {
+            id: 'zbox',
+            title: 'ZBOX',
+            ip: '193.243.190.18',
+            port: 27064,
+            region: 'US',
+            description: 'Sandbox',
+            link: '/zbox/connect.html'
+        },
+        {
+            id: 'shelter',
+            title: 'Official Server',
+            ip: '193.243.190.18',
+            port: 27025,
+            region: 'US',
+            description: 'Zombie Shelter',
+            link: '/shelter/connect.html'
+        },
+        {
+            id: 'horde',
+            title: 'NPCZ Horde',
+            ip: '193.243.190.18',
+            port: 27065,
+            region: 'US',
+            description: 'Horde',
+            link: '/horde/connect.html'
+        }
     ];
 
     function updateServerStatus(server) {
@@ -130,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="server-info">
                 <div class="server-title">${server.title}</div>
                 <div class="server-stats">
-                    <div class="server-number">US${server.number}</div>
+                    <div class="server-number">${server.number ? `US${server.number}` : 'US'}</div>
                     <div class="server-players ${status.players >= status.maxPlayers ? 'full' : ''}">${playerDisplay}</div>
                     <a href="${server.link}" class="connect-button">${buttonText} <i class="fas fa-sign-in-alt"></i></a>
                 </div>
