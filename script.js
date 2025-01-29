@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function createServerCard(server, status) {
         const serverCard = document.createElement('div');
         serverCard.className = `server-card ${status.online ? 'online' : 'offline'}`;
-        const playerDisplay = status.players >= status.maxPlayers ? 'FULL!' : `${status.players}/${status.maxPlayers} Players`;
+        const playerDisplay = status.players >= status.maxPlayers ? `${status.players}/${status.maxPlayers} FULL!` : `${status.players}/${status.maxPlayers} Players`;
         const buttonText = status.players >= status.maxPlayers ? 'JOIN QUEUE' : 'JOIN';
         serverCard.innerHTML = `
             <div class="server-gamemode">${server.description}</div>
