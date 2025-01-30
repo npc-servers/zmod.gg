@@ -378,13 +378,14 @@ h1 {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 2rem;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .about-left {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    padding-top: 3rem;
 }
 
 .about-left h2 {
@@ -540,6 +541,7 @@ h1 {
     position: relative;
     z-index: 10;
     padding: 20px;
+    padding-top: 4.5rem;
 }
 
 .server-container h3 {
@@ -550,18 +552,14 @@ h1 {
     margin-bottom: 32px;
     position: relative;
     letter-spacing: 1px;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 /* Add corner squares to the heading */
 .server-container h3::after {
-    content: '';
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    width: 4px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.9);
+    display: none; /* Remove the misaligned square */
 }
 
 .server-container h3::before {
@@ -576,39 +574,42 @@ h1 {
     z-index: -1;
 }
 
-.server-container h3 span::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: -8px;
-    width: 4px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.9);
-}
-
-/* Add bottom corner squares */
-.server-container h3 span::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    right: -8px;
-    width: 4px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.9);
-}
-
 .server-container h3 span {
     position: relative;
+    padding: 0 16px; /* Add padding around the text */
 }
 
+.server-container h3 span::before,
+.server-container h3 span::after,
 .server-container h3 span i {
     content: '';
     position: absolute;
-    bottom: -8px;
-    left: -8px;
     width: 4px;
     height: 4px;
     background: rgba(255, 255, 255, 0.9);
+}
+
+/* Top left square */
+.server-container h3 span::before {
+    top: -8px;
+    left: -8px;
+}
+
+/* Top right square */
+.server-container h3 span::after {
+    top: -8px;
+    right: -8px;
+}
+
+/* Bottom squares */
+.server-container h3 span i:first-of-type {
+    bottom: -8px;
+    left: -8px;
+}
+
+.server-container h3 span i:last-of-type {
+    bottom: -8px;
+    right: -8px;
 }
 
 .server-list {
@@ -1178,4 +1179,14 @@ h1 {
     display: flex;
     align-items: center;
     gap: 16px;
+}
+
+.desktop-only {
+    display: inline;
+}
+
+@media (max-width: 768px) {
+    .desktop-only {
+        display: none;
+    }
 }
