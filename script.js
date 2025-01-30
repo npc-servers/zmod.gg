@@ -178,7 +178,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateServerList() {
         const serverList = document.querySelector('.server-list');
-        if (!serverList) return;
+        const serverContainer = document.querySelector('.server-container');
+        if (!serverList || !serverContainer) return;
 
         Promise.all(servers.map(server => updateServerStatus(server)))
             .then(statuses => {
@@ -215,6 +216,25 @@ document.addEventListener('DOMContentLoaded', function() {
                     const serverCard = createServerCard(server, status);
                     serverList.appendChild(serverCard);
                 });
+
+                // Remove existing View All Servers button if it exists
+                const existingViewAll = serverContainer.querySelector('.view-all-servers');
+                if (existingViewAll) {
+                    existingViewAll.remove();
+                }
+
+                // Add View All Servers button after the server-list
+                const viewAllServers = document.createElement('div');
+                viewAllServers.className = 'view-all-servers';
+                viewAllServers.innerHTML = `
+                    <a href="/servers" class="view-all-servers-btn">
+                        View All Servers <i class="fas fa-arrow-right"></i>
+                    </a>
+                `;
+                serverContainer.appendChild(viewAllServers);
+            })
+            .catch(error => {
+                console.error('Error updating server list:', error);
             });
     }
 
