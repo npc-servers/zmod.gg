@@ -160,14 +160,18 @@ document.addEventListener('DOMContentLoaded', function() {
         serverCard.className = `server-card ${status.online ? 'online' : 'offline'}`;
         const playerDisplay = status.players >= status.maxPlayers ? `${status.players}/${status.maxPlayers} FULL!` : `${status.players}/${status.maxPlayers} Players`;
         const buttonText = status.players >= status.maxPlayers ? 'JOIN QUEUE' : 'JOIN';
+        
+        // Updated HTML structure for better mobile layout
         serverCard.innerHTML = `
             <div class="server-gamemode">${server.description}</div>
             ${status.players >= status.maxPlayers ? '<a href="/store" class="reserve-slot">Reserve a slot</a>' : ''}
             <div class="server-info">
                 <div class="server-title">${server.title}</div>
                 <div class="server-stats">
-                    <div class="server-number">${server.number ? `US${server.number}` : 'US'}</div>
-                    <div class="server-players ${status.players >= status.maxPlayers ? 'full' : ''}">${playerDisplay}</div>
+                    <div class="server-meta">
+                        <div class="server-number">${server.number ? `US${server.number}` : 'US'}</div>
+                        <div class="server-players ${status.players >= status.maxPlayers ? 'full' : ''}">${playerDisplay}</div>
+                    </div>
                     <a href="${server.link}" class="connect-button">${buttonText} <i class="fas fa-sign-in-alt"></i></a>
                 </div>
             </div>

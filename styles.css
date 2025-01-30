@@ -39,6 +39,8 @@ body {
     overflow-x: hidden;
     perspective: 10px;
     scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
 }
 
 .section {
@@ -48,6 +50,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 /* Hero Section */
@@ -57,8 +60,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-bottom: 5vh;
     position: relative;
+    height: 100vh;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
 }
 
 /* Background Image */
@@ -111,9 +117,15 @@ body {
     position: relative;
     z-index: 3;
     max-width: 1200px;
+    width: 100%;
     padding: 0 2rem;
     margin: 0 auto;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
 /* God Rays Effect */
@@ -183,18 +195,10 @@ body {
     }
 }
 
-.content {
-    position: relative;
-    z-index: 3;
-    max-width: 1200px;
-    padding: 0 2rem;
-    margin: 0 auto;
-    text-align: center;
-}
-
 .text-content {
     margin-bottom: 3rem;
     max-width: 800px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -783,71 +787,189 @@ h1 {
 }
 
 @media (max-width: 768px) {
-    .server-card {
-        grid-template-columns: 1fr;
-    }
-    
-    .connect-button {
-        width: 100%;
-    }
-}
-
-/* Update about grid layout */
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 450px;
-    gap: 4rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    align-items: center;
-}
-
-.about-right {
-    padding-top: 4rem;
-    padding-left: 2rem;
-}
-
-@media (max-width: 1200px) {
-    .about-grid {
-        grid-template-columns: 1fr 400px;
-        gap: 2rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .about-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .about-right {
-        padding-top: 2rem;
-        padding-left: 1rem;
-    }
-    
-    .server-card {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        padding: 1rem;
-    }
-
-    .server-description {
-        margin: -1rem -1rem 0 -1rem;
-        padding: 0.5rem 1rem;
+    .container {
         height: auto;
+        min-height: 100vh;
+        perspective: none;
+        scroll-snap-type: none;
+        overflow: visible;
     }
 
-    .server-info {
-        padding: 1rem 0;
+    body {
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 
-    .connect-button {
+    .hero {
+        height: 100vh;
+        min-height: 100vh;
+        padding: 4rem 0;
+    }
+
+    .hero .content {
+        padding: 0 1rem;
+        justify-content: center;
+    }
+
+    .text-content {
+        margin-bottom: 2rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+    }
+
+    .description {
+        font-size: 1rem;
+        padding: 0;
+        line-height: 1.4;
+    }
+
+    .buttons {
         width: 100%;
+        padding: 0;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .social-links {
+        position: absolute;
+        bottom: 2rem;
+        right: 1rem;
+    }
+
+    .section {
+        min-height: unset;
+        height: auto;
+        scroll-snap-align: none;
+        padding: 2rem 0;
+    }
+
+    .section:first-child {
+        min-height: 100vh;
+        height: 100vh;
+        padding: 0;
+    }
+
+    .about {
+        height: auto;
+        overflow: visible;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 1rem;
+        height: auto;
+        align-items: flex-start;
+    }
+
+    .about-left {
+        gap: 1.5rem;
+    }
+
+    .about-left h2 {
+        font-size: 3rem;
         text-align: center;
+    }
+
+    .stats-grid {
+        justify-content: center;
+        padding-left: 0;
+        margin-bottom: 1rem;
     }
 
     .server-container {
         min-width: unset;
+        padding: 15px;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .server-container h3 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .server-list {
+        gap: 16px;
+    }
+
+    .server-card {
+        padding: 12px;
+        min-height: unset;
+        margin-bottom: 8px;
+    }
+
+    .server-info {
+        padding-top: 12px;
+        padding-bottom: 0;
+    }
+
+    .server-stats {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        margin-top: 8px;
+    }
+
+    .server-actions {
+        margin-top: 1rem;
+        padding: 0 1rem;
+    }
+
+    .action-button {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        justify-content: center;
+        border-radius: 6px;
+    }
+
+    .action-button::before,
+    .action-button::after {
+        border-radius: 6px;
+        clip-path: none;
+    }
+
+    .scroll-indicator {
+        display: none;
+    }
+}
+
+@media (max-width: 360px) {
+    .hero {
+        padding: 3rem 0;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .description {
+        font-size: 0.9rem;
+    }
+
+    .about-left h2 {
+        font-size: 2.5rem;
+    }
+
+    .stats-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .stat-card {
+        text-align: center;
+        align-items: center;
     }
 }
 
@@ -859,8 +981,6 @@ h1 {
 .server-accent-3,
 .server-accent-5,
 .circuit-branch,
-.data-stream,
-.tech-measurements,
 .corner-bracket {
     z-index: 1;
 }
@@ -1052,4 +1172,10 @@ h1 {
 
 .view-all-servers-btn:hover i {
     transform: translateX(3px);
+}
+
+.server-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
