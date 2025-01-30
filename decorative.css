@@ -1,0 +1,950 @@
+.particle-container {
+    position: absolute;
+    width: calc(100% + 100px);
+    height: calc(100% + 100px);
+    overflow: visible;
+    z-index: 1;
+    top: -50px;
+    left: -50px;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    box-shadow: 0 0 20px var(--accent-color), 0 0 40px var(--accent-color), 0 0 60px var(--accent-color);
+}
+
+/* Top particles */
+.particle.top {
+    animation: particleFloatDown 8s infinite linear;
+}
+
+.particle.top:nth-child(1) { left: 10%; width: 8px; height: 8px; animation-delay: 0s; }
+.particle.top:nth-child(2) { left: 30%; width: 6px; height: 6px; animation-delay: -2s; }
+.particle.top:nth-child(3) { left: 50%; width: 10px; height: 10px; animation-delay: -4s; }
+.particle.top:nth-child(4) { left: 70%; width: 7px; height: 7px; animation-delay: -6s; }
+.particle.top:nth-child(5) { left: 90%; width: 9px; height: 9px; animation-delay: -8s; }
+
+/* Bottom particles */
+.particle.bottom {
+    animation: particleFloatUp 8s infinite linear;
+    bottom: 50px;
+}
+
+.particle.bottom:nth-child(6) { left: 15%; width: 6px; height: 6px; animation-delay: -1s; }
+.particle.bottom:nth-child(7) { left: 35%; width: 5px; height: 5px; animation-delay: -3s; }
+.particle.bottom:nth-child(8) { left: 55%; width: 7px; height: 7px; animation-delay: -5s; }
+.particle.bottom:nth-child(9) { left: 75%; width: 4px; height: 4px; animation-delay: -7s; }
+.particle.bottom:nth-child(10) { left: 95%; width: 6px; height: 6px; animation-delay: -9s; }
+
+.particle::before {
+    content: '';
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(139, 0, 0, 0.4) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    animation: particleGlow 4s infinite ease-in-out;
+}
+
+@keyframes particleFloatDown {
+    0% {
+        transform: translateY(-100%) rotate(0deg);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(1000%) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes particleFloatUp {
+    0% {
+        transform: translateY(100%) rotate(0deg);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.8;
+    }
+    80% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-1000%) rotate(-360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes particleGlow {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 1;
+    }
+}
+
+/* Animations */
+@keyframes gradientShift {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes gridMove {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 60px 60px;
+    }
+}
+
+/* Decorative Elements */
+.about {
+    position: relative;
+}
+
+.decorative-square {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 5;
+}
+
+.decorative-square.top-left {
+    top: 30px;
+    left: 30px;
+}
+
+.decorative-square.top-right {
+    top: 30px;
+    right: 30px;
+}
+
+.decorative-square.bottom-left {
+    bottom: 30px;
+    left: 30px;
+}
+
+.decorative-square.bottom-right {
+    bottom: 30px;
+    right: 30px;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    /* Hero Section Mobile Styles */
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .description {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+
+    .hero .content {
+        padding: 0 1rem;
+    }
+
+    /* Button Layout for Mobile */
+    .buttons {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+
+    .btn {
+        width: 100%;
+        min-width: unset;
+        padding: 0.8rem 1.5rem;
+    }
+
+    /* Hide scroll indicator on mobile */
+    .scroll-indicator {
+        display: none;
+    }
+
+    /* Adjust content spacing */
+    .text-content {
+        margin-bottom: 2rem;
+    }
+
+    /* Optimize social links positioning */
+    .social-links {
+        bottom: 1rem;
+    }
+
+    /* Adjust particle effects for better mobile performance */
+    .particle-container {
+        display: none;
+    }
+}
+
+.decorative-square.bottom-left::before,
+.decorative-square.bottom-left::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+}
+
+.decorative-square.bottom-left::before {
+    left: -12px;
+    top: 2px;
+}
+
+.decorative-square.bottom-left::after {
+    right: -12px;
+    top: 2px;
+}
+
+/* Corner Decorative Elements */
+.decorative-square {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 5;
+}
+
+.decorative-square.top-left {
+    top: 30px;
+    left: 30px;
+}
+
+.decorative-square.top-right {
+    top: 30px;
+    right: 30px;
+}
+
+.decorative-square.bottom-left {
+    bottom: 30px;
+    left: 30px;
+}
+
+.decorative-square.bottom-right {
+    bottom: 30px;
+    right: 30px;
+}
+
+.decorative-square.bottom-left::before,
+.decorative-square.bottom-left::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+}
+
+.decorative-square.bottom-left::before {
+    left: -12px;
+    top: 2px;
+}
+
+.decorative-square.bottom-left::after {
+    right: -12px;
+    top: 2px;
+}
+
+.server-preview {
+    position: relative;
+    background: rgba(20, 20, 20, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+    height: 100%;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.placeholder-content {
+    text-align: center;
+}
+
+.placeholder-content i {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+    .about-left h2 {
+        font-size: 3rem;
+        margin-left: 20px;
+    }
+
+    .stats-grid {
+        padding-left: 45px;
+        gap: 2rem;
+    }
+
+    .stat-number {
+        font-size: 3rem;
+    }
+}
+
+/* Keep existing styles and add these new sophisticated elements */
+
+.sophisticated-element-3 {
+    position: absolute;
+    top: 35%;
+    left: 75%;
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.1);
+    font-size: 1rem;
+    content: '>';
+}
+
+.sophisticated-element-4 {
+    position: absolute;
+    bottom: 35%;
+    right: 20%;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: rotate(45deg);
+}
+
+.sophisticated-element-5 {
+    position: absolute;
+    top: 60%;
+    left: 30%;
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.1);
+    font-size: 1.25rem;
+    content: '//';
+}
+
+.sophisticated-element-6 {
+    position: absolute;
+    top: 25%;
+    left: 40%;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sophisticated-element-7 {
+    position: absolute;
+    bottom: 15%;
+    right: 35%;
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.1);
+    font-size: 1rem;
+    content: '02';
+}
+
+/* Transition elements */
+.transition-element {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.transition-line-left {
+    position: absolute;
+    bottom: 80px;
+    left: 10%;
+    width: 150px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(-45deg);
+}
+
+.transition-line-right {
+    position: absolute;
+    bottom: 80px;
+    right: 10%;
+    width: 150px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(45deg);
+}
+
+.transition-text {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.1);
+    font-size: 0.875rem;
+}
+
+/* Sophisticated text elements for server section */
+.about {
+    position: relative;
+}
+
+.server-accent-1 {
+    position: absolute;
+    top: 15%;
+    right: 10%;
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.1);
+    font-size: 1rem;
+    content: '02';
+}
+
+.server-accent-2 {
+    position: absolute;
+    bottom: 20%;
+    left: 8%;
+    width: 60px;
+    height: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.server-accent-2::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.server-accent-2::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.server-accent-3 {
+    position: absolute;
+    top: 30%;
+    right: 25%;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.server-accent-3::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 55px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.server-accent-3::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 55px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.server-accent-4 {
+    position: absolute;
+    bottom: 35%;
+    left: 30%;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.server-accent-4::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 42px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.server-accent-4::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 42px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.server-accent-5 {
+    position: absolute;
+    top: 60%;
+    right: 15%;
+    width: 25px;
+    height: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.server-accent-5::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    background: var(--gray-light);
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+    z-index: 2;
+}
+
+.server-accent-5::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 35px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Add vertical text labels to squares */
+.about-page .decorative-square.top-right::after {
+    content: 'SERVERS';
+    position: absolute;
+    left: calc(100% + 12px);
+    bottom: 50%;
+    transform: rotate(90deg) translateX(-50%);
+    transform-origin: left bottom;
+    font-size: 0.75rem;
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.3);
+    white-space: nowrap;
+    letter-spacing: 2px;
+}
+
+/* Corner Decorative Elements */
+.about-page .decorative-square.bottom-left::before,
+.about-page .decorative-square.bottom-left::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    top: 2px;
+}
+
+.about-page .decorative-square.bottom-left::before {
+    left: -12px;
+}
+
+.about-page .decorative-square.bottom-left::after {
+    right: -12px;
+}
+
+/* Circuit Branch Design */
+.circuit-branch {
+    position: absolute;
+    width: 100vw;
+    height: 2px;
+    top: 65%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.circuit-line {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%,
+        var(--gray-light) 5%,
+        var(--gray-light) 95%,
+        transparent 100%
+    );
+    opacity: 0.3;
+}
+
+.circuit-node {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--gray-light);
+    border-radius: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.3;
+}
+
+.circuit-node.left {
+    left: 5%;
+}
+
+.circuit-node.center {
+    left: 50%;
+}
+
+.circuit-node.right {
+    left: 95%;
+}
+
+.circuit-branch-vertical {
+    position: absolute;
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(180deg,
+        var(--gray-light) 0%,
+        transparent 100%
+    );
+    top: 0;
+    opacity: 0.3;
+}
+
+.circuit-branch-vertical.left {
+    left: 5%;
+    transform: translateX(-50%);
+}
+
+.circuit-branch-vertical.right {
+    left: 95%;
+    transform: translateX(-50%);
+}
+
+@keyframes pulseLine {
+    0%, 100% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 0.4;
+    }
+}
+
+/* Data Stream */
+.data-stream {
+    position: absolute;
+    top: 20%;
+    right: 5%;
+    transform: rotate(-45deg);
+    z-index: 2;
+    pointer-events: none;
+    user-select: none;
+}
+
+.stream-line {
+    position: absolute;
+    width: 2px;
+    height: 300px;
+    background: linear-gradient(180deg, transparent, var(--gray-light) 20%, var(--gray-light) 80%, transparent);
+    opacity: 0.2;
+    left: 0;
+}
+
+.stream-data {
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: var(--gray-light);
+    opacity: 0.4;
+    margin: 30px 0;
+    transform: rotate(45deg);
+    white-space: nowrap;
+    animation: streamData 8s infinite linear;
+    pointer-events: none;
+    user-select: none;
+}
+
+@keyframes streamData {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) translateY(-20px);
+    }
+    10% {
+        opacity: 0.4;
+    }
+    90% {
+        opacity: 0.4;
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(45deg) translateY(20px);
+    }
+}
+
+/* Tech Measurements */
+.tech-measurements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.measurement {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.measurement.right {
+    right: 10%;
+    top: 40%;
+}
+
+.measurement-line {
+    width: 100px;
+    height: 1px;
+    background: var(--gray-light);
+    opacity: 0.3;
+    position: relative;
+}
+
+.measurement-line::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--gray-light);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.5;
+}
+
+.measurement-text {
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: var(--gray-light);
+    opacity: 0.4;
+}
+
+.measurement-value {
+    font-family: monospace;
+    font-size: 0.875rem;
+    color: var(--gray-light);
+    opacity: 0.6;
+}
+
+/* Corner Brackets */
+.corner-bracket {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+}
+
+.corner-bracket.top-left {
+    top: 40px;
+    left: 40px;
+}
+
+.corner-bracket.top-right {
+    top: 40px;
+    right: 40px;
+    transform: scaleX(-1);
+}
+
+.corner-bracket.bottom-left {
+    bottom: 40px;
+    left: 40px;
+    transform: scaleY(-1);
+}
+
+.corner-bracket.bottom-right {
+    bottom: 40px;
+    right: 40px;
+    transform: scale(-1);
+}
+
+.bracket-line {
+    position: absolute;
+    background: var(--gray-light);
+    opacity: 0.3;
+}
+
+.bracket-line.horizontal {
+    width: 100%;
+    height: 1px;
+    top: 0;
+}
+
+.bracket-line.vertical {
+    width: 1px;
+    height: 100%;
+    left: 0;
+}
+
+.bracket-data {
+    position: absolute;
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: var(--gray-light);
+    opacity: 0.4;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Add subtle hover effects */
+.measurement:hover .measurement-line,
+.measurement:hover .measurement-text,
+.measurement:hover .measurement-value {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.corner-bracket:hover .bracket-line,
+.corner-bracket:hover .bracket-data {
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+/* Sophisticated Background Elements */
+.sophisticated-element-1 {
+    position: absolute;
+    top: 25%;
+    right: 25%;
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.1);
+    font-size: 1.25rem;
+    content: '01';
+}
+
+.sophisticated-element-2 {
+    position: absolute;
+    bottom: 20%;
+    left: 15%;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.sophisticated-element-2::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.sophisticated-element-2::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Corner Decorative Elements - now specific to main page */
+.about-page .decorative-square {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 5;
+}
+
+.about-page .decorative-square.top-left {
+    top: 30px;
+    left: 30px;
+}
+
+.about-page .decorative-square.top-right {
+    top: 30px;
+    right: 30px;
+}
+
+.about-page .decorative-square.bottom-left {
+    bottom: 30px;
+    left: 30px;
+}
+
+.about-page .decorative-square.bottom-right {
+    bottom: 30px;
+    right: 30px;
+}
+
+.about-page .decorative-square.bottom-left::before,
+.about-page .decorative-square.bottom-left::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+}
+
+.about-page .decorative-square.bottom-left::before {
+    left: -12px;
+    top: 2px;
+}
+
+.about-page .decorative-square.bottom-left::after {
+    right: -12px;
+    top: 2px;
+}
