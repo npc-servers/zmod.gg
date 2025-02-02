@@ -374,7 +374,7 @@ h1 {
 .about-grid {
     display: grid;
     grid-template-columns: 1fr 450px;
-    gap: 4rem;
+    gap: 8rem;
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 2rem;
@@ -866,8 +866,6 @@ h1 {
         grid-template-columns: 1fr;
         gap: 2rem;
         padding: 1rem;
-        height: auto;
-        align-items: flex-start;
     }
 
     .about-left {
@@ -903,45 +901,53 @@ h1 {
         gap: 16px;
     }
 
-    .server-card {
-        padding: 12px;
-        min-height: unset;
-        margin-bottom: 8px;
-    }
-
     .server-info {
         padding-top: 12px;
         padding-bottom: 0;
     }
 
+    .server-title-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .server-title {
+        font-size: 1rem;
+        flex: 1;
+        margin-right: 8px;
+    }
+
     .server-stats {
-        position: relative;
-        bottom: auto;
-        left: auto;
-        right: auto;
+        position: static;
+        margin-top: 12px;
+    }
+
+    .server-meta {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .connect-button {
+        display: none;
+    }
+
+    .mobile-only-message {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        font-style: italic;
         margin-top: 8px;
     }
 
-    .server-actions {
-        margin-top: 1rem;
-        padding: 0 1rem;
-    }
-
-    .action-button {
-        width: 100%;
-        padding: 0.75rem 1rem;
-        justify-content: center;
-        border-radius: 6px;
-    }
-
-    .action-button::before,
-    .action-button::after {
-        border-radius: 6px;
-        clip-path: none;
-    }
-
-    .scroll-indicator {
+    .server-card.full .reserve-slot {
         display: none;
+    }
+
+    .server-players {
+        font-size: 0.85rem;
+        white-space: nowrap;
     }
 }
 
@@ -986,10 +992,23 @@ h1 {
     z-index: 1;
 }
 
+.server-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
 .server-number {
     color: var(--text-muted);
     font-size: 0.9rem;
     font-weight: 500;
+    padding-right: 16px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.server-players {
+    color: var(--text-muted);
+    font-size: 0.9rem;
     padding-right: 16px;
     border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -1188,5 +1207,118 @@ h1 {
 @media (max-width: 768px) {
     .desktop-only {
         display: none;
+    }
+}
+
+/* Add responsive padding for larger screens */
+@media (min-width: 1200px) {
+    .about-grid {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+    
+    .about-left {
+        padding-top: 6rem;
+    }
+
+    .server-container {
+        padding-top: 8rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    .about-grid {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+    }
+    
+    .about-left {
+        padding-top: 8rem;
+    }
+
+    .server-container {
+        padding-top: 12rem;
+    }
+}
+
+/* Add responsive gap adjustments */
+@media (min-width: 1600px) {
+    .about-grid {
+        gap: 12rem;
+        max-width: 1600px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .about-grid {
+        gap: 6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 1rem;
+    }
+}
+
+.mobile-only-message {
+    display: none;
+}
+
+.mobile-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(139, 0, 0, 0.15);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.mobile-badge i {
+    font-size: 0.8rem;
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .mobile-only-message {
+        display: block;
+    }
+
+    .server-meta {
+        width: 100%;
+    }
+
+    .meta-row {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .server-number {
+        border-right: none;
+        padding-right: 0;
+    }
+
+    .connect-button {
+        display: none;
+    }
+
+    .server-card.full .reserve-slot {
+        display: none;
+    }
+
+    .server-players {
+        font-size: 0.85rem;
+        white-space: nowrap;
     }
 }

@@ -136,11 +136,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function createServerCard(server, status) {
         const serverCard = document.createElement('div');
-        serverCard.className = `server-card ${status.online ? 'online' : 'offline'}`;
+        serverCard.className = `server-card ${status.online ? 'online' : 'offline'} ${status.players >= status.maxPlayers ? 'full' : ''}`;
         const playerDisplay = status.players >= status.maxPlayers ? `${status.players}/${status.maxPlayers} FULL!` : `${status.players}/${status.maxPlayers} Players`;
         const buttonText = status.players >= status.maxPlayers ? 'JOIN QUEUE' : 'JOIN';
         
-        // Updated HTML structure for better mobile layout
+        // Updated HTML structure to fix desktop layout
         serverCard.innerHTML = `
             <div class="server-gamemode">${server.description}</div>
             ${status.players >= status.maxPlayers ? '<a href="/store" class="reserve-slot">Reserve a slot</a>' : ''}
@@ -150,6 +150,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="server-meta">
                         <div class="server-number">${server.number ? `US${server.number}` : 'US'}</div>
                         <div class="server-players ${status.players >= status.maxPlayers ? 'full' : ''}">${playerDisplay}</div>
+                        <div class="mobile-only-message">
+                            <span class="mobile-badge">
+                                <i class="fas fa-desktop"></i>
+                                PC ONLY
+                            </span>
+                        </div>
                     </div>
                     <a href="${server.link}" class="connect-button">${buttonText} <i class="fas fa-sign-in-alt"></i></a>
                 </div>
