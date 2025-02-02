@@ -1009,8 +1009,15 @@ h1 {
 .server-players {
     color: var(--text-muted);
     font-size: 0.9rem;
-    padding-right: 16px;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.server-players.desktop-only {
+    padding-right: 0;
+    border-right: none;
+}
+
+.server-players.mobile-only {
+    display: none;
 }
 
 .server-players.full {
@@ -1021,6 +1028,10 @@ h1 {
 .server-players.full::before {
     color: #f39c12;
     text-shadow: 0 0 10px #f39c12;
+}
+
+.mobile-only-message {
+    display: none;
 }
 
 .reserve-slot {
@@ -1320,5 +1331,66 @@ h1 {
     .server-players {
         font-size: 0.85rem;
         white-space: nowrap;
+    }
+}
+
+.server-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.server-players.full {
+    color: #f39c12;
+    font-weight: 600;
+}
+
+.server-players.full::before {
+    color: #f39c12;
+    text-shadow: 0 0 10px #f39c12;
+}
+
+.mobile-only-message {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .server-info {
+        padding-top: 12px;
+        padding-bottom: 0;
+    }
+
+    .server-meta {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .server-number {
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        padding-right: 16px;
+    }
+
+    .server-players.desktop-only {
+        display: none;
+    }
+
+    .server-players.mobile-only {
+        display: block;
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
+
+    .mobile-only-message {
+        display: block;
+    }
+
+    .connect-button {
+        display: none;
+    }
+
+    .server-card.full .reserve-slot {
+        display: none;
     }
 }

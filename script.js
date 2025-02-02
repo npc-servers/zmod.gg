@@ -140,16 +140,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const playerDisplay = status.players >= status.maxPlayers ? `${status.players}/${status.maxPlayers} FULL!` : `${status.players}/${status.maxPlayers} Players`;
         const buttonText = status.players >= status.maxPlayers ? 'JOIN QUEUE' : 'JOIN';
         
-        // Updated HTML structure to fix desktop layout
         serverCard.innerHTML = `
             <div class="server-gamemode">${server.description}</div>
             ${status.players >= status.maxPlayers ? '<a href="/store" class="reserve-slot">Reserve a slot</a>' : ''}
             <div class="server-info">
-                <div class="server-title">${server.title}</div>
+                <div class="server-title-container">
+                    <div class="server-title">${server.title}</div>
+                    <div class="server-players mobile-only ${status.players >= status.maxPlayers ? 'full' : ''}">${playerDisplay}</div>
+                </div>
                 <div class="server-stats">
                     <div class="server-meta">
                         <div class="server-number">${server.number ? `US${server.number}` : 'US'}</div>
-                        <div class="server-players ${status.players >= status.maxPlayers ? 'full' : ''}">${playerDisplay}</div>
+                        <div class="server-players desktop-only ${status.players >= status.maxPlayers ? 'full' : ''}">${playerDisplay}</div>
                         <div class="mobile-only-message">
                             <span class="mobile-badge">
                                 <i class="fas fa-desktop"></i>
