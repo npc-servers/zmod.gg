@@ -24,9 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Set up IntersectionObserver for navbar visibility
     const options = {
-        root: document.querySelector('.container'),
-        rootMargin: '-10% 0px 0px 0px', // Start transition slightly before leaving hero
-        threshold: 0
+        root: null, // Use the viewport instead of container
+        rootMargin: '-20% 0px 0px 0px', // Adjust threshold for better mobile experience
+        threshold: [0, 0.1, 0.2] // Multiple thresholds for smoother transitions
     };
 
     const navbarObserver = new IntersectionObserver((entries) => {
@@ -34,13 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!entry.isIntersecting) {
                 // User has scrolled past hero section
                 navbar?.classList.add('visible');
-                navbar?.classList.add('scroll-up');
-                navbar?.classList.remove('scroll-down');
             } else {
                 // User is in hero section
                 navbar?.classList.remove('visible');
-                navbar?.classList.remove('scroll-up');
-                navbar?.classList.remove('scroll-down');
             }
         });
     }, options);

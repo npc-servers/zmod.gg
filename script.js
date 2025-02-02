@@ -2,26 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.container');
     const scrollIndicator = document.querySelector('.scroll-indicator');
     let lastScrollTop = 0;
-    
-    const options = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.5
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.target.id === 'hero') {
-                if (!entry.isIntersecting) {
-                    navbar.classList.add('visible');
-                } else {
-                    navbar.classList.remove('visible');
-                }
-            }
-        });
-    }, options);
-
-    observer.observe(document.querySelector('#hero'));
 
     // Smooth scroll handling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
