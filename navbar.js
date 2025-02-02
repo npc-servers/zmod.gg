@@ -22,43 +22,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Handle scroll behavior
-    let lastScroll = 0;
-    let heroHeight = hero?.offsetHeight || 0;
-    
-    const handleScroll = () => {
-        const currentScroll = document.querySelector('.container').scrollTop;
-        
-        // Show/hide navbar based on hero section
-        if (currentScroll > heroHeight * 0.3) {
-            navbar?.classList.add('visible');
-            
-            // Handle scroll direction
-            if (currentScroll < lastScroll) {
-                // Scrolling up - hide navbar
-                navbar?.classList.add('scroll-down');
-                navbar?.classList.remove('scroll-up');
-            } else {
-                // Scrolling down - show navbar
-                navbar?.classList.remove('scroll-down');
-                navbar?.classList.add('scroll-up');
-            }
-        } else {
-            // At top of page - hide navbar
-            navbar?.classList.remove('visible');
-            navbar?.classList.remove('scroll-up');
-            navbar?.classList.remove('scroll-down');
-        }
-        
-        lastScroll = currentScroll;
+    // Set up IntersectionObserver for navbar visibility
+    const options = {
+        root: document.querySelector('.container'),
+        rootMargin: '-10% 0px 0px 0px', // Start transition slightly before leaving hero
+        threshold: 0
     };
 
-    const container = document.querySelector('.container');
-    if (container) {
-        container.addEventListener('scroll', handleScroll);
+    const navbarObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+                // User has scrolled past hero section
+                navbar?.classList.add('visible');
+                navbar?.classList.add('scroll-up');
+                navbar?.classList.remove('scroll-down');
+            } else {
+                // User is in hero section
+                navbar?.classList.remove('visible');
+                navbar?.classList.remove('scroll-up');
+                navbar?.classList.remove('scroll-down');
+            }
+        });
+    }, options);
+
+    // Start observing hero section
+    if (hero) {
+        navbarObserver.observe(hero);
     }
-    
-    window.addEventListener('resize', () => {
-        heroHeight = hero?.offsetHeight || 0;
-    });
 }); 

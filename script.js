@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const navbar = document.querySelector('.navbar');
     const container = document.querySelector('.container');
     const scrollIndicator = document.querySelector('.scroll-indicator');
     let lastScrollTop = 0;
