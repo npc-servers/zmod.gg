@@ -23,7 +23,7 @@
 }
 
 html {
-    scroll-behavior: smooth;
+    /* removing scroll-behavior: smooth; */
 }
 
 body {
@@ -38,14 +38,14 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
     perspective: 10px;
-    scroll-snap-type: y mandatory;
+    /* removing scroll-snap-type: y mandatory; */
     -webkit-overflow-scrolling: touch;
     position: relative;
 }
 
 .section {
     min-height: 100vh;
-    scroll-snap-align: start;
+    /* removing scroll-snap-align: start; */
     position: relative;
     display: flex;
     align-items: center;

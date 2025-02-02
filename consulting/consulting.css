@@ -9,7 +9,6 @@ html, body {
 .container {
     height: 100vh;
     overflow-y: auto;
-    scroll-behavior: smooth;
     position: relative;
 }
 
