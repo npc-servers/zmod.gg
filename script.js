@@ -3,18 +3,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollIndicator = document.querySelector('.scroll-indicator');
     let lastScrollTop = 0;
 
+    // Initialize Lenis smooth scroll
+    const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        smoothWheel: true,
+        smoothTouch: false,
+        touchMultiplier: 2
+    });
+
     // Smooth scroll handling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const section = document.querySelector(this.getAttribute('href'));
-            section.scrollIntoView({ behavior: 'smooth' });
+            lenis.scrollTo(section, {
+                offset: 0,
+                duration: 1.2
+            });
         });
     });
 
     // Scroll indicator fade
-    container.addEventListener('scroll', () => {
-        const scrollTop = container.scrollTop;
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
         
         if (scrollTop > lastScrollTop && scrollTop > 50) {
             // Scrolling down and past threshold
@@ -28,6 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
         
         lastScrollTop = scrollTop;
     });
+
+    // RAF animation loop for Lenis
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
 });
 
 document.addEventListener('DOMContentLoaded', function() {
