@@ -1,6 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize Lenis smooth scrolling
+    const lenis = new Lenis();
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
     // Register ScrollTrigger plugin
     gsap.registerPlugin(ScrollTrigger);
+
+    // Update ScrollTrigger on Lenis scroll
+    lenis.on('scroll', () => {
+        ScrollTrigger.update();
+    });
+
+    // Add smooth scrolling to anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                lenis.scrollTo(target, {
+                    offset: 0,
+                    duration: 1.2
+                });
+            }
+        });
+    });
 
     // Initial animations for hero section
     const mainTimeline = gsap.timeline({
