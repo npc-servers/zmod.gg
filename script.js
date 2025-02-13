@@ -261,30 +261,92 @@ function initializeSquareAnimations() {
     // Get all sections that have decorative squares
     const sections = document.querySelectorAll('.section.about, .section.store-section');
     
+    // Set initial state for all squares
+    document.querySelectorAll('.decorative-square, .store-accent').forEach(square => {
+        square.classList.add('hidden');
+        square.style.opacity = '0';
+    });
+
+    // Track the currently visible section and last scroll position
+    let currentVisibleSection = null;
+    let animationTimeouts = [];
+    let lastScrollY = window.scrollY;
+    
     const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            // Get all squares in this section (both decorative-square and store-accent)
-            const squares = entry.target.querySelectorAll('.decorative-square, .store-accent');
-            
             if (entry.isIntersecting) {
-                // When section is visible, trigger squares in sequence
-                squares.forEach(square => {
-                    square.classList.remove('hidden');
-                    // Calculate delay based on position
-                    let delay = 0;
-                    if (square.classList.contains('top-right')) delay = 300;
-                    if (square.classList.contains('bottom-left')) delay = 600;
-                    if (square.classList.contains('bottom-right')) delay = 900;
+                // Determine scroll direction
+                const scrollingDown = window.scrollY > lastScrollY;
+                lastScrollY = window.scrollY;
+
+                // If there's a currently visible section that's different from this one,
+                // hide its squares immediately
+                if (currentVisibleSection && currentVisibleSection !== entry.target) {
+                    const previousSquares = currentVisibleSection.querySelectorAll('.decorative-square, .store-accent');
+                    previousSquares.forEach(square => {
+                        square.classList.remove('visible');
+                        square.classList.add('hidden');
+                        square.style.opacity = '0';
+                    });
+                }
+
+                // Clear any pending animations
+                animationTimeouts.forEach(timeout => clearTimeout(timeout));
+                animationTimeouts = [];
+
+                // Update current visible section
+                currentVisibleSection = entry.target;
+
+                // Get all squares in this section
+                const squares = entry.target.querySelectorAll('.decorative-square, .store-accent');
+                const squaresArray = Array.from(squares);
+                
+                // Sort squares based on scroll direction and position
+                squaresArray.sort((a, b) => {
+                    const aRect = a.getBoundingClientRect();
+                    const bRect = b.getBoundingClientRect();
                     
-                    setTimeout(() => {
-                        square.classList.add('visible');
-                    }, delay);
+                    // Calculate distance from the reference corner
+                    // When scrolling down: distance from top-left
+                    // When scrolling up: distance from bottom-left
+                    const aDistance = scrollingDown 
+                        ? Math.sqrt(Math.pow(aRect.left, 2) + Math.pow(aRect.top, 2))
+                        : Math.sqrt(Math.pow(aRect.left, 2) + Math.pow(window.innerHeight - aRect.bottom, 2));
+                    
+                    const bDistance = scrollingDown
+                        ? Math.sqrt(Math.pow(bRect.left, 2) + Math.pow(bRect.top, 2))
+                        : Math.sqrt(Math.pow(bRect.left, 2) + Math.pow(window.innerHeight - bRect.bottom, 2));
+                    
+                    return aDistance - bDistance;
+                });
+                
+                // When section is visible, trigger squares in sequence
+                squaresArray.forEach((square, index) => {
+                    const timeout = setTimeout(() => {
+                        square.classList.remove('hidden');
+                        // Use requestAnimationFrame to ensure opacity is 0 before adding visible class
+                        requestAnimationFrame(() => {
+                            requestAnimationFrame(() => {
+                                if (currentVisibleSection === entry.target) {
+                                    square.classList.add('visible');
+                                }
+                            });
+                        });
+                    }, index * 200); // Slightly faster delay between squares
+
+                    animationTimeouts.push(timeout);
                 });
             } else {
-                // When section is hidden, hide all squares immediately
+                // When section is no longer intersecting
+                if (currentVisibleSection === entry.target) {
+                    currentVisibleSection = null;
+                }
+                // Hide all squares in this section
+                const squares = entry.target.querySelectorAll('.decorative-square, .store-accent');
                 squares.forEach(square => {
                     square.classList.remove('visible');
                     square.classList.add('hidden');
+                    square.style.opacity = '0';
                 });
             }
         });
