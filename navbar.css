@@ -248,4 +248,43 @@
         background: var(--glass-bg);
         backdrop-filter: blur(15px);
     }
+}
+
+.nav-link.active {
+    color: #ff1a1a !important;
+    opacity: 1 !important;
+    text-shadow: 0 0 10px rgba(255, 26, 26, 0.5),
+                 0 0 20px rgba(255, 26, 26, 0.3),
+                 0 0 30px rgba(255, 26, 26, 0.1);
+}
+
+.mobile-nav-link.active {
+    color: #ff1a1a !important;
+    opacity: 1 !important;
+    text-shadow: 0 0 10px rgba(255, 26, 26, 0.5),
+                 0 0 20px rgba(255, 26, 26, 0.3),
+                 0 0 30px rgba(255, 26, 26, 0.1);
+}
+
+/* Add animation classes */
+.nav-link.scramble,
+.mobile-nav-link.scramble {
+    animation: textScramble 0.6s ease forwards;
+}
+
+@keyframes textScramble {
+    0% {
+        filter: blur(1px);
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    20% {
+        filter: blur(2px);
+        opacity: 0.5;
+    }
+    100% {
+        filter: blur(0);
+        opacity: 1;
+        transform: scale(1);
+    }
 } 
