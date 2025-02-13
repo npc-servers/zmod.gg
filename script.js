@@ -254,4 +254,52 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Update every 30 seconds
     setInterval(updateServerList, 30000);
+});
+
+// Square animations for all sections
+function initializeSquareAnimations() {
+    // Get all sections that have decorative squares
+    const sections = document.querySelectorAll('.section.about, .section.store-section');
+    
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            // Get all squares in this section (both decorative-square and store-accent)
+            const squares = entry.target.querySelectorAll('.decorative-square, .store-accent');
+            
+            if (entry.isIntersecting) {
+                // When section is visible, trigger squares in sequence
+                squares.forEach(square => {
+                    square.classList.remove('hidden');
+                    // Calculate delay based on position
+                    let delay = 0;
+                    if (square.classList.contains('top-right')) delay = 300;
+                    if (square.classList.contains('bottom-left')) delay = 600;
+                    if (square.classList.contains('bottom-right')) delay = 900;
+                    
+                    setTimeout(() => {
+                        square.classList.add('visible');
+                    }, delay);
+                });
+            } else {
+                // When section is hidden, hide all squares immediately
+                squares.forEach(square => {
+                    square.classList.remove('visible');
+                    square.classList.add('hidden');
+                });
+            }
+        });
+    }, {
+        threshold: 0.5, // Require 50% of section to be visible
+        rootMargin: '0px'
+    });
+
+    // Observe each section
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
+}
+
+// Initialize animations when document is ready
+document.addEventListener('DOMContentLoaded', () => {
+    initializeSquareAnimations();
 }); 

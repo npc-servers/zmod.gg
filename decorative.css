@@ -139,92 +139,83 @@
     position: relative;
 }
 
-.decorative-square {
+/* Base decorative square styles */
+.decorative-square,
+.about-page .decorative-square {
     position: absolute;
     width: 8px;
     height: 8px;
     background: rgba(255, 255, 255, 0.9);
     z-index: 5;
+    opacity: 0;
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+    transition: box-shadow 0.3s ease;
 }
 
-.decorative-square.top-left {
+/* Animation states */
+.decorative-square.visible,
+.about-page .decorative-square.visible {
+    animation: none;
+    opacity: 1;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.decorative-square.hidden,
+.about-page .decorative-square.hidden {
+    animation: square-flicker-out 0.5s forwards;
+}
+
+/* Sequential animations */
+.decorative-square.top-left.visible,
+.about-page .decorative-square.top-left.visible {
+    animation: square-flicker-in 0.8s forwards;
+}
+
+.decorative-square.top-right.visible,
+.about-page .decorative-square.top-right.visible {
+    animation: square-flicker-in 0.8s forwards 0.3s;
+}
+
+.decorative-square.bottom-left.visible,
+.about-page .decorative-square.bottom-left.visible {
+    animation: square-flicker-in 0.8s forwards 0.6s;
+}
+
+.decorative-square.bottom-right.visible,
+.about-page .decorative-square.bottom-right.visible {
+    animation: square-flicker-in 0.8s forwards 0.9s;
+}
+
+/* Positioning */
+.decorative-square.top-left,
+.about-page .decorative-square.top-left {
     top: 30px;
     left: 30px;
 }
 
-.decorative-square.top-right {
+.decorative-square.top-right,
+.about-page .decorative-square.top-right {
     top: 30px;
     right: 30px;
 }
 
-.decorative-square.bottom-left {
+.decorative-square.bottom-left,
+.about-page .decorative-square.bottom-left {
     bottom: 30px;
     left: 30px;
 }
 
-.decorative-square.bottom-right {
+.decorative-square.bottom-right,
+.about-page .decorative-square.bottom-right {
     bottom: 30px;
     right: 30px;
 }
 
-/* Mobile Optimizations */
-@media (max-width: 768px) {
-    /* Hero Section Mobile Styles */
-    h1 {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-    }
-
-    .subtitle {
-        font-size: 0.9rem;
-        margin-bottom: 1rem;
-    }
-
-    .description {
-        font-size: 1rem;
-        padding: 0 1rem;
-    }
-
-    .hero .content {
-        padding: 0 1rem;
-    }
-
-    /* Button Layout for Mobile */
-    .buttons {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 0 1rem;
-    }
-
-    .btn {
-        width: 100%;
-        min-width: unset;
-        padding: 0.8rem 1.5rem;
-    }
-
-    /* Hide scroll indicator on mobile */
-    .scroll-indicator {
-        display: none;
-    }
-
-    /* Adjust content spacing */
-    .text-content {
-        margin-bottom: 2rem;
-    }
-
-    /* Optimize social links positioning */
-    .social-links {
-        bottom: 1rem;
-    }
-
-    /* Adjust particle effects for better mobile performance */
-    .particle-container {
-        display: none;
-    }
-}
-
+/* Additional decorative elements */
 .decorative-square.bottom-left::before,
-.decorative-square.bottom-left::after {
+.decorative-square.bottom-left::after,
+.about-page .decorative-square.bottom-left::before,
+.about-page .decorative-square.bottom-left::after {
     content: '';
     position: absolute;
     width: 4px;
@@ -233,61 +224,14 @@
     border-radius: 50%;
 }
 
-.decorative-square.bottom-left::before {
-    left: -12px;
-    top: 2px;
-}
-
-.decorative-square.bottom-left::after {
-    right: -12px;
-    top: 2px;
-}
-
-/* Corner Decorative Elements */
-.decorative-square {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: rgba(255, 255, 255, 0.9);
-    z-index: 5;
-}
-
-.decorative-square.top-left {
-    top: 30px;
-    left: 30px;
-}
-
-.decorative-square.top-right {
-    top: 30px;
-    right: 30px;
-}
-
-.decorative-square.bottom-left {
-    bottom: 30px;
-    left: 30px;
-}
-
-.decorative-square.bottom-right {
-    bottom: 30px;
-    right: 30px;
-}
-
 .decorative-square.bottom-left::before,
-.decorative-square.bottom-left::after {
-    content: '';
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
-}
-
-.decorative-square.bottom-left::before {
+.about-page .decorative-square.bottom-left::before {
     left: -12px;
     top: 2px;
 }
 
-.decorative-square.bottom-left::after {
+.decorative-square.bottom-left::after,
+.about-page .decorative-square.bottom-left::after {
     right: -12px;
     top: 2px;
 }
@@ -843,4 +787,74 @@
 .about-page .decorative-square.bottom-left::after {
     right: -12px;
     top: 2px;
+}
+
+@keyframes square-flicker-in {
+    0% {
+        opacity: 0;
+        box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+    }
+    10% {
+        opacity: 1;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+    15% {
+        opacity: 0.2;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    }
+    25% {
+        opacity: 0.9;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+    }
+    30% {
+        opacity: 0.3;
+        box-shadow: 0 0 7px rgba(255, 255, 255, 0.4);
+    }
+    45% {
+        opacity: 0.8;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+    }
+    60% {
+        opacity: 0.4;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    80% {
+        opacity: 1;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+    90% {
+        opacity: 0.7;
+        box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+    }
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    }
+}
+
+@keyframes square-flicker-out {
+    0% {
+        opacity: 1;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    }
+    20% {
+        opacity: 0.8;
+        box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+    }
+    40% {
+        opacity: 0.4;
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+    }
+    60% {
+        opacity: 0.6;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    80% {
+        opacity: 0.2;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    }
+    100% {
+        opacity: 0;
+        box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+    }
 }
