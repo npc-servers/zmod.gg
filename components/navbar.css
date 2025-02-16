@@ -248,6 +248,15 @@
         background: var(--glass-bg);
         backdrop-filter: blur(15px);
     }
+
+    .mobile-footer {
+        margin-top: auto;
+        padding: 2rem 0;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .nav-link.active {
@@ -299,4 +308,35 @@
 .mobile-nav-link[href="/store"]:hover {
     color: #f1c40f;
     text-shadow: 0 0 10px rgba(243, 156, 18, 0.5);
+}
+
+.mobile-banner {
+    margin: 2.5rem 0;
+    padding: 0 1.5rem;
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mobile-banner img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+}
+
+.company-info {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+}
+
+.copyright {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    opacity: 0.7;
 } 

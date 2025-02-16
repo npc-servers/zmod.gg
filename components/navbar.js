@@ -167,10 +167,26 @@ class Navbar {
             mobileSocialLinks.appendChild(a);
         });
 
+        // Add banner
+        const bannerContainer = document.createElement('div');
+        bannerContainer.className = 'mobile-banner';
+        const banner = document.createElement('img');
+        banner.src = 'assets/logos/zmod-banner.png';
+        banner.alt = 'ZMOD Banner';
+        bannerContainer.appendChild(banner);
+
+        // Add company info
+        const companyInfo = document.createElement('p');
+        companyInfo.className = 'company-info';
+        companyInfo.textContent = 'NPCZ, LLC DBA ZMOD ZOFTWORKS';
+
         const copyright = document.createElement('p');
+        copyright.className = 'copyright';
         copyright.textContent = '© 2024 ZMOD.GG. All rights reserved.';
 
         mobileFooter.appendChild(mobileSocialLinks);
+        mobileFooter.appendChild(bannerContainer);
+        mobileFooter.appendChild(companyInfo);
         mobileFooter.appendChild(copyright);
 
         // Append all elements to mobile menu
