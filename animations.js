@@ -110,6 +110,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Parallax effect for grid background
+    gsap.to('.grid-background', {
+        yPercent: -30,
+        scale: 1.1,
+        ease: "none",
+        scrollTrigger: {
+            trigger: "#hero",
+            start: "top top",
+            end: "bottom top",
+            scrub: 1
+        }
+    });
+
     // Subtle floating animation for particles
     gsap.to('.particle', {
         y: "random(-20, 20)",
