@@ -462,15 +462,17 @@ h1 {
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    transition: opacity 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     opacity: 0.5;
     z-index: 10;
+    will-change: opacity, transform;
 }
 
 .scroll-indicator.hidden {
     opacity: 0;
     transform: translate(-50%, 20px);
     pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .scroll-indicator span {
@@ -794,6 +796,89 @@ h1 {
 }
 
 @media (max-width: 768px) {
+    .scroll-indicator {
+        display: none;
+    }
+
+    html {
+        /* Prevent zooming out on mobile */
+        min-height: -webkit-fill-available;
+    }
+    
+    body {
+        /* Use the full viewport height on mobile */
+        min-height: -webkit-fill-available;
+        /* Disable parallax effects on mobile */
+        background-attachment: scroll !important;
+    }
+
+    .hero::before,
+    .about::before,
+    .grid-background,
+    .sophisticated-element-1,
+    .particle-container,
+    .particle,
+    .particle.top,
+    .particle.bottom {
+        /* Disable parallax and fixed backgrounds on mobile */
+        background-attachment: scroll !important;
+        transform: none !important;
+        will-change: auto !important;
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .buttons {
+        /* Fix button layout on mobile */
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        padding: 0 20px;
+        align-items: center;
+    }
+
+    .btn {
+        /* Make buttons full width on mobile */
+        width: 100%;
+        max-width: 300px;
+        margin: 0;
+    }
+
+    .hero {
+        height: 100vh;
+        min-height: 100vh;
+        max-height: 100vh;
+        padding: 0;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .hero .content {
+        padding: 20px;
+        height: 100vh;
+        max-height: 100vh;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .text-content {
+        margin-bottom: 2rem;
+    }
+
+    .buttons {
+        width: 100%;
+        padding: 0;
+        margin-top: 2rem;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.875rem 2rem;
+    }
+
     .container {
         height: auto;
         min-height: 100vh;
@@ -957,6 +1042,7 @@ h1 {
     }
 }
 
+/* Additional small screen adjustments */
 @media (max-width: 360px) {
     .hero {
         padding: 3rem 0;
@@ -983,6 +1069,15 @@ h1 {
     .stat-card {
         text-align: center;
         align-items: center;
+    }
+
+    .buttons {
+        padding: 0 15px;
+    }
+    
+    .btn {
+        font-size: 14px;
+        padding: 12px 20px;
     }
 }
 
