@@ -287,4 +287,16 @@
         opacity: 1;
         transform: scale(1);
     }
+}
+
+.nav-link[href="/store"],
+.mobile-nav-link[href="/store"] {
+    color: #f39c12;
+    text-shadow: 0 0 10px rgba(243, 156, 18, 0.3);
+}
+
+.nav-link[href="/store"]:hover,
+.mobile-nav-link[href="/store"]:hover {
+    color: #f1c40f;
+    text-shadow: 0 0 10px rgba(243, 156, 18, 0.5);
 } 

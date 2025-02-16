@@ -6,10 +6,10 @@ class Navbar {
         this.hasScrambled = false;
         this.navLinks = [
             { href: '/', text: 'Home' },
-            { href: '/about', text: 'About' },
             { href: '/servers', text: 'Servers' },
             { href: '/store', text: 'Store' },
-            { href: '/contact', text: 'Contact' }
+            { href: '/support', text: 'Support' },
+            { href: '/about', text: 'About' }
         ];
 
         // Special case for consulting page
