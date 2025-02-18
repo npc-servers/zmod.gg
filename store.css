@@ -482,6 +482,28 @@
     .store-panel.right.outer {
         display: none;
     }
+
+    .store-panel {
+        height: 70vh;
+    }
+
+    .store-panel.left.inner {
+        left: 100px;
+        transform: perspective(1000px) rotateY(-15deg) translateZ(0);
+    }
+
+    .store-panel.right.inner {
+        right: 100px;
+        transform: perspective(1000px) rotateY(15deg) translateZ(0);
+    }
+
+    .store-panel.left.inner:hover {
+        transform: perspective(1000px) rotateY(0deg) translateZ(30px);
+    }
+
+    .store-panel.right.inner:hover {
+        transform: perspective(1000px) rotateY(0deg) translateZ(30px);
+    }
 }
 
 @media (max-width: 1200px) {
