@@ -131,6 +131,20 @@
     animation: flicker-in 0.8s forwards 0.9s;
 }
 
+.store-accent.top-right::after {
+    content: 'STORE';
+    position: absolute;
+    left: calc(100% + 12px);
+    bottom: 50%;
+    transform: rotate(90deg) translateX(-50%);
+    transform-origin: left bottom;
+    font-size: 0.75rem;
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.3);
+    white-space: nowrap;
+    letter-spacing: 2px;
+}
+
 @keyframes flicker-in {
     0% {
         opacity: 0;
@@ -288,5 +302,197 @@
     100% {
         transform: translateY(-100px) scale(0);
         opacity: 0;
+    }
+}
+
+/* 3D Vertical Panels */
+.store-panel {
+    position: absolute;
+    width: 280px;
+    height: 80vh;
+    background: rgb(18, 18, 18);
+    border: none;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 40px;
+    overflow: hidden;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    border-radius: 12px;
+    box-shadow: none;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1), background 0.3s ease, opacity 0.2s ease;
+}
+
+.store-panel:hover {
+    background: rgb(22, 22, 22);
+    transform: scale(1.02) translateZ(20px);
+}
+
+.store-panel.left.outer {
+    left: 20px;
+    transform: perspective(1000px) rotateY(-30deg) translateZ(0);
+    transform-origin: center center;
+    border: none;
+    box-shadow: none;
+    opacity: 0.4;
+}
+
+.store-panel.left.outer:hover {
+    opacity: 1;
+    transform: perspective(1000px) rotateY(0deg) translateZ(30px);
+}
+
+.store-panel.left.inner {
+    left: 320px;
+    transform: perspective(1000px) rotateY(-15deg) translateZ(0);
+    transform-origin: center center;
+    border: none;
+    box-shadow: none;
+}
+
+.store-panel.left.inner:hover {
+    background: rgb(22, 22, 22);
+    transform: perspective(1000px) rotateY(0deg) translateZ(30px);
+}
+
+.store-panel.right.inner {
+    right: 320px;
+    transform: perspective(1000px) rotateY(15deg) translateZ(0);
+    transform-origin: center center;
+    border: none;
+    box-shadow: none;
+}
+
+.store-panel.right.inner:hover {
+    background: rgb(22, 22, 22);
+    transform: perspective(1000px) rotateY(0deg) translateZ(30px);
+}
+
+.store-panel.right.outer {
+    right: 20px;
+    transform: perspective(1000px) rotateY(30deg) translateZ(0);
+    transform-origin: center center;
+    border: none;
+    box-shadow: none;
+    opacity: 0.4;
+}
+
+.store-panel.right.outer:hover {
+    opacity: 1;
+    transform: perspective(1000px) rotateY(0deg) translateZ(30px);
+}
+
+.panel-text {
+    position: relative;
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 40px;
+    z-index: 2;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+    transform: translateZ(20px);
+}
+
+.store-panel.right .panel-text {
+    color: rgba(139, 0, 0, 0.8);
+    text-shadow: 0 0 10px rgba(139, 0, 0, 0.3);
+}
+
+.panel-benefits {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 0 30px;
+    transform: translateZ(10px);
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.benefit-item i {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    font-size: 0.8rem;
+    color: var(--primary-color);
+}
+
+.store-panel.right .benefit-item i {
+    background: rgba(139, 0, 0, 0.2);
+    color: rgba(139, 0, 0, 0.8);
+}
+
+.panel-line {
+    position: absolute;
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(to right,
+        transparent,
+        rgba(139, 0, 0, 0.3) 20%,
+        rgba(139, 0, 0, 0.3) 80%,
+        transparent
+    );
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.store-panel.right .panel-line {
+    background: linear-gradient(to right,
+        transparent,
+        rgba(139, 0, 0, 0.5) 20%,
+        rgba(139, 0, 0, 0.5) 80%,
+        transparent
+    );
+}
+
+@media (max-width: 1400px) {
+    .store-panel {
+        width: 240px;
+    }
+    
+    .panel-text {
+        font-size: 1.2rem;
+    }
+    
+    .benefit-item {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 1600px) {
+    .store-panel.left.outer,
+    .store-panel.right.outer {
+        display: none;
+    }
+}
+
+@media (max-width: 1200px) {
+    .store-panel.left.inner,
+    .store-panel.right.inner {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .store-panel {
+        display: none;
     }
 } 
