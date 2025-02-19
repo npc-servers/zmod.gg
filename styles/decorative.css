@@ -139,6 +139,22 @@
     position: relative;
 }
 
+/* Grid Pattern for Server Section */
+.about .grid-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../assets/images/pattern.png') repeat;
+    background-size: 60px 60px;
+    opacity: 0.15;
+    z-index: 1;
+    pointer-events: none;
+    filter: invert(1) brightness(0.1) contrast(0.8);
+    mix-blend-mode: overlay;
+}
+
 /* Base decorative square styles */
 .decorative-square,
 .about-page .decorative-square {
@@ -950,4 +966,712 @@
     to {
         transform: rotate(360deg);
     }
+}
+
+/* Additional Decorative Elements */
+/* Diagonal accent lines */
+.diagonal-accent {
+    position: absolute;
+    width: 150px;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%,
+        var(--gray-light) 20%,
+        var(--gray-light) 80%,
+        transparent 100%
+    );
+    opacity: 0.15;
+    transform-origin: left center;
+}
+
+.diagonal-accent.top-right {
+    top: 80px;
+    right: 100px;
+    transform: rotate(-45deg);
+}
+
+.diagonal-accent.bottom-left {
+    bottom: 80px;
+    left: 100px;
+    transform: rotate(-45deg);
+}
+
+/* Tech data points */
+.data-point {
+    position: absolute;
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: var(--gray-light);
+    opacity: 0.3;
+}
+
+.data-point::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--gray-light);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -12px;
+}
+
+.data-point.left {
+    left: 80px;
+    top: 45%;
+}
+
+.data-point.right {
+    right: 80px;
+    top: 55%;
+}
+
+/* Circuit paths */
+.circuit-path {
+    position: absolute;
+    pointer-events: none;
+}
+
+.circuit-path.horizontal {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent,
+        var(--gray-light) 20%,
+        var(--gray-light) 80%,
+        transparent
+    );
+    opacity: 0.2;
+}
+
+.circuit-path.vertical {
+    width: 1px;
+    height: 120px;
+    background: linear-gradient(180deg,
+        transparent,
+        var(--gray-light) 20%,
+        var(--gray-light) 80%,
+        transparent
+    );
+    opacity: 0.2;
+}
+
+.circuit-path.top {
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.circuit-path.right {
+    right: 100px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Section indicators */
+.section-indicator {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: monospace;
+    color: var(--gray-light);
+    opacity: 0.4;
+    font-size: 0.75rem;
+}
+
+.section-indicator::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--gray-light);
+}
+
+.section-indicator.left {
+    left: 40px;
+    top: 50%;
+    transform: rotate(-90deg) translateX(-50%);
+    transform-origin: left center;
+}
+
+.section-indicator.right {
+    right: 40px;
+    top: 50%;
+    transform: rotate(90deg) translateX(50%);
+    transform-origin: right center;
+}
+
+/* Technical Decorative Elements */
+/* X marks */
+.tech-x {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    opacity: 0.2;
+}
+
+.tech-x::before,
+.tech-x::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: var(--gray-light);
+    top: 50%;
+    left: 0;
+}
+
+.tech-x::before {
+    transform: rotate(45deg);
+}
+
+.tech-x::after {
+    transform: rotate(-45deg);
+}
+
+.tech-x.top {
+    top: 120px;
+    right: 180px;
+}
+
+.tech-x.bottom {
+    bottom: 120px;
+    left: 180px;
+}
+
+/* Plus marks */
+.tech-plus {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    opacity: 0.15;
+}
+
+.tech-plus::before,
+.tech-plus::after {
+    content: '';
+    position: absolute;
+    background: var(--gray-light);
+}
+
+.tech-plus::before {
+    width: 100%;
+    height: 1px;
+    top: 50%;
+    left: 0;
+}
+
+.tech-plus::after {
+    width: 1px;
+    height: 100%;
+    left: 50%;
+    top: 0;
+}
+
+.tech-plus.left {
+    left: 140px;
+    top: 40%;
+}
+
+.tech-plus.right {
+    right: 140px;
+    bottom: 40%;
+}
+
+/* Compass marks */
+.tech-compass {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--gray-light);
+    border-radius: 50%;
+    opacity: 0.15;
+}
+
+.tech-compass::before,
+.tech-compass::after {
+    content: '';
+    position: absolute;
+    background: var(--gray-light);
+}
+
+.tech-compass::before {
+    width: 1px;
+    height: 60%;
+    left: 50%;
+    top: 20%;
+    transform: translateX(-50%);
+}
+
+.tech-compass::after {
+    width: 60%;
+    height: 1px;
+    top: 50%;
+    left: 20%;
+    transform: translateY(-50%);
+}
+
+.tech-compass.top-right {
+    top: 100px;
+    right: 100px;
+    transform: rotate(45deg);
+}
+
+.tech-compass.bottom-left {
+    bottom: 100px;
+    left: 100px;
+    transform: rotate(-45deg);
+}
+
+/* Measurement marks */
+.measurement-mark {
+    position: absolute;
+    font-family: monospace;
+    font-size: 0.65rem;
+    color: var(--gray-light);
+    opacity: 0.2;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.measurement-mark::before {
+    content: '';
+    width: 15px;
+    height: 1px;
+    background: var(--gray-light);
+}
+
+.measurement-mark.left {
+    left: 60px;
+    top: 200px;
+}
+
+.measurement-mark.right {
+    right: 60px;
+    bottom: 200px;
+    flex-direction: row-reverse;
+}
+
+/* Corner accents */
+.corner-accent {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    opacity: 0.15;
+}
+
+.corner-accent::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--gray-light);
+    border-radius: 4px;
+    transform: rotate(45deg);
+}
+
+.corner-accent.top-right {
+    top: 60px;
+    right: 60px;
+}
+
+.corner-accent.bottom-left {
+    bottom: 60px;
+    left: 60px;
+}
+
+/* Inner Decorative Elements */
+/* Grid Overlay */
+.tech-grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../assets/images/pattern.png') repeat;
+    background-size: 60px 60px;
+    opacity: 0.15;
+    z-index: 1;
+    pointer-events: none;
+    filter: invert(1) brightness(0.1) contrast(0.8);
+    mix-blend-mode: overlay;
+}
+
+/* Tech Circles */
+.tech-circle {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 1px solid var(--gray-light);
+    border-radius: 50%;
+    opacity: 0.15;
+}
+
+.tech-circle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    height: 80%;
+    border: 1px dashed var(--gray-light);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.tech-circle.center-left {
+    left: 25%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.tech-circle.center-right {
+    right: 25%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Data Matrix */
+.data-matrix {
+    position: absolute;
+    display: flex;
+    gap: 8px;
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: var(--gray-light);
+    opacity: 0.2;
+}
+
+.data-matrix span {
+    display: inline-block;
+    padding: 2px 4px;
+    border: 1px solid var(--gray-light);
+}
+
+.data-matrix.top-center {
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.data-matrix.bottom-center {
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Tech Lines */
+.tech-line {
+    position: absolute;
+    width: 200px;
+    height: 1px;
+    background: var(--gray-light);
+    opacity: 0.15;
+}
+
+.tech-line.diagonal-1 {
+    top: 40%;
+    left: 35%;
+    transform: rotate(45deg);
+}
+
+.tech-line.diagonal-2 {
+    bottom: 40%;
+    right: 35%;
+    transform: rotate(45deg);
+}
+
+/* Measurement Points */
+.measurement-point {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: var(--gray-light);
+    opacity: 0.25;
+}
+
+.measurement-point .point {
+    width: 6px;
+    height: 6px;
+    background: var(--gray-light);
+    border-radius: 50%;
+}
+
+.measurement-point.center-left {
+    left: 30%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.measurement-point.center-right {
+    right: 30%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Tech Hexagons */
+.tech-hexagon {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    opacity: 0.15;
+}
+
+.tech-hexagon::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: 1px solid var(--gray-light);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.tech-hexagon.left-mid {
+    left: 20%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.tech-hexagon.right-mid {
+    right: 20%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Central Technical Elements */
+/* Tech Cross */
+.tech-cross {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+}
+
+.tech-cross .cross-line {
+    position: absolute;
+    background: var(--gray-light);
+    opacity: 0.15;
+}
+
+.tech-cross .cross-line.horizontal {
+    width: 100%;
+    height: 1px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.tech-cross .cross-line.vertical {
+    width: 1px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.tech-cross .cross-data {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 8px;
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: var(--gray-light);
+    opacity: 0.3;
+}
+
+.tech-cross .cross-data .divider {
+    opacity: 0.5;
+}
+
+/* Tech Scanner */
+.tech-scanner {
+    position: absolute;
+    left: 50%;
+    width: 200px;
+    height: 2px;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg,
+        transparent 0%,
+        var(--gray-light) 20%,
+        var(--gray-light) 80%,
+        transparent 100%
+    );
+    opacity: 0;
+    animation: scannerPulse 3s infinite;
+}
+
+.tech-scanner.center-top {
+    top: 35%;
+}
+
+.tech-scanner.center-bottom {
+    bottom: 35%;
+    animation-delay: 1.5s;
+}
+
+@keyframes scannerPulse {
+    0%, 100% {
+        opacity: 0;
+        width: 160px;
+    }
+    50% {
+        opacity: 0.15;
+        width: 200px;
+    }
+}
+
+/* Data Readouts */
+.data-readout {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: var(--gray-light);
+    opacity: 0.25;
+}
+
+.data-readout .label {
+    font-size: 0.65rem;
+    opacity: 0.7;
+}
+
+.data-readout .value {
+    padding: 2px 6px;
+    border: 1px solid var(--gray-light);
+    border-radius: 2px;
+}
+
+.data-readout.center-left-mid {
+    left: 35%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.data-readout.center-right-mid {
+    right: 35%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Background Diagonal Lines */
+.bg-line-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.bg-line {
+    position: absolute;
+    width: 200%;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        var(--gray-light) 50%,
+        transparent 100%
+    );
+    opacity: 0.05;
+    transform-origin: left top;
+}
+
+.bg-line.angle-1 {
+    top: 20%;
+    left: -50%;
+    transform: rotate(35deg);
+}
+
+.bg-line.angle-2 {
+    top: 40%;
+    left: -50%;
+    transform: rotate(35deg);
+}
+
+.bg-line.angle-3 {
+    top: 60%;
+    left: -50%;
+    transform: rotate(35deg);
+}
+
+.bg-line.angle-4 {
+    top: 30%;
+    left: -50%;
+    transform: rotate(-35deg);
+    opacity: 0.03;
+}
+
+.bg-line.angle-5 {
+    top: 50%;
+    left: -50%;
+    transform: rotate(-35deg);
+    opacity: 0.03;
+}
+
+.bg-line.angle-6 {
+    top: 70%;
+    left: -50%;
+    transform: rotate(-35deg);
+    opacity: 0.03;
+}
+
+/* Add subtle animation */
+@keyframes lineShift {
+    0% {
+        transform: translateX(0) rotate(35deg);
+    }
+    50% {
+        transform: translateX(20px) rotate(35deg);
+    }
+    100% {
+        transform: translateX(0) rotate(35deg);
+    }
+}
+
+@keyframes lineShiftReverse {
+    0% {
+        transform: translateX(0) rotate(-35deg);
+    }
+    50% {
+        transform: translateX(-20px) rotate(-35deg);
+    }
+    100% {
+        transform: translateX(0) rotate(-35deg);
+    }
+}
+
+.bg-line.angle-1,
+.bg-line.angle-2,
+.bg-line.angle-3 {
+    animation: lineShift 20s infinite ease-in-out;
+}
+
+.bg-line.angle-4,
+.bg-line.angle-5,
+.bg-line.angle-6 {
+    animation: lineShiftReverse 20s infinite ease-in-out;
+}
+
+.bg-line.angle-2,
+.bg-line.angle-5 {
+    animation-delay: -6s;
+}
+
+.bg-line.angle-3,
+.bg-line.angle-6 {
+    animation-delay: -12s;
 }
