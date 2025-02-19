@@ -131,7 +131,7 @@ class Navbar {
         const mobileLogo = document.createElement('div');
         mobileLogo.className = 'mobile-logo';
         const logoImg = document.createElement('img');
-        logoImg.src = this.currentPath.includes('consulting') ? '../zmodplaceholder.png' : 'zmodplaceholder.png';
+        logoImg.src = this.currentPath.includes('consulting') ? '../assets/logos/zmodplaceholder.png' : 'assets/logos/zmodplaceholder.png';
         logoImg.alt = 'ZMOD.GG Logo';
         mobileLogo.appendChild(logoImg);
 
