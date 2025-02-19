@@ -1,0 +1,218 @@
+.store-section{
+    background:linear-gradient(180deg, #242424 0%, #1a1a1a 100%);
+    padding:4rem 2rem;
+    min-height:100vh;
+    position:relative
+}
+[data-theme="light"] .store-section{
+    background:linear-gradient(180deg, #e8e8e8 0%, var(--background-color) 100%)
+}
+.store-container{
+    max-width:1600px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:2rem
+}
+.store-benefits{
+    padding-left:4rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:1rem
+}
+.benefit-text{
+    font-family:'Chakra Petch',sans-serif;
+    font-size:1.4rem;
+    color:var(--text-primary);
+    line-height:1.2;
+    letter-spacing:1px
+}
+.benefit-text:nth-child(1){opacity:0.6}
+.benefit-text:nth-child(2){opacity:0.5}
+.benefit-text:nth-child(3){opacity:0.4}
+.benefit-text:nth-child(4){opacity:0.35}
+.benefit-text:nth-child(5){opacity:0.3}
+.benefit-text:nth-child(6){opacity:0.25}
+.benefit-text:nth-child(7){opacity:0.2}
+.benefit-text:nth-child(8){opacity:0.15}
+.store-header{
+    text-align:right;
+    padding-right:4rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-end;
+    position:relative;
+    z-index:1
+}
+.store-header::before{
+    content:'';
+    position:absolute;
+    right:-2rem;
+    top:50%;
+    transform:translateY(-50%);
+    width:100%;
+    height:140%;
+    background:radial-gradient(circle at right, rgba(255,255,255,0.1), transparent 70%);
+    filter:blur(40px);
+    z-index:-1;
+    pointer-events:none
+}
+[data-theme="light"] .store-header::before{
+    background:radial-gradient(circle at right, rgba(200,200,200,0.3), transparent 70%)
+}
+.store-header h2{
+    font-family:'Teko',sans-serif;
+    font-size:5.5rem;
+    font-weight:600;
+    color:var(--text-primary);
+    margin-bottom:1rem;
+    letter-spacing:2px;
+    line-height:1;
+    text-transform:uppercase;
+    position:relative
+}
+.store-header p{
+    font-family:'Chakra Petch',sans-serif;
+    font-size:1.2rem;
+    color:var(--text-primary);
+    opacity:0.8;
+    margin-left:auto;
+    max-width:800px;
+    line-height:1.6;
+    margin-bottom:2rem
+}
+.store-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;padding:1rem}
+.store-item{background:var(--bg-primary);border-radius:12px;overflow:hidden;transition:transform .3s,box-shadow .3s;position:relative}
+.store-item:hover{transform:translateY(-5px);box-shadow:0 10px 20px rgba(0,0,0,.2)}
+.item-image{width:100%;height:200px;object-fit:cover;background:var(--bg-accent)}
+.item-content{padding:1.5rem}
+.item-title{font-family:'Chakra Petch',sans-serif;font-size:1.25rem;color:var(--text-primary);margin-bottom:.5rem}
+.item-description{color:var(--text-secondary);font-size:.9rem;margin-bottom:1rem}
+.item-price{font-family:'Teko',sans-serif;font-size:1.5rem;color:var(--accent-color)}
+.item-button{display:block;width:100%;padding:.75rem;background:var(--accent-color);color:var(--text-on-accent);border:none;border-radius:6px;font-family:'Chakra Petch',sans-serif;font-size:1rem;cursor:pointer;transition:background .3s;margin-top:1rem}
+.item-button:hover{background:var(--accent-color-hover)}
+.item-tag{position:absolute;top:1rem;right:1rem;background:var(--accent-color);color:var(--text-on-accent);padding:.25rem .75rem;border-radius:4px;font-size:.8rem;font-weight:bold}
+.browse-store-btn{
+    padding:16px 36px 16px 46px;
+    border:1px solid rgba(255,140,0,0.5);
+    border-radius:4px 0 0 4px;
+    color:rgb(255,140,0);
+    font-size:1.4rem;
+    font-family:'Chakra Petch',sans-serif;
+    font-weight:600;
+    transition:all 0.3s ease;
+    backdrop-filter:blur(5px);
+    background-color:var(--button-bg);
+    letter-spacing:1px;
+    box-shadow:0 0 10px rgba(255,140,0,0.4);
+    text-shadow:0 0 5px rgba(255,140,0,0.3);
+    cursor:pointer;
+    text-transform:uppercase;
+    position:relative
+}
+.browse-store-btn::before{
+    font-family:"Font Awesome 6 Free";
+    content:"\f060";
+    font-weight:900;
+    position:absolute;
+    left:20px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:1.2rem;
+    transition:all 0.3s ease
+}
+.browse-store-btn::after{
+    content:'';
+    position:absolute;
+    right:0;
+    top:0;
+    height:100%;
+    width:4px;
+    background:rgb(255,140,0);
+    transition:all 0.3s ease
+}
+[data-theme="light"] .browse-store-btn{
+    background-color:var(--color-white);
+    border:1px solid rgb(255,140,0);
+    box-shadow:0 0 10px rgba(255,140,0,0.2)
+}
+.browse-store-btn:hover{
+    background-color:var(--button-hover);
+    border-color:rgba(255,140,0,0.8);
+    box-shadow:0 0 20px rgba(255,140,0,0.6),inset 0 0 8px rgba(255,140,0,0.3);
+    color:rgb(255,165,0);
+    transform:translateY(-2px) scale(1.02)
+}
+.browse-store-btn:hover::before{
+    transform:translateY(-50%) translateX(-3px)
+}
+.browse-store-btn:hover::after{
+    background:rgb(255,165,0);
+    box-shadow:0 0 10px rgba(255,140,0,0.6)
+}
+[data-theme="light"] .browse-store-btn:hover{
+    background-color:var(--color-black);
+    border:1px solid rgb(255,165,0);
+    color:rgb(255,165,0);
+    text-shadow:0 0 8px rgba(255,140,0,0.5);
+    box-shadow:0 0 15px rgba(255,140,0,0.3)
+}
+
+@media (max-width: 1200px) {
+    .store-section{padding:4rem 3rem}
+    .store-header{padding-right:2rem}
+    .store-benefits{padding-left:2rem}
+    .benefit-text{font-size:1.2rem}
+}
+
+@media (max-width: 1024px) {
+    .store-section{padding:4rem 2rem}
+    .store-container{grid-template-columns:1fr}
+    .store-benefits{
+        padding-left:1rem;
+        margin-bottom:2rem;
+        text-align:center
+    }
+    .store-header{
+        padding-right:1rem;
+        text-align:center;
+        align-items:center
+    }
+    .store-header p{
+        margin:0 auto 2rem auto
+    }
+}
+
+@media (max-width: 768px) {
+    .store-section{padding:3rem 1.5rem}
+    .store-header h2{font-size:4rem}
+    .store-header p{font-size:1.1rem}
+    .benefit-text{font-size:1.1rem}
+    .browse-store-btn{
+        padding:14px 32px 14px 42px;
+        font-size:1.3rem
+    }
+    .browse-store-btn::before{
+        left:18px;
+        font-size:1.3rem
+    }
+}
+
+@media (max-width: 480px) {
+    .store-section{padding:2rem 1rem}
+    .store-benefits{padding-left:0}
+    .store-header{padding-right:0}
+    .store-header h2{font-size:3.5rem}
+    .store-header p{font-size:1rem}
+    .benefit-text{font-size:1rem}
+    .browse-store-btn{
+        padding:12px 28px 12px 38px;
+        font-size:1.2rem
+    }
+    .browse-store-btn::before{
+        left:16px;
+        font-size:1.2rem
+    }
+} 
