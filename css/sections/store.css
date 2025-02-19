@@ -86,13 +86,41 @@
     font-family:'Teko',sans-serif;
     font-size:5.5rem;
     font-weight:600;
-    color:var(--text-primary);
+    color:var(--text-color);
     margin-bottom:1rem;
     letter-spacing:2px;
     line-height:1;
     text-transform:uppercase;
-    position:relative
+    position:relative;
+    display:inline-block
 }
+
+.store-header h2::before{
+    content:'';
+    position:absolute;
+    top:-8px;
+    left:-15px;
+    width:0;
+    height:0;
+    border-style:solid;
+    border-width:12px 12px 0 0;
+    border-color:var(--text-color) transparent transparent transparent;
+    opacity:0.8
+}
+
+.store-header h2::after{
+    content:'';
+    position:absolute;
+    bottom:8px;
+    right:-15px;
+    width:0;
+    height:0;
+    border-style:solid;
+    border-width:0 0 12px 12px;
+    border-color:transparent transparent var(--text-color) transparent;
+    opacity:0.8
+}
+
 .store-header p{
     font-family:'Chakra Petch',sans-serif;
     font-size:1.2rem;
