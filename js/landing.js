@@ -1,11 +1,3 @@
-// Smooth scroll functionality
-document.querySelector('.scroll-indicator').addEventListener('click', () => {
-    window.scrollTo({
-        top: window.innerHeight,
-        behavior: 'smooth'
-    });
-});
-
 // Add hover effect to logo
 const logo = document.querySelector('.logo-placeholder');
 logo.addEventListener('mouseover', () => {
