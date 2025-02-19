@@ -67,6 +67,34 @@
     line-height: 1;
     max-width: 800px;
     text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+.servers-info h2::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -15px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 12px 12px 0 0;
+    border-color: var(--text-color) transparent transparent transparent;
+    opacity: 0.8;
+}
+
+.servers-info h2::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    right: -15px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 12px 12px;
+    border-color: transparent transparent var(--text-color) transparent;
+    opacity: 0.8;
 }
 
 .servers-description {
