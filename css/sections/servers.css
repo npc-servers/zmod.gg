@@ -1,7 +1,7 @@
 /* Servers Section */
 .servers-section {
     min-height: 100vh;
-    background-color: #1a1a1a;
+    background: linear-gradient(180deg, #1a1a1a 0%, #1a1a1a 10%, #242424 100%);
     position: relative;
     padding: 4rem 4rem;
 }
@@ -99,7 +99,7 @@
 }
 
 [data-theme="light"] .servers-section {
-    background-color: var(--background-color);
+    background: linear-gradient(180deg, var(--background-color) 0%, var(--background-color) 10%, #e8e8e8 100%);
 }
 
 [data-theme="light"] .servers-list {
