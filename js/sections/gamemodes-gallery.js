@@ -61,18 +61,32 @@ document.addEventListener('DOMContentLoaded', () => {
     function resumeShowcase() {
         if (!isVisible) return;
         
-        // If we're on the last slide or not visible, start from the beginning
+        // If we're on the last slide, start from the beginning
         if (currentIndex >= showcaseItems.length - 1) {
             updateShowcase(0);
+            startShowcase();
         } else {
-            // Otherwise, continue from current slide
+            // Continue the progress bar from its current position
+            const currentProgress = parseFloat(progressBar.style.width) || 0;
+            const remainingDuration = (animationDuration / 1000) * (1 - (currentProgress / 100));
+            
             progressTween = gsap.to(progressBar, {
                 width: '100%',
-                duration: animationDuration / 1000,
-                ease: 'none'
+                duration: remainingDuration,
+                ease: 'none',
+                onComplete: () => {
+                    updateShowcase(currentIndex + 1);
+                }
             });
+            
+            // Start a new interval that begins after the current animation completes
+            if (showcaseInterval) clearInterval(showcaseInterval);
+            showcaseInterval = setInterval(() => {
+                if (currentIndex < showcaseItems.length - 1) {
+                    updateShowcase(currentIndex + 1);
+                }
+            }, animationDuration);
         }
-        startShowcase();
     }
 
     function initializeShowcase() {
