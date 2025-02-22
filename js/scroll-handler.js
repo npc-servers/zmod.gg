@@ -25,40 +25,45 @@ gsap.ticker.add((time) => {
 // Ensure ScrollTrigger works with Lenis
 gsap.ticker.lagSmoothing(0);
 
-// Initialize scroll-related elements
-const scrollIndicator = document.querySelector('.scroll-indicator');
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize scroll-related elements
+    const scrollIndicator = document.querySelector('.scroll-indicator');
 
-// Hide scroll indicator when user scrolls down
-window.lenis.on('scroll', ({ scroll }) => {
-    if (scroll > 100) {
-        scrollIndicator.classList.add('hidden');
-    } else {
-        scrollIndicator.classList.remove('hidden');
-    }
-});
-
-// Handle scroll indicator click
-scrollIndicator.addEventListener('click', () => {
-    window.lenis.scrollTo(window.innerHeight, {
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-    });
-});
-
-// Handle anchor links smoothly
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId !== '#') {
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                window.lenis.scrollTo(targetElement, {
-                    offset: 0,
-                    duration: 1.2,
-                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-                });
+    if (scrollIndicator) {
+        // Hide scroll indicator when user scrolls down
+        window.lenis.on('scroll', ({ scroll }) => {
+            if (scroll > 100) {
+                scrollIndicator.classList.add('hidden');
+            } else {
+                scrollIndicator.classList.remove('hidden');
             }
-        }
+        });
+
+        // Handle scroll indicator click
+        scrollIndicator.addEventListener('click', () => {
+            window.lenis.scrollTo(window.innerHeight, {
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+            });
+        });
+    }
+
+    // Handle anchor links smoothly
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId !== '#') {
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.lenis.scrollTo(targetElement, {
+                        offset: 0,
+                        duration: 1.2,
+                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                    });
+                }
+            }
+        });
     });
 }); 
