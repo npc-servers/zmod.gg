@@ -2,453 +2,132 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ZMOD.GG - Communities</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pattern.css/1.0.0/pattern.min.css">
-    <link rel="stylesheet" href="styles/styles.css">
-    <link rel="stylesheet" href="styles/decorative.css">
-    <link rel="stylesheet" href="store-section/store.css">
-    <link rel="stylesheet" href="store-section/store-mobile.css">
-    <link rel="stylesheet" href="components/navbar.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Startup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Teko:wght@500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/landing.css">
+    <link rel="stylesheet" href="css/sections/servers.css">
+    <link rel="stylesheet" href="css/sections/store.css">
+    <link rel="stylesheet" href="css/components/theme-toggle.css">
+    <link rel="stylesheet" href="css/components/scrollbar.css">
+    <link rel="stylesheet" href="css/components/scroll-indicator.css">
+    <link rel="stylesheet" href="css/components/help-banner.css">
+    <link rel="stylesheet" href="css/sections/store-benefits-animation.css">
+    <link rel="stylesheet" href="css/components/footer.css">
 </head>
-<body class="about-page">
-    <main class="container">
-        <section id="hero" class="section hero">
-            <div class="grid-background"></div>
-            <div class="particle-container">
-                <div class="particle top"></div>
-                <div class="particle top"></div>
-                <div class="particle top"></div>
-                <div class="particle top"></div>
-                <div class="particle top"></div>
-                <!-- Bottom particles -->
-                <div class="particle bottom"></div>
-                <div class="particle bottom"></div>
-                <div class="particle bottom"></div>
-                <div class="particle bottom"></div>
-                <div class="particle bottom"></div>
+<body>
+    <main class="landing-container">
+        <div class="content-wrapper">
+            <div class="logo-container">
+                <img src="assets/logos/zmod-logo.png" alt="ZMOD Logo" class="logo-image">
             </div>
             
-            <div class="content">
-                <div class="text-content">
-                    <h2 class="subtitle">Welcome to ZMOD</h2>
-                    <h1>PLACE HOLDER <span class="highlight">TEXT</span></h1>
-                    <p class="description">JOIN ONE OF THE TOP NETWORKS ON GARRY'S MOD</p>
-                </div>
-                
-                <div class="buttons">
-                    <a href="#" class="btn discord">
-                        <i class="fab fa-discord"></i> DISCORD
-                    </a>
-                    <a href="#" class="btn store">
-                        <i class="fas fa-shopping-cart"></i> STORE
-                    </a>
-                    <a href="#" class="btn servers">
-                        <i class="fas fa-server"></i> SERVERS
-                    </a>
-                </div>
-            </div>
+            <nav class="nav-buttons">
+                <button class="nav-btn">SERVERS</button>
+                <button class="nav-btn store-btn">STORE</button>
+                <button class="nav-btn">DISCORD</button>
+            </nav>
 
-            <div class="scroll-indicator">
-                <div class="mouse"></div>
-                <span>Scroll Down</span>
+            <div class="tagline">
+                ONE OF THE TOP NETWORKS ON GARRY'S MOD
             </div>
+        </div>
 
-            <div class="transition-element">
-                <div class="transition-line-left"></div>
-                <div class="transition-line-right"></div>
-                <div class="transition-text">01</div>
-            </div>
-        </section>
-
-        <section id="about" class="section about">
-            <div class="grid-background"></div>
-            <div class="decorative-square top-left"></div>
-            <div class="decorative-square top-right"></div>
-            <div class="decorative-square bottom-left"></div>
-            <div class="decorative-square bottom-right"></div>
-            
-            <div class="sophisticated-element-1">01</div>
-            <div class="sophisticated-element-2"></div>
-            
-            <!-- Updated accent elements -->
-            <div class="server-accent-1">02</div>
-            <div class="server-accent-2"></div>
-            <div class="server-accent-3"></div>
-            <div class="server-accent-5"></div>
-            
-            <div class="content">
-                <div class="about-grid">
-                    <div class="about-left">
-                        <h2>WE RUN<br class="desktop-only"> <span class="highlight">SERVERS</span></h2>
-                        <div class="stats-grid">
-                            <div class="stat-card">
-                                <span class="stat-number" id="current-players">0</span>
-                                <span class="stat-label">Current Players</span>
-                            </div>
-                            <div class="stat-card">
-                                <span class="stat-number" id="total-servers">0</span>
-                                <span class="stat-label">Total Servers</span>
-                            </div>
-                        </div>
-                        <div class="server-actions">
-                            <a href="/guide" class="action-button">
-                                <div class="corner-square"></div>
-                                <div class="corner-square-bottom"></div>
-                                <i class="fas fa-book"></i>
-                                Join Guide
-                            </a>
-                            <a href="/gamemodes" class="action-button">
-                                <div class="corner-square"></div>
-                                <div class="corner-square-bottom"></div>
-                                <i class="fas fa-gamepad"></i>
-                                Gamemodes
-                            </a>
-                            <a href="/servers" class="action-button">
-                                <div class="corner-square"></div>
-                                <div class="corner-square-bottom"></div>
-                                <i class="fas fa-server"></i>
-                                Servers
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="about-right">
-                        <!-- Server Container -->
-                        <div class="server-container">
-                            <h3><span>Popular Servers<i></i><i></i></span></h3>
-                            <div class="server-list">
-                                <!-- Server cards will be dynamically inserted here -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Circuit branch -->
-                <div class="circuit-branch">
-                    <div class="circuit-line"></div>
-                    <div class="circuit-node left"></div>
-                    <div class="circuit-node center"></div>
-                    <div class="circuit-node right"></div>
-                    <div class="circuit-branch-vertical left"></div>
-                    <div class="circuit-branch-vertical right"></div>
-                </div>
-
-                <!-- Corner Brackets -->
-                <div class="corner-bracket top-left">
-                    <div class="bracket-line horizontal"></div>
-                    <div class="bracket-line vertical"></div>
-                    <div class="bracket-data">01</div>
-                </div>
-                
-                <div class="corner-bracket top-right">
-                    <div class="bracket-line horizontal"></div>
-                    <div class="bracket-line vertical"></div>
-                    <div class="bracket-data">02</div>
-                </div>
-                
-                <div class="corner-bracket bottom-left">
-                    <div class="bracket-line horizontal"></div>
-                    <div class="bracket-line vertical"></div>
-                    <div class="bracket-data">03</div>
-                </div>
-                
-                <div class="corner-bracket bottom-right">
-                    <div class="bracket-line horizontal"></div>
-                    <div class="bracket-line vertical"></div>
-                    <div class="bracket-data">04</div>
-                </div>
-
-                <!-- New decorative elements -->
-                <div class="diagonal-accent top-right"></div>
-                <div class="diagonal-accent bottom-left"></div>
-                
-                <div class="data-point left">SYS.01</div>
-                <div class="data-point right">SRV.02</div>
-                
-                <div class="circuit-path horizontal top"></div>
-                <div class="circuit-path vertical right"></div>
-                
-                <div class="section-indicator left">SERVERS</div>
-                <div class="section-indicator right">STATUS</div>
-            </div>
-        </section>
-
-        <section id="store" class="section store-section">
-            <!-- Decorative elements -->
-            <div class="store-accent top-left"></div>
-            <div class="store-accent top-right"></div>
-            <div class="store-accent bottom-left"></div>
-            <div class="store-accent bottom-right"></div>
-            
-            <!-- Background diagonal lines -->
-            <div class="bg-line-pattern">
-                <div class="bg-line angle-1"></div>
-                <div class="bg-line angle-2"></div>
-                <div class="bg-line angle-3"></div>
-                <div class="bg-line angle-4"></div>
-                <div class="bg-line angle-5"></div>
-                <div class="bg-line angle-6"></div>
-            </div>
-            
-            <!-- Circuit lines -->
-            <div class="store-circuit top"></div>
-            <div class="store-circuit bottom"></div>
-            
-            <!-- Corner Brackets -->
-            <div class="corner-bracket top-left">
-                <div class="bracket-line horizontal"></div>
-                <div class="bracket-line vertical"></div>
-                <div class="bracket-data">01</div>
-            </div>
-            
-            <div class="corner-bracket top-right">
-                <div class="bracket-line horizontal"></div>
-                <div class="bracket-line vertical"></div>
-                <div class="bracket-data">02</div>
-            </div>
-            
-            <div class="corner-bracket bottom-left">
-                <div class="bracket-line horizontal"></div>
-                <div class="bracket-line vertical"></div>
-                <div class="bracket-data">03</div>
-            </div>
-            
-            <div class="corner-bracket bottom-right">
-                <div class="bracket-line horizontal"></div>
-                <div class="bracket-line vertical"></div>
-                <div class="bracket-data">04</div>
-            </div>
-
-            <!-- New decorative elements -->
-            <div class="diagonal-accent top-right"></div>
-            <div class="diagonal-accent bottom-left"></div>
-            
-            <div class="data-point left">STR.01</div>
-            <div class="data-point right">PRC.02</div>
-            
-            <div class="circuit-path horizontal top"></div>
-            <div class="circuit-path vertical right"></div>
-            
-            <div class="section-indicator left">STORE</div>
-            <div class="section-indicator right">ITEMS</div>
-            
-            <!-- Technical decorations -->
-            <div class="tech-x top"></div>
-            <div class="tech-x bottom"></div>
-            
-            <div class="tech-plus left"></div>
-            <div class="tech-plus right"></div>
-            
-            <div class="tech-compass top-right"></div>
-            <div class="tech-compass bottom-left"></div>
-            
-            <div class="measurement-mark left">128</div>
-            <div class="measurement-mark right">256</div>
-            
-            <div class="corner-accent top-right"></div>
-            <div class="corner-accent bottom-left"></div>
-
-            <!-- New inner decorative elements -->
-            <div class="tech-grid-overlay"></div>
-            
-            <div class="tech-circle center-left"></div>
-            <div class="tech-circle center-right"></div>
-            
-            <div class="data-matrix top-center">
-                <span>01</span>
-                <span>10</span>
-                <span>11</span>
-            </div>
-            
-            <div class="data-matrix bottom-center">
-                <span>00</span>
-                <span>11</span>
-                <span>01</span>
-            </div>
-            
-            <div class="tech-line diagonal-1"></div>
-            <div class="tech-line diagonal-2"></div>
-            
-            <div class="measurement-point center-left">
-                <span class="point"></span>
-                <span class="label">SYS_32</span>
-            </div>
-            
-            <div class="measurement-point center-right">
-                <span class="point"></span>
-                <span class="label">NET_64</span>
-            </div>
-            
-            <div class="tech-hexagon left-mid"></div>
-            <div class="tech-hexagon right-mid"></div>
-            
-            <!-- Replacing circuit node with new elements -->
-            <div class="tech-cross center">
-                <div class="cross-line horizontal"></div>
-                <div class="cross-line vertical"></div>
-                <div class="cross-data">
-                    <span>SYS</span>
-                    <span class="divider">/</span>
-                    <span>NET</span>
-                </div>
-            </div>
-            
-            <div class="tech-scanner center-top"></div>
-            <div class="tech-scanner center-bottom"></div>
-            
-            <div class="data-readout center-left-mid">
-                <span class="label">STATUS</span>
-                <span class="value">ONLINE</span>
-            </div>
-            
-            <div class="data-readout center-right-mid">
-                <span class="label">PING</span>
-                <span class="value">32ms</span>
-            </div>
-            
-            <!-- Mobile diagonal text -->
-            <div class="store-mobile-text">
-                <span class="store-word">VISIT</span>
-                <span class="store-word">OUR</span>
-                <span class="store-word">STORE</span>
-            </div>
-
-            <!-- Store panels -->
-            <div class="store-panel left outer">
-                <div class="panel-text">SUPPORTER</div>
-                <div class="panel-benefits">
-                    <div class="benefit-item">
-                        <i class="fas fa-star"></i>
-                        <span>Custom Name Color</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-comment"></i>
-                        <span>Special Chat Badge</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-user-shield"></i>
-                        <span>Reserved Slot</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-coins"></i>
-                        <span>2x Points Multiplier</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-box-open"></i>
-                        <span>Monthly Loot Box</span>
-                    </div>
-                </div>
-                <div class="panel-line"></div>
-            </div>
-            <div class="store-panel left inner">
-                <div class="panel-text">SUPPORTER+</div>
-                <div class="panel-benefits">
-                    <div class="benefit-item">
-                        <i class="fas fa-crown"></i>
-                        <span>All Supporter Benefits</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-palette"></i>
-                        <span>Custom Chat Colors</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-bolt"></i>
-                        <span>Priority Queue Access</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-gift"></i>
-                        <span>Exclusive Items</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-gem"></i>
-                        <span>3x Points Multiplier</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-box"></i>
-                        <span>Premium Loot Boxes</span>
-                    </div>
-                </div>
-                <div class="panel-line"></div>
-            </div>
-            <div class="store-panel right inner">
-                <div class="panel-text">SUPPORTER ELITE</div>
-                <div class="panel-benefits">
-                    <div class="benefit-item">
-                        <i class="fas fa-crown"></i>
-                        <span>All Previous Benefits</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-sparkles"></i>
-                        <span>Custom Join Effects</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-star"></i>
-                        <span>5x Points Multiplier</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-crown"></i>
-                        <span>Elite Badge</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-gem"></i>
-                        <span>Monthly Elite Box</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-shield"></i>
-                        <span>Priority Support</span>
-                    </div>
-                </div>
-                <div class="panel-line"></div>
-            </div>
-            <div class="store-panel right outer">
-                <div class="panel-text">SUPPORTER++</div>
-                <div class="panel-benefits">
-                    <div class="benefit-item">
-                        <i class="fas fa-wand-magic-sparkles"></i>
-                        <span>Custom Chat Effects</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-bolt"></i>
-                        <span>4x Points Multiplier</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-diamond"></i>
-                        <span>Exclusive Animations</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-trophy"></i>
-                        <span>VIP Events Access</span>
-                    </div>
-                </div>
-                <div class="panel-line"></div>
-            </div>
-            
-            <!-- Particles -->
-            <div class="store-particle"></div>
-            <div class="store-particle"></div>
-            <div class="store-particle"></div>
-            <div class="store-particle"></div>
-            
-            <div class="store-content">
-                <h2 class="store-title">VISIT OUR <span class="highlight">STORE</span></h2>
-                <a href="#" class="store-button">
-                    <i class="fas fa-shopping-cart"></i>
-                    SHOP NOW
-                </a>
-            </div>
-        </section>
+        <div class="scroll-indicator">
+            <div class="scroll-text">Scroll Down</div>
+            <div class="scroll-arrow"></div>
+        </div>
     </main>
-    <!-- Load libraries first -->
+
+    <section class="servers-section">
+        <div class="servers-container">
+            <div class="servers-info">
+                <h2>WE RUN SERVERS</h2>
+                <p class="servers-description">
+                    Experience a diverse range of game modes across our network, each crafted to deliver unique and engaging gameplay.
+                </p>
+                <div class="server-stats">
+                    <div class="stat-item">
+                        <span class="stat-value" id="total-players">--</span>
+                        <span class="stat-label">Total Players</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="total-servers">--</span>
+                        <span class="stat-label">Total Servers</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="servers-list" id="servers-list">
+                <!-- Servers will be populated here by your script -->
+            </div>
+        </div>
+    </section>
+
+    <section class="store-section">
+        <div class="store-container">
+            <div class="store-benefits">
+                <div class="benefit-text">RECEIVE EXCLUSIVE BENEFITS<div class="benefit-highlight"></div></div>
+                <div class="benefit-text">CROSS SERVER RANKS ON OUR ENTIRE NETWORK<div class="benefit-highlight"></div></div>
+                <div class="benefit-text">RESERVED SLOT<div class="benefit-highlight"></div></div>
+                <div class="benefit-text">CUSTOM SKINS<div class="benefit-highlight"></div></div>
+                <div class="benefit-text">CUSTOM SWEPS<div class="benefit-highlight"></div></div>
+                <div class="benefit-text">ECONOMY MULTIPLIER<div class="benefit-highlight"></div></div>
+                <div class="benefit-text">HIGHER LIMITS<div class="benefit-highlight"></div></div>
+                <div class="benefit-text">VANITY COSMETICS<div class="benefit-highlight"></div></div>
+            </div>
+            <div class="store-header">
+                <h2>GAME STORE</h2>
+                <p>Enhance your gaming experience with exclusive items and perks</p>
+                <button class="browse-store-btn">BROWSE OUR STORE</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="gamemodes-section">
+        <div class="gamemodes-container">
+            <div class="gamemodes-showcase">
+                <!-- Gamemodes will be populated by JavaScript -->
+            </div>
+            <div class="showcase-progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="help-section">
+        <div class="help-banner">
+            <div class="help-banner-content">
+                <div class="help-text">
+                    <h3>Need Support?</h3>
+                    <p>Having an issue on one of our servers, need to report a player, or appeal a ban?</p>
+                </div>
+                <button class="help-btn">Get Help <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/components/theme-toggle.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/landing.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
-    
-    <!-- Then load our application scripts -->
-    <script src="js/animations.js"></script>
-    <script src="server-section/servers.js"></script>
-    <script src="components/navbar.js"></script>
-    <script src="store-section/store-animations.js"></script>
+    <script src="js/scroll-handler.js"></script>
+    <script src="js/sections/store.js"></script>
+    <script src="js/sections/store-benefits-animation.js"></script>
+    <script src="js/sections/gamemodes-gallery.js" type="module"></script>
+    <link rel="stylesheet" href="css/sections/gamemodes-gallery.css">
+    <script type="module">
+        import Footer from './js/components/footer.js';
+        new Footer();
+    </script>
 </body>
 </html> 
