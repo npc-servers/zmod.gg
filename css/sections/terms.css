@@ -1,0 +1,229 @@
+.terms-section {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #1a1a1a 0%, #1a1a1a 20%, #111111 40%, #0a0a0a 100%);
+    position: relative;
+    padding: 4rem 2rem;
+    padding-bottom: 12rem;
+}
+
+[data-theme="light"] .terms-section {
+    background: linear-gradient(180deg, var(--background-color) 0%, var(--background-color) 20%, #e0e0e0 40%, #d0d0d0 100%);
+}
+
+.terms-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.terms-header {
+    margin-bottom: 4rem;
+    position: relative;
+    text-align: center;
+}
+
+.terms-header h1 {
+    font-family: 'Teko', sans-serif;
+    font-size: 4rem;
+    font-weight: 600;
+    color: var(--text-color);
+    letter-spacing: 2px;
+    line-height: 1;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+.terms-header h1::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -15px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 12px 12px 0 0;
+    border-color: var(--text-color) transparent transparent transparent;
+    opacity: 0.8;
+}
+
+.terms-header h1::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    right: -15px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 12px 12px;
+    border-color: transparent transparent var(--text-color) transparent;
+    opacity: 0.8;
+}
+
+.terms-content {
+    background: rgba(44, 44, 44, 0.8);
+    border-radius: 8px;
+    padding: 3rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: left;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.terms-content:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .terms-content {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.terms-section h2 {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 2rem 0 1rem;
+}
+
+.terms-section h3 {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 1.5rem 0 1rem;
+    opacity: 0.9;
+}
+
+.terms-section p {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.terms-section ul {
+    list-style-type: disc;
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+}
+
+.terms-section li {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.last-updated-container {
+    background: rgba(44, 44, 44, 0.8);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: 2rem;
+    max-width: fit-content;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+}
+
+.last-updated-container:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .last-updated-container {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.icon-wrapper {
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+}
+
+.icon-wrapper i {
+    font-size: 14px;
+    color: var(--text-color);
+    opacity: 0.6;
+}
+
+.text-wrapper {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+}
+
+.text-wrapper .date {
+    margin-left: 4px;
+    color: #ffffff;
+}
+
+.text-wrapper .month {
+    color: #ffffff;
+}
+
+[data-theme="light"] .text-wrapper {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="light"] .text-wrapper .date {
+    color: #000000;
+}
+
+@media (max-width: 768px) {
+    .terms-section {
+        padding: 3rem 1.5rem;
+    }
+    
+    .terms-header h1 {
+        font-size: 3rem;
+    }
+    
+    .terms-content {
+        padding: 2rem;
+    }
+    
+    .terms-section h2 {
+        font-size: 1.6rem;
+    }
+    
+    .terms-section h3 {
+        font-size: 1.3rem;
+    }
+
+    .last-updated-container {
+        padding: 0.75rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .terms-section {
+        padding: 2rem 1rem;
+    }
+    
+    .terms-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .terms-content {
+        padding: 1.5rem;
+    }
+
+    .last-updated-container {
+        padding: 0.75rem 1rem;
+    }
+} 
