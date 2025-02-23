@@ -2,6 +2,20 @@ import gamemodes from '../data/gamemodes.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Create scroll trigger for fade-in effect
+ScrollTrigger.create({
+    trigger: '.gamemodes-section',
+    start: 'top 80%',
+    end: 'top 20%',
+    onUpdate: self => {
+        gsap.to('.gamemodes-container', {
+            opacity: self.progress,
+            duration: 0.1,
+            ease: 'none'
+        });
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     const showcaseContainer = document.querySelector('.gamemodes-showcase');
     
