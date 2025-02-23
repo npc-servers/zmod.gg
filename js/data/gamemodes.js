@@ -5,7 +5,7 @@ const gamemodes = {
         shortDescription: 'Immerse yourself in a high-stakes world of deception and survival, where every round brings unique modifiers that transform the classic detective experience',
         fullDescription: `A unique take on the classic detective gameplay where every round brings new challenges and modifiers. 
         Players must use their wit and skills to survive, deceive, and uncover the truth in this high-stakes environment.`,
-        image: 'assets/gamemodes/homigrad.jpg',
+        image: 'assets/gamemodes/homigrad.png',
         features: [
             'Dynamic round modifiers',
             'Role-based gameplay',

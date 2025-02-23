@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Clear existing content and generate from data
     showcaseContainer.innerHTML = '';
     
+    // Add triangle element
+    const triangle = document.createElement('div');
+    triangle.className = 'gallery-triangle';
+    showcaseContainer.appendChild(triangle);
+    
     // Add gamemode items
     Object.values(gamemodes).forEach((gamemode, index) => {
         if (gamemode.isActive) {
@@ -19,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="showcase-content">
                     <h2>${gamemode.name}</h2>
                     <p>${gamemode.shortDescription}</p>
+                    <button class="check-it-out-btn">CHECK IT OUT</button>
                 </div>
                 <div class="showcase-background">
                     <img src="${gamemode.image}" alt="${gamemode.name} Gamemode">
