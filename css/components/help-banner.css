@@ -1,6 +1,6 @@
 .help-section {
     background: linear-gradient(180deg, #1a1a1a 0%, #1a1a1a 20%, #111111 40%, #0a0a0a 100%);
-    padding: 4rem 2rem;
+    padding: 8rem 2rem;
     position: relative;
     overflow: hidden;
 }
@@ -110,7 +110,7 @@
 
 @media (max-width: 768px) {
     .help-section {
-        padding: 3rem 1.5rem;
+        padding: 6rem 1.5rem;
     }
 
     .help-banner {
