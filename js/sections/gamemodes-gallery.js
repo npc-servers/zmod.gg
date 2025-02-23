@@ -70,6 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let showcaseInterval;
     let isVisible = false;
     let hasStarted = false;
+    let pausedTime = 0;
+    let lastPauseTimestamp = 0;
 
     function updateShowcase(newIndex) {
         if (isAnimating) return;
@@ -115,7 +117,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function stopShowcase() {
         if (showcaseInterval) clearInterval(showcaseInterval);
-        if (progressTween) progressTween.kill();
+        if (progressTween) {
+            lastPauseTimestamp = Date.now();
+            const currentProgress = parseFloat(progressBar.style.width) || 0;
+            pausedTime = (animationDuration * currentProgress) / 100;
+            progressTween.kill();
+        }
     }
 
     function resumeShowcase() {
@@ -125,33 +132,43 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentIndex >= showcaseItems.length - 1) {
             updateShowcase(0);
             startShowcase();
-        } else {
-            // Continue the progress bar from its current position
-            const currentProgress = parseFloat(progressBar.style.width) || 0;
-            const remainingDuration = (animationDuration / 1000) * (1 - (currentProgress / 100));
-            
-            progressTween = gsap.to(progressBar, {
-                width: '100%',
-                duration: remainingDuration,
-                ease: 'none',
-                onComplete: () => {
-                    updateShowcase(currentIndex + 1);
-                }
-            });
-            
-            // Start a new interval that begins after the current animation completes
-            if (showcaseInterval) clearInterval(showcaseInterval);
-            showcaseInterval = setInterval(() => {
+            return;
+        }
+
+        // Calculate remaining duration based on pause time
+        const currentTime = Date.now();
+        const pauseDuration = currentTime - lastPauseTimestamp;
+        const currentProgress = parseFloat(progressBar.style.width) || 0;
+        
+        // If we've been paused longer than the animation duration or there's no progress,
+        // start fresh from the current slide
+        if (pauseDuration >= animationDuration || !currentProgress) {
+            updateShowcase(currentIndex);
+            startShowcase();
+            return;
+        }
+
+        // Continue the progress bar from its current position
+        const remainingDuration = (animationDuration - pausedTime) / 1000;
+        
+        progressTween = gsap.to(progressBar, {
+            width: '100%',
+            duration: remainingDuration,
+            ease: 'none',
+            onComplete: () => {
                 if (currentIndex < showcaseItems.length - 1) {
                     updateShowcase(currentIndex + 1);
+                    startShowcase();
                 }
-            }, animationDuration);
-        }
+            }
+        });
     }
 
     function initializeShowcase() {
         if (hasStarted || !isVisible) return;
         hasStarted = true;
+        pausedTime = 0;
+        lastPauseTimestamp = 0;
         updateShowcase(0);
         startShowcase();
     }
