@@ -210,6 +210,41 @@
     color: #000000;
 }
 
+.terms-content a {
+    color: var(--accent-color);
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.terms-content a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--accent-color);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.terms-content a:hover {
+    opacity: 0.8;
+}
+
+.terms-content a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.terms-content a i {
+    margin-left: 4px;
+    font-size: 0.8em;
+}
+
 @media (max-width: 768px) {
     .terms-section {
         padding: 3rem 1.5rem;

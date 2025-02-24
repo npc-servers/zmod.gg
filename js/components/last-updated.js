@@ -3,8 +3,21 @@ class LastUpdated {
         this.container = document.querySelector('.text-wrapper');
         if (!this.container) return;
         
-        // Get the last modified date of the terms.html file
-        fetch('terms.html')
+        // Get the current page path
+        const currentPath = window.location.pathname;
+        let targetFile;
+        
+        // Determine which file to check based on the current path
+        if (currentPath.includes('store-terms')) {
+            targetFile = 'store-terms.html';
+        } else if (currentPath.includes('privacy')) {
+            targetFile = 'privacy.html';
+        } else {
+            targetFile = 'terms.html';
+        }
+        
+        // Get the last modified date of the appropriate file
+        fetch(targetFile)
             .then(response => {
                 const lastModified = response.headers.get('last-modified');
                 if (lastModified) {
