@@ -503,6 +503,64 @@
     );
 }
 
+.server-card.is-offline {
+    border-color: rgba(244, 67, 54, 0.2);
+}
+
+.server-card.is-offline::before {
+    background: linear-gradient(90deg, 
+        rgba(244, 67, 54, 0.1) 0%,
+        rgba(244, 67, 54, 0) 100%
+    );
+}
+
+.server-card.is-offline .server-header::before {
+    background: radial-gradient(circle at left,
+        rgba(244, 67, 54, 0.15) 0%,
+        rgba(244, 67, 54, 0.05) 35%,
+        transparent 70%
+    );
+}
+
+.server-card.is-offline .player-count {
+    color: #f44336;
+    font-weight: 600;
+}
+
+.server-card.is-offline .connect-btn {
+    background: rgba(244, 67, 54, 0.1);
+    border-color: rgba(244, 67, 54, 0.2);
+    color: #f44336;
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+.server-card.is-offline .connect-btn:hover {
+    background: rgba(244, 67, 54, 0.1);
+    border-color: rgba(244, 67, 54, 0.2);
+}
+
+.server-card.is-offline .connect-btn::before {
+    display: none;
+}
+
+.server-card.is-offline .connect-btn.mobile-only {
+    color: #f44336;
+    opacity: 0.8;
+}
+
+[data-theme="light"] .server-card.is-offline {
+    border-color: rgba(244, 67, 54, 0.3);
+}
+
+[data-theme="light"] .server-card.is-offline .server-header::before {
+    background: radial-gradient(circle at left,
+        rgba(244, 67, 54, 0.2) 0%,
+        rgba(244, 67, 54, 0.1) 35%,
+        transparent 70%
+    );
+}
+
 /* Responsive Design */
 @media (max-width: 1200px) {
     .servers-section {

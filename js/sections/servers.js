@@ -28,15 +28,15 @@ class ServersSection {
                     <div class="server-status">
                         <div class="status-indicator offline"></div>
                         <div class="server-status-info">
-                            <span class="player-count">--/--</span>
+                            <span class="player-count">Server Down</span>
                             <span class="server-region">${server.region}</span>
                         </div>
-                        <span class="connect-btn mobile-only">Only available on PC</span>
+                        <span class="connect-btn mobile-only">Server Offline</span>
                     </div>
                     <span class="reserve-slot">Reserve a slot <i class="fas fa-arrow-right"></i></span>
                 </div>
-                <button class="connect-btn desktop-only" onclick="window.location.href='steam://connect/${server.ip}:${server.port}'">
-                    Connect
+                <button class="connect-btn desktop-only" disabled>
+                    Server Offline
                 </button>
             </div>
         `).join('');
@@ -74,9 +74,27 @@ class ServersSection {
             if (serverElement) {
                 const statusIndicator = serverElement.querySelector('.status-indicator');
                 const playerCount = serverElement.querySelector('.player-count');
+                const mobileBtn = serverElement.querySelector('.connect-btn.mobile-only');
+                const desktopBtn = serverElement.querySelector('.connect-btn.desktop-only');
+                const serverCard = serverElement;
                 
                 statusIndicator.className = `status-indicator ${status.online ? 'online' : 'offline'}`;
-                playerCount.textContent = `${status.players}/${status.maxPlayers}`;
+                
+                if (status.online) {
+                    playerCount.textContent = `${status.players}/${status.maxPlayers}`;
+                    mobileBtn.textContent = 'Only available on PC';
+                    desktopBtn.textContent = 'Connect';
+                    desktopBtn.disabled = false;
+                    desktopBtn.onclick = () => window.location.href = `steam://connect/${server.ip}:${server.port}`;
+                    serverCard.classList.remove('is-offline');
+                } else {
+                    playerCount.textContent = 'Server Down';
+                    mobileBtn.textContent = 'Server Offline';
+                    desktopBtn.textContent = 'Server Offline';
+                    desktopBtn.disabled = true;
+                    desktopBtn.onclick = null;
+                    serverCard.classList.add('is-offline');
+                }
             }
             
             return status;

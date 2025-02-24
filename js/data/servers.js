@@ -27,7 +27,7 @@ export const servers = [
         id: 'hhh3',
         title: 'Harrisons Homigrad US3',
         ip: '193.243.190.18',
-        port: 27053,
+        port: 27054,
         region: 'US',
         description: 'Homigrad',
     },
