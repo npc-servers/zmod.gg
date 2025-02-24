@@ -23,6 +23,32 @@
     text-align: center;
 }
 
+.terms-header::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 140%;
+    background: radial-gradient(circle at center, 
+        rgba(255,255,255,0.1) 0%,
+        rgba(255,255,255,0.05) 35%,
+        transparent 70%
+    );
+    filter: blur(40px);
+    z-index: -1;
+    pointer-events: none;
+}
+
+[data-theme="light"] .terms-header::before {
+    background: radial-gradient(circle at center,
+        rgba(200,200,200,0.3) 0%,
+        rgba(200,200,200,0.15) 35%,
+        transparent 70%
+    );
+}
+
 .terms-header h1 {
     font-family: 'Teko', sans-serif;
     font-size: 4rem;
