@@ -21,15 +21,21 @@ class ServersSection {
                 <div class="server-info">
                     <div class="server-header">
                         <h3>${server.title}</h3>
-                        <span class="server-region">${server.region}</span>
                     </div>
                     <p class="server-description">${server.description}</p>
                 </div>
-                <div class="server-status">
-                    <div class="status-indicator offline"></div>
-                    <span class="player-count">--/--</span>
+                <div class="server-status-container">
+                    <div class="server-status">
+                        <div class="status-indicator offline"></div>
+                        <div class="server-status-info">
+                            <span class="player-count">--/--</span>
+                            <span class="server-region">${server.region}</span>
+                        </div>
+                        <span class="connect-btn mobile-only">Only available on PC</span>
+                    </div>
+                    <span class="reserve-slot">Reserve a slot <i class="fas fa-arrow-right"></i></span>
                 </div>
-                <button class="connect-btn" onclick="window.location.href='steam://connect/${server.ip}:${server.port}'">
+                <button class="connect-btn desktop-only" onclick="window.location.href='steam://connect/${server.ip}:${server.port}'">
                     Connect
                 </button>
             </div>
