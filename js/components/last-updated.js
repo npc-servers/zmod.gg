@@ -8,8 +8,8 @@ class LastUpdated {
         let targetFile;
         
         // Determine which file to check based on the current path
-        if (currentPath.includes('store-terms')) {
-            targetFile = 'store-terms.html';
+        if (currentPath.includes('store/terms')) {
+            targetFile = window.location.pathname;  // Use the full current path
         } else if (currentPath.includes('privacy')) {
             targetFile = 'privacy.html';
         } else {
@@ -26,7 +26,13 @@ class LastUpdated {
                     this.container.innerHTML = `Last updated: <span class="date">${formattedDate}</span>`;
                 }
             })
-            .catch(error => console.error('Error fetching last modified date:', error));
+            .catch(error => {
+                console.error('Error fetching last modified date:', error);
+                // Fallback to current date if fetch fails
+                const date = new Date();
+                const formattedDate = this.formatDate(date);
+                this.container.innerHTML = `Last updated: <span class="date">${formattedDate}</span>`;
+            });
     }
 
     formatDate(date) {
