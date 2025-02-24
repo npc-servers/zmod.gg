@@ -81,12 +81,29 @@ class ServersSection {
                 statusIndicator.className = `status-indicator ${status.online ? 'online' : 'offline'}`;
                 
                 if (status.online) {
+                    const isFull = status.players >= status.maxPlayers;
                     playerCount.textContent = `${status.players}/${status.maxPlayers}`;
-                    mobileBtn.textContent = 'Only available on PC';
-                    desktopBtn.textContent = 'Connect';
-                    desktopBtn.disabled = false;
-                    desktopBtn.onclick = () => window.location.href = `steam://connect/${server.ip}:${server.port}`;
+                    mobileBtn.textContent = isFull ? 'Server Full' : 'Only available on PC';
+                    desktopBtn.textContent = isFull ? 'Server Full' : 'Connect';
+                    desktopBtn.disabled = isFull;
+                    desktopBtn.onclick = isFull ? null : () => window.location.href = `steam://connect/${server.ip}:${server.port}`;
                     serverCard.classList.remove('is-offline');
+                    
+                    // Toggle full server state
+                    const statusContainer = serverElement.querySelector('.server-status-container');
+                    if (isFull) {
+                        statusContainer.classList.add('is-full');
+                        const reserveSlot = serverElement.querySelector('.reserve-slot');
+                        if (reserveSlot) {
+                            reserveSlot.classList.add('show');
+                        }
+                    } else {
+                        statusContainer.classList.remove('is-full');
+                        const reserveSlot = serverElement.querySelector('.reserve-slot');
+                        if (reserveSlot) {
+                            reserveSlot.classList.remove('show');
+                        }
+                    }
                 } else {
                     playerCount.textContent = 'Server Down';
                     mobileBtn.textContent = 'Server Offline';
