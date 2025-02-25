@@ -1,4 +1,5 @@
 import { servers } from '../data/servers.js';
+import gamemodes from '../data/gamemodes.js';
 
 class ServersSection {
     constructor() {
@@ -16,13 +17,20 @@ class ServersSection {
     }
 
     renderServers() {
-        this.serversList.innerHTML = servers.map(server => `
+        this.serversList.innerHTML = servers.map(server => {
+            const gamemodeInfo = gamemodes[server.gamemode] || { name: 'Unknown', id: 'unknown' };
+            
+            return `
             <div class="server-card" id="server-${server.id}">
                 <div class="server-info">
                     <div class="server-header">
                         <h3>${server.title}</h3>
                     </div>
-                    <p class="server-description">${server.description}</p>
+                    <div class="server-gamemode">
+                        <a href="#gamemode/${gamemodeInfo.id}" class="gamemode-link">
+                            ${gamemodeInfo.name}<i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
                 </div>
                 <div class="server-status-container">
                     <div class="server-status">
@@ -39,7 +47,8 @@ class ServersSection {
                     Server Offline
                 </button>
             </div>
-        `).join('');
+            `;
+        }).join('');
     }
 
     async updateServerStatus(server) {

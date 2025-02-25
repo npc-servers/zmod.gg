@@ -5,7 +5,7 @@ export const servers = [
         ip: '193.243.190.18',
         port: 27066,
         region: 'US',
-        description: 'Homigrad',
+        gamemode: 'homigrad',
     },
     {
         id: 'hhh1',
@@ -13,7 +13,7 @@ export const servers = [
         ip: '193.243.190.18',
         port: 27051,
         region: 'US',
-        description: 'Homigrad',
+        gamemode: 'homigrad',
     },
     {
         id: 'hhh2',
@@ -21,7 +21,7 @@ export const servers = [
         ip: '193.243.190.18',
         port: 27052,
         region: 'US',
-        description: 'Homigrad',
+        gamemode: 'homigrad',
     },
     {
         id: 'hhh3',
@@ -29,6 +29,6 @@ export const servers = [
         ip: '193.243.190.18',
         port: 27054,
         region: 'US',
-        description: 'Homigrad',
+        gamemode: 'homigrad',
     },
 ]; 
