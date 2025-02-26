@@ -38,34 +38,58 @@
     display: none;
 }
 
-.view-more .showcase-content h2::before{
-    display: block;
-    content:'';
-    position:absolute;
-    top:-8px;
-    left:-15px;
-    width:0;
-    height:0;
-    border-style:solid;
-    border-width:12px 12px 0 0;
-    border-color:var(--text-color) transparent transparent transparent;
-    opacity:0.8
+/* Style for the heading spans */
+.showcase-content h2 .heading-first,
+.showcase-content h2 .heading-second {
+    position: relative;
+    display: inline-block;
 }
 
-.view-more .showcase-content h2::after{
-    display: block;
-    content:'';
-    position:absolute;
-    bottom:8px;
-    right:-15px;
-    width:0;
-    height:0;
-    border-style:solid;
-    border-width:0 0 12px 12px;
-    border-color:transparent transparent var(--text-color) transparent;
-    opacity:0.8;
-    pointer-events:none
+/* First triangle positioned relative to the first span */
+.showcase-content h2 .heading-first::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -15px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 12px 12px 0 0;
+    border-color: var(--text-color) transparent transparent transparent;
+    opacity: 0.8;
+    display: none; /* Hidden by default */
 }
+
+/* Second triangle positioned relative to the second span */
+.showcase-content h2 .heading-second::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    right: -12px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 12px 12px;
+    border-color: transparent transparent var(--text-color) transparent;
+    opacity: 0.8;
+    display: none; /* Hidden by default */
+}
+
+/* Show triangles only for the "view more" section */
+.view-more .showcase-content h2 .heading-first::before {
+    display: block;
+}
+
+.view-more .showcase-content h2 .heading-second::after {
+    display: block;
+}
+
+/* Remove the original triangles for view-more */
+.view-more .showcase-content h2::before,
+.view-more .showcase-content h2::after {
+    display: none;
+}
+
 .showcase-content p{font-family:'Chakra Petch',sans-serif;font-size:1.4rem;color:var(--text-primary);margin-bottom:2rem;transform:translateY(30px);opacity:0;transition:transform 0.8s ease 0.2s,opacity 0.8s ease 0.2s}
 .showcase-item.active .showcase-content h2,
 .showcase-item.active .showcase-content p{transform:translateY(0);opacity:1}

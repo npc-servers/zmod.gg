@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     viewMoreItem.className = 'showcase-item view-more';
     viewMoreItem.innerHTML = `
         <div class="showcase-content">
-            <h2>Discover More</h2>
+            <h2><span class="heading-first">DISCOVER</span> <span class="heading-second">MORE</span></h2>
             <p>Explore our full collection of unique gamemodes</p>
             <button class="view-more-btn">VIEW ALL GAMEMODES</button>
         </div>
