@@ -93,8 +93,15 @@
 .brands-header h2 .heading-second {
     position: relative;
     display: inline-block;
-    min-width: 2ch;
     white-space: nowrap;
+}
+
+.brands-header h2 .heading-first {
+    margin-right: 0.5ch;
+}
+
+.brands-header h2 .heading-second {
+    margin-left: 0;
 }
 
 /* First triangle positioned relative to the first span */
@@ -123,6 +130,15 @@
     border-width: 0 0 12px 12px;
     border-color: transparent transparent var(--text-color) transparent;
     opacity: 0.8;
+}
+
+/* Handle empty spans */
+.brands-header h2 .heading-first:empty {
+    display: none;
+}
+
+.brands-header h2 .heading-second:empty::after {
+    display: none;
 }
 
 /* Remove the original triangles */

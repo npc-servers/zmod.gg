@@ -3,15 +3,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const brandData = {
         'hhh': {
             name: 'HARRISONS HOMIGRAD',
-            description: 'A premium gaming experience with custom maps and unique gameplay mechanics'
+            description: 'A Homigrad server network we acquired in early 2025. Harrisons is the sister community of ZGRAD.'
         },
         'npcz': {
-            name: 'NPC ZONE',
-            description: 'Immersive roleplay servers with advanced AI-driven NPCs and storylines'
+            name: 'NPCZ',
+            description: 'Our original servers: NPC Zombies Vs. Players, our Zombie Survival Sandbox; ZBOX, our Vanilla Sandbox; and Horde, our zombie survival wave gamemode.'
         },
         'zgrad': {
-            name: 'Z GRADIENT',
-            description: 'Creative building servers with professional tools and community workshops'
+            name: 'ZGRAD',
+            description: 'Our in-house Homigrad gamemode network, featuring a built from the ground up Homigrad gamemode.'
         }
     };
 
@@ -107,16 +107,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // Split the brand name for header animation
             let brandName = brandData[brandId].name;
             let nameParts = brandName.split(' ');
-            let firstPart = nameParts.length > 1 ? nameParts[0] : brandName;
-            let secondPart = nameParts.length > 1 ? nameParts.slice(1).join(' ') : '';
+            let firstPart = nameParts.length > 1 ? nameParts[0] : '';
+            let secondPart = nameParts.length > 1 ? nameParts.slice(1).join(' ') : brandName;
             
             // Animate header and description
             headerFirstScrambler.setText(firstPart);
-            if (secondPart) {
-                headerSecondScrambler.setText(secondPart);
-            } else {
-                headerSecondScrambler.setText('');
-            }
+            headerSecondScrambler.setText(secondPart);
             descriptionScrambler.setText(brandData[brandId].description);
         });
         
