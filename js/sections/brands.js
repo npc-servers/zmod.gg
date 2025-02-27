@@ -3,15 +3,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const brandData = {
         'hhh': {
             name: 'HARRISONS HOMIGRAD',
-            description: 'A Homigrad server network we acquired in early 2025. Harrisons is the sister community of ZGRAD.'
+            description: 'A Homigrad server network we acquired in early 2025. Harrisons is the sister community of ZGRAD.',
+            url: '/brands/harrisons-homigrad'
         },
         'npcz': {
             name: 'NPCZ',
-            description: 'Our original servers: NPC Zombies Vs. Players, our Zombie Survival Sandbox; ZBOX, our Vanilla Sandbox; and Horde, our zombie survival wave gamemode.'
+            description: 'Our original servers: NPC Zombies Vs. Players, our Zombie Survival Sandbox; ZBOX, our Vanilla Sandbox; and Horde, our zombie survival wave gamemode.',
+            url: '/brands/npcz'
         },
         'zgrad': {
             name: 'ZGRAD',
-            description: 'Our in-house Homigrad gamemode network, featuring a built from the ground up Homigrad gamemode.'
+            description: 'Our in-house Homigrad gamemode network, featuring a built from the ground up Homigrad gamemode.',
+            url: '/brands/zgrad'
         }
     };
 
@@ -29,6 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const originalHeaderFirst = headerFirstSpan.textContent;
     const originalHeaderSecond = headerSecondSpan.textContent;
     const originalDescription = descriptionElement.textContent;
+    
+    // Function to handle brand click
+    const handleBrandClick = (brandId) => {
+        const url = brandData[brandId].url;
+        window.location.href = url;
+    };
     
     // Text scramble effect class
     class TextScramble {
@@ -103,6 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
     logoContainers.forEach(container => {
         const brandId = container.querySelector('img').alt.split(' ')[0].toLowerCase();
         
+        // Make container focusable for keyboard navigation
+        container.setAttribute('tabindex', '0');
+        container.setAttribute('role', 'button');
+        container.setAttribute('aria-label', `Visit ${brandData[brandId].name} brand page`);
+        
         container.addEventListener('mouseenter', () => {
             // Split the brand name for header animation
             let brandName = brandData[brandId].name;
@@ -114,6 +128,9 @@ document.addEventListener('DOMContentLoaded', () => {
             headerFirstScrambler.setText(firstPart);
             headerSecondScrambler.setText(secondPart);
             descriptionScrambler.setText(brandData[brandId].description);
+            
+            // Add click indicator
+            container.setAttribute('title', `Click to visit ${brandData[brandId].name}`);
         });
         
         container.addEventListener('mouseleave', () => {
@@ -121,6 +138,39 @@ document.addEventListener('DOMContentLoaded', () => {
             headerFirstScrambler.setText(originalHeaderFirst);
             headerSecondScrambler.setText(originalHeaderSecond);
             descriptionScrambler.setText(originalDescription);
+        });
+        
+        // Add focus events for keyboard navigation
+        container.addEventListener('focus', () => {
+            // Same animation as mouseenter
+            let brandName = brandData[brandId].name;
+            let nameParts = brandName.split(' ');
+            let firstPart = nameParts.length > 1 ? nameParts[0] : '';
+            let secondPart = nameParts.length > 1 ? nameParts.slice(1).join(' ') : brandName;
+            
+            headerFirstScrambler.setText(firstPart);
+            headerSecondScrambler.setText(secondPart);
+            descriptionScrambler.setText(brandData[brandId].description);
+        });
+        
+        container.addEventListener('blur', () => {
+            // Same animation as mouseleave
+            headerFirstScrambler.setText(originalHeaderFirst);
+            headerSecondScrambler.setText(originalHeaderSecond);
+            descriptionScrambler.setText(originalDescription);
+        });
+        
+        // Add click event listener
+        container.addEventListener('click', () => {
+            handleBrandClick(brandId);
+        });
+        
+        // Add keyboard event listener for Enter key
+        container.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleBrandClick(brandId);
+            }
         });
     });
 }); 
