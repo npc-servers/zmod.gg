@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Startup</title>
+    <meta http-equiv="refresh" content="0;url=404.html">
+    <title>ZMOD - The Next Era</title>
+    <meta name="description" content="ZMOD.GG - The Next Era - Coming Soon">
+    <script>
+        window.location.href = '404.html';
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Teko:wght@500;600&display=swap" rel="stylesheet">
@@ -23,137 +28,6 @@
     <link rel="stylesheet" href="css/components/footer.css">
 </head>
 <body>
-    <main class="landing-container">
-        <div class="content-wrapper">
-            <div class="logo-container">
-                <img src="assets/logos/zmod-logo.png" alt="ZMOD Logo" class="logo-image">
-            </div>
-            
-            <nav class="nav-buttons">
-                <button class="nav-btn">SERVERS</button>
-                <button class="nav-btn store-btn">STORE</button>
-                <button class="nav-btn">DISCORD</button>
-            </nav>
-
-            <div class="tagline">
-                ONE OF THE TOP NETWORKS ON GARRY'S MOD
-            </div>
-        </div>
-
-        <div class="scroll-indicator">
-            <div class="scroll-text">Scroll Down</div>
-            <div class="scroll-arrow"></div>
-        </div>
-    </main>
-
-    <section class="servers-section">
-        <div class="servers-container">
-            <div class="servers-info">
-                <h2><span class="heading-first">WE RUN</span> <span class="heading-second">SERVERS</span></h2>
-                <p class="servers-description">
-                    Experience a diverse range of game modes across our network, each crafted to deliver unique and engaging gameplay.
-                </p>
-                <div class="server-stats">
-                    <div class="stat-item">
-                        <span class="stat-value" id="total-players">--</span>
-                        <span class="stat-label">Total Players</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-value" id="total-servers">--</span>
-                        <span class="stat-label">Total Servers</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="servers-list" id="servers-list">
-                <!-- Servers will be populated here by your script -->
-            </div>
-        </div>
-    </section>
-
-    <section class="store-section">
-        <div class="store-container">
-            <div class="store-benefits">
-                <div class="benefit-text">RECEIVE EXCLUSIVE BENEFITS<div class="benefit-highlight"></div></div>
-                <div class="benefit-text">CROSS SERVER RANKS ON OUR ENTIRE NETWORK<div class="benefit-highlight"></div></div>
-                <div class="benefit-text">RESERVED SLOT<div class="benefit-highlight"></div></div>
-                <div class="benefit-text">CUSTOM SKINS<div class="benefit-highlight"></div></div>
-                <div class="benefit-text">CUSTOM SWEPS<div class="benefit-highlight"></div></div>
-                <div class="benefit-text">ECONOMY MULTIPLIER<div class="benefit-highlight"></div></div>
-                <div class="benefit-text">HIGHER LIMITS<div class="benefit-highlight"></div></div>
-                <div class="benefit-text">VANITY COSMETICS<div class="benefit-highlight"></div></div>
-            </div>
-            <div class="store-header">
-                <h2><span class="heading-first">GAME</span> <span class="heading-second">STORE</span></h2>
-                <p>Enhance your gaming experience with exclusive items and perks</p>
-                <button class="browse-store-btn">BROWSE OUR STORE</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="brands-section">
-        <div class="brands-container">
-            <div class="brands-header">
-                <div class="brands-header-content">
-                    <h2><span class="heading-first">OUR</span> <span class="heading-second">BRANDS</span></h2>
-                    <p>Explore our family of gaming brands, each offering unique experiences within the ZMOD network</p>
-                </div>
-            </div>
-            <div class="brands-logos">
-                <div class="brand-logo-container">
-                    <img src="assets/logos/brands/hhh_logo.png" alt="HHH Logo" class="brand-logo">
-                </div>
-                <div class="brand-logo-container">
-                    <img src="assets/logos/brands/npcz_logo.png" alt="NPCZ Logo" class="brand-logo">
-                </div>
-                <div class="brand-logo-container">
-                    <img src="assets/logos/brands/zgrad_logo.png" alt="ZGRAD Logo" class="brand-logo">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="gamemodes-section">
-        <div class="gamemodes-container">
-            <div class="gamemodes-showcase">
-                <!-- Gamemodes will be populated by JavaScript -->
-            </div>
-            <div class="showcase-progress">
-                <div class="progress-bar"></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="help-section">
-        <div class="help-banner">
-            <div class="help-banner-content">
-                <div class="help-text">
-                    <h3>Need Support?</h3>
-                    <p>Having an issue on one of our servers, need to report a player, or appeal a ban?</p>
-                </div>
-                <button class="help-btn">Get Help <i class="fas fa-arrow-right"></i></button>
-            </div>
-        </div>
-    </section>
-
-    <script src="js/components/theme-toggle.js"></script>
-    <script src="js/theme.js"></script>
-    <script src="js/landing.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
-    <script src="js/scroll-handler.js"></script>
-    <script src="js/sections/store.js"></script>
-    <script src="js/sections/store-benefits-animation.js"></script>
-    <script src="js/sections/brands.js"></script>
-    <script src="js/sections/gamemodes-gallery.js" type="module"></script>
-    <script src="js/sections/servers.js" type="module"></script>
-    <link rel="stylesheet" href="css/sections/gamemodes-fade.css">
-    <link rel="stylesheet" href="css/sections/gamemodes-gallery.css">
-    <script type="module">
-        import Footer from './js/components/footer.js';
-        new Footer();
-    </script>
+    <p>If you are not redirected automatically, follow this <a href="404.html">link to the coming soon page</a>.</p>
 </body>
 </html> 
