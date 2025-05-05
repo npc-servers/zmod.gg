@@ -310,4 +310,26 @@
     .last-updated-container {
         padding: 0.75rem 1rem;
     }
+}
+
+/* Important Notice Styling */
+.important-notice {
+    background-color: rgba(255, 100, 100, 0.1);
+    border-left: 4px solid #ff6464;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 5px 5px 0;
+}
+
+.important-notice h3 {
+    color: #ff6464;
+    margin-top: 0;
+}
+
+[data-theme="light"] .important-notice {
+    background-color: rgba(255, 100, 100, 0.1);
+}
+
+[data-theme="dark"] .important-notice {
+    background-color: rgba(255, 100, 100, 0.15);
 } 
