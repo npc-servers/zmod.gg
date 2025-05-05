@@ -1,6 +1,6 @@
 export const servers = [
     {
-        id: 'zgd1',
+        id: 'zgr1',
         title: 'ZGRAD US1',
         ip: '193.243.190.18',
         port: 27066,
@@ -8,24 +8,24 @@ export const servers = [
         gamemode: 'homigrad',
     },
     {
-        id: 'hhh1',
-        title: 'Harrisons Homigrad US1',
+        id: 'zgr2',
+        title: 'ZGRAD US2',
         ip: '193.243.190.18',
         port: 27051,
         region: 'US',
         gamemode: 'homigrad',
     },
     {
-        id: 'hhh2',
-        title: 'Harrisons Homigrad US2',
+        id: 'zgr3',
+        title: 'ZGRAD US3',
         ip: '193.243.190.18',
         port: 27052,
         region: 'US',
         gamemode: 'homigrad',
     },
     {
-        id: 'hhh3',
-        title: 'Harrisons Homigrad US3',
+        id: 'zgr4',
+        title: 'ZGRAD US4',
         ip: '193.243.190.18',
         port: 27054,
         region: 'US',

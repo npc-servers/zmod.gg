@@ -1,11 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Brand data with names and descriptions
     const brandData = {
-        'hhh': {
-            name: 'HARRISONS HOMIGRAD',
-            description: 'A Homigrad server network we acquired in early 2025. Harrisons is the sister community of ZGRAD.',
-            url: '/brands/harrisons-homigrad'
-        },
         'npcz': {
             name: 'NPCZ',
             description: 'Our original servers: NPC Zombies Vs. Players, our Zombie Survival Sandbox; ZBOX, our Vanilla Sandbox; and Horde, our zombie survival wave gamemode.',
@@ -13,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         'zgrad': {
             name: 'ZGRAD',
-            description: 'Our in-house Homigrad gamemode network, featuring a built from the ground up Homigrad gamemode.',
+            description: 'Our flagship Homigrad gamemode network, featuring a built from the ground up Homigrad experience.',
             url: '/brands/zgrad'
         }
     };
@@ -110,7 +105,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Add event listeners for mouse interactions
     logoContainers.forEach(container => {
-        const brandId = container.querySelector('img').alt.split(' ')[0].toLowerCase();
+        const brandImage = container.querySelector('img');
+        const brandAlt = brandImage.alt.toLowerCase();
+        // Determine brand ID from image alt text
+        const brandId = brandAlt.includes('npcz') ? 'npcz' : 'zgrad';
         
         // Make container focusable for keyboard navigation
         container.setAttribute('tabindex', '0');
