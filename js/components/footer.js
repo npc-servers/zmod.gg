@@ -38,12 +38,12 @@ class Footer {
 
         const logo = document.createElement('img');
         logo.className = 'footer-logo';
-        logo.src = '/assets/logos/zmod-logo.png';
+        logo.src = '/assets/logos/zmod_logo.svg';
         logo.alt = 'ZMOD.GG Logo';
 
         const description = document.createElement('p');
         description.className = 'footer-description';
-        description.textContent = 'ZMOD is the new home of NPCZ, ZGRAD, and Harrison\'s Homigrad!';
+        description.textContent = 'ZMOD owns and operates ZGRAD and NPCZ.';
 
         companyColumn.appendChild(logo);
         companyColumn.appendChild(description);
@@ -177,7 +177,7 @@ class Footer {
         // Create footer bottom
         const footerBottom = document.createElement('div');
         footerBottom.className = 'footer-bottom';
-        footerBottom.innerHTML = '© 2025 NPCZ, LLC DBA ZMOD ZOFTWORKS. All rights reserved.';
+        footerBottom.innerHTML = '© 2025 ZMOD. All rights reserved.';
 
         // Add container and bottom section to footer
         footer.appendChild(container);
