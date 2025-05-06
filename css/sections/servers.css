@@ -873,4 +873,88 @@
     .gamemode-link i {
         font-size: 0.65rem;
     }
+}
+
+.view-all-servers-btn {
+    margin-top: 30px;
+    padding: 12px 24px;
+    background-color: #a7a7a7;
+    color: #000;
+    border: none;
+    border-radius: 0;
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+.view-all-servers-btn:hover {
+    background-color: #a7a7a7;
+    transform: translateY(-2px);
+    box-shadow: none;
+}
+
+.view-all-servers-btn i {
+    transition: transform 0.3s ease;
+}
+
+.view-all-servers-btn:hover i {
+    transform: translateX(5px);
+}
+
+[data-theme="light"] .view-all-servers-btn {
+    border: none;
+    color: #000;
+    background-color: #a7a7a7;
+}
+
+.explore-gamemodes-btn {
+    margin-top: 15px;
+    padding: 12px 24px;
+    background-color: #a7a7a7;
+    color: #000;
+    border: none;
+    border-radius: 0;
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+.explore-gamemodes-btn:hover {
+    background-color: #a7a7a7;
+    transform: translateY(-2px);
+    box-shadow: none;
+}
+
+.explore-gamemodes-btn i {
+    transition: transform 0.3s ease;
+}
+
+.explore-gamemodes-btn:hover i {
+    transform: translateX(5px);
+}
+
+[data-theme="light"] .explore-gamemodes-btn {
+    border: none;
+    color: #000;
+    background-color: #a7a7a7;
 } 
