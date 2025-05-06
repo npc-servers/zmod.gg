@@ -895,12 +895,14 @@
     overflow: hidden;
     box-shadow: none;
     text-shadow: none;
+    outline: 2px solid #a7a7a7;
 }
 
 .view-all-servers-btn:hover {
-    background-color: #a7a7a7;
+    background-color: transparent;
     transform: translateY(-2px);
     box-shadow: none;
+    color: var(--text-color);
 }
 
 .view-all-servers-btn i {
@@ -915,6 +917,7 @@
     border: none;
     color: #000;
     background-color: #a7a7a7;
+    outline: 2px solid #a7a7a7;
 }
 
 .explore-gamemodes-btn {
@@ -937,12 +940,14 @@
     overflow: hidden;
     box-shadow: none;
     text-shadow: none;
+    outline: 2px solid #a7a7a7;
 }
 
 .explore-gamemodes-btn:hover {
-    background-color: #a7a7a7;
+    background-color: transparent;
     transform: translateY(-2px);
     box-shadow: none;
+    color: var(--text-color);
 }
 
 .explore-gamemodes-btn i {
@@ -957,4 +962,5 @@
     border: none;
     color: #000;
     background-color: #a7a7a7;
+    outline: 2px solid #a7a7a7;
 } 
