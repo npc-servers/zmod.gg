@@ -1,19 +1,10 @@
 // Theme management
 const themeKey = 'site-theme';
 
-// Function to toggle theme
-function toggleTheme() {
-    const currentTheme = localStorage.getItem(themeKey) || 'dark';
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem(themeKey, newTheme);
-}
-
-// Initialize theme
+// Initialize theme - always dark
 function initializeTheme() {
-    const savedTheme = localStorage.getItem(themeKey) || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem(themeKey, 'dark');
 }
 
 // Set initial theme

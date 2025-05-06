@@ -2,10 +2,6 @@
     background: #1a1a1a;
 }
 
-[data-theme="light"] .gamemodes-section {
-    background: var(--background-color);
-}
-
 .gamemodes-container {
     opacity: 0;
 }

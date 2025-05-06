@@ -17,10 +17,4 @@
     transform: scaleX(0);
     z-index: -1;
     transition: transform 0s;
-}
-[data-theme="light"] .benefit-highlight{
-    background: #fff;
-}
-[data-theme="light"] .benefit-text.highlighted{
-    color: #000;
 } 

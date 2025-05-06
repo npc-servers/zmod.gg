@@ -123,42 +123,6 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-[data-theme="light"] .help-section {
-    background: linear-gradient(180deg, var(--background-color) 0%, var(--background-color) 20%, #e0e0e0 40%, #d0d0d0 100%);
-}
-
-[data-theme="light"] .help-banner {
-    background: #a7a7a7;
-    border-left: 3px solid rgba(255, 255, 255, 0.3);
-    border-bottom: 3px solid rgba(255, 255, 255, 0.3);
-}
-
-[data-theme="light"] .help-banner::before {
-    background: linear-gradient(90deg, 
-        rgba(0, 0, 0, 0.03) 0%,
-        rgba(0, 0, 0, 0) 100%
-    );
-}
-
-[data-theme="light"] .help-banner h3,
-[data-theme="light"] .help-banner p {
-    color: #000;
-}
-
-[data-theme="light"] .help-btn {
-    background: transparent;
-    border: 2px solid #000;
-    color: #000;
-    box-shadow: none;
-}
-
-[data-theme="light"] .help-btn:hover {
-    background: transparent;
-    border: 2px solid #000;
-    color: #000;
-    box-shadow: none;
-}
-
 @media (max-width: 768px) {
     .help-section {
         padding: 5rem 1.5rem;

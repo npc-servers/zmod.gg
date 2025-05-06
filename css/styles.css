@@ -20,21 +20,6 @@
     --button-shadow: none;
 }
 
-/* Light Theme */
-[data-theme="light"] {
-    --background-color: var(--color-white);
-    --text-color: var(--color-black);
-    --button-bg: rgba(255, 255, 255, 0.9);
-    --button-hover: var(--color-white);
-    --overlay-color: rgba(255, 255, 255, 0.4);
-    --gradient-start: rgba(255, 255, 255, 0);
-    --gradient-end: rgba(255, 255, 255, 0.9);
-    --button-border-color: rgba(0, 0, 0, 0.8);
-    --button-bg-hover: var(--color-white);
-    --backdrop-blur: rgba(255, 255, 255, 0.9);
-    --button-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
 body {
     font-family: 'Chakra Petch', sans-serif;
     background-color: var(--background-color);

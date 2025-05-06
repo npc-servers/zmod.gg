@@ -36,16 +36,7 @@
 
 /* Icon states */
 .theme-toggle[data-theme="dark"] .moon-icon {
-    display: none;
-}
-
-.theme-toggle[data-theme="light"] .sun-icon {
-    display: none;
-}
-
-[data-theme="light"] .theme-toggle {
-    background: var(--color-white);
-    border-color: rgba(0, 0, 0, 0.3);
+    display: block;
 }
 
 @media (max-width: 768px) {

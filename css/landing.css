@@ -73,23 +73,10 @@
     box-shadow: var(--button-shadow);
 }
 
-[data-theme="light"] .nav-btn {
-    border-width: 1px;
-    background-color: rgba(255, 255, 255, 0.9);
-}
-
 .nav-btn:hover {
     background-color: var(--button-bg-hover);
     border-color: var(--button-border-color);
     transform: translateY(-2px);
-}
-
-[data-theme="light"] .nav-btn:hover {
-    background-color: var(--color-black);
-    color: var(--color-white);
-    border-color: var(--color-white);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Store Button Special Styling */
@@ -101,12 +88,6 @@
     text-shadow: 0 0 5px rgba(255, 140, 0, 0.3);
 }
 
-[data-theme="light"] .store-btn {
-    background-color: var(--color-white);
-    border: 1px solid rgb(255, 140, 0);
-    box-shadow: 0 0 10px rgba(255, 140, 0, 0.2);
-}
-
 .store-btn:hover {
     background-color: var(--button-hover);
     border-color: rgba(255, 140, 0, 0.8);
@@ -114,14 +95,6 @@
                 inset 0 0 8px rgba(255, 140, 0, 0.3);
     color: rgb(255, 165, 0);
     transform: translateY(-2px) scale(1.02);
-}
-
-[data-theme="light"] .store-btn:hover {
-    background-color: var(--color-black);
-    border: 1px solid rgb(255, 165, 0);
-    color: rgb(255, 165, 0);
-    text-shadow: 0 0 8px rgba(255, 140, 0, 0.5);
-    box-shadow: 0 0 15px rgba(255, 140, 0, 0.3);
 }
 
 /* Logo Container */
@@ -286,8 +259,4 @@
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     margin-top: -1rem;
     font-weight: 600;
-}
-
-[data-theme="light"] .tagline {
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 } 

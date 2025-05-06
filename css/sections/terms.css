@@ -6,10 +6,6 @@
     padding-bottom: 12rem;
 }
 
-[data-theme="light"] .terms-section {
-    background: linear-gradient(180deg, var(--background-color) 0%, var(--background-color) 20%, #e0e0e0 40%, #d0d0d0 100%);
-}
-
 .terms-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -39,14 +35,6 @@
     filter: blur(40px);
     z-index: -1;
     pointer-events: none;
-}
-
-[data-theme="light"] .terms-header::before {
-    background: radial-gradient(circle at center,
-        rgba(200,200,200,0.3) 0%,
-        rgba(200,200,200,0.15) 35%,
-        transparent 70%
-    );
 }
 
 .terms-header h1 {
@@ -118,11 +106,6 @@
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
-[data-theme="light"] .terms-content {
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
 .terms-section h2 {
     font-family: 'Chakra Petch', sans-serif;
     font-size: 1.8rem;
@@ -183,11 +166,6 @@
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
-[data-theme="light"] .last-updated-container {
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
 .icon-wrapper {
     display: flex;
     align-items: center;
@@ -215,14 +193,6 @@
 
 .text-wrapper .month {
     color: #ffffff;
-}
-
-[data-theme="light"] .text-wrapper {
-    color: rgba(0, 0, 0, 0.6);
-}
-
-[data-theme="light"] .text-wrapper .date {
-    color: #000000;
 }
 
 .terms-content a {
@@ -324,12 +294,4 @@
 .important-notice h3 {
     color: #ff6464;
     margin-top: 0;
-}
-
-[data-theme="light"] .important-notice {
-    background-color: rgba(255, 100, 100, 0.1);
-}
-
-[data-theme="dark"] .important-notice {
-    background-color: rgba(255, 100, 100, 0.15);
 } 
