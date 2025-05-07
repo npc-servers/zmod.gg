@@ -617,6 +617,31 @@
     }
 }
 
+/* Add specific handling for the 1200px-1025px range where servers get cut off */
+@media (max-width: 1200px) and (min-width: 1025px) {
+    .servers-container {
+        gap: 4rem;
+    }
+    
+    .server-card {
+        grid-template-columns: minmax(220px, 1.8fr) auto auto;
+        gap: 1.2rem;
+    }
+    
+    .server-header h3 {
+        font-size: 1.15rem;
+    }
+    
+    .connect-btn {
+        min-width: 110px;
+        padding: 0.5rem 1rem;
+    }
+    
+    .server-status {
+        padding: 0.5rem 0.75rem;
+    }
+}
+
 @media (max-width: 1024px) {
     .servers-section {
         padding: 4rem 2rem;
@@ -640,6 +665,13 @@
     }
 
     .server-stats {
+        justify-content: center;
+    }
+    
+    .view-all-servers-btn,
+    .explore-gamemodes-btn {
+        margin-left: auto;
+        margin-right: auto;
         justify-content: center;
     }
 }
@@ -716,6 +748,13 @@
     
     .gamemode-link i {
         font-size: 0.7rem;
+    }
+
+    .view-all-servers-btn,
+    .explore-gamemodes-btn {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
     }
 }
 
@@ -797,6 +836,13 @@
     
     .gamemode-link i {
         font-size: 0.65rem;
+    }
+
+    .view-all-servers-btn,
+    .explore-gamemodes-btn {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
     }
 }
 
