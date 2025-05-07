@@ -89,20 +89,20 @@ function addPlayButton(video) {
 }
 
 function initBrandNavigation() {
-    const navButtons = document.querySelectorAll('.brand-nav-btn');
+    const tabButtons = document.querySelectorAll('.brand-tab');
     const brandCards = document.querySelectorAll('.brand-card');
     
-    navButtons.forEach(button => {
-        button.addEventListener('click', () => {
+    tabButtons.forEach(tab => {
+        tab.addEventListener('click', () => {
             // Skip if already active
-            if (button.classList.contains('active')) return;
+            if (tab.classList.contains('active')) return;
             
             // Get target brand
-            const targetBrand = button.getAttribute('data-target');
+            const targetBrand = tab.getAttribute('data-target');
             
-            // Update active classes on buttons
-            navButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
+            // Update active classes on tabs
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tab.classList.add('active');
             
             // Update brand cards
             brandCards.forEach(card => {
@@ -135,30 +135,7 @@ function initBrandNavigation() {
 }
 
 function initBrandCardAnimations() {
-    // Add hover effects to brand cards
-    const brandCards = document.querySelectorAll('.brand-card');
-    
-    brandCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            if (!card.classList.contains('active')) return;
-            
-            const video = card.querySelector('.brand-video');
-            // Make video slightly more visible on hover
-            if (video) {
-                video.style.opacity = '0.3';
-                video.style.filter = 'blur(1px)';
-            }
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            const video = card.querySelector('.brand-video');
-            // Reset video opacity when not hovering
-            if (video) {
-                video.style.opacity = '0.2';
-                video.style.filter = 'blur(2px)';
-            }
-        });
-    });
+    // Remove hover effects that change video opacity/blur
     
     // If GSAP is available, add scroll animations
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
@@ -179,12 +156,12 @@ function initBrandCardAnimations() {
             });
         }
         
-        // Animate the navigation buttons
-        gsap.from('.brand-navigation', {
-            y: 30,
+        // Animate the tabs
+        gsap.from('.brand-selector', {
+            y: -20,
             opacity: 0,
             duration: 0.8,
-            delay: 0.3,
+            delay: 0.2,
             scrollTrigger: {
                 trigger: '.brands-showcase',
                 start: 'top 80%',
