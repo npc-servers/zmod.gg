@@ -147,57 +147,59 @@
 .item-button:hover{background:var(--accent-color-hover)}
 .item-tag{position:absolute;top:1rem;right:1rem;background:var(--accent-color);color:var(--text-on-accent);padding:.25rem .75rem;border-radius:4px;font-size:.8rem;font-weight:bold}
 .browse-store-btn{
-    padding:16px 36px 16px 46px;
-    border:1px solid rgba(255,140,0,0.5);
-    border-radius:4px 0 0 4px;
-    color:rgb(255,140,0);
-    font-size:1.4rem;
-    font-family:'Chakra Petch',sans-serif;
-    font-weight:600;
-    transition:all 0.3s ease;
-    backdrop-filter:blur(5px);
-    background-color:var(--button-bg);
-    letter-spacing:1px;
-    box-shadow:0 0 10px rgba(255,140,0,0.4);
-    text-shadow:0 0 5px rgba(255,140,0,0.3);
-    cursor:pointer;
-    text-transform:uppercase;
-    position:relative
+    margin-top: 30px;
+    padding: 12px 28px;
+    background-color: var(--accent-color, #a7a7a7);
+    color: #000;
+    border: none;
+    border-radius: 0;
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(var(--accent-color-rgb, 167, 167, 167), 0.3);
+    text-shadow: none;
+    outline: 2px solid var(--accent-color, #a7a7a7);
 }
-.browse-store-btn::before{
-    font-family:"Font Awesome 6 Free";
-    content:"\f060";
-    font-weight:900;
-    position:absolute;
-    left:20px;
-    top:50%;
-    transform:translateY(-50%);
-    font-size:1.2rem;
-    transition:all 0.3s ease
+.browse-store-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
 }
-.browse-store-btn::after{
-    content:'';
-    position:absolute;
-    right:0;
-    top:0;
-    height:100%;
-    width:4px;
-    background:rgb(255,140,0);
-    transition:all 0.3s ease
+.browse-store-btn:hover {
+    background-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(var(--accent-color-rgb, 167, 167, 167), 0.4);
+    color: var(--accent-color, var(--text-color));
 }
-.browse-store-btn:hover{
-    background-color:var(--button-hover);
-    border-color:rgba(255,140,0,0.8);
-    box-shadow:0 0 20px rgba(255,140,0,0.6),inset 0 0 8px rgba(255,140,0,0.3);
-    color:rgb(255,165,0);
-    transform:translateY(-2px) scale(1.02)
+.browse-store-btn:hover::before {
+    transform: translateX(100%);
 }
-.browse-store-btn:hover::before{
-    transform:translateY(-50%) translateX(-3px)
+.browse-store-btn::after {
+    display: none;
 }
-.browse-store-btn:hover::after{
-    background:rgb(255,165,0);
-    box-shadow:0 0 10px rgba(255,140,0,0.6)
+.browse-store-btn i {
+    transition: transform 0.3s ease;
+}
+.browse-store-btn:hover i {
+    transform: translateX(5px);
 }
 
 @media (max-width: 1200px) {
@@ -231,6 +233,11 @@
         align-items:center;
         margin-bottom: 2rem;
     }
+    .browse-store-btn {
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center;
+    }
 }
 
 @media (max-width: 768px) {
@@ -250,6 +257,11 @@
     .benefit-text{
         font-size:1.1rem;
         padding: 0.5rem;
+    }
+    .browse-store-btn {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
     }
 }
 
