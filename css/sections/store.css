@@ -69,7 +69,8 @@
     background:radial-gradient(circle at right, rgba(255,255,255,0.1), transparent 70%);
     filter:blur(40px);
     z-index:-1;
-    pointer-events:none
+    pointer-events:none;
+    animation: storeRadialBreathe 8s ease-in-out infinite;
 }
 .store-header h2{
     font-family:'Teko',sans-serif;
@@ -310,5 +311,24 @@
     .store-header p {
         max-width: 100%;
         margin-bottom: 1.5rem;
+    }
+}
+
+/* Add breathing animation for store radial */
+@keyframes storeRadialBreathe {
+    0% {
+        opacity: 0.6;
+        width: 100%;
+        height: 140%;
+    }
+    50% {
+        opacity: 1;
+        width: 110%;
+        height: 150%;
+    }
+    100% {
+        opacity: 0.6;
+        width: 100%;
+        height: 140%;
     }
 } 

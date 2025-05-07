@@ -50,7 +50,8 @@
     );
     filter: blur(40px);
     z-index: -1;
-    pointer-events: none
+    pointer-events: none;
+    animation: serversRadialBreathe 8s ease-in-out infinite;
 }
 
 .servers-info h2,
@@ -920,4 +921,23 @@
 
 .explore-gamemodes-btn:hover i {
     transform: translateX(5px);
+}
+
+/* Add breathing animation for servers radial */
+@keyframes serversRadialBreathe {
+    0% {
+        opacity: 0.6;
+        width: 100%;
+        height: 140%;
+    }
+    50% {
+        opacity: 1;
+        width: 110%;
+        height: 150%;
+    }
+    100% {
+        opacity: 0.6;
+        width: 100%;
+        height: 140%;
+    }
 } 
