@@ -13,6 +13,12 @@ ScrollTrigger.create({
             duration: 0.1,
             ease: 'none'
         });
+        
+        if (self.progress > 0.1) {
+            document.querySelector('.gamemodes-section').classList.add('fade-in');
+        } else {
+            document.querySelector('.gamemodes-section').classList.remove('fade-in');
+        }
     }
 });
 
@@ -20,14 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const showcaseContainer = document.querySelector('.gamemodes-showcase');
     const gamemodesContainer = document.querySelector('.gamemodes-container');
     
-    // Add corner elements
-    const cornerTopRight = document.createElement('div');
-    cornerTopRight.className = 'corner-top-right';
-    gamemodesContainer.appendChild(cornerTopRight);
-    
-    const cornerBottomLeft = document.createElement('div');
-    cornerBottomLeft.className = 'corner-bottom-left';
-    gamemodesContainer.appendChild(cornerBottomLeft);
+    // Corner elements removed
     
     // Clear existing content and generate from data
     showcaseContainer.innerHTML = '';
@@ -35,25 +34,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // Triangle element removed
     
     // Add gamemode items
-    Object.values(gamemodes).forEach((gamemode, index) => {
-        if (gamemode.isActive) {
-            const showcaseItem = document.createElement('div');
-            showcaseItem.className = `showcase-item${index === 0 ? ' active' : ''}`;
-            showcaseItem.dataset.gamemode = gamemode.id;
-            
-            showcaseItem.innerHTML = `
-                <div class="showcase-content">
-                    <h2>${gamemode.name}</h2>
-                    <p>${gamemode.shortDescription}</p>
-                    <button class="check-it-out-btn">CHECK IT OUT</button>
-                </div>
-                <div class="showcase-background">
-                    <img src="${gamemode.image}" alt="${gamemode.name} Gamemode">
-                </div>
-            `;
-            
-            showcaseContainer.appendChild(showcaseItem);
-        }
+    const activeGamemodes = Object.values(gamemodes).filter(gamemode => gamemode.isActive);
+    
+    activeGamemodes.forEach((gamemode, index) => {
+        const showcaseItem = document.createElement('div');
+        showcaseItem.className = `showcase-item${index === 0 ? ' active' : ''}`;
+        showcaseItem.dataset.gamemode = gamemode.id;
+        
+        showcaseItem.innerHTML = `
+            <div class="showcase-content">
+                <h2>${gamemode.name}</h2>
+                <p>${gamemode.shortDescription}</p>
+                <button class="check-it-out-btn">CHECK IT OUT</button>
+            </div>
+            <div class="showcase-background">
+                <img src="${gamemode.image}" alt="${gamemode.name} Gamemode">
+            </div>
+        `;
+        
+        showcaseContainer.appendChild(showcaseItem);
     });
     
     // Add view more item
@@ -68,7 +67,36 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     showcaseContainer.appendChild(viewMoreItem);
 
+    // Add navigation dots
+    const gamemodesNav = document.createElement('div');
+    gamemodesNav.className = 'gamemodes-nav';
+    gamemodesNav.style.opacity = '1';
+    
+    // Create a dot for each active gamemode plus the "view more" section
+    const totalItems = activeGamemodes.length + 1; // +1 for "view more"
+    
+    for (let i = 0; i < totalItems; i++) {
+        const dot = document.createElement('div');
+        dot.className = `gamemode-dot${i === 0 ? ' active' : ''}`;
+        dot.dataset.index = i;
+        
+        // Add click event to navigate to the corresponding gamemode
+        dot.addEventListener('click', () => {
+            if (!isAnimating) {
+                stopShowcase(); // Stop auto-rotation
+                updateShowcase(i);
+                startShowcase(); // Restart auto-rotation
+            }
+        });
+        
+        gamemodesNav.appendChild(dot);
+    }
+    
+    // Append to the gamemodes section instead of container for better positioning
+    document.querySelector('.gamemodes-section').appendChild(gamemodesNav);
+
     const showcaseItems = gsap.utils.toArray('.showcase-item');
+    const gamemodeDots = gsap.utils.toArray('.gamemode-dot');
     let currentIndex = 0;
     let isAnimating = false;
     const animationDuration = 5000; // Duration for each showcase item in milliseconds
@@ -80,11 +108,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isAnimating) return;
         isAnimating = true;
 
-        // Remove active class from current item
+        // Remove active class from current item and dot
         showcaseItems[currentIndex].classList.remove('active');
+        gamemodeDots[currentIndex].classList.remove('active');
 
-        // Add active class to new item
+        // Add active class to new item and dot
         showcaseItems[newIndex].classList.add('active');
+        gamemodeDots[newIndex].classList.add('active');
 
         // Update current index
         currentIndex = newIndex;
@@ -101,6 +131,9 @@ document.addEventListener('DOMContentLoaded', () => {
         showcaseInterval = setInterval(() => {
             if (currentIndex < showcaseItems.length - 1) {
                 updateShowcase(currentIndex + 1);
+            } else {
+                // Loop back to the first item when reaching the end
+                updateShowcase(0);
             }
         }, animationDuration);
     }

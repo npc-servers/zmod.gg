@@ -1,52 +1,18 @@
-.gamemodes-section{min-height:80vh;position:relative;overflow:hidden;background:linear-gradient(180deg, #1a1a1a 0%, #242424 100%)}
+.gamemodes-section{
+    min-height:80vh;
+    position:relative;
+    overflow:visible;
+    background:linear-gradient(180deg, #1a1a1a 0%, #242424 100%);
+    width: 100%;
+}
 .gamemodes-container{
     height:80vh;
     position:relative;
     max-width:1400px;
     margin:0 auto;
     border-radius:20px;
-    overflow:hidden;
+    overflow:visible;
     position:relative;
-}
-.gamemodes-container::before,
-.gamemodes-container::after,
-.gamemodes-container .corner-top-right,
-.gamemodes-container .corner-bottom-left {
-    content: '';
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    border-color: rgba(255,140,0,0.5);
-    z-index: 10;
-    pointer-events: none;
-}
-.gamemodes-container::before {
-    top: 0;
-    left: 0;
-    border-top: 2px solid;
-    border-left: 2px solid;
-    border-top-left-radius: 20px;
-}
-.gamemodes-container::after {
-    bottom: 0;
-    right: 0;
-    border-bottom: 2px solid;
-    border-right: 2px solid;
-    border-bottom-right-radius: 20px;
-}
-.gamemodes-container .corner-top-right {
-    top: 0;
-    right: 0;
-    border-top: 2px solid;
-    border-right: 2px solid;
-    border-top-right-radius: 20px;
-}
-.gamemodes-container .corner-bottom-left {
-    bottom: 0;
-    left: 0;
-    border-bottom: 2px solid;
-    border-left: 2px solid;
-    border-bottom-left-radius: 20px;
 }
 .gamemodes-showcase{position:relative;width:100%;height:100%;border-radius:20px;overflow:hidden}
 .showcase-item{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;visibility:hidden;transition:opacity 0.8s ease,visibility 0.8s ease;border-radius:20px;overflow:hidden}
@@ -163,6 +129,22 @@
     .showcase-content p{font-size:1.2rem}
 }
 @media (max-width:768px){
+    .gamemodes-section {
+        padding-bottom: 30px;
+    }
+    
+    .gamemodes-container {
+        height: 70vh;
+        border-radius: 0;
+        max-width: 100%;
+    }
+    
+    .gamemodes-showcase, 
+    .showcase-item, 
+    .showcase-background {
+        border-radius: 0;
+    }
+
     .showcase-content{
         padding:0 1.5rem;
     }
@@ -171,8 +153,23 @@
     .view-more-btn{font-size:1.1rem;padding:0.8rem 1.6rem}
 }
 @media (max-width:480px){
+    .gamemodes-section {
+        padding-bottom: 20px;
+    }
+    
+    .gamemodes-container {
+        height: 60vh;
+    }
+    
     .showcase-content{padding:0 1rem}
     .showcase-content h2{font-size:3rem}
     .showcase-content p{font-size:1rem}
     .view-more-btn{font-size:1rem;padding:0.7rem 1.4rem}
+    
+    .check-it-out-btn {
+        bottom: 2rem;
+        right: 1rem;
+        padding: 0.7rem 1.4rem;
+        font-size: 1rem;
+    }
 } 

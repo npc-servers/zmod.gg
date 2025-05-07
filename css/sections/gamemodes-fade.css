@@ -4,9 +4,15 @@
 
 .gamemodes-container {
     opacity: 0;
+    position: relative;
 }
 
 .gamemodes-section.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.gamemodes-nav {
     opacity: 1;
     transform: translateY(0);
 } 
