@@ -29,7 +29,7 @@
 }
 
 .brands-header {
-    flex: 0 0 30%;
+    flex: 0 0 100%;
     position: relative;
 }
 
@@ -53,7 +53,7 @@
 
 .brands-header-content {
     position: relative;
-    height: 180px; /* Match the height of the logo containers */
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -191,112 +191,15 @@
 }
 
 .brands-logos {
-    flex: 0 0 65%;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    position: relative;
+    display: none;
 }
 
 .brand-logo-container {
-    position: relative;
-    width: 180px;
-    height: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform-origin: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-}
-
-.brand-logo-container::after {
-    content: 'View Brand';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 8px 0;
-    background: rgba(0, 0, 0, 0.7);
-    color: var(--text-color);
-    font-size: 0.85rem;
-    text-align: center;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-    z-index: 3;
-}
-
-.brand-logo-container:hover::after {
-    transform: translateY(0);
-}
-
-.brands-logos:hover .brand-logo-container {
-    opacity: 0.35;
-    transform: scale(0.95);
-}
-
-.brands-logos .brand-logo-container:hover {
-    transform: scale(1.15);
-    z-index: 10;
-    opacity: 1;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-.brands-logos .brand-logo-container:active {
-    transform: scale(1.05);
-    transition: transform 0.1s ease;
-}
-
-/* Focus styles for keyboard navigation */
-.brand-logo-container:focus {
-    outline: none;
-    transform: scale(1.15) !important;
-    z-index: 10;
-    opacity: 1 !important;
-    box-shadow: 0 0 0 3px var(--accent-color), 0 8px 20px rgba(0, 0, 0, 0.2) !important;
-}
-
-.brand-logo-container:focus::after {
-    transform: translateY(0);
-}
-
-.brand-logo-container:focus .brand-logo {
-    filter: grayscale(0%);
-    transform: scale(1.05);
-}
-
-.brand-logo-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--accent-color) 0%, rgba(255, 140, 0, 0.7) 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 1;
-}
-
-.brand-logo-container:hover::before {
-    opacity: 0.15;
+    display: none;
 }
 
 .brand-logo {
-    width: 80%;
-    height: auto;
-    object-fit: contain;
-    filter: grayscale(100%);
-    transition: filter 0.3s ease, transform 0.3s ease;
-    z-index: 2;
-}
-
-.brand-logo-container:hover .brand-logo {
-    filter: grayscale(0%);
-    transform: scale(1.05);
+    display: none;
 }
 
 /* Responsive styles */
@@ -321,12 +224,7 @@
         max-width: 800px;
     }
     
-    .brands-container {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .brands-header, .brands-logos {
+    .brands-header {
         flex: 0 0 100%;
     }
     
@@ -341,7 +239,6 @@
     }
     
     .brands-header-content {
-        height: auto;
         margin-bottom: 40px;
         position: relative;
     }
@@ -369,20 +266,6 @@
         height: 120px;
         clip-path: polygon(0 40%, 100% 100%, 0 100%);
     }
-    
-    .brands-logos {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .brand-logo-container {
-        width: 150px;
-        height: 150px;
-    }
-    
-    .brands-logos .brand-logo-container:hover {
-        transform: scale(1.1);
-    }
 }
 
 @media (max-width: 480px) {
@@ -397,10 +280,5 @@
     
     .brands-header h2 {
         font-size: 2.8rem;
-    }
-    
-    .brand-logo-container {
-        width: 120px;
-        height: 120px;
     }
 } 
