@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="css/components/scroll-indicator.css">
     <link rel="stylesheet" href="css/components/help-banner.css">
     <link rel="stylesheet" href="css/sections/store-benefits-animation.css">
+    <link rel="stylesheet" href="css/sections/brands.css">
     <link rel="stylesheet" href="css/components/footer.css">
 </head>
 <body>
@@ -72,6 +73,68 @@
         </div>
     </section>
 
+    <!-- New BRANDS section -->
+    <section class="brands-section">
+        <div class="brands-container">
+            <div class="brands-header">
+                <h2><span class="heading-first">OUR</span> <span class="heading-second">BRANDS</span></h2>
+                <p class="brands-description">
+                    Explore our family of gaming brands, each offering unique experiences within the ZMOD network.
+                </p>
+            </div>
+            
+            <div class="brands-showcase">
+                <!-- Brand Cards Container -->
+                <div class="brand-cards-container">
+                    <!-- NPCZ Brand -->
+                    <div class="brand-card active" id="npcz-brand" data-brand="npcz">
+                        <div class="brand-video-container">
+                            <video class="brand-video" autoplay loop muted playsinline>
+                                <source src="assets/videos/npcz_background.webm" type="video/webm">
+                                <source src="assets/videos/npcz_background.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="brand-content">
+                            <div class="brand-logo">
+                                <img src="assets/logos/brands/npcz_logo.png" alt="NPCZ Logo">
+                            </div>
+                            <div class="brand-info">
+                                <h3>NPCZ</h3>
+                                <p>Experience intense action in our flagship zombie survival gamemode.</p>
+                                <button class="explore-brand-btn">EXPLORE NPCZ <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- ZGRAD Brand -->
+                    <div class="brand-card" id="zgrad-brand" data-brand="zgrad">
+                        <div class="brand-video-container">
+                            <video class="brand-video" autoplay loop muted playsinline disablepictureinpicture>
+                                <source src="assets/videos/demovid.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="brand-content">
+                            <div class="brand-logo">
+                                <img src="assets/logos/brands/zgrad_logo.png" alt="ZGRAD Logo">
+                            </div>
+                            <div class="brand-info">
+                                <h3>ZGRAD</h3>
+                                <p>Tactical gameplay meets strategic thinking in our competitive PvP environment.</p>
+                                <button class="explore-brand-btn">EXPLORE ZGRAD <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Brand Navigation -->
+                <div class="brand-navigation">
+                    <button class="brand-nav-btn active" data-target="npcz">NPCZ</button>
+                    <button class="brand-nav-btn" data-target="zgrad">ZGRAD</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <section class="store-section">
         <div class="store-container">
             <div class="store-benefits">
@@ -125,6 +188,7 @@
     <script src="js/scroll-handler.js"></script>
     <script src="js/sections/store.js"></script>
     <script src="js/sections/store-benefits-animation.js"></script>
+    <script src="js/sections/brands.js"></script>
     <script src="js/sections/gamemodes-gallery.js" type="module"></script>
     <script src="js/sections/servers.js" type="module"></script>
     <link rel="stylesheet" href="css/sections/gamemodes-fade.css">

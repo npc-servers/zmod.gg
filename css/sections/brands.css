@@ -1,0 +1,450 @@
+.brands-section {
+    background: linear-gradient(180deg, #242424 0%, #1a1a1a 100%);
+    padding: 6rem 0 4rem;
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.brands-container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.brands-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 2;
+    padding: 0 2rem;
+}
+
+.brands-header h2 {
+    font-family: 'Teko', sans-serif;
+    font-size: 5.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    line-height: 1;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+.brands-header h2 .heading-first,
+.brands-header h2 .heading-second {
+    position: relative;
+    display: inline-block;
+}
+
+.brands-header h2 .heading-first::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -15px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 12px 12px 0 0;
+    border-color: var(--text-color) transparent transparent transparent;
+    opacity: 0.8;
+}
+
+.brands-header h2 .heading-second::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    right: -12px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 12px 12px;
+    border-color: transparent transparent var(--text-color) transparent;
+    opacity: 0.8;
+}
+
+.brands-description {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    max-width: 800px;
+    line-height: 1.6;
+    margin: 0 auto;
+}
+
+.brands-showcase {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.brand-cards-container {
+    position: relative;
+    min-height: 500px;
+    width: 100%;
+}
+
+.brand-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+    border-radius: 0;
+    border: none;
+}
+
+.brand-card.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+}
+
+.brand-video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.brand-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.2;
+    filter: blur(2px);
+    pointer-events: none;
+}
+
+/* ZGRAD specific video styling */
+#zgrad-brand .brand-video {
+    opacity: 0.15;
+    filter: blur(1px) brightness(1.2);
+}
+
+.brand-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1600px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 4rem;
+    gap: 3rem;
+}
+
+.brand-logo {
+    flex: 0 0 auto;
+    max-width: 250px;
+}
+
+.brand-logo img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+}
+
+.brand-info {
+    flex: 1;
+    max-width: 600px;
+}
+
+.brand-info h3 {
+    font-family: 'Teko', sans-serif;
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.brand-info p {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+.explore-brand-btn {
+    padding: 12px 24px;
+    background-color: #a7a7a7;
+    color: #000;
+    border: none;
+    border-radius: 0;
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    box-shadow: none;
+    text-shadow: none;
+    outline: 2px solid #a7a7a7;
+}
+
+.explore-brand-btn i {
+    transition: transform 0.3s ease;
+}
+
+.explore-brand-btn:hover {
+    background-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: var(--text-color);
+}
+
+.explore-brand-btn:hover i {
+    transform: translateX(5px);
+}
+
+/* Brand-specific styling */
+#npcz-brand {
+    background-color: rgba(30, 30, 30, 0.9);
+    border: none;
+}
+
+.brand-nav-btn[data-target="npcz"].active {
+    border-color: rgba(255, 0, 0, 0.4);
+    color: rgba(255, 80, 80, 1);
+}
+
+#zgrad-brand {
+    background-color: rgba(30, 30, 30, 0.9);
+    border: none;
+}
+
+.brand-nav-btn[data-target="zgrad"].active {
+    border-color: rgba(0, 115, 255, 0.4);
+    color: rgba(50, 150, 255, 1);
+}
+
+/* Play button for videos when autoplay is blocked */
+.video-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    transition: all 0.3s ease;
+}
+
+.video-play-btn:hover {
+    background-color: rgba(var(--accent-color-rgb, 255, 255, 255), 0.2);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.video-play-btn i {
+    margin-left: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .brands-section {
+        padding: 5rem 0;
+    }
+    
+    .brands-header {
+        padding: 0 2rem;
+    }
+    
+    .brands-header h2 {
+        font-size: 5rem;
+    }
+    
+    .brand-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+        padding: 2rem 3rem;
+    }
+    
+    .brand-logo {
+        max-width: 200px;
+    }
+    
+    .brand-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .explore-brand-btn {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .brands-section {
+        padding: 4rem 0;
+    }
+    
+    .brands-header {
+        padding: 0 1.5rem;
+        margin-bottom: 3rem;
+    }
+    
+    .brands-header h2 {
+        font-size: 4rem;
+    }
+    
+    .brands-description {
+        font-size: 1.1rem;
+    }
+    
+    .brand-card {
+        min-height: 450px;
+    }
+    
+    .brand-content {
+        padding: 2rem 1.5rem;
+    }
+    
+    .brand-logo {
+        max-width: 180px;
+    }
+    
+    .brand-info h3 {
+        font-size: 2.5rem;
+    }
+    
+    .brand-info p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .explore-brand-btn {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+    }
+    
+    .brand-cards-container {
+        min-height: 450px;
+    }
+    
+    .brand-navigation {
+        margin-top: 2rem;
+    }
+    
+    .brand-nav-btn {
+        padding: 8px 20px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .brands-section {
+        padding: 3rem 0;
+    }
+    
+    .brands-header {
+        padding: 0 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .brands-header h2 {
+        font-size: 3.5rem;
+    }
+    
+    .brands-description {
+        font-size: 1rem;
+    }
+    
+    .brand-card {
+        min-height: 400px;
+    }
+    
+    .brand-content {
+        padding: 1.5rem 1rem;
+    }
+    
+    .brand-logo {
+        max-width: 150px;
+    }
+    
+    .brand-info h3 {
+        font-size: 2rem;
+    }
+    
+    .brand-cards-container {
+        min-height: 400px;
+    }
+    
+    .brand-navigation {
+        margin-top: 1.5rem;
+        gap: 1rem;
+    }
+    
+    .brand-nav-btn {
+        padding: 6px 15px;
+        font-size: 0.8rem;
+    }
+}
+
+.brand-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+.brand-nav-btn {
+    padding: 8px 24px;
+    background: transparent;
+    color: var(--text-color);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.6;
+    letter-spacing: 1px;
+}
+
+.brand-nav-btn:hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+}
+
+.brand-nav-btn.active {
+    background-color: rgba(var(--accent-color-rgb, 255, 255, 255), 0.1);
+    border-color: rgba(var(--accent-color-rgb, 255, 255, 255), 0.3);
+    opacity: 1;
+    color: var(--accent-color, var(--text-color));
+} 
