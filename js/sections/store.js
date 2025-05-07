@@ -1,6 +1,12 @@
 gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Store section initialization
+    initializeStoreBenefitsAnimation();
+});
+
+// Store benefits animation functionality
+function initializeStoreBenefitsAnimation() {
     const benefits = document.querySelectorAll('.benefit-text');
     let activeBenefit = null;
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -111,4 +117,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, 150);
     });
-}); 
+} 
