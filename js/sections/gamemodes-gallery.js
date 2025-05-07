@@ -18,14 +18,21 @@ ScrollTrigger.create({
 
 document.addEventListener('DOMContentLoaded', () => {
     const showcaseContainer = document.querySelector('.gamemodes-showcase');
+    const gamemodesContainer = document.querySelector('.gamemodes-container');
+    
+    // Add corner elements
+    const cornerTopRight = document.createElement('div');
+    cornerTopRight.className = 'corner-top-right';
+    gamemodesContainer.appendChild(cornerTopRight);
+    
+    const cornerBottomLeft = document.createElement('div');
+    cornerBottomLeft.className = 'corner-bottom-left';
+    gamemodesContainer.appendChild(cornerBottomLeft);
     
     // Clear existing content and generate from data
     showcaseContainer.innerHTML = '';
     
-    // Add triangle element
-    const triangle = document.createElement('div');
-    triangle.className = 'gallery-triangle';
-    showcaseContainer.appendChild(triangle);
+    // Triangle element removed
     
     // Add gamemode items
     Object.values(gamemodes).forEach((gamemode, index) => {
@@ -62,24 +69,16 @@ document.addEventListener('DOMContentLoaded', () => {
     showcaseContainer.appendChild(viewMoreItem);
 
     const showcaseItems = gsap.utils.toArray('.showcase-item');
-    const progressBar = document.querySelector('.progress-bar');
     let currentIndex = 0;
     let isAnimating = false;
     const animationDuration = 5000; // Duration for each showcase item in milliseconds
-    let progressTween;
     let showcaseInterval;
     let isVisible = false;
     let hasStarted = false;
-    let pausedTime = 0;
-    let lastPauseTimestamp = 0;
 
     function updateShowcase(newIndex) {
         if (isAnimating) return;
         isAnimating = true;
-
-        // Reset progress bar
-        if (progressTween) progressTween.kill();
-        gsap.set(progressBar, { width: '0%' });
 
         // Remove active class from current item
         showcaseItems[currentIndex].classList.remove('active');
@@ -89,15 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update current index
         currentIndex = newIndex;
-
-        // Animate progress bar if not on the last item
-        if (currentIndex < showcaseItems.length - 1) {
-            progressTween = gsap.to(progressBar, {
-                width: '100%',
-                duration: animationDuration / 1000,
-                ease: 'none'
-            });
-        }
 
         // Reset animation flag
         setTimeout(() => {
@@ -117,12 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function stopShowcase() {
         if (showcaseInterval) clearInterval(showcaseInterval);
-        if (progressTween) {
-            lastPauseTimestamp = Date.now();
-            const currentProgress = parseFloat(progressBar.style.width) || 0;
-            pausedTime = (animationDuration * currentProgress) / 100;
-            progressTween.kill();
-        }
     }
 
     function resumeShowcase() {
@@ -135,40 +119,14 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Calculate remaining duration based on pause time
-        const currentTime = Date.now();
-        const pauseDuration = currentTime - lastPauseTimestamp;
-        const currentProgress = parseFloat(progressBar.style.width) || 0;
-        
-        // If we've been paused longer than the animation duration or there's no progress,
-        // start fresh from the current slide
-        if (pauseDuration >= animationDuration || !currentProgress) {
-            updateShowcase(currentIndex);
-            startShowcase();
-            return;
-        }
-
-        // Continue the progress bar from its current position
-        const remainingDuration = (animationDuration - pausedTime) / 1000;
-        
-        progressTween = gsap.to(progressBar, {
-            width: '100%',
-            duration: remainingDuration,
-            ease: 'none',
-            onComplete: () => {
-                if (currentIndex < showcaseItems.length - 1) {
-                    updateShowcase(currentIndex + 1);
-                    startShowcase();
-                }
-            }
-        });
+        // Start fresh from the current slide
+        updateShowcase(currentIndex);
+        startShowcase();
     }
 
     function initializeShowcase() {
         if (hasStarted || !isVisible) return;
         hasStarted = true;
-        pausedTime = 0;
-        lastPauseTimestamp = 0;
         updateShowcase(0);
         startShowcase();
     }
