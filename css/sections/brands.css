@@ -151,40 +151,30 @@
     overflow: hidden;
 }
 
-.brand-video-container::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 25%;
-    background: linear-gradient(to bottom, rgba(26, 26, 26, 0) 0%, rgba(26, 26, 26, 0.8) 70%, rgba(26, 26, 26, 1) 100%);
-    pointer-events: none;
-    z-index: 2;
-}
-
 .brand-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     opacity: 0.2;
-    filter: blur(2px);
+    filter: blur(5px);
     pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 50%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 50%, transparent 100%);
 }
 
 .brand-card:hover .brand-video,
 .brand-card.active:hover .brand-video {
     /* Ensure no style changes on hover */
     opacity: 0.2;
-    filter: blur(2px);
+    filter: blur(5px);
 }
 
-/* ZGRAD specific video styling - keep consistent */
+/* ZGRAD specific video styling - remove unique filter/opacity to use base .brand-video styles */
 #zgrad-brand .brand-video,
 #zgrad-brand:hover .brand-video,
 #zgrad-brand.active:hover .brand-video {
-    opacity: 0.15;
-    filter: blur(1px) brightness(1.2);
+    /* opacity: 0.15; */ /* Removed to use base style */
+    /* filter: blur(1px) brightness(1.2); */ /* Removed to use base style */
 }
 
 .brand-content {
@@ -296,7 +286,7 @@
 
 /* Brand-specific styling */
 #npcz-brand {
-    background-color: rgba(30, 30, 30, 0.9);
+    /* background-color: rgba(30, 30, 30, 0.9); */ /* Removed background color */
     border: none;
 }
 
@@ -306,7 +296,7 @@
 }
 
 #zgrad-brand {
-    background-color: rgba(30, 30, 30, 0.9);
+    /* background-color: rgba(30, 30, 30, 0.9); */ /* Removed background color */
     border: none;
 }
 
