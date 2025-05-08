@@ -107,7 +107,7 @@
 
 .brands-showcase {
     position: relative;
-    margin: 0 auto;
+    margin: 0.5rem auto 0;
     width: 100%;
 }
 
@@ -502,6 +502,23 @@
         width: 400px;
         height: 400px;
     }
+    
+    .brand-navigation {
+        gap: 2rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .brands-showcase {
+        margin-top: 0.4rem;
+    }
+    
+    .current-brand {
+        font-size: 2rem;
+    }
+    
+    .brand-nav-btn {
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -565,40 +582,104 @@
         width: 300px;
         height: 300px;
     }
+    
+    .brand-navigation {
+        gap: 1.5rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    .brands-showcase {
+        margin-top: 0.3rem;
+    }
+    
+    .current-brand {
+        font-size: 1.8rem;
+    }
+    
+    .brand-nav-btn {
+        font-size: 0.9rem;
+    }
 }
 
+/* Brand Navigation with Arrows */
 .brand-navigation {
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 1.5rem;
-    margin-top: 3rem;
+    margin: 0 auto 1rem;
+    gap: 3rem;
+    position: relative;
+    z-index: 10;
 }
 
 .brand-nav-btn {
-    padding: 8px 24px;
-    background: transparent;
+    background-color: transparent;
+    border: none;
     color: var(--text-color);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    font-family: 'Chakra Petch', sans-serif;
-    font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    opacity: 0.6;
-    letter-spacing: 1px;
+    outline: none;
+    padding: 0;
 }
 
 .brand-nav-btn:hover {
-    opacity: 0.8;
-    transform: translateY(-2px);
+    transform: scale(1.1);
 }
 
-.brand-nav-btn.active {
-    background-color: rgba(var(--accent-color-rgb, 255, 255, 255), 0.1);
-    border-color: rgba(var(--accent-color-rgb, 255, 255, 255), 0.3);
-    opacity: 1;
-    color: var(--accent-color, var(--text-color));
+.current-brand {
+    font-family: 'Teko', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    text-align: center;
+    min-width: 150px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .brand-navigation {
+        gap: 2rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .brands-showcase {
+        margin-top: 0.4rem;
+    }
+    
+    .current-brand {
+        font-size: 2rem;
+    }
+    
+    .brand-nav-btn {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .brand-navigation {
+        gap: 1.5rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    .brands-showcase {
+        margin-top: 0.3rem;
+    }
+    
+    .current-brand {
+        font-size: 1.8rem;
+    }
+    
+    .brand-nav-btn {
+        font-size: 0.9rem;
+    }
 }
 
 /* Brand selector tabs */

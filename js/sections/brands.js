@@ -89,49 +89,70 @@ function addPlayButton(video) {
 }
 
 function initBrandNavigation() {
-    const tabButtons = document.querySelectorAll('.brand-tab');
     const brandCards = document.querySelectorAll('.brand-card');
+    const prevBtn = document.querySelector('.prev-brand');
+    const nextBtn = document.querySelector('.next-brand');
+    const currentBrandDisplay = document.querySelector('.current-brand');
     
-    tabButtons.forEach(tab => {
-        tab.addEventListener('click', () => {
-            // Skip if already active
-            if (tab.classList.contains('active')) return;
-            
-            // Get target brand
-            const targetBrand = tab.getAttribute('data-target');
-            
-            // Update active classes on tabs
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tab.classList.add('active');
-            
-            // Update brand cards
-            brandCards.forEach(card => {
-                const isCurrent = card.getAttribute('data-brand') === targetBrand;
-                
-                // Toggle visibility with classes
-                card.classList.remove('active');
-                
-                if (isCurrent) {
-                    // Show the target brand
-                    setTimeout(() => {
-                        card.classList.add('active');
-                    }, 300); // Small delay for better transition
-                    
-                    // Play video for active card
-                    const video = card.querySelector('.brand-video');
-                    if (video) {
-                        playVideo(video);
-                    }
-                } else {
-                    // Pause video for inactive cards
-                    const video = card.querySelector('.brand-video');
-                    if (video) {
-                        video.pause();
-                    }
-                }
-            });
-        });
+    // Brand data
+    const brands = Array.from(brandCards).map(card => {
+        return {
+            id: card.getAttribute('data-brand'),
+            element: card
+        };
     });
+    
+    // Track current brand index
+    let currentIndex = brands.findIndex(brand => brand.element.classList.contains('active'));
+    if (currentIndex === -1) currentIndex = 0;
+    
+    // Initialize current brand display
+    updateCurrentBrandDisplay();
+    
+    // Previous brand button
+    prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + brands.length) % brands.length;
+        switchToBrand(currentIndex);
+    });
+    
+    // Next brand button
+    nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % brands.length;
+        switchToBrand(currentIndex);
+    });
+    
+    function switchToBrand(index) {
+        // Hide all brand cards
+        brandCards.forEach(card => {
+            card.classList.remove('active');
+            
+            // Pause video for inactive cards
+            const video = card.querySelector('.brand-video');
+            if (video) {
+                video.pause();
+            }
+        });
+        
+        // Show the target brand after a small delay for transition
+        setTimeout(() => {
+            brands[index].element.classList.add('active');
+            
+            // Play video for active card
+            const video = brands[index].element.querySelector('.brand-video');
+            if (video) {
+                playVideo(video);
+            }
+            
+            // Update the display
+            updateCurrentBrandDisplay();
+        }, 300);
+    }
+    
+    function updateCurrentBrandDisplay() {
+        // Get current brand ID and update the display
+        const currentBrand = brands[currentIndex].id.toUpperCase();
+        currentBrandDisplay.textContent = currentBrand;
+    }
 }
 
 function initBrandCardAnimations() {
@@ -156,8 +177,8 @@ function initBrandCardAnimations() {
             });
         }
         
-        // Animate the tabs
-        gsap.from('.brand-selector', {
+        // Animate the brand navigation
+        gsap.from('.brand-navigation', {
             y: -20,
             opacity: 0,
             duration: 0.8,
