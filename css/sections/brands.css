@@ -512,8 +512,8 @@
     }
     
     .brand-navigation {
-        gap: 2rem;
-        margin-bottom: 0.8rem;
+        max-width: 320px;
+        padding: 0.75rem 1rem;
     }
     
     .brands-showcase {
@@ -521,11 +521,23 @@
     }
     
     .current-brand {
-        font-size: 2rem;
+        font-size: 1.25rem;
+        margin: 0 1rem;
     }
     
     .brand-nav-btn {
-        font-size: 1rem;
+        font-size: 1.25rem;
+        width: 36px;
+        height: 36px;
+    }
+    
+    /* Adjust triangle size for smaller screens */
+    .brand-nav-btn.prev-brand::before {
+        border-width: 7px 10px 7px 0;
+    }
+    
+    .brand-nav-btn.next-brand::before {
+        border-width: 7px 0 7px 10px;
     }
 }
 
@@ -592,8 +604,8 @@
     }
     
     .brand-navigation {
-        gap: 1.5rem;
-        margin-bottom: 0.6rem;
+        max-width: 260px;
+        padding: 0.6rem 0.8rem;
     }
     
     .brands-showcase {
@@ -601,11 +613,23 @@
     }
     
     .current-brand {
-        font-size: 1.8rem;
+        font-size: 1.1rem;
+        margin: 0 0.75rem;
     }
     
     .brand-nav-btn {
-        font-size: 0.9rem;
+        font-size: 1.1rem;
+        width: 32px;
+        height: 32px;
+    }
+    
+    /* Adjust triangle size for the smallest screens */
+    .brand-nav-btn.prev-brand::before {
+        border-width: 6px 8px 6px 0;
+    }
+    
+    .brand-nav-btn.next-brand::before {
+        border-width: 6px 0 6px 8px;
     }
 }
 
@@ -614,80 +638,92 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 1rem;
-    gap: 3rem;
+    margin: 0 auto 3rem;
+    max-width: 400px;
+    background: rgba(30, 30, 30, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
     position: relative;
-    z-index: 10;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.brand-navigation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        rgba(var(--accent-color-rgb), 0.1) 0%,
+        rgba(var(--accent-color-rgb), 0) 100%
+    );
+    opacity: 0.5;
+    z-index: 0;
 }
 
 .brand-nav-btn {
-    background-color: transparent;
+    background: none;
     border: none;
     color: var(--text-color);
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.3s ease;
-    outline: none;
-    padding: 0;
+    transition: all 0.2s ease;
+    position: relative;
+    z-index: 1;
 }
 
+/* Hide the Font Awesome icons */
+.brand-nav-btn i {
+    display: none;
+}
+
+/* Create triangle shapes with pseudo-elements */
+.brand-nav-btn::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+/* Left-pointing triangle */
+.brand-nav-btn.prev-brand::before {
+    border-width: 8px 12px 8px 0;
+    border-color: transparent var(--text-color) transparent transparent;
+    opacity: 0.8;
+}
+
+/* Right-pointing triangle */
+.brand-nav-btn.next-brand::before {
+    border-width: 8px 0 8px 12px;
+    border-color: transparent transparent transparent var(--text-color);
+    opacity: 0.8;
+}
+
+/* Remove hover effects */
 .brand-nav-btn:hover {
-    transform: scale(1.1);
+    color: var(--text-color);
 }
 
 .current-brand {
-    font-family: 'Teko', sans-serif;
-    font-size: 2.5rem;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.5rem;
     font-weight: 600;
     color: var(--text-color);
+    margin: 0 1.5rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     position: relative;
-    text-align: center;
-    min-width: 150px;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-    .brand-navigation {
-        gap: 2rem;
-        margin-bottom: 0.8rem;
-    }
-    
-    .brands-showcase {
-        margin-top: 0.4rem;
-    }
-    
-    .current-brand {
-        font-size: 2rem;
-    }
-    
-    .brand-nav-btn {
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .brand-navigation {
-        gap: 1.5rem;
-        margin-bottom: 0.6rem;
-    }
-    
-    .brands-showcase {
-        margin-top: 0.3rem;
-    }
-    
-    .current-brand {
-        font-size: 1.8rem;
-    }
-    
-    .brand-nav-btn {
-        font-size: 0.9rem;
-    }
+    z-index: 1;
 }
 
 /* Brand selector tabs */
