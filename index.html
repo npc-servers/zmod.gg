@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="css/sections/brands.css">
     <link rel="stylesheet" href="css/components/footer.css">
     <link rel="stylesheet" href="css/sections/gamemodes.css">
+    <link rel="stylesheet" href="css/sections/about.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <main class="landing-container">
@@ -69,6 +71,100 @@
             
             <div class="servers-list" id="servers-list">
                 <!-- Servers will be populated here by your script -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-section">
+        <div class="about-container">
+            <div class="about-header">
+                <h2><span class="heading-first">ABOUT</span> <span class="heading-second">US</span></h2>
+                <p class="about-description">
+                    Discover the story behind ZMOD, a passionate team dedicated to creating unforgettable gaming experiences in Garry's Mod.
+                </p>
+            </div>
+            
+            <!-- Stats section -->
+            <div class="about-stats">
+                <div class="stat-box">
+                    <span class="stat-value" data-value="2021">2021</span>
+                    <span class="stat-label">Founded</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-value" data-value="40">40</span>
+                    <span class="stat-label">Team Members</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-value" data-value="100000">100K+</span>
+                    <span class="stat-label">Players Served</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-value" data-value="6">6</span>
+                    <span class="stat-label">Servers</span>
+                </div>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="assets/images/about-team.jpg" alt="ZMOD Team">
+                </div>
+                <div class="about-text">
+                    <p>
+                        Founded in 2021, ZMOD has grown from a small community server to one of the most popular networks on Garry's Mod. Our team of dedicated developers, administrators, and community managers work tirelessly to create innovative gameplay experiences.
+                    </p>
+                    
+                    <p>
+                        We pride ourselves on our commitment to quality, ensuring all our servers maintain the highest standards of performance, security, and entertainment value. Our community is at the heart of everything we do, and we continuously evolve based on player feedback.
+                    </p>
+                    
+                    <p>
+                        With multiple game modes across our network and a growing player base, we strive to provide something for everyone while maintaining the close-knit community feel that makes ZMOD special.
+                    </p>
+                    
+                    <button class="learn-more-btn">OUR STORY <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            
+            <!-- Team preview section -->
+            <div class="team-preview">
+                <div class="team-member" data-name="Alex Carter" data-role="Founder & Lead Developer">
+                    <img src="assets/images/team/team1.jpg" alt="Team Member">
+                </div>
+                <div class="team-member" data-name="Samantha Lee" data-role="Community Manager">
+                    <img src="assets/images/team/team2.jpg" alt="Team Member">
+                </div>
+                <div class="team-member" data-name="Michael Rodriguez" data-role="Game Designer">
+                    <img src="assets/images/team/team3.jpg" alt="Team Member">
+                </div>
+                <div class="team-member" data-name="Emma Wilson" data-role="Systems Administrator">
+                    <img src="assets/images/team/team4.jpg" alt="Team Member">
+                </div>
+                <div class="team-member" data-name="David Kim" data-role="Developer">
+                    <img src="assets/images/team/team5.jpg" alt="Team Member">
+                </div>
+            </div>
+            <div class="team-text">Meet the team behind ZMOD</div>
+            <div style="text-align: center; margin-top: 0.5rem;">
+                <button class="view-team-btn">VIEW FULL TEAM <i class="fas fa-arrow-right"></i></button>
+            </div>
+            
+            <!-- Hardware Performance Section -->
+            <div class="hardware-performance">
+                <h3 class="hardware-title">TOP OF THE LINE HARDWARE</h3>
+                <div class="tps-graph">
+                    <canvas id="tpsChart"></canvas>
+                </div>
+                <div class="tps-stats">
+                    <div class="tps-stat">
+                        <div class="tps-current">66</div>
+                        <div class="tps-desc">CURRENT TPS</div>
+                    </div>
+                    <div class="tps-stat">
+                        <div class="tps-avg">66.0</div>
+                        <div class="tps-desc">AVERAGE TPS</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -188,6 +284,7 @@
     <script src="js/scroll-handler.js"></script>
     <script src="js/sections/store.js"></script>
     <script src="js/sections/brands.js"></script>
+    <script src="js/sections/about.js"></script>
     <script src="js/sections/gamemodes-gallery.js" type="module"></script>
     <script src="js/sections/servers.js" type="module"></script>
     <script type="module">
