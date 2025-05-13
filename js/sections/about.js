@@ -189,10 +189,29 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        // Create gradient for fill
-        const gradient = ctx.createLinearGradient(0, 0, 0, 200);
-        gradient.addColorStop(0, 'rgba(255, 255, 255, 0.08)'); // Very subtle white/gray at top
-        gradient.addColorStop(1, 'rgba(36, 36, 36, 0.12)'); // Subtle dark gray at bottom
+        // Create gradient fill function for responsiveness
+        function createFillGradient(ctx, chartHeight) {
+            const height = chartHeight || 200;
+            const gradient = ctx.createLinearGradient(0, 0, 0, height);
+            gradient.addColorStop(0, 'rgba(255, 255, 255, 0.08)');
+            gradient.addColorStop(0.7, 'rgba(255, 255, 255, 0.03)');
+            gradient.addColorStop(1, 'rgba(36, 36, 36, 0)');
+            return gradient;
+        }
+        
+        // Create line gradient function for responsiveness
+        function createLineGradient(ctx, chartHeight) {
+            const height = chartHeight || 200;
+            const lineGradient = ctx.createLinearGradient(0, 0, 0, height);
+            lineGradient.addColorStop(0, 'rgba(255, 255, 255, 0.3)');
+            lineGradient.addColorStop(0.8, 'rgba(255, 255, 255, 0.15)');
+            lineGradient.addColorStop(1, 'rgba(255, 255, 255, 0.05)');
+            return lineGradient;
+        }
+        
+        // Initial gradients
+        const gradient = createFillGradient(ctx);
+        const lineGradient = createLineGradient(ctx);
         
         // Create chart
         const tpsChart = new Chart(ctx, {
@@ -202,16 +221,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 datasets: [{
                     label: 'TPS',
                     data: generateData(),
-                    borderColor: 'rgba(255, 255, 255, 0.25)', // Subtle white line
-                    borderWidth: 1.5, // Modest line thickness
-                    tension: 0.6, // More smooth curve
+                    borderColor: lineGradient,
+                    borderWidth: 1.5,
+                    tension: 0.6,
                     fill: true,
                     backgroundColor: gradient,
-                    pointRadius: 0, // Hide points
+                    pointRadius: 0,
                     pointHoverRadius: 0,
                     pointBackgroundColor: 'rgba(255, 255, 255, 0.8)',
                     segment: {
-                        borderColor: ctx => 'rgba(255, 255, 255, 0.25)'
+                        borderColor: ctx => lineGradient
                     }
                 }]
             },
@@ -229,7 +248,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 elements: {
                     line: {
-                        tension: 0.6 // More smooth curve
+                        tension: 0.6, // More smooth curve
+                        borderWidth: 1.5
+                    },
+                    point: {
+                        radius: 0,
+                        hoverRadius: 0
                     }
                 },
                 scales: {
@@ -283,7 +307,42 @@ document.addEventListener('DOMContentLoaded', function() {
                                 return 'TPS: ' + context.raw.toFixed(1);
                             }
                         }
+                    },
+                    // Custom fade effect
+                    fadeEffect: {
+                        id: 'fadeEffect',
+                        beforeDraw(chart, args, options) {
+                            const { ctx, chartArea } = chart;
+                            // Only apply if chartArea is valid
+                            if (!chartArea || !chartArea.bottom) return;
+                            
+                            // Create vertical gradient for fading effect
+                            const fadeGradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+                            fadeGradient.addColorStop(0, 'rgba(36, 36, 36, 0)'); // Transparent at top
+                            fadeGradient.addColorStop(0.8, 'rgba(36, 36, 36, 0.5)'); // Increasingly opaque
+                            fadeGradient.addColorStop(1, 'rgba(36, 36, 36, 0.9)'); // Nearly solid at bottom
+                            
+                            // Apply gradient overlay
+                            ctx.save();
+                            ctx.globalCompositeOperation = 'destination-out';
+                            ctx.fillStyle = fadeGradient;
+                            ctx.fillRect(chartArea.left, chartArea.top, chartArea.width, chartArea.height);
+                            ctx.restore();
+                        }
                     }
+                },
+                onResize: function(chart, size) {
+                    // Update gradients when chart size changes
+                    const datasets = chart.data.datasets;
+                    if (datasets.length > 0) {
+                        const newFillGradient = createFillGradient(chart.ctx, size.height);
+                        const newLineGradient = createLineGradient(chart.ctx, size.height);
+                        
+                        datasets[0].backgroundColor = newFillGradient;
+                        datasets[0].borderColor = newLineGradient;
+                        datasets[0].segment.borderColor = ctx => newLineGradient;
+                    }
+                    return true;
                 }
             }
         });
