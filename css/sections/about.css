@@ -69,13 +69,17 @@
 .tps-graph{width:100%;height:200px;background:transparent;border:none;border-radius:0;padding:0;position:relative;opacity:0.8;overflow:hidden;margin-top:10px}
 .tps-graph::before{content:none}
 .tps-graph::after{content:'PERFORMANCE METRICS';position:absolute;top:50%;left:30px;transform:translateY(-50%);font-family:'Teko',sans-serif;font-size:2.8rem;letter-spacing:5px;color:rgba(255,255,255,0.07);white-space:nowrap;z-index:1}
-.tps-graph canvas{width:100% !important;height:100% !important;position:relative;z-index:1;margin-top:0}
+.tps-graph canvas{width:100% !important;height:100% !important;position:relative;z-index:3;margin-top:0}
 
 /* TPS stats */
-.tps-stats{position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);display:flex;flex-direction:row;align-items:baseline;justify-content:center;gap:3rem;z-index:3;width:auto;text-align:center}
+.tps-stats{position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);display:flex;flex-direction:row;align-items:baseline;justify-content:center;gap:3rem;z-index:4;width:auto;text-align:center}
 .tps-stat{text-align:center;padding:0;background:none;border:none}
 .tps-current,.tps-avg{font-family:'Teko',sans-serif;font-size:4.5rem;color:var(--text-color);line-height:1;opacity:0.9}
 .tps-desc{font-size:0.9rem;color:var(--text-color);opacity:0.6;text-transform:uppercase;letter-spacing:1.5px;margin-top:0;display:block}
+
+/* Server Optimization Section */
+.server-optimization{margin-top:3rem;position:relative;z-index:2;text-align:left;max-width:900px;margin-left:auto;margin-right:auto;padding-top:1rem}
+.optimization-description{font-family:'Chakra Petch',sans-serif;font-size:clamp(0.95rem, 1vw + 0.5rem, 1.1rem);color:var(--text-color);line-height:1.7;opacity:0.9;position:relative}
 
 @media (max-width:1200px){
     .about-section{padding:5rem 0 3rem}
@@ -85,6 +89,7 @@
     .stat-box{padding:1.2rem 1rem;height:100px}
     .stat-value{font-size:3rem}
     .hardware-title{font-size:2.2rem}
+    .server-optimization{max-width:850px}
 }
 @media (max-width:992px){
     .about-content{flex-direction:column;gap:3rem}
@@ -97,6 +102,8 @@
     .tps-stats{gap:2.5rem}
     .tps-current,.tps-avg{font-size:4rem}
     .tps-desc{font-size:0.8rem}
+    .server-optimization{max-width:90%}
+    .optimization-description{line-height:1.6}
 }
 @media (max-width:768px){
     .about-section{padding:4rem 0 2rem}
@@ -117,6 +124,7 @@
     .tps-stats{gap:2rem}
     .tps-current,.tps-avg{font-size:3.5rem}
     .tps-desc{font-size:0.7rem;letter-spacing:1px}
+    .server-optimization{margin-top:2.5rem;max-width:95%;padding-right:1rem;padding-left:1rem}
 }
 @media (max-width:480px){
     .about-section{padding:3rem 0 1.5rem}
@@ -134,4 +142,13 @@
     .tps-stats{gap:1.5rem}
     .tps-current,.tps-avg{font-size:3rem}
     .tps-desc{font-size:0.6rem;letter-spacing:1px}
+    .server-optimization{margin-top:2rem;padding:0 0.8rem}
+    .optimization-description{font-size:0.9rem;line-height:1.5}
+}
+@media (max-width:360px){
+    .hardware-title{font-size:1.6rem}
+    .tps-graph{height:90px}
+    .tps-current,.tps-avg{font-size:2.5rem}
+    .server-optimization{margin-top:1.5rem}
+    .optimization-description{font-size:0.85rem;line-height:1.5}
 } 

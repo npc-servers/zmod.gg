@@ -151,20 +151,20 @@ document.addEventListener('DOMContentLoaded', function() {
         function generateData() {
             const data = [];
             let total = 0;
-            let prevValue = 65 + (Math.random() * 1 - 0.5); // Start closer to 65 rather than 66
+            let prevValue = 65.8; // Start with a value in the middle of our allowed range
             
             for (let i = 0; i < dataPoints; i++) {
                 // Generate values with small variations from previous point for smoother line
-                let maxChange = 1.2; // Maximum change between points (smaller for less variation)
+                let maxChange = 0.2; // Much smaller maximum change between points
                 
-                // Bias toward 65.5 instead of 66 to prevent top cutoff
-                let bias = (65.5 - prevValue) * 0.3; // Target slightly below max
+                // Bias toward 65.8
+                let bias = (65.8 - prevValue) * 0.3;
                 
-                let change = (Math.random() * maxChange * 2) - maxChange + bias;
+                let change = ((Math.random() * maxChange * 2) - maxChange) + bias;
                 let value = prevValue + change;
                 
-                // Ensure value stays in range with buffer at top
-                value = Math.max(minValue, Math.min(66, value));
+                // Ensure value stays only between 65.5 and 66
+                value = Math.max(65.5, Math.min(66, value));
                 
                 data.push(value);
                 total += value;
@@ -180,18 +180,19 @@ document.addEventListener('DOMContentLoaded', function() {
         // Update TPS stats display
         function updateStats(current, average) {
             if (currentTpsEl) {
-                currentTpsEl.textContent = Math.round(current);
+                currentTpsEl.textContent = current.toFixed(1);
             }
             
             if (avgTpsEl) {
-                avgTpsEl.textContent = average.toFixed(1);
+                // Hardcode the average to always display 66
+                avgTpsEl.textContent = '66';
             }
         }
         
         // Create gradient for fill
-        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-        gradient.addColorStop(0, 'rgba(255, 255, 255, 0.05)'); // Even more subtle
-        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)'); // Completely transparent
+        const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+        gradient.addColorStop(0, 'rgba(255, 255, 255, 0.08)'); // Very subtle white/gray at top
+        gradient.addColorStop(1, 'rgba(36, 36, 36, 0.12)'); // Subtle dark gray at bottom
         
         // Create chart
         const tpsChart = new Chart(ctx, {
@@ -201,8 +202,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 datasets: [{
                     label: 'TPS',
                     data: generateData(),
-                    borderColor: 'rgba(255, 255, 255, 0.2)', // More transparent line
-                    borderWidth: 1, // Thinner line
+                    borderColor: 'rgba(255, 255, 255, 0.25)', // Subtle white line
+                    borderWidth: 1.5, // Modest line thickness
                     tension: 0.6, // More smooth curve
                     fill: true,
                     backgroundColor: gradient,
@@ -210,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     pointHoverRadius: 0,
                     pointBackgroundColor: 'rgba(255, 255, 255, 0.8)',
                     segment: {
-                        borderColor: ctx => 'rgba(255, 255, 255, 0.2)'
+                        borderColor: ctx => 'rgba(255, 255, 255, 0.25)'
                     }
                 }]
             },
@@ -293,17 +294,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const currentData = tpsChart.data.datasets[0].data;
             const lastValue = currentData[currentData.length - 1];
             
-            // Generate new value with small variation from last value, biased toward 65.5
-            let maxChange = 1.2; // Maximum change between points
+            // Generate new value with small variation from last value
+            let maxChange = 0.2; // Small maximum change between points
             
-            // Bias toward 65.5 - if we're far from 65.5, tend to move back toward it
-            let bias = (65.5 - lastValue) * 0.3; // Target slightly below max for better display
+            // Bias toward 65.8 for center of range
+            let bias = (65.8 - lastValue) * 0.3;
             
             let change = ((Math.random() * maxChange * 2) - maxChange) + bias;
             let newValue = lastValue + change;
             
-            // Ensure value stays in range 60-66 with slight buffer at top
-            newValue = Math.max(minValue, Math.min(66, newValue));
+            // Ensure value stays only between 65.5 and 66
+            newValue = Math.max(65.5, Math.min(66, newValue));
             
             // Remove first data point and add new one
             tpsChart.data.datasets[0].data.shift();
