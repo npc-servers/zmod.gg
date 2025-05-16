@@ -156,6 +156,43 @@
     line-height:1.6;
     margin-bottom:2rem
 }
+
+.store-support-cta {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 0.9rem;
+    color: var(--accent-color, #a7a7a7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    margin-left: auto;
+    margin-right: 0;
+    max-width: 800px; 
+    line-height: 1.4;
+    margin-bottom: 1.5rem; 
+    margin-top: -1rem; 
+    font-weight: 600;
+    text-align: right; /* Ensure text itself is right-aligned if container is wider */
+}
+
+.store-support-highlight {
+    color: var(--accent-color-glow, #fff); /* A brighter color for the glow, can be themed */
+    animation: subtleGlow 2s ease-in-out infinite;
+    font-weight: 700; /* Make it a bit bolder */
+}
+
+@keyframes subtleGlow {
+    0%, 100% {
+        text-shadow: 0 0 5px rgba(var(--accent-color-rgb, 255, 255, 255), 0.5),
+                     0 0 10px rgba(var(--accent-color-rgb, 255, 255, 255), 0.4),
+                     0 0 15px rgba(var(--accent-color-rgb, 255, 255, 255), 0.3);
+    }
+    50% {
+        text-shadow: 0 0 8px rgba(var(--accent-color-rgb, 255, 255, 255), 0.7),
+                     0 0 16px rgba(var(--accent-color-rgb, 255, 255, 255), 0.6),
+                     0 0 24px rgba(var(--accent-color-rgb, 255, 255, 255), 0.5);
+    }
+}
+
 .store-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;padding:1rem}
 .store-item{background:var(--bg-primary);border-radius:12px;overflow:hidden;transition:transform .3s,box-shadow .3s;position:relative}
 .store-item:hover{transform:translateY(-5px);box-shadow:0 10px 20px rgba(0,0,0,.2)}

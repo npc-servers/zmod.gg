@@ -29,8 +29,8 @@
 .learn-more-btn:hover i{transform:translateX(5px)}
 
 /* Stats section */
-.about-stats{display:flex;justify-content:space-between;margin-bottom:4rem;flex-wrap:wrap;gap:2rem;position:relative;z-index:2;align-items:stretch}
-.stat-box{flex:1;min-width:200px;padding:1.2rem 1rem;background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.1);border-radius:8px;text-align:center;position:relative;overflow:hidden;transition:transform 0.3s ease,box-shadow 0.3s ease;display:flex;flex-direction:column;justify-content:center;height:110px}
+.about-stats{display:flex;justify-content:space-around;margin-bottom:4rem;flex-wrap:wrap;gap:2rem;position:relative;z-index:2;align-items:stretch}
+.stat-box{flex:1 1 0;padding:1.2rem 1rem;background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.1);border-radius:8px;text-align:center;position:relative;overflow:hidden;transition:transform 0.3s ease,box-shadow 0.3s ease;display:flex;flex-direction:column;justify-content:center;height:110px}
 .stat-box:hover{transform:translateY(-5px);box-shadow:0 10px 20px rgba(0,0,0,0.3)}
 .stat-box::before{content:'';position:absolute;top:0;right:0;width:0;height:0;border-style:solid;border-width:0 30px 30px 0;border-color:transparent rgba(255,255,255,0.1) transparent transparent}
 .stat-value{font-family:'Teko',sans-serif;font-size:3.5rem;font-weight:600;display:block;margin-bottom:0.5rem;line-height:1;color:var(--text-color)}
@@ -108,7 +108,7 @@
     .about-image,.about-text{flex:0 0 100%}
     .about-image{max-height:400px}
     .about-stats{flex-wrap:wrap;gap:1rem}
-    .stat-box{flex:1 0 calc(50% - 1rem);min-width:200px;height:95px}
+    .stat-box{flex:1 1 calc(50% - 0.5rem);height:95px}
     .hardware-text{font-size:2rem;letter-spacing:2px}
     .tps-graph-container{flex-direction:column;gap:2rem}
     .tps-stats{gap:2.5rem}
