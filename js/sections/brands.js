@@ -227,11 +227,8 @@ function initBrandNavigation() {
         activeBrandText = inactiveBrandText;
         inactiveBrandText = temp;
         
-        // Set the new text content and make sure it's in the correct starting position
+        // Set the new text content
         activeBrandText.textContent = newBrandName;
-        activeBrandText.style.transform = `translateX(${direction === 'next' ? 50 : -50}px)`;
-        activeBrandText.style.opacity = '0';
-        activeBrandText.style.zIndex = '2';
         
         // Create a timeline for the transition
         const tl = gsap.timeline({
@@ -338,22 +335,30 @@ function initBrandNavigation() {
         );
         
         // 6. Animate the brand name in the navigation
-        // First, slide out the current brand text
+        // Animate out the current text (inactiveBrandText)
         tl.to(inactiveBrandText, {
             x: direction === 'next' ? -50 : 50,
             opacity: 0,
             duration: 0.3,
             ease: "power2.out",
-            zIndex: 1
+            zIndex: 1 
         }, 0);
         
-        // Then slide in the new brand text
-        tl.to(activeBrandText, {
-            x: 0,
-            opacity: 1,
-            duration: 0.4,
-            ease: "power2.out"
-        }, 0.35);
+        // Animate in the new brand text (activeBrandText)
+        tl.fromTo(activeBrandText,
+            { // FROM state
+                x: direction === 'next' ? 50 : -50,
+                opacity: 0,
+                zIndex: 2 // Ensure it's on top
+            },
+            { // TO state
+                x: 0,
+                opacity: 1,
+                duration: 0.4,
+                ease: "power2.out"
+                // zIndex remains 2
+            },
+            0.35); // Start this animation slightly delayed
         
         // Start the animation
         tl.play();
