@@ -357,7 +357,7 @@
     height: 60px;
     font-size: 1.5rem;
     cursor: pointer;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     z-index: 3;
