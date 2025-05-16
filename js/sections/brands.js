@@ -99,7 +99,43 @@ function initBrandNavigation() {
     const brandCards = document.querySelectorAll('.brand-card');
     const prevBtn = document.querySelector('.prev-brand');
     const nextBtn = document.querySelector('.next-brand');
+    const brandNavigation = document.querySelector('.brand-navigation');
+    
+    // Replace the single current-brand element with a container
     const currentBrandDisplay = document.querySelector('.current-brand');
+    const currentBrandText = currentBrandDisplay.textContent;
+    
+    // Create a container with two identical elements for smooth transitions
+    const brandDisplayContainer = document.createElement('div');
+    brandDisplayContainer.classList.add('brand-display-container');
+    brandDisplayContainer.style.position = 'relative';
+    brandDisplayContainer.style.width = 'auto';
+    brandDisplayContainer.style.height = 'auto';
+    brandDisplayContainer.style.display = 'flex';
+    brandDisplayContainer.style.justifyContent = 'center';
+    brandDisplayContainer.style.alignItems = 'center';
+    brandDisplayContainer.style.minWidth = '140px';
+    brandDisplayContainer.style.overflow = 'hidden';
+    
+    // Create two text elements for smooth transitions
+    const primaryText = document.createElement('div');
+    primaryText.classList.add('current-brand', 'primary-brand-text');
+    primaryText.textContent = currentBrandText;
+    primaryText.style.position = 'relative';
+    
+    const secondaryText = document.createElement('div');
+    secondaryText.classList.add('current-brand', 'secondary-brand-text');
+    secondaryText.textContent = '';
+    secondaryText.style.position = 'absolute';
+    secondaryText.style.top = '0';
+    secondaryText.style.left = '0';
+    secondaryText.style.width = '100%';
+    secondaryText.style.opacity = '0';
+    
+    // Add elements to the DOM
+    brandDisplayContainer.appendChild(primaryText);
+    brandDisplayContainer.appendChild(secondaryText);
+    currentBrandDisplay.replaceWith(brandDisplayContainer);
     
     // Brand data
     const brands = Array.from(brandCards).map(card => {
@@ -116,11 +152,12 @@ function initBrandNavigation() {
     // Initialize current brand display
     updateCurrentBrandDisplay();
     
-    // Create a timeline for the transition
-    let transitionTimeline = gsap.timeline({paused: true});
-    
     // Flag to prevent multiple clicks during transition
     let isTransitioning = false;
+    
+    // Track which text element is currently active
+    let activeBrandText = primaryText;
+    let inactiveBrandText = secondaryText;
     
     // Previous brand button
     prevBtn.addEventListener('click', () => {
@@ -168,9 +205,33 @@ function initBrandNavigation() {
         newCard.style.opacity = '0';
         newCard.style.visibility = 'visible';
         
-        // Get elements to animate - just the content containers
+        // Get elements to animate - content containers and their children
         const currentContent = currentCard.querySelector('.brand-content');
         const newContent = newCard.querySelector('.brand-content');
+        
+        // Get specific elements for more detailed animations
+        const currentLogo = currentCard.querySelector('.brand-logo');
+        const newLogo = newCard.querySelector('.brand-logo');
+        const currentInfo = currentCard.querySelector('.brand-info');
+        const newInfo = newCard.querySelector('.brand-info');
+        const currentText = currentCard.querySelector('.brand-info p');
+        const newText = newCard.querySelector('.brand-info p');
+        const currentButton = currentCard.querySelector('.explore-brand-btn');
+        const newButton = newCard.querySelector('.explore-brand-btn');
+        const currentTitle = currentCard.querySelector('.brand-info h3');
+        const newTitle = newCard.querySelector('.brand-info h3');
+        
+        // Prepare for brand name transition
+        // Swap active/inactive text elements
+        const temp = activeBrandText;
+        activeBrandText = inactiveBrandText;
+        inactiveBrandText = temp;
+        
+        // Set the new text content and make sure it's in the correct starting position
+        activeBrandText.textContent = newBrandName;
+        activeBrandText.style.transform = `translateX(${direction === 'next' ? 50 : -50}px)`;
+        activeBrandText.style.opacity = '0';
+        activeBrandText.style.zIndex = '2';
         
         // Create a timeline for the transition
         const tl = gsap.timeline({
@@ -207,53 +268,92 @@ function initBrandNavigation() {
         
         // Animation sequence
         
-        // 1. Animate out the current content
-        tl.to(currentContent, {
-            x: direction === 'next' ? -100 : 100,
+        // 1. Animate out the current logo
+        tl.to(currentLogo, {
+            x: direction === 'next' ? -80 : 80,
             opacity: 0,
-            duration: 0.5,
+            duration: 0.4,
             ease: "power2.out"
         }, 0);
         
-        // 2. Fade out the current card (not fully transparent)
+        // 2. Animate out the current title, text and button with staggered timing
+        tl.to(currentTitle, {
+            y: -20,
+            opacity: 0,
+            duration: 0.3,
+            ease: "power2.out"
+        }, 0.05);
+        
+        tl.to(currentText, {
+            y: -20,
+            opacity: 0,
+            duration: 0.3,
+            ease: "power2.out"
+        }, 0.1);
+        
+        tl.to(currentButton, {
+            y: -15,
+            opacity: 0,
+            duration: 0.3,
+            ease: "power2.out"
+        }, 0.2);
+        
+        // 3. Fade out the current card (not fully transparent)
         tl.to(currentCard, {
             opacity: 0.1,
             duration: 0.4,
             ease: "power2.inOut"
-        }, 0.2);
+        }, 0.3);
         
-        // 3. Fade in the new card
+        // 4. Fade in the new card
         tl.to(newCard, {
             opacity: 1,
             duration: 0.4,
             ease: "power2.inOut"
-        }, 0.3);
+        }, 0.4);
         
-        // 4. Animate in the new content
-        tl.fromTo(newContent, 
-            { x: direction === 'next' ? 100 : -100, opacity: 0 },
+        // 5. Animate in the new logo, title, text and button with staggered timing
+        tl.fromTo(newLogo, 
+            { x: direction === 'next' ? 80 : -80, opacity: 0 },
             { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 
-            0.4
+            0.45
         );
         
-        // 5. Animate the brand name - with matching direction
-        // First, hide current text with appropriate direction
-        tl.to(currentBrandDisplay, {
+        tl.fromTo(newTitle, 
+            { y: 20, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 
+            0.5
+        );
+        
+        tl.fromTo(newText, 
+            { y: 20, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 
+            0.55
+        );
+        
+        tl.fromTo(newButton, 
+            { y: 15, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 
+            0.65
+        );
+        
+        // 6. Animate the brand name in the navigation
+        // First, slide out the current brand text
+        tl.to(inactiveBrandText, {
             x: direction === 'next' ? -50 : 50,
             opacity: 0,
             duration: 0.3,
-            onComplete: () => {
-                // Update the text during the animation
-                currentBrandDisplay.textContent = newBrandName;
-            }
+            ease: "power2.out",
+            zIndex: 1
         }, 0);
         
-        // Then bring in the new text from the opposite direction
-        tl.fromTo(currentBrandDisplay, 
-            { x: direction === 'next' ? 50 : -50, opacity: 0 },
-            { x: 0, opacity: 1, duration: 0.4, ease: "power2.out" },
-            0.35
-        );
+        // Then slide in the new brand text
+        tl.to(activeBrandText, {
+            x: 0,
+            opacity: 1,
+            duration: 0.4,
+            ease: "power2.out"
+        }, 0.35);
         
         // Start the animation
         tl.play();
@@ -262,7 +362,7 @@ function initBrandNavigation() {
     function updateCurrentBrandDisplay() {
         // Get current brand ID and update the display
         const currentBrand = brands[currentIndex].id.toUpperCase();
-        currentBrandDisplay.textContent = currentBrand;
+        primaryText.textContent = currentBrand;
     }
 }
 
