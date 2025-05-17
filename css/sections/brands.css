@@ -684,7 +684,7 @@
 /* Brand Navigation with Arrows */
 .brand-navigation {
     position: relative;
-    display: flex;
+    display: none; /* Hide the navigation buttons */
     align-items: center;
     justify-content: center;
     margin: 0 auto 2rem;
@@ -761,22 +761,6 @@
 /* Remove hover effects */
 .brand-nav-btn:hover {
     color: var(--text-color);
-}
-
-.current-brand {
-    font-family: 'Teko', sans-serif;
-    font-size: 3rem;
-    font-weight: 600;
-    color: var(--text-color);
-    text-transform: uppercase;
-    text-align: center;
-    letter-spacing: 2px;
-    min-width: 140px;
-    will-change: transform, opacity;
-    position: relative;
-    z-index: 1;
-    flex: 0 0 auto;
-    line-height: 1;
 }
 
 /* Brand selector tabs */
@@ -939,3 +923,43 @@
 }
 
 /* End of media queries */
+
+/* New styles for NEXT indicator */
+.next-brand-indicator {
+    position: absolute;
+    left: 2rem; 
+    top: 2rem; /* Position at the top */
+    transform: none; /* Remove vertical centering */
+    z-index: 10; 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.next-brand-text {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1rem; /* Adjust as needed */
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem; /* Space between text and line */
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+.next-brand-progress-container {
+    width: 100px; /* Adjust as needed */
+    height: 3px; /* Height of the gray line */
+    background-color: rgba(128, 128, 128, 0.5); /* Gray line color */
+    border-radius: 1.5px;
+    overflow: hidden; /* To contain the white progress bar */
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.2), 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+.next-brand-progress-bar {
+    width: 0%; /* Initial width, will be animated by JS */
+    height: 100%;
+    background-color: white;
+    border-radius: 1.5px;
+    transition: width 0.25s linear; /* Smooth animation for width changes */
+}
