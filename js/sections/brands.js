@@ -17,29 +17,21 @@ function initBrandsSection() {
     // Initialize animations
     initBrandCardAnimations();
 
-    // Add click listener to NEXT indicators
-    const brandCards = document.querySelectorAll('.brand-card');
+    // Add click listener to the single NEXT indicator
+    const nextIndicator = document.querySelector('.next-brand-indicator');
     const nextButton = document.querySelector('.next-brand'); // The main (hidden) next button
 
-    if (nextButton) {
-        brandCards.forEach(card => {
-            const nextIndicator = card.querySelector('.next-brand-indicator');
-            if (nextIndicator) {
-                nextIndicator.addEventListener('click', () => {
-                    if (!isTransitioning) { // Check isTransitioning from initBrandNavigation scope
-                        nextButton.click();
-                    }
-                });
-                nextIndicator.style.cursor = 'pointer'; // Add pointer cursor
+    if (nextIndicator && nextButton) {
+        nextIndicator.addEventListener('click', () => {
+            if (!isTransitioning) { 
+                nextButton.click();
             }
         });
+        nextIndicator.style.cursor = 'pointer'; // Add pointer cursor
     }
 
     // Start initial slideshow
-    const activeCard = document.querySelector('.brand-card.active');
-    if (activeCard) {
-        startSlideshowTimer(activeCard);
-    }
+    startSlideshowTimer(); // No longer pass activeCard
 }
 
 function initBrandVideos() {
@@ -205,6 +197,9 @@ function initBrandNavigation() {
         const currentTitle = currentCard.querySelector('.brand-info h3');
         const newTitle = newCard.querySelector('.brand-info h3');
         
+        // Determine if it's mobile view for animation changes
+        const isMobileView = window.innerWidth < 993;
+
         // Create a timeline for the transition
         const tl = gsap.timeline({
             onComplete: () => {
@@ -237,7 +232,7 @@ function initBrandNavigation() {
                 isTransitioning = false;
 
                 // Start slideshow timer for the new card
-                startSlideshowTimer(newCard);
+                startSlideshowTimer(); // No longer pass newCard
             }
         });
         
@@ -245,7 +240,8 @@ function initBrandNavigation() {
         
         // 1. Animate out the current logo
         tl.to(currentLogo, {
-            x: direction === 'next' ? -80 : 80,
+            x: isMobileView ? 0 : (direction === 'next' ? -80 : 80),
+            y: isMobileView ? -50 : 0, // Animate up on mobile
             opacity: 0,
             duration: 0.4,
             ease: "power2.out"
@@ -289,8 +285,18 @@ function initBrandNavigation() {
         
         // 5. Animate in the new logo, title, text and button with staggered timing
         tl.fromTo(newLogo, 
-            { x: direction === 'next' ? 80 : -80, opacity: 0 },
-            { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 
+            { 
+                x: isMobileView ? 0 : (direction === 'next' ? 80 : -80),
+                y: isMobileView ? 50 : 0, // Animate from bottom on mobile
+                opacity: 0 
+            },
+            { 
+                x: 0, 
+                y: 0,
+                opacity: 1, 
+                duration: 0.5, 
+                ease: "power2.out" 
+            }, 
             0.45
         );
         
@@ -332,10 +338,10 @@ function clearSlideshowTimer() {
     });
 }
 
-function startSlideshowTimer(activeCard) {
-    clearSlideshowTimer(); // Clear any existing timer and reset progress bars
+function startSlideshowTimer() { // Removed activeCard parameter
+    clearSlideshowTimer(); 
 
-    const progressBar = activeCard.querySelector('.next-brand-progress-bar');
+    const progressBar = document.querySelector('.next-brand-indicator .next-brand-progress-bar'); // Select the single progress bar
     if (!progressBar) return;
 
     // Animate the progress bar

@@ -588,6 +588,18 @@
     .brand-nav-btn.next-brand::before {
         border-width: 7px 0 7px 10px;
     }
+
+    /* Mobile styles for .next-brand-indicator - these will be default, overridden by desktop */
+    .next-brand-indicator {
+        position: relative; /* In normal document flow */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center its children (text and progress bar container) */
+        margin: 2rem auto 0; /* Top margin, centered horizontally */
+        left: auto; 
+        top: auto; 
+        transform: none;
+    }
 }
 
 @media (max-width: 480px) {
@@ -871,6 +883,16 @@
     .brand-content {
         padding: 0 3rem;
     }
+
+    /* Desktop-specific styles for NEXT indicator */
+    .next-brand-indicator {
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+        align-items: flex-start; /* Align text/bar to the left for desktop */
+        margin: 0;
+        transform: none;
+    }
 }
 
 /* Mobile & Tablet styles */
@@ -925,15 +947,14 @@
 /* End of media queries */
 
 /* New styles for NEXT indicator */
+/* Default styles (mobile-first) */
 .next-brand-indicator {
-    position: absolute;
-    left: 2rem; 
-    top: 2rem; /* Position at the top */
-    transform: none; /* Remove vertical centering */
-    z-index: 10; 
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center; /* Center content for mobile */
+    margin: 2rem auto 1.5rem; /* Spacing for mobile */
+    z-index: 10;
+    /* Glow and cursor are already set */
 }
 
 .next-brand-text {
