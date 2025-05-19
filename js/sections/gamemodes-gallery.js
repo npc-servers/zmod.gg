@@ -80,6 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
         dot.className = `gamemode-dot${i === 0 ? ' active' : ''}`;
         dot.dataset.index = i;
         
+        // Add inner progress bar element
+        const progressDiv = document.createElement('div');
+        progressDiv.className = 'gamemode-dot-progress';
+        dot.appendChild(progressDiv);
+        
         // Add click event to navigate to the corresponding gamemode
         dot.addEventListener('click', () => {
             if (!isAnimating) {
@@ -92,8 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
         gamemodesNav.appendChild(dot);
     }
     
-    // Append to the gamemodes section instead of container for better positioning
-    document.querySelector('.gamemodes-section').appendChild(gamemodesNav);
+    // Append to the gamemodes container instead of section for better positioning with section padding
+    document.querySelector('.gamemodes-container').appendChild(gamemodesNav);
 
     const showcaseItems = gsap.utils.toArray('.showcase-item');
     const gamemodeDots = gsap.utils.toArray('.gamemode-dot');
@@ -103,23 +108,49 @@ document.addEventListener('DOMContentLoaded', () => {
     let showcaseInterval;
     let isVisible = false;
     let hasStarted = false;
+    let dotProgressAnimation = null; // Variable to store the dot progress GSAP animation
+
+    function clearDotProgressAnimation() {
+        if (dotProgressAnimation) {
+            dotProgressAnimation.kill();
+            dotProgressAnimation = null;
+        }
+        // Reset progress on all dots
+        gamemodeDots.forEach(dot => {
+            const progressEl = dot.querySelector('.gamemode-dot-progress');
+            if (progressEl) {
+                gsap.set(progressEl, { width: '0%' });
+            }
+        });
+    }
+
+    function animateDotProgress(dotElement) {
+        clearDotProgressAnimation(); // Clear any existing animation first
+        const progressEl = dotElement.querySelector('.gamemode-dot-progress');
+        if (progressEl) {
+            dotProgressAnimation = gsap.to(progressEl, {
+                width: '100%',
+                duration: animationDuration / 1000,
+                ease: 'linear'
+            });
+        }
+    }
 
     function updateShowcase(newIndex) {
         if (isAnimating) return;
         isAnimating = true;
 
-        // Remove active class from current item and dot
+        clearDotProgressAnimation(); // Clear progress on old dot
+
         showcaseItems[currentIndex].classList.remove('active');
         gamemodeDots[currentIndex].classList.remove('active');
 
-        // Add active class to new item and dot
         showcaseItems[newIndex].classList.add('active');
         gamemodeDots[newIndex].classList.add('active');
 
-        // Update current index
         currentIndex = newIndex;
+        animateDotProgress(gamemodeDots[currentIndex]); // Animate progress on new active dot
 
-        // Reset animation flag
         setTimeout(() => {
             isAnimating = false;
         }, 800);
@@ -128,11 +159,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function startShowcase() {
         if (showcaseInterval) clearInterval(showcaseInterval);
         
+        // Ensure current dot's animation is running or starts
+        animateDotProgress(gamemodeDots[currentIndex]);
+
         showcaseInterval = setInterval(() => {
+            // updateShowcase will handle the animation for the next dot
             if (currentIndex < showcaseItems.length - 1) {
                 updateShowcase(currentIndex + 1);
             } else {
-                // Loop back to the first item when reaching the end
                 updateShowcase(0);
             }
         }, animationDuration);
@@ -140,28 +174,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function stopShowcase() {
         if (showcaseInterval) clearInterval(showcaseInterval);
+        clearDotProgressAnimation(); // Stop and reset dot progress animation
     }
 
     function resumeShowcase() {
         if (!isVisible) return;
         
-        // If we're on the last slide, start from the beginning
         if (currentIndex >= showcaseItems.length - 1) {
-            updateShowcase(0);
-            startShowcase();
-            return;
+            updateShowcase(0); // This will also start its progress animation
+        } else {
+            // Ensure current dot's animation restarts properly
+            // updateShowcase(currentIndex) might not be ideal if no actual index change
+            // Directly animating the current dot is better here.
         }
-
-        // Start fresh from the current slide
-        updateShowcase(currentIndex);
-        startShowcase();
+        startShowcase(); // This will call animateDotProgress for the current index and set interval
     }
 
     function initializeShowcase() {
         if (hasStarted || !isVisible) return;
         hasStarted = true;
-        updateShowcase(0);
-        startShowcase();
+        updateShowcase(0); // This will set the first item active and start its progress animation
+        startShowcase(); // This sets the interval
     }
 
     // Create scroll trigger for the section
