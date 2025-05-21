@@ -10,6 +10,8 @@
     overflow: visible;
     background: linear-gradient(180deg, #1a1a1a 0%, #242424 100%);
     width: 100%;
+    padding-top: 5rem;
+    padding-bottom: 8rem;
 }
 
 /* Container Styles */
@@ -280,15 +282,28 @@
     cursor: pointer;
     transition: all 0.3s ease;
     display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.gamemode-dot-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: white;
+    border-radius: 2px;
 }
 
 .gamemode-dot.active {
-    background: rgb(255, 140, 0);
+    background: rgba(255, 255, 255, 0.3);
     width: 40px;
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.2), 0 0 5px rgba(255, 255, 255, 0.1);
 }
 
 .gamemode-dot:hover {
-    background: rgba(255, 140, 0, 0.7);
+    background: rgba(255, 255, 255, 0.5);
 }
 
 /* Responsive Styles */
@@ -319,14 +334,16 @@
     
     .gamemodes-container {
         height: 70vh;
-        border-radius: 0;
-        max-width: 100%;
+        border-radius: 15px;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .gamemodes-showcase, 
     .showcase-item, 
     .showcase-background {
-        border-radius: 0;
+        border-radius: 15px;
     }
     
     .showcase-content {

@@ -2,6 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     initBrandsSection();
 });
 
+const SLIDESHOW_INTERVAL = 8000; // 8 seconds
+let slideshowTimer = null;
+let progressAnimation = null;
+let isTransitioning = false;
+
 function initBrandsSection() {
     // Initialize brand videos
     initBrandVideos();
@@ -11,6 +16,22 @@ function initBrandsSection() {
     
     // Initialize animations
     initBrandCardAnimations();
+
+    // Add click listener to the single NEXT indicator
+    const nextIndicator = document.querySelector('.next-brand-indicator');
+    const nextButton = document.querySelector('.next-brand'); // The main (hidden) next button
+
+    if (nextIndicator && nextButton) {
+        nextIndicator.addEventListener('click', () => {
+            if (!isTransitioning) { 
+                nextButton.click();
+            }
+        });
+        nextIndicator.style.cursor = 'pointer'; // Add pointer cursor
+    }
+
+    // Start initial slideshow
+    startSlideshowTimer(); // No longer pass activeCard
 }
 
 function initBrandVideos() {
@@ -99,43 +120,6 @@ function initBrandNavigation() {
     const brandCards = document.querySelectorAll('.brand-card');
     const prevBtn = document.querySelector('.prev-brand');
     const nextBtn = document.querySelector('.next-brand');
-    const brandNavigation = document.querySelector('.brand-navigation');
-    
-    // Replace the single current-brand element with a container
-    const currentBrandDisplay = document.querySelector('.current-brand');
-    const currentBrandText = currentBrandDisplay.textContent;
-    
-    // Create a container with two identical elements for smooth transitions
-    const brandDisplayContainer = document.createElement('div');
-    brandDisplayContainer.classList.add('brand-display-container');
-    brandDisplayContainer.style.position = 'relative';
-    brandDisplayContainer.style.width = 'auto';
-    brandDisplayContainer.style.height = 'auto';
-    brandDisplayContainer.style.display = 'flex';
-    brandDisplayContainer.style.justifyContent = 'center';
-    brandDisplayContainer.style.alignItems = 'center';
-    brandDisplayContainer.style.minWidth = '140px';
-    brandDisplayContainer.style.overflow = 'hidden';
-    
-    // Create two text elements for smooth transitions
-    const primaryText = document.createElement('div');
-    primaryText.classList.add('current-brand', 'primary-brand-text');
-    primaryText.textContent = currentBrandText;
-    primaryText.style.position = 'relative';
-    
-    const secondaryText = document.createElement('div');
-    secondaryText.classList.add('current-brand', 'secondary-brand-text');
-    secondaryText.textContent = '';
-    secondaryText.style.position = 'absolute';
-    secondaryText.style.top = '0';
-    secondaryText.style.left = '0';
-    secondaryText.style.width = '100%';
-    secondaryText.style.opacity = '0';
-    
-    // Add elements to the DOM
-    brandDisplayContainer.appendChild(primaryText);
-    brandDisplayContainer.appendChild(secondaryText);
-    currentBrandDisplay.replaceWith(brandDisplayContainer);
     
     // Brand data
     const brands = Array.from(brandCards).map(card => {
@@ -148,16 +132,6 @@ function initBrandNavigation() {
     // Track current brand index
     let currentIndex = brands.findIndex(brand => brand.element.classList.contains('active'));
     if (currentIndex === -1) currentIndex = 0;
-    
-    // Initialize current brand display
-    updateCurrentBrandDisplay();
-    
-    // Flag to prevent multiple clicks during transition
-    let isTransitioning = false;
-    
-    // Track which text element is currently active
-    let activeBrandText = primaryText;
-    let inactiveBrandText = secondaryText;
     
     // Previous brand button
     prevBtn.addEventListener('click', () => {
@@ -178,6 +152,8 @@ function initBrandNavigation() {
     function switchToBrand(index, direction = 'next') {
         if (isTransitioning) return;
         isTransitioning = true;
+
+        clearSlideshowTimer(); // Clear existing timer
         
         const currentCard = brands[currentIndex].element;
         const newCard = brands[index].element;
@@ -221,15 +197,9 @@ function initBrandNavigation() {
         const currentTitle = currentCard.querySelector('.brand-info h3');
         const newTitle = newCard.querySelector('.brand-info h3');
         
-        // Prepare for brand name transition
-        // Swap active/inactive text elements
-        const temp = activeBrandText;
-        activeBrandText = inactiveBrandText;
-        inactiveBrandText = temp;
-        
-        // Set the new text content
-        activeBrandText.textContent = newBrandName;
-        
+        // Determine if it's mobile view for animation changes
+        const isMobileView = window.innerWidth < 993;
+
         // Create a timeline for the transition
         const tl = gsap.timeline({
             onComplete: () => {
@@ -260,6 +230,9 @@ function initBrandNavigation() {
                 
                 // Reset transition state
                 isTransitioning = false;
+
+                // Start slideshow timer for the new card
+                startSlideshowTimer(); // No longer pass newCard
             }
         });
         
@@ -267,7 +240,8 @@ function initBrandNavigation() {
         
         // 1. Animate out the current logo
         tl.to(currentLogo, {
-            x: direction === 'next' ? -80 : 80,
+            x: isMobileView ? 0 : (direction === 'next' ? -80 : 80),
+            y: isMobileView ? -50 : 0, // Animate up on mobile
             opacity: 0,
             duration: 0.4,
             ease: "power2.out"
@@ -297,7 +271,7 @@ function initBrandNavigation() {
         
         // 3. Fade out the current card (not fully transparent)
         tl.to(currentCard, {
-            opacity: 0.1,
+            opacity: 0.1, // Keep it slightly visible for smoother video transition if desired
             duration: 0.4,
             ease: "power2.inOut"
         }, 0.3);
@@ -311,8 +285,18 @@ function initBrandNavigation() {
         
         // 5. Animate in the new logo, title, text and button with staggered timing
         tl.fromTo(newLogo, 
-            { x: direction === 'next' ? 80 : -80, opacity: 0 },
-            { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 
+            { 
+                x: isMobileView ? 0 : (direction === 'next' ? 80 : -80),
+                y: isMobileView ? 50 : 0, // Animate from bottom on mobile
+                opacity: 0 
+            },
+            { 
+                x: 0, 
+                y: 0,
+                opacity: 1, 
+                duration: 0.5, 
+                ease: "power2.out" 
+            }, 
             0.45
         );
         
@@ -334,41 +318,53 @@ function initBrandNavigation() {
             0.65
         );
         
-        // 6. Animate the brand name in the navigation
-        // Animate out the current text (inactiveBrandText)
-        tl.to(inactiveBrandText, {
-            x: direction === 'next' ? -50 : 50,
-            opacity: 0,
-            duration: 0.3,
-            ease: "power2.out",
-            zIndex: 1 
-        }, 0);
-        
-        // Animate in the new brand text (activeBrandText)
-        tl.fromTo(activeBrandText,
-            { // FROM state
-                x: direction === 'next' ? 50 : -50,
-                opacity: 0,
-                zIndex: 2 // Ensure it's on top
-            },
-            { // TO state
-                x: 0,
-                opacity: 1,
-                duration: 0.4,
-                ease: "power2.out"
-                // zIndex remains 2
-            },
-            0.35); // Start this animation slightly delayed
-        
         // Start the animation
         tl.play();
     }
-    
-    function updateCurrentBrandDisplay() {
-        // Get current brand ID and update the display
-        const currentBrand = brands[currentIndex].id.toUpperCase();
-        primaryText.textContent = currentBrand;
+}
+
+function clearSlideshowTimer() {
+    if (slideshowTimer) {
+        clearTimeout(slideshowTimer);
+        slideshowTimer = null;
     }
+    if (progressAnimation) {
+        progressAnimation.kill(); // Kill GSAP animation if in progress
+        progressAnimation = null;
+    }
+    // Reset progress bars on all cards
+    document.querySelectorAll('.next-brand-progress-bar').forEach(bar => {
+        gsap.set(bar, { width: '0%' });
+    });
+}
+
+function startSlideshowTimer() { // Removed activeCard parameter
+    clearSlideshowTimer(); 
+
+    const progressBar = document.querySelector('.next-brand-indicator .next-brand-progress-bar'); // Select the single progress bar
+    if (!progressBar) return;
+
+    // Animate the progress bar
+    progressAnimation = gsap.to(progressBar, {
+        width: '100%',
+        duration: SLIDESHOW_INTERVAL / 1000,
+        ease: 'linear',
+        onComplete: () => {
+            // When progress bar is full, switch to the next brand
+            const nextButton = document.querySelector('.next-brand');
+            if (nextButton) {
+                nextButton.click();
+            }
+        }
+    });
+
+    // Set a timeout to switch brands if GSAP animation doesn't trigger (fallback)
+    slideshowTimer = setTimeout(() => {
+        const nextButton = document.querySelector('.next-brand');
+        if (nextButton) {
+            nextButton.click();
+        }
+    }, SLIDESHOW_INTERVAL);
 }
 
 function initBrandCardAnimations() {
