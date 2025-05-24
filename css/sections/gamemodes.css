@@ -179,32 +179,51 @@
     background: linear-gradient(180deg, #1a1a1a 0%, #242424 100%);
 }
 
-.view-more-btn{
+.view-more-btn {
     font-family: 'Chakra Petch', sans-serif;
-    font-size: 1.2rem;
-    color: rgb(255, 140, 0);
-    background: transparent;
-    border: 2px solid rgba(255, 140, 0, 0.5);
-    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000;
+    background-color: #a7a7a7;
+    border: none;
+    border-radius: 0;
+    outline: 2px solid #a7a7a7;
+    padding: 12px 24px;
     cursor: pointer;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     transition: all 0.3s ease;
     margin-top: 1rem;
     transform: translateY(30px);
     opacity: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    box-shadow: none;
+    text-shadow: none;
     transition: transform 0.8s ease 0.4s, opacity 0.8s ease 0.4s, all 0.3s ease;
 }
 
-.showcase-item.active .view-more-btn{
+.showcase-item.active .view-more-btn {
     transform: translateY(0);
     opacity: 1;
 }
 
-.view-more-btn:hover{
-    background: rgba(255, 140, 0, 0.1);
-    border-color: rgb(255, 140, 0);
+.view-more-btn:hover {
+    background-color: transparent;
+    color: var(--text-color);
     transform: translateY(-2px);
+    box-shadow: none;
+}
+
+.view-more-btn i {
+    transition: transform 0.3s ease;
+}
+
+.view-more-btn:hover i {
+    transform: translateX(5px);
 }
 
 /* Progress Bar */
@@ -227,32 +246,53 @@
 }
 
 /* Call to Action Button */
-.check-it-out-btn{
+.check-it-out-btn {
     font-family: 'Chakra Petch', sans-serif;
-    font-size: 1.2rem;
-    color: rgb(255, 140, 0);
-    background: transparent;
-    border: 2px solid rgba(255, 140, 0, 0.5);
-    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000;
+    background-color: #a7a7a7;
+    border: none;
+    border-radius: 0;
+    outline: 2px solid #a7a7a7;
+    padding: 12px 24px;
     cursor: pointer;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     transition: all 0.3s ease;
     position: absolute;
     bottom: 4rem;
     right: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    box-shadow: none;
+    text-shadow: none;
+    transform: translateY(30px);
+    opacity: 0;
 }
 
-.showcase-item.active .check-it-out-btn{
+.showcase-item.active .check-it-out-btn {
     transform: translateY(0);
     opacity: 1;
     transition: transform 0.8s ease 0.4s, opacity 0.8s ease 0.4s, all 0.3s ease;
 }
 
-.check-it-out-btn:hover{
-    background: rgba(255, 140, 0, 0.1);
-    border-color: rgb(255, 140, 0);
+.check-it-out-btn:hover {
+    background-color: transparent;
+    color: var(--text-color);
     transform: translateY(-2px);
+    box-shadow: none;
+}
+
+.check-it-out-btn i {
+    transition: transform 0.3s ease;
+}
+
+.check-it-out-btn:hover i {
+    transform: translateX(5px);
 }
 
 /* Navigation Dots */

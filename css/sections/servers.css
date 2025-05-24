@@ -1,10 +1,9 @@
 /* Servers Section */
 .servers-section {
-    min-height: 100vh;
     background: linear-gradient(180deg, #1a1a1a 0%, #1a1a1a 10%, #242424 100%);
     position: relative;
     padding: 4rem 4rem;
-    padding-bottom: calc(200px + 4rem); /* Account for the slant height plus padding */
+    padding-bottom: 200px; /* Account for the slant height */
 }
 
 .servers-section::after {
@@ -609,7 +608,7 @@
 @media (max-width: 1200px) {
     .servers-section {
         padding: 4rem 3rem;
-        padding-bottom: calc(200px + 3rem);
+        padding-bottom: 200px;
     }
 
     .server-card {
@@ -646,7 +645,7 @@
 @media (max-width: 1024px) {
     .servers-section {
         padding: 4rem 2rem;
-        padding-bottom: calc(200px + 2rem);
+        padding-bottom: 200px;
     }
 
     .servers-container {
@@ -680,7 +679,7 @@
 @media (max-width: 768px) {
     .servers-section {
         padding: 3rem 1.5rem;
-        padding-bottom: calc(150px + 2rem);
+        padding-bottom: 150px;
     }
 
     .servers-section::after {
@@ -757,12 +756,20 @@
         max-width: 320px;
         justify-content: center;
     }
+    
+    .view-more-servers-btn {
+        font-size: 0.85rem;
+    }
+    
+    .view-more-servers {
+        text-align: right;
+    }
 }
 
 @media (max-width: 480px) {
     .servers-section {
         padding: 2rem 1rem;
-        padding-bottom: calc(100px + 2rem);
+        padding-bottom: 100px;
     }
 
     .servers-section::after {
@@ -845,6 +852,14 @@
         max-width: 320px;
         justify-content: center;
     }
+    
+    .view-more-servers-btn {
+        font-size: 0.85rem;
+    }
+    
+    .view-more-servers {
+        text-align: right;
+    }
 }
 
 .view-all-servers-btn {
@@ -921,6 +936,46 @@
 
 .explore-gamemodes-btn:hover i {
     transform: translateX(5px);
+}
+
+/* View More Servers Button */
+.view-more-servers {
+    margin-top: 0.75rem;
+    text-align: right;
+}
+
+.view-more-servers-btn {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+}
+
+.view-more-servers-btn i {
+    transition: transform 0.3s ease;
+    font-size: 0.8rem;
+}
+
+.view-more-servers-btn:hover {
+    opacity: 1;
+    transform: translateY(-1px);
+    color: var(--accent-color, #ff8c00);
+}
+
+.view-more-servers-btn:hover i {
+    transform: translateX(3px);
 }
 
 /* Add breathing animation for servers radial */

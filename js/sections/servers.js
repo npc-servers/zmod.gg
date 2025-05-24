@@ -6,6 +6,7 @@ class ServersSection {
         this.serversList = document.getElementById('servers-list');
         this.totalPlayersElement = document.getElementById('total-players');
         this.totalServersElement = document.getElementById('total-servers');
+        this.serverStatuses = new Map(); // Store server statuses for sorting
         this.initialize();
     }
 
@@ -16,8 +17,22 @@ class ServersSection {
         setInterval(() => this.updateAllServers(), 30000);
     }
 
+    getTopServers() {
+        // Sort servers by player count (descending) and take top 3
+        const serversWithStatus = servers.map(server => ({
+            ...server,
+            status: this.serverStatuses.get(server.id) || { online: false, players: 0, maxPlayers: 0 }
+        }));
+
+        return serversWithStatus
+            .sort((a, b) => b.status.players - a.status.players)
+            .slice(0, 3);
+    }
+
     renderServers() {
-        this.serversList.innerHTML = servers.map(server => {
+        const topServers = this.getTopServers();
+        
+        const serversHTML = topServers.map(server => {
             const gamemodeInfo = gamemodes[server.gamemode] || { name: 'Unknown', id: 'unknown' };
             
             return `
@@ -49,6 +64,15 @@ class ServersSection {
             </div>
             `;
         }).join('');
+
+        // Add VIEW MORE button
+        const viewMoreHTML = `
+            <div class="view-more-servers">
+                <button class="view-more-servers-btn">VIEW MORE <i class="fas fa-arrow-right"></i></button>
+            </div>
+        `;
+
+        this.serversList.innerHTML = serversHTML + viewMoreHTML;
     }
 
     async updateServerStatus(server) {
@@ -78,7 +102,20 @@ class ServersSection {
     async updateAllServers() {
         const statusPromises = servers.map(async server => {
             const status = await this.updateServerStatus(server);
+            this.serverStatuses.set(server.id, status); // Store status for sorting
+            return { server, status };
+        });
+
+        const allResults = await Promise.all(statusPromises);
+        
+        // Re-render servers with updated sorting
+        this.renderServers();
+        
+        // Update the displayed servers with their status
+        const topServers = this.getTopServers();
+        topServers.forEach(server => {
             const serverElement = document.getElementById(`server-${server.id}`);
+            const status = server.status;
             
             if (serverElement) {
                 const statusIndicator = serverElement.querySelector('.status-indicator');
@@ -122,15 +159,11 @@ class ServersSection {
                     serverCard.classList.add('is-offline');
                 }
             }
-            
-            return status;
         });
 
-        const allStatus = await Promise.all(statusPromises);
-        
-        // Update total stats
-        const totalPlayers = allStatus.reduce((sum, status) => sum + status.players, 0);
-        const onlineServers = allStatus.filter(status => status.online).length;
+        // Update total stats (using all servers, not just displayed ones)
+        const totalPlayers = allResults.reduce((sum, result) => sum + result.status.players, 0);
+        const onlineServers = allResults.filter(result => result.status.online).length;
         
         this.totalPlayersElement.textContent = totalPlayers;
         this.totalServersElement.textContent = onlineServers;
