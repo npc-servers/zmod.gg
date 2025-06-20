@@ -1,0 +1,712 @@
+.guide-section {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #1a1a1a 0%, #1a1a1a 20%, #111111 40%, #0a0a0a 100%);
+    position: relative;
+    padding: 4rem 2rem;
+    padding-bottom: 12rem;
+}
+
+.guide-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.guide-header {
+    margin-bottom: 4rem;
+    position: relative;
+    text-align: center;
+}
+
+.guide-header::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 140%;
+    background: radial-gradient(circle at center, 
+        rgba(255,255,255,0.1) 0%,
+        rgba(255,255,255,0.05) 35%,
+        transparent 70%
+    );
+    filter: blur(40px);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.guide-header h1 {
+    font-family: 'Teko', sans-serif;
+    font-size: 4rem;
+    font-weight: 600;
+    color: var(--text-color);
+    letter-spacing: 2px;
+    line-height: 1;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.guide-header h1 .heading-first,
+.guide-header h1 .heading-second {
+    position: relative;
+    display: inline-block;
+}
+
+.guide-header h1 .heading-first::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -15px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 12px 12px 0 0;
+    border-color: var(--text-color) transparent transparent transparent;
+    opacity: 0.8;
+}
+
+.guide-header h1 .heading-second::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    right: -12px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 12px 12px;
+    border-color: transparent transparent var(--text-color) transparent;
+    opacity: 0.8;
+}
+
+.guide-subtitle {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    margin: 0;
+}
+
+.guide-content {
+    background: rgba(44, 44, 44, 0.8);
+    border-radius: 8px;
+    padding: 3rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.guide-content:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.guide-intro {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.guide-intro h2 {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.guide-intro p {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+.steps-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.step-item {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.step-item:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.step-item.success-step {
+    background: rgba(76, 175, 80, 0.1);
+    border-color: rgba(76, 175, 80, 0.3);
+}
+
+.step-number {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.success-step .step-number {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.3), rgba(76, 175, 80, 0.2));
+    border-color: rgba(76, 175, 80, 0.5);
+    color: #4caf50;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-content h3 {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.step-content p {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.step-image {
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.step-image img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.step-image img:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.02);
+}
+
+.image-caption {
+    display: block;
+    margin-top: 0.5rem;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.6;
+    font-style: italic;
+}
+
+.substeps {
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+}
+
+.substep {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.substep-bullet {
+    color: var(--text-color);
+    opacity: 0.6;
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    flex-shrink: 0;
+}
+
+.substep p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.step-tip, .step-warning, .success-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+}
+
+.step-tip {
+    background: rgba(33, 150, 243, 0.1);
+    border: 1px solid rgba(33, 150, 243, 0.3);
+}
+
+.step-warning {
+    background: rgba(255, 152, 0, 0.1);
+    border: 1px solid rgba(255, 152, 0, 0.3);
+}
+
+.success-note {
+    background: rgba(76, 175, 80, 0.1);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.step-tip i {
+    color: #2196f3;
+}
+
+.step-warning i {
+    color: #ff9800;
+}
+
+.success-note i {
+    color: #4caf50;
+}
+
+.step-tip p, .step-warning p, .success-note p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.download-buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.download-button-item {
+    width: 100%;
+}
+
+.download-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: var(--text-color);
+    font-family: 'Chakra Petch', sans-serif;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.download-btn::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(1px);
+    z-index: 0;
+    transition: all 0.4s ease;
+    transform: scale(1);
+}
+
+.download-btn:hover::before {
+    filter: blur(0.5px);
+    transform: scale(1.1);
+}
+
+.download-btn:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.download-btn:active {
+    transform: translateY(0);
+}
+
+.download-btn i {
+    font-size: 1.5rem;
+    opacity: 0.8;
+    flex-shrink: 0;
+}
+
+.btn-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+}
+
+.btn-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    line-height: 1.2;
+}
+
+.btn-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    font-weight: 400;
+}
+
+.css-game-btn {
+    border-color: rgba(255, 193, 7, 0.3);
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.1), rgba(255, 193, 7, 0.05));
+}
+
+.css-game-btn::before {
+    background-image: url('../../assets/guides/content/css.jpg');
+}
+
+.css-game-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    border-radius: 6px;
+}
+
+.css-game-btn > * {
+    position: relative;
+    z-index: 2;
+}
+
+.css-game-btn:hover {
+    border-color: rgba(255, 193, 7, 0.6);
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.15), rgba(255, 193, 7, 0.08));
+}
+
+.css-game-btn:hover::after {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.css-game-btn i {
+    color: #ffc107;
+}
+
+.css-maps-btn {
+    border-color: rgba(33, 150, 243, 0.3);
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), rgba(33, 150, 243, 0.05));
+}
+
+.css-maps-btn::before {
+    background-image: url('../../assets/guides/content/css.jpg');
+}
+
+.css-maps-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    border-radius: 6px;
+}
+
+.css-maps-btn > * {
+    position: relative;
+    z-index: 2;
+}
+
+.css-maps-btn:hover {
+    border-color: rgba(33, 150, 243, 0.6);
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.15), rgba(33, 150, 243, 0.08));
+}
+
+.css-maps-btn:hover::after {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.css-maps-btn i {
+    color: #2196f3;
+}
+
+.hl2-ep1-btn {
+    border-color: rgba(76, 175, 80, 0.3);
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(76, 175, 80, 0.05));
+}
+
+.hl2-ep1-btn::before {
+    background-image: url('../../assets/guides/content/hl2ep1.jpg');
+}
+
+.hl2-ep1-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    border-radius: 6px;
+}
+
+.hl2-ep1-btn > * {
+    position: relative;
+    z-index: 2;
+}
+
+.hl2-ep1-btn:hover {
+    border-color: rgba(76, 175, 80, 0.6);
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.15), rgba(76, 175, 80, 0.08));
+}
+
+.hl2-ep1-btn:hover::after {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.hl2-ep1-btn i {
+    color: #4caf50;
+}
+
+.hl2-ep2-btn {
+    border-color: rgba(156, 39, 176, 0.3);
+    background: linear-gradient(135deg, rgba(156, 39, 176, 0.1), rgba(156, 39, 176, 0.05));
+}
+
+.hl2-ep2-btn::before {
+    background-image: url('../../assets/guides/content/hl2ep2.jpg');
+}
+
+.hl2-ep2-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    border-radius: 6px;
+}
+
+.hl2-ep2-btn > * {
+    position: relative;
+    z-index: 2;
+}
+
+.hl2-ep2-btn:hover {
+    border-color: rgba(156, 39, 176, 0.6);
+    background: linear-gradient(135deg, rgba(156, 39, 176, 0.15), rgba(156, 39, 176, 0.08));
+}
+
+.hl2-ep2-btn:hover::after {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.hl2-ep2-btn i {
+    color: #9c27b0;
+}
+
+.troubleshooting-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.troubleshooting-section h2 {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+}
+
+.troubleshooting-item {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1.5rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.troubleshooting-item:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.troubleshooting-item h4 {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.troubleshooting-item h4 i {
+    color: #2196f3;
+}
+
+.troubleshooting-item p {
+    margin: 0;
+    font-size: 0.95rem;
+    opacity: 0.8;
+}
+
+.troubleshooting-item a {
+    color: #2196f3;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.troubleshooting-item a:hover {
+    color: #64b5f6;
+}
+
+.last-updated-container {
+    background: rgba(44, 44, 44, 0.8);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: 2rem;
+    max-width: fit-content;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+}
+
+.last-updated-container:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.icon-wrapper {
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+}
+
+.icon-wrapper i {
+    font-size: 14px;
+    color: var(--text-color);
+    opacity: 0.6;
+}
+
+.text-wrapper {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .guide-section {
+        padding: 2rem 1rem;
+    }
+
+    .guide-header h1 {
+        font-size: 3rem;
+    }
+
+    .guide-content {
+        padding: 2rem;
+    }
+
+    .step-item {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+
+    .step-number {
+        align-self: flex-start;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+
+    .step-content h3 {
+        font-size: 1.3rem;
+    }
+
+    .troubleshooting-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .download-buttons-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .download-btn {
+        padding: 1.25rem;
+    }
+
+    .btn-title {
+        font-size: 1rem;
+    }
+
+    .btn-subtitle {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .guide-section {
+        padding: 1.5rem 0.5rem;
+    }
+
+    .guide-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .guide-header h1 .heading-first,
+    .guide-header h1 .heading-second {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .guide-content {
+        padding: 1.5rem;
+    }
+
+    .last-updated-container {
+        font-size: 12px;
+    }
+} 
