@@ -329,13 +329,30 @@ body {
 
 .hero-title {
     font-family: 'BankGothic', 'Special Gothic Expanded One', sans-serif;
-    font-size: clamp(2.5rem, 8vw, 6.5rem);
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
     font-weight: 700;
     margin-bottom: 2rem;
     color: var(--color-white);
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);
     letter-spacing: 0.5px;
-    white-space: nowrap;
+    line-height: 1.1;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    position: relative;
+}
+
+.hero-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    right: -8px;
+    width: 12px;
+    height: 12px;
+    background: 
+        /* Bottom-right L bracket */
+        linear-gradient(var(--color-red), var(--color-red)) 100% 100%/12px 3px,
+        linear-gradient(var(--color-red), var(--color-red)) 100% 100%/3px 12px;
+    background-repeat: no-repeat;
 }
 
 .hero-subtitle {
