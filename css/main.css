@@ -123,10 +123,13 @@ body {
     letter-spacing: 0.5px;
 }
 
-.nav-link:hover {
-    color: var(--color-red);
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-2px);
+.nav-link:hover:not(.active) {
+    color: #c0c0c0;
+    transform: scale(1.1);
+}
+
+.nav-link.active:hover {
+    color: #c0c0c0;
 }
 
 .nav-link.active {
@@ -235,10 +238,13 @@ body {
     text-align: center;
 }
 
-.mobile-nav-link:hover {
-    color: var(--color-red);
-    background: rgba(255, 255, 255, 0.1);
-    transform: scale(1.05);
+.mobile-nav-link:hover:not(.active) {
+    color: #c0c0c0;
+    transform: scale(1.1);
+}
+
+.mobile-nav-link.active:hover {
+    color: #c0c0c0;
 }
 
 .mobile-nav-link.active {
