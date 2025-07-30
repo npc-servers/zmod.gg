@@ -44,21 +44,49 @@ body {
 /* Header Styles */
 .header {
     position: fixed;
-    top: 1.5rem;
+    top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 0 4rem;
+    padding: 1.5rem 4rem;
     margin: 0;
     display: flex;
     align-items: center;
     gap: 80px;
     transform: translateY(0);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, padding 0.3s ease;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100vw;
+    right: -100vw;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.header.scrolled {
+    padding: 0 4rem;
+}
+
+.header.scrolled::before {
+    opacity: 1;
 }
 
 .header.hidden {
     transform: translateY(-120px);
+}
+
+.header.hidden::before {
+    opacity: 0;
 }
 
 .logo-container {
@@ -80,6 +108,14 @@ body {
     flex-shrink: 0;
     width: fit-content;
     margin-left: auto;
+}
+
+.header.scrolled .navbar {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: 1px solid transparent;
+    border-radius: 0;
 }
 
 .logo-box {
@@ -288,7 +324,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding: 6rem 4rem 0;
+    padding: 8rem 4rem 0;
     background-image: url('../assets/gamemodes/homigrad.png');
     background-size: cover;
     background-position: center;
@@ -786,7 +822,7 @@ body {
         padding: 0 3rem;
         align-items: center;
         text-align: center;
-        padding-top: 10rem;
+        padding-top: 8rem;
     }
     
     .landing-content {
@@ -849,9 +885,20 @@ body {
 
 @media (max-width: 768px) {
     .header {
-        top: 1rem;
-        padding: 0 2rem;
+        top: 0;
+        padding: 1rem 2rem;
         gap: 40px;
+        transition: transform 0.3s ease, padding 0.3s ease;
+    }
+    
+    .header.scrolled {
+        padding: 0 2rem;
+    }
+    
+    .header::before {
+        top: 0;
+        left: -50vw;
+        right: -50vw;
     }
     
     .navbar {
@@ -870,7 +917,7 @@ body {
     
     .landing {
         padding: 0 2rem;
-        padding-top: 9rem;
+        padding-top: 7rem;
     }
     
     .servers {
@@ -946,9 +993,20 @@ body {
 
 @media (max-width: 480px) {
     .header {
-        top: 0.5rem;
-        padding: 0 1rem;
+        top: 0;
+        padding: 0.5rem 1rem;
         gap: 30px;
+        transition: transform 0.3s ease, padding 0.3s ease;
+    }
+    
+    .header.scrolled {
+        padding: 0 1rem;
+    }
+    
+    .header::before {
+        top: 0;
+        left: -25vw;
+        right: -25vw;
     }
     
     .navbar {
@@ -967,7 +1025,7 @@ body {
     
     .landing {
         padding: 0 1rem;
-        padding-top: 8rem;
+        padding-top: 6rem;
     }
     
     .mobile-nav-link {
@@ -1033,7 +1091,18 @@ body {
 
 @media (max-width: 360px) {
     .header {
+        padding: 0.5rem 0.5rem;
+        transition: transform 0.3s ease, padding 0.3s ease;
+    }
+    
+    .header.scrolled {
         padding: 0 0.5rem;
+    }
+    
+    .header::before {
+        top: 0;
+        left: -20vw;
+        right: -20vw;
     }
     
     .navbar {

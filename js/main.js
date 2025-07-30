@@ -328,16 +328,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function updateNavbar() {
         const header = document.querySelector('.header');
-        const navbar = document.querySelector('.navbar');
         const currentScrollY = window.scrollY;
         
-        // Change navbar background based on scroll position
-        if (currentScrollY > 50) {
-            navbar.style.background = 'rgba(0, 0, 0, 0.9)';
-            navbar.style.backdropFilter = 'blur(15px)';
+        // Add/remove scrolled class based on scroll position (only when not at very top)
+        if (currentScrollY > 0) {
+            header.classList.add('scrolled');
         } else {
-            navbar.style.background = 'rgba(0, 0, 0, 0.7)';
-            navbar.style.backdropFilter = 'blur(10px)';
+            header.classList.remove('scrolled');
         }
         
         // Hide/show navbar based on scroll direction
