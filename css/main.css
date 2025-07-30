@@ -554,9 +554,9 @@ body {
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--color-white);
-    background: var(--color-black);
+    background: #181818;
     border: 2px solid transparent;
-    padding: 1rem 3rem;
+    padding: 0.7rem 3rem;
     border-radius: 0;
     text-decoration: none;
     text-transform: uppercase;
@@ -593,6 +593,7 @@ body {
 
 .server-button:hover {
     color: var(--color-red);
+    background: transparent;
     transform: translateY(-2px);
 }
 
@@ -678,7 +679,7 @@ body {
     font-size: 1rem;
     font-weight: 700;
     color: var(--color-white);
-    background: var(--color-black);
+    background: #181818;
     border: 2px solid transparent;
     padding: 1rem 1.5rem;
     border-radius: 0;
@@ -718,6 +719,7 @@ body {
 
 .content-button:hover {
     color: var(--color-red);
+    background: transparent;
     transform: translateY(-2px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
@@ -1083,7 +1085,7 @@ body {
     
     .server-button {
         font-size: 1rem;
-        padding: 0.8rem 1.5rem;
+        padding: 0.6rem 1.5rem;
     }
     
     .additional-content {
@@ -1185,7 +1187,7 @@ body {
     
     .server-button {
         font-size: 0.9rem;
-        padding: 0.7rem 1.2rem;
+        padding: 0.5rem 1.2rem;
     }
     
     .additional-content {
