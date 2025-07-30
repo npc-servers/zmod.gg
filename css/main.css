@@ -781,7 +781,74 @@ body {
     margin-bottom: 0;
 }
 
+/* Section Separator */
+.section-separator {
+    padding: 4rem 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-black);
+}
 
+.separator-line {
+    position: relative;
+    width: 100%;
+    max-width: 90%;
+    height: 2px;
+    background: var(--color-red);
+}
+
+.separator-line:before,
+.separator-line:after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+}
+
+.separator-line:before {
+    top: -8px;
+    left: -8px;
+    background: 
+        /* Top-left inverted L bracket */
+        linear-gradient(var(--color-red), var(--color-red)) 0 0/2px 8px,
+        linear-gradient(var(--color-red), var(--color-red)) 0 0/8px 2px,
+        /* Bottom-left inverted L bracket */
+        linear-gradient(var(--color-red), var(--color-red)) 0 100%/2px 8px,
+        linear-gradient(var(--color-red), var(--color-red)) 0 100%/8px 2px;
+    background-repeat: no-repeat;
+}
+
+.separator-line:after {
+    top: -8px;
+    right: -8px;
+    background: 
+        /* Top-right inverted L bracket */
+        linear-gradient(var(--color-red), var(--color-red)) 100% 0/2px 8px,
+        linear-gradient(var(--color-red), var(--color-red)) 100% 0/8px 2px,
+        /* Bottom-right inverted L bracket */
+        linear-gradient(var(--color-red), var(--color-red)) 100% 100%/2px 8px,
+        linear-gradient(var(--color-red), var(--color-red)) 100% 100%/8px 2px;
+    background-repeat: no-repeat;
+}
+
+/* Server Browser Section */
+.server-browser {
+    background-color: var(--color-black);
+    padding: 4rem 4rem;
+    text-align: center;
+}
+
+.server-browser-title {
+    font-family: 'BankGothic', 'Special Gothic Expanded One', sans-serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--color-white);
+    margin-bottom: 4rem;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+}
 
 /* Animations */
 @keyframes fadeInUp {
@@ -908,6 +975,14 @@ body {
     .content-description {
         font-size: 1rem;
     }
+    
+    .section-separator {
+        padding: 3rem 3rem;
+    }
+    
+    .server-browser {
+        padding: 3rem 3rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1019,6 +1094,14 @@ body {
     .content-description {
         font-size: 0.95rem;
     }
+    
+    .section-separator {
+        padding: 2.5rem 2rem;
+    }
+    
+    .server-browser {
+        padding: 2.5rem 2rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1126,6 +1209,14 @@ body {
         font-size: 0.9rem;
         margin-bottom: 1rem;
     }
+    
+    .section-separator {
+        padding: 2rem 1rem;
+    }
+    
+    .server-browser {
+        padding: 2rem 1rem;
+    }
 }
 
 @media (max-width: 360px) {
@@ -1231,6 +1322,14 @@ body {
         font-size: 0.85rem;
         margin-bottom: 0.8rem;
     }
+    
+    .section-separator {
+        padding: 2rem 1rem;
+    }
+    
+    .server-browser {
+        padding: 2rem 1rem;
+    }
 }
 
 @media (max-width: 320px) {
@@ -1271,5 +1370,17 @@ body {
         align-items: flex-start;
         justify-content: flex-start;
         margin: 0;
+    }
+    
+    .section-separator {
+        padding: 1.5rem 0.5rem;
+    }
+    
+    .separator-line {
+        max-width: 85%;
+    }
+    
+    .server-browser {
+        padding: 1.5rem 0.5rem;
     }
 } 
