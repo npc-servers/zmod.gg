@@ -18,6 +18,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize page tracking
     initializePageTracking();
     
+    // Initialize Atropos for server cards (with delay to ensure library is loaded)
+    setTimeout(initializeAtropos, 100);
+    
+    // Backup initialization on window load
+    window.addEventListener('load', function() {
+        console.log('Window loaded, attempting Atropos backup initialization');
+        setTimeout(initializeAtropos, 200);
+    });
+    
     // Scramble animation functionality
     function initializeScrambleAnimation() {
         const scrambleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
@@ -167,6 +176,87 @@ document.addEventListener('DOMContentLoaded', function() {
                 closeHamburgerMenu();
             }
         });
+    }
+    
+    // Track if Atropos has been initialized
+    let atroposInitialized = false;
+    
+    // Initialize Atropos functionality for server cards
+    function initializeAtropos() {
+        // Prevent multiple initializations
+        if (atroposInitialized) {
+            console.log('Atropos already initialized, skipping...');
+            return;
+        }
+        
+        // Check if Atropos is available
+        if (typeof Atropos === 'undefined') {
+            console.log('Atropos library not loaded yet, retrying...');
+            setTimeout(initializeAtropos, 100);
+            return;
+        }
+        
+        console.log('Initializing Atropos...');
+        
+                // Initialize Atropos on server cards
+        const serverCards = document.querySelectorAll('.my-atropos');
+        console.log('Found server cards:', serverCards.length);
+        
+        if (serverCards.length === 0) {
+            console.log('No server cards found with .my-atropos class');
+            return;
+        }
+        
+        serverCards.forEach((card, index) => {
+            console.log(`Initializing Atropos for card ${index}`);
+            try {
+                const atropos = Atropos({
+                    el: card,
+                    activeOffset: 5,
+                    shadowScale: 1.01,
+                    rotateXMax: 2,
+                    rotateYMax: 2,
+                    rotateXInvert: true,
+                    rotateYInvert: true,
+                    duration: 400,
+                    highlight: false,
+                    onEnter() {
+                        console.log('Atropos: Enter card', index);
+                    },
+                    onLeave() {
+                        console.log('Atropos: Leave card', index);
+                    },
+                    onRotate(x, y) {
+                        console.log('Atropos: Rotate card', index, x, y);
+                    }
+                });
+                console.log('Atropos instance created successfully:', atropos);
+            } catch (error) {
+                console.error('Error creating Atropos instance:', error);
+            }
+        });
+        
+        // Mark as initialized
+        atroposInitialized = true;
+        console.log('Atropos initialization complete');
+        
+        // Add intersection observer for servers section
+        const serversSection = document.querySelector('.servers-section');
+        if (serversSection) {
+            serversSection.id = 'servers';
+            const sectionObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setCurrentPage('servers');
+                    }
+                });
+            }, {
+                threshold: 0.3,
+                rootMargin: '-100px 0px -100px 0px'
+            });
+            
+            sectionObserver.observe(serversSection);
+        }
     }
     
     // Close hamburger menu
