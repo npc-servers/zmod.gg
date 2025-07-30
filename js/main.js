@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize page tracking
     initializePageTracking();
     
+
+    
     // Scramble animation functionality
     function initializeScrambleAnimation() {
         const scrambleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
@@ -320,12 +322,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Navbar scroll effect
+    // Navbar scroll effect with hide/show functionality
     let lastScrollY = window.scrollY;
-    window.addEventListener('scroll', function() {
+    let ticking = false;
+    
+    function updateNavbar() {
+        const header = document.querySelector('.header');
         const navbar = document.querySelector('.navbar');
         const currentScrollY = window.scrollY;
         
+        // Change navbar background based on scroll position
         if (currentScrollY > 50) {
             navbar.style.background = 'rgba(0, 0, 0, 0.9)';
             navbar.style.backdropFilter = 'blur(15px)';
@@ -334,7 +340,29 @@ document.addEventListener('DOMContentLoaded', function() {
             navbar.style.backdropFilter = 'blur(10px)';
         }
         
+        // Hide/show navbar based on scroll direction
+        if (currentScrollY > 100) { // Only hide after scrolling past 100px
+            if (currentScrollY > lastScrollY && currentScrollY > 200) {
+                // Scrolling down - hide navbar
+                header.classList.add('hidden');
+            } else if (currentScrollY < lastScrollY) {
+                // Scrolling up - show navbar
+                header.classList.remove('hidden');
+            }
+        } else {
+            // Always show navbar when near the top
+            header.classList.remove('hidden');
+        }
+        
         lastScrollY = currentScrollY;
+        ticking = false;
+    }
+    
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            requestAnimationFrame(updateNavbar);
+            ticking = true;
+        }
     });
     
     // Intersection Observer for scroll animations (for future sections)
@@ -355,10 +383,40 @@ document.addEventListener('DOMContentLoaded', function() {
     const animateElements = document.querySelectorAll('.landing-content');
     animateElements.forEach(el => animationObserver.observe(el));
     
+    // Observe servers section for intersection
+    const serversSection = document.querySelector('.servers');
+    if (serversSection) {
+        const sectionObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setCurrentPage('servers');
+                }
+            });
+        }, { threshold: 0.3, rootMargin: '-100px 0px -100px 0px' });
+        
+        sectionObserver.observe(serversSection);
+    }
+    
     // Expose page tracking functions globally for debugging
     window.ZModTracking = {
         getCurrentPage: () => currentPage,
         getPageStats: getPageStats,
         setCurrentPage: setCurrentPage
     };
+    
+    // Handle smooth scrolling for server section links
+    document.addEventListener('click', function(e) {
+        if (e.target.matches('a[href="#servers"]') || e.target.matches('a[data-page="servers"]')) {
+            e.preventDefault();
+            const serversSection = document.querySelector('.servers');
+            if (serversSection) {
+                const offsetTop = serversSection.offsetTop - 100;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+                setCurrentPage('servers');
+            }
+        }
+    });
 }); 
