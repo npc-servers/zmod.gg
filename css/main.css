@@ -835,6 +835,151 @@ body {
     align-items: center;
 }
 
+/* Server Background Images */
+.server-card.bg-homigrad::before,
+.server-group-main.bg-homigrad::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../assets/gamemodes/homigrad.png');
+    background-size: cover;
+    background-position: left center;
+    background-repeat: no-repeat;
+    opacity: 0.15;
+    z-index: 1;
+    background: linear-gradient(to right, 
+        rgba(0, 0, 0, 0) 0%, 
+        rgba(0, 0, 0, 0.3) 50%, 
+        rgba(0, 0, 0, 0.9) 80%, 
+        rgba(0, 0, 0, 1) 100%),
+        url('../assets/gamemodes/homigrad.png');
+    background-size: auto 100%, cover;
+    background-position: right center, left center;
+    background-repeat: no-repeat, no-repeat;
+}
+
+.server-card.bg-horde::before,
+.server-group-main.bg-horde::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../assets/gamemodes/horde.jpg');
+    background-size: cover;
+    background-position: left center;
+    background-repeat: no-repeat;
+    opacity: 0.15;
+    z-index: 1;
+    background: linear-gradient(to right, 
+        rgba(0, 0, 0, 0) 0%, 
+        rgba(0, 0, 0, 0.3) 50%, 
+        rgba(0, 0, 0, 0.9) 80%, 
+        rgba(0, 0, 0, 1) 100%),
+        url('../assets/gamemodes/horde.jpg');
+    background-size: auto 100%, cover;
+    background-position: right center, left center;
+    background-repeat: no-repeat, no-repeat;
+}
+
+.server-card.bg-sandbox::before,
+.server-group-main.bg-sandbox::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../assets/gamemodes/sandbox.jpg');
+    background-size: cover;
+    background-position: left center;
+    background-repeat: no-repeat;
+    opacity: 0.15;
+    z-index: 1;
+    background: linear-gradient(to right, 
+        rgba(0, 0, 0, 0) 0%, 
+        rgba(0, 0, 0, 0.3) 50%, 
+        rgba(0, 0, 0, 0.9) 80%, 
+        rgba(0, 0, 0, 1) 100%),
+        url('../assets/gamemodes/sandbox.jpg');
+    background-size: auto 100%, cover;
+    background-position: right center, left center;
+    background-repeat: no-repeat, no-repeat;
+}
+
+/* Sub-server card background images */
+.server-sub-card.bg-homigrad::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, 
+        rgba(0, 0, 0, 0) 0%, 
+        rgba(0, 0, 0, 0.3) 50%, 
+        rgba(0, 0, 0, 0.9) 80%, 
+        rgba(0, 0, 0, 1) 100%),
+        url('../assets/gamemodes/homigrad.png');
+    background-size: auto 100%, cover;
+    background-position: right center, left center;
+    background-repeat: no-repeat, no-repeat;
+    opacity: 0.12;
+    z-index: 1;
+}
+
+.server-sub-card.bg-horde::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, 
+        rgba(0, 0, 0, 0) 0%, 
+        rgba(0, 0, 0, 0.3) 50%, 
+        rgba(0, 0, 0, 0.9) 80%, 
+        rgba(0, 0, 0, 1) 100%),
+        url('../assets/gamemodes/horde.jpg');
+    background-size: auto 100%, cover;
+    background-position: right center, left center;
+    background-repeat: no-repeat, no-repeat;
+    opacity: 0.12;
+    z-index: 1;
+}
+
+.server-sub-card.bg-sandbox::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, 
+        rgba(0, 0, 0, 0) 0%, 
+        rgba(0, 0, 0, 0.3) 50%, 
+        rgba(0, 0, 0, 0.9) 80%, 
+        rgba(0, 0, 0, 1) 100%),
+        url('../assets/gamemodes/sandbox.jpg');
+    background-size: auto 100%, cover;
+    background-position: right center, left center;
+    background-repeat: no-repeat, no-repeat;
+    opacity: 0.12;
+    z-index: 1;
+}
+
+/* Ensure content is above background */
+.server-card > *,
+.server-group-main > *,
+.server-sub-card > * {
+    position: relative;
+    z-index: 2;
+}
+
 .server-browser .separator-line {
     margin: 0;
     margin-bottom: 4rem;
@@ -927,6 +1072,7 @@ body {
     background: #22c55e;
     box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
     flex-shrink: 0;
+    z-index: 3;
 }
 
 .server-info-left {
@@ -1181,6 +1327,7 @@ body {
     background: #22c55e;
     box-shadow: 0 0 6px rgba(34, 197, 94, 0.6);
     flex-shrink: 0;
+    z-index: 3;
 }
 
 .server-sub-info-left {

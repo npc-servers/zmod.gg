@@ -466,6 +466,41 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Server browser functionality
+    // Helper function to determine background class based on server data
+    function getServerBackgroundClass(serverData) {
+        const serverId = serverData.id || '';
+        const serverName = serverData.name || '';
+        
+        // Check for Horde servers
+        if (serverId.includes('horde') || serverName.toLowerCase().includes('horde')) {
+            return 'bg-horde';
+        }
+        
+        // Check for Sandbox servers
+        if (serverId.includes('sandbox') || serverName.toLowerCase().includes('sandbox')) {
+            return 'bg-sandbox';
+        }
+        
+        // Check for ZGRAD servers (use homigrad image)
+        if (serverId.includes('zgrad') || serverName.toLowerCase().includes('zgrad')) {
+            return 'bg-homigrad';
+        }
+        
+        // For ZBox (sandbox-like), use sandbox background
+        if (serverId.includes('zbox') || serverName.toLowerCase().includes('zbox')) {
+            return 'bg-sandbox';
+        }
+        
+        // For ZScenario and MapSweepers, use homigrad as they're tactical/scenario based
+        if (serverId.includes('zscenario') || serverName.toLowerCase().includes('zscenario') ||
+            serverId.includes('mapsweepers') || serverName.toLowerCase().includes('mapsweepers')) {
+            return 'bg-homigrad';
+        }
+        
+        // Default fallback - no background
+        return '';
+    }
+
     function updateServerStatus(server) {
         return fetch(`https://gameserveranalytics.com/api/v2/query?game=source&ip=${server.ip}&port=${server.port}&type=info`)
             .then(response => response.json())
@@ -494,10 +529,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function createServerCard(server, status) {
         const card = document.createElement('div');
-        card.className = `server-card ${status.online ? 'online' : 'offline'}`;
+        const backgroundClass = getServerBackgroundClass(server);
+        card.className = `server-card ${status.online ? 'online' : 'offline'} ${backgroundClass}`;
         card.innerHTML = `
+            <div class="server-status-indicator ${status.online ? 'online' : 'offline'}"></div>
             <div class="server-info-left">
-                <div class="server-status-indicator ${status.online ? 'online' : 'offline'}"></div>
                 <div class="server-details">
                     <h3 class="server-name">${server.name}</h3>
                     <p class="server-map">${status.map}</p>
@@ -515,10 +551,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function createSubServerCard(server, status) {
         const card = document.createElement('div');
-        card.className = `server-sub-card ${status.online ? 'online' : 'offline'}`;
+        const backgroundClass = getServerBackgroundClass(server);
+        card.className = `server-sub-card ${status.online ? 'online' : 'offline'} ${backgroundClass}`;
         card.innerHTML = `
+            <div class="server-sub-status-indicator ${status.online ? 'online' : 'offline'}"></div>
             <div class="server-sub-info-left">
-                <div class="server-sub-status-indicator ${status.online ? 'online' : 'offline'}"></div>
                 <div class="server-sub-details">
                     <h4 class="server-sub-name">${server.name}</h4>
                     <p class="server-sub-map">${status.map}</p>
@@ -539,10 +576,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const totalMaxPlayers = statuses.reduce((sum, status) => sum + (typeof status.maxPlayers === 'number' ? status.maxPlayers : 0), 0);
         const onlineServers = statuses.length; // All statuses are online since we filtered them
         
+        // Use group data to determine background class (for groups like ZGRAD)
+        const backgroundClass = getServerBackgroundClass(group);
+        
         const groupContainer = document.createElement('div');
         groupContainer.className = 'server-group';
         groupContainer.innerHTML = `
-            <div class="server-group-main" onclick="toggleServerGroup('${group.id}')">
+            <div class="server-group-main ${backgroundClass}" onclick="toggleServerGroup('${group.id}')">
                 <div class="server-group-info-left">
                     <div class="server-group-details">
                         <h3 class="server-group-name">${group.name}</h3>
