@@ -1,0 +1,177 @@
+/* Landing Section */
+.landing {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 8rem 4rem 0;
+    background-image: url('../assets/gamemodes/homigrad.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.landing::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    z-index: 1;
+}
+
+.landing-content {
+    text-align: left;
+    max-width: min(1000px, 95vw);
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    animation: fadeInUp 1s ease-out;
+}
+
+.bottom-cutout {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.cutout-svg {
+    width: min(500px, 90vw);
+    height: 30px;
+    display: block;
+    filter: brightness(0);
+    object-fit: cover;
+}
+
+.hero-title {
+    font-family: 'BankGothic', 'Special Gothic Expanded One', sans-serif;
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--color-white);
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    position: relative;
+}
+
+.hero-title::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    width: 12px;
+    height: 12px;
+    background: 
+        /* Top-left L bracket */
+        linear-gradient(var(--color-red), var(--color-red)) 0 0/12px 3px,
+        linear-gradient(var(--color-red), var(--color-red)) 0 0/3px 12px;
+    background-repeat: no-repeat;
+}
+
+.hero-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    right: -8px;
+    width: 12px;
+    height: 12px;
+    background: 
+        /* Bottom-right L bracket */
+        linear-gradient(var(--color-red), var(--color-red)) 100% 100%/12px 3px,
+        linear-gradient(var(--color-red), var(--color-red)) 100% 100%/3px 12px;
+    background-repeat: no-repeat;
+}
+
+.hero-subtitle {
+    font-family: 'Oxanium', monospace;
+    font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+    margin-bottom: 0;
+    color: var(--color-white);
+    font-weight: 400;
+    line-height: 1.4;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    max-width: 900px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design - Landing */
+@media (max-width: 992px) {
+    .landing {
+        padding: 0 3rem;
+        align-items: center;
+        text-align: center;
+        padding-top: 8rem;
+    }
+    
+    .landing-content {
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .landing {
+        padding: 0 2rem;
+        padding-top: 7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .landing {
+        padding: 0 1rem;
+        padding-top: 6rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .landing {
+        padding: 0 0.5rem;
+        padding-top: 5rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .landing {
+        padding: 0 0.25rem;
+        padding-top: 4.5rem;
+    }
+    
+    .landing-content {
+        max-width: 100%;
+        padding: 0;
+    }
+    
+    .cutout-svg {
+        width: min(400px, 95vw);
+        height: 25px;
+    }
+    
+    .hero-title {
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: clamp(1.1rem, 4vw, 1.8rem);
+    }
+}
