@@ -888,9 +888,9 @@ body {
 }
 
 .server-card {
-    background: rgba(26, 26, 26, 0.9);
-    border: none;
-    border-radius: 0;
+    background: rgba(16, 16, 16, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
     padding: 2rem 2.5rem;
     display: flex;
     align-items: center;
@@ -903,18 +903,18 @@ body {
 }
 
 .server-card:hover {
-    background: rgba(32, 32, 32, 0.9);
+    background: rgba(24, 24, 24, 0.9);
     transform: translateY(-2px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .server-card.offline {
     opacity: 0.6;
-    background: rgba(16, 16, 16, 0.9);
+    background: rgba(8, 8, 8, 0.9);
 }
 
 .server-card.offline:hover {
-    background: rgba(20, 20, 20, 0.9);
+    background: rgba(12, 12, 12, 0.9);
 }
 
 .server-status-indicator {
@@ -1017,9 +1017,9 @@ body {
 }
 
 .server-group-main {
-    background: rgba(26, 26, 26, 0.9);
-    border: none;
-    border-radius: 0;
+    background: rgba(16, 16, 16, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
     padding: 2rem 2.5rem;
     display: flex;
     align-items: center;
@@ -1033,7 +1033,7 @@ body {
 }
 
 .server-group-main:hover {
-    background: rgba(32, 32, 32, 0.9);
+    background: rgba(24, 24, 24, 0.9);
     transform: translateY(-2px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
@@ -1140,9 +1140,9 @@ body {
 }
 
 .server-sub-card {
-    background: rgba(26, 26, 26, 0.9);
-    border: none;
-    border-radius: 0;
+    background: rgba(12, 12, 12, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
     padding: 1.5rem 2.5rem;
     display: flex;
     align-items: center;
@@ -1157,18 +1157,18 @@ body {
 }
 
 .server-sub-card:hover {
-    background: rgba(32, 32, 32, 0.9);
+    background: rgba(20, 20, 20, 0.9);
     transform: translateY(-2px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .server-sub-card.offline {
     opacity: 0.6;
-    background: rgba(16, 16, 16, 0.9);
+    background: rgba(4, 4, 4, 0.9);
 }
 
 .server-sub-card.offline:hover {
-    background: rgba(20, 20, 20, 0.9);
+    background: rgba(8, 8, 8, 0.9);
 }
 
 .server-sub-status-indicator {
