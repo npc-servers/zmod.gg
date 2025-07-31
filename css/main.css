@@ -782,18 +782,11 @@ body {
 }
 
 /* Section Separator */
-.section-separator {
-    padding: 4rem 4rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--color-black);
-}
 
 .separator-line {
     position: relative;
     width: 100%;
-    max-width: 90%;
+    max-width: 95%;
     height: 2px;
     background: var(--color-red);
 }
@@ -835,8 +828,16 @@ body {
 /* Server Browser Section */
 .server-browser {
     background-color: var(--color-black);
-    padding: 4rem 4rem;
+    padding: 0;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.server-browser .separator-line {
+    margin: 0;
+    margin-bottom: 4rem;
 }
 
 .server-browser-title {
@@ -976,12 +977,8 @@ body {
         font-size: 1rem;
     }
     
-    .section-separator {
-        padding: 3rem 3rem;
-    }
-    
-    .server-browser {
-        padding: 3rem 3rem;
+    .server-browser .separator-line {
+        margin-bottom: 3rem;
     }
 }
 
@@ -1095,12 +1092,8 @@ body {
         font-size: 0.95rem;
     }
     
-    .section-separator {
-        padding: 2.5rem 2rem;
-    }
-    
-    .server-browser {
-        padding: 2.5rem 2rem;
+    .server-browser .separator-line {
+        margin-bottom: 2.5rem;
     }
 }
 
@@ -1210,12 +1203,8 @@ body {
         margin-bottom: 1rem;
     }
     
-    .section-separator {
-        padding: 2rem 1rem;
-    }
-    
-    .server-browser {
-        padding: 2rem 1rem;
+    .server-browser .separator-line {
+        margin-bottom: 2rem;
     }
 }
 
@@ -1323,12 +1312,8 @@ body {
         margin-bottom: 0.8rem;
     }
     
-    .section-separator {
-        padding: 2rem 1rem;
-    }
-    
-    .server-browser {
-        padding: 2rem 1rem;
+    .server-browser .separator-line {
+        margin-bottom: 2rem;
     }
 }
 
@@ -1372,15 +1357,8 @@ body {
         margin: 0;
     }
     
-    .section-separator {
-        padding: 1.5rem 0.5rem;
-    }
-    
-    .separator-line {
-        max-width: 85%;
-    }
-    
-    .server-browser {
-        padding: 1.5rem 0.5rem;
+    .server-browser .separator-line {
+        max-width: 92%;
+        margin-bottom: 1.5rem;
     }
 } 
