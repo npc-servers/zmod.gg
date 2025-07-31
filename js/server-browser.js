@@ -5,9 +5,9 @@ class ServerBrowser {
         this.serverGroups = [
             {
                 id: 'sandbox',
-                name: 'Sandbox',
+                name: 'NPC Zombies Vs. Players',
                 type: 'single',
-                servers: [{ id: 'sandbox', name: 'Sandbox', ip: '193.243.190.18', port: '27015' }]
+                servers: [{ id: 'sandbox', name: 'NPC Zombies Vs. Players', ip: '193.243.190.18', port: '27015' }]
             },
             {
                 id: 'horde',
@@ -40,9 +40,9 @@ class ServerBrowser {
             },
             {
                 id: 'mapsweepers',
-                name: 'MapSweepers',
+                name: 'Map Sweepers',
                 type: 'single',
-                servers: [{ id: 'mapsweepers', name: 'MapSweepers', ip: '193.243.190.18', port: '27027' }]
+                servers: [{ id: 'mapsweepers', name: 'Map Sweepers Official Server', ip: '193.243.190.18', port: '27027' }]
             }
         ];
         
@@ -79,10 +79,14 @@ class ServerBrowser {
             return 'bg-sandbox';
         }
         
-        // For ZScenario and MapSweepers, use homigrad as they're tactical/scenario based
-        if (serverId.includes('zscenario') || serverName.toLowerCase().includes('zscenario') ||
-            serverId.includes('mapsweepers') || serverName.toLowerCase().includes('mapsweepers')) {
+        // For ZScenario, use homigrad as it's tactical/scenario based
+        if (serverId.includes('zscenario') || serverName.toLowerCase().includes('zscenario')) {
             return 'bg-homigrad';
+        }
+        
+        // For MapSweepers, use its own background
+        if (serverId.includes('mapsweepers') || serverName.toLowerCase().includes('mapsweepers')) {
+            return 'bg-mapsweepers';
         }
         
         // Default fallback - no background
@@ -118,17 +122,26 @@ class ServerBrowser {
     createServerCard(server, status) {
         const card = document.createElement('div');
         const backgroundClass = this.getServerBackgroundClass(server);
+        const isMapSweepers = server.id.includes('mapsweepers') || server.name.toLowerCase().includes('mapsweepers');
+        const isSandbox = server.id.includes('sandbox');
+        
         card.className = `server-card ${status.online ? 'online' : 'offline'} ${backgroundClass}`;
         card.innerHTML = `
             <div class="server-status-indicator ${status.online ? 'online' : 'offline'}"></div>
+            ${isMapSweepers ? '<div class="partner-label"><img src="assets/logos/a_octantisaddons.png" alt="Partner" class="partner-icon">Partner</div>' : ''}
             <div class="server-info-left">
                 <div class="server-details">
-                    <h3 class="server-name">${server.name}</h3>
+                    <div style="display: flex; align-items: center;">
+                        <h3 class="server-name">${server.name}</h3>
+                        ${isSandbox ? '<img src="assets/logos/npcz.png" alt="NPCZ Logo" class="npcz-logo-piece">' : ''}
+                    </div>
                     <p class="server-map">${status.map}</p>
                 </div>
             </div>
             <div class="server-info-right">
                 <div class="server-players">${status.players}/${status.maxPlayers}</div>
+                ${isMapSweepers ? '<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3179978923" target="_blank" class="workshop-btn">View on Workshop</a>' : ''}
+                ${isSandbox ? '<a href="https://zmod.gg/npcz" target="_blank" class="learn-more-btn">Learn More</a>' : ''}
                 <button class="server-join-btn" onclick="connectToServer('${server.ip}', '${server.port}')" ${!status.online ? 'disabled' : ''}>
                     ${status.online ? 'Connect' : 'Offline'}
                 </button>
@@ -140,9 +153,12 @@ class ServerBrowser {
     createSubServerCard(server, status) {
         const card = document.createElement('div');
         const backgroundClass = this.getServerBackgroundClass(server);
+        const isMapSweepers = server.id.includes('mapsweepers') || server.name.toLowerCase().includes('mapsweepers');
+        
         card.className = `server-sub-card ${status.online ? 'online' : 'offline'} ${backgroundClass}`;
         card.innerHTML = `
             <div class="server-sub-status-indicator ${status.online ? 'online' : 'offline'}"></div>
+            ${isMapSweepers ? '<div class="partner-label"><img src="assets/logos/a_octantisaddons.png" alt="Partner" class="partner-icon">Partner</div>' : ''}
             <div class="server-sub-info-left">
                 <div class="server-sub-details">
                     <h4 class="server-sub-name">${server.name}</h4>
@@ -166,6 +182,7 @@ class ServerBrowser {
         
         // Use group data to determine background class (for groups like ZGRAD)
         const backgroundClass = this.getServerBackgroundClass(group);
+        const isZGRAD = group.id === 'zgrad';
         
         const groupContainer = document.createElement('div');
         groupContainer.className = 'server-group';
@@ -173,14 +190,34 @@ class ServerBrowser {
             <div class="server-group-main ${backgroundClass}" onclick="toggleServerGroup('${group.id}')">
                 <div class="server-group-info-left">
                     <div class="server-group-details">
-                        <h3 class="server-group-name">${group.name}</h3>
-                        <p class="server-group-subtitle">${onlineServers} ${onlineServers === 1 ? 'server' : 'servers'} online</p>
+                        <div style="display: flex; align-items: center;">
+                            <h3 class="server-group-name">${group.name}</h3>
+                            ${isZGRAD ? '<img src="assets/zgrad/zgrad-logopiece-z.png" alt="ZGRAD Logo" class="zgrad-logo-piece">' : ''}
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <p class="server-group-subtitle">${onlineServers} ${onlineServers === 1 ? 'server' : 'servers'} online</p>
+                            ${isZGRAD ? `
+                                <span style="margin: 0 0.5rem; color: var(--color-light-gray);">•</span>
+                                <div class="social-icons">
+                                    <a href="https://www.tiktok.com/@zgradhomigrad" target="_blank" class="social-icon" title="TikTok">
+                                        <img src="assets/svgs/tiktok.svg" alt="TikTok" class="social-svg">
+                                    </a>
+                                    <a href="https://www.youtube.com/@zgradhomigrad" target="_blank" class="social-icon" title="YouTube">
+                                        <img src="assets/svgs/youtube.svg" alt="YouTube" class="social-svg">
+                                    </a>
+                                    <a href="https://www.instagram.com/zgradhomigrad" target="_blank" class="social-icon" title="Instagram">
+                                        <img src="assets/svgs/instagram.svg" alt="Instagram" class="social-svg">
+                                    </a>
+                                </div>
+                            ` : ''}
+                        </div>
                     </div>
                 </div>
                 <div class="server-group-info-right">
                     <div class="server-group-players">${totalPlayers}/${totalMaxPlayers > 0 ? totalMaxPlayers : '?'}</div>
+                    ${isZGRAD ? '<a href="https://zmod.gg/zgrad" target="_blank" class="learn-more-btn">Learn More</a>' : ''}
                     <button class="server-expand-btn" onclick="event.stopPropagation(); toggleServerGroup('${group.id}')">
-                        <span>Expand</span>
+                        <span>${isZGRAD ? 'See All' : 'Expand'}</span>
                         <span class="expand-arrow">▼</span>
                     </button>
                 </div>
@@ -280,14 +317,57 @@ class ServerBrowser {
                     }
                 });
 
-                // Sort all servers by player count (highest first)
-                serverElements.sort((a, b) => b.playerCount - a.playerCount);
+                // Sort servers with partner favoritism
+                const partnerElements = [];
+                const regularElements = [];
+                
+                // Separate partner servers from regular servers
+                serverElements.forEach(serverElement => {
+                    const isPartner = serverElement.element.classList.contains('bg-mapsweepers');
+                    if (isPartner) {
+                        partnerElements.push(serverElement);
+                    } else {
+                        regularElements.push(serverElement);
+                    }
+                });
+                
+                // Sort regular servers by player count (highest first)
+                regularElements.sort((a, b) => b.playerCount - a.playerCount);
+                
+                // Sort partner servers by player count too (in case there are multiple partners in future)
+                partnerElements.sort((a, b) => b.playerCount - a.playerCount);
+                
+                // Create final ordered list with partner at position 3 (index 2)
+                const finalServerList = [];
+                const targetPartnerPosition = 2; // Position 3 (0-based index 2)
+                
+                // Add first servers before partner position
+                for (let i = 0; i < targetPartnerPosition && i < regularElements.length; i++) {
+                    finalServerList.push(regularElements[i]);
+                }
+                
+                // Add partner servers at position 3
+                partnerElements.forEach(partnerElement => {
+                    finalServerList.push(partnerElement);
+                });
+                
+                // Add remaining regular servers after partner position
+                for (let i = targetPartnerPosition; i < regularElements.length; i++) {
+                    finalServerList.push(regularElements[i]);
+                }
 
                 // Add sorted elements to the server list
-                if (serverElements.length === 0) {
+                if (finalServerList.length === 0) {
                     serverList.innerHTML = '<div class="loading-text">No servers online at the moment.</div>';
                 } else {
-                    serverElements.forEach(({ element }) => {
+                    finalServerList.forEach(({ element }, index) => {
+                        // Highlight the #1 server (first in the list)
+                        if (index === 0) {
+                            const mainContainer = element.querySelector('.server-card') || element.querySelector('.server-group-main');
+                            if (mainContainer) {
+                                mainContainer.classList.add('number-one');
+                            }
+                        }
                         serverList.appendChild(element);
                     });
                 }
@@ -317,13 +397,14 @@ class ServerBrowser {
             
             if (subList && expandBtn && mainContainer) {
                 const isExpanded = subList.classList.contains('expanded');
+                const isZGRAD = groupId === 'zgrad';
                 
                 if (isExpanded) {
                     // Collapse
                     subList.classList.remove('expanded');
                     expandBtn.classList.remove('expanded');
                     mainContainer.classList.remove('expanded');
-                    expandBtn.querySelector('span:first-child').textContent = 'Expand';
+                    expandBtn.querySelector('span:first-child').textContent = isZGRAD ? 'See All' : 'Expand';
                 } else {
                     // Expand
                     subList.classList.add('expanded');

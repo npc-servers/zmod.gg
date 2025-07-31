@@ -111,7 +111,7 @@
     align-items: center;
     justify-content: space-between;
     transition: all 0.3s ease;
-    position: relative;
+    position: relative !important;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     min-height: 100px;
@@ -133,16 +133,17 @@
 }
 
 .server-status-indicator {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
+    position: absolute !important;
+    top: 1rem !important;
+    right: 1rem !important;
     width: 12px;
     height: 12px;
     border-radius: 50%;
     background: #22c55e;
     box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
     flex-shrink: 0;
-    z-index: 3;
+    z-index: 10;
+    pointer-events: none;
 }
 
 .server-info-left {
@@ -362,7 +363,7 @@
     align-items: center;
     justify-content: space-between;
     transition: all 0.3s ease;
-    position: relative;
+    position: relative !important;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     min-height: 80px;
@@ -386,16 +387,17 @@
 }
 
 .server-sub-status-indicator {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
+    position: absolute !important;
+    top: 1rem !important;
+    right: 1rem !important;
     width: 10px;
     height: 10px;
     border-radius: 50%;
     background: #22c55e;
     box-shadow: 0 0 6px rgba(34, 197, 94, 0.6);
     flex-shrink: 0;
-    z-index: 3;
+    z-index: 10;
+    pointer-events: none;
 }
 
 .server-sub-info-left {
@@ -625,13 +627,233 @@
     z-index: 1;
 }
 
+.server-card.bg-mapsweepers::before,
+.server-group-main.bg-mapsweepers::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, 
+        rgba(0, 0, 0, 0) 0%, 
+        rgba(0, 0, 0, 0.3) 50%, 
+        rgba(0, 0, 0, 0.9) 80%, 
+        rgba(0, 0, 0, 1) 100%),
+        url('../assets/gamemodes/mapsweepers.png');
+    background-size: auto 100%, cover;
+    background-position: right center, left center;
+    background-repeat: no-repeat, no-repeat;
+    opacity: 0.15;
+    z-index: 1;
+}
+
+.server-sub-card.bg-mapsweepers::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, 
+        rgba(0, 0, 0, 0) 0%, 
+        rgba(0, 0, 0, 0.3) 50%, 
+        rgba(0, 0, 0, 0.9) 80%, 
+        rgba(0, 0, 0, 1) 100%),
+        url('../assets/gamemodes/mapsweepers.png');
+    background-size: auto 100%, cover;
+    background-position: right center, left center;
+    background-repeat: no-repeat, no-repeat;
+    opacity: 0.12;
+    z-index: 1;
+}
+
 /* Ensure content is above background */
 .server-card > *,
 .server-group-main > *,
 .server-sub-card > * {
     position: relative;
-    z-index: 2;
+    z-index: 3;
 }
+
+/* Partner Server Container Styling - No special outline */
+
+/* Partner Label */
+.partner-label {
+    position: absolute !important;
+    top: -8px !important;
+    left: -8px !important;
+    background: #8B0000;
+    color: var(--color-white);
+    font-family: 'Oxanium', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    padding-left: 0.5rem; /* Reduced padding since icon provides the spacing */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 15 !important;
+    pointer-events: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    border: 2px solid #660000;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    min-height: 1.5rem;
+}
+
+.partner-icon {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex-shrink: 0;
+    filter: brightness(0) invert(1); /* Make the icon white */
+}
+
+/* Additional Buttons for Higher Resolutions */
+.workshop-btn {
+    font-family: 'Oxanium', monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-white);
+    background: #333333;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.6rem 1.5rem;
+    border-radius: 0;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.workshop-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+.learn-more-btn {
+    font-family: 'Oxanium', monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-white);
+    background: #2c2c2c;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.6rem 1.5rem;
+    border-radius: 0;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.learn-more-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+/* ZGRAD Logo Piece Next to Text */
+.zgrad-logo-piece {
+    height: 2rem;
+    width: auto;
+    margin-left: 0.5rem;
+    opacity: 0.8;
+}
+
+/* NPCZ Logo Piece Next to Text */
+.npcz-logo-piece {
+    height: 2rem;
+    width: auto;
+    margin-left: 0.5rem;
+    opacity: 0.8;
+}
+
+/* Number One Server Highlight */
+.server-card.number-one,
+.server-group-main.number-one {
+    border: 2px solid #cc0000 !important;
+    box-shadow: 
+        0 0 20px rgba(204, 0, 0, 0.5),
+        0 0 40px rgba(204, 0, 0, 0.2);
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.social-icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    color: var(--color-white);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.social-icon:hover {
+    opacity: 1;
+    transform: translateY(-1px);
+}
+
+.social-svg {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) invert(1); /* Make SVGs white */
+    transition: all 0.3s ease;
+}
+
+/* Adjust additional elements on smaller screens */
+@media (max-width: 768px) {
+    .workshop-btn,
+    .learn-more-btn {
+        font-size: 0.8rem;
+        padding: 0.5rem 1.2rem;
+    }
+    
+    .zgrad-logo-piece,
+    .npcz-logo-piece {
+        height: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .workshop-btn,
+    .learn-more-btn {
+        font-size: 0.7rem;
+        padding: 0.4rem 1rem;
+    }
+    
+    .zgrad-logo-piece,
+    .npcz-logo-piece {
+        height: 1.2rem;
+    }
+    
+    .social-icons {
+        gap: 0.3rem;
+    }
+    
+    .social-icon {
+        width: 1rem;
+        height: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .social-svg {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
 
 /* Responsive Design - Server Browser */
 @media (max-width: 992px) {
@@ -669,8 +891,10 @@
     }
     
     .server-info-right {
-        justify-content: space-between;
-        gap: 1.5rem;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1rem;
+        flex-shrink: 0;
     }
     
     .server-name {
@@ -705,8 +929,10 @@
     }
     
     .server-group-info-right {
-        justify-content: space-between;
-        gap: 1.5rem;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1rem;
+        flex-shrink: 0;
     }
     
     .server-group-name {
@@ -762,6 +988,18 @@
         padding: 0 2rem 4rem;
     }
     
+    .partner-label {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.6rem;
+        padding-left: 0.4rem;
+        min-height: 1.3rem;
+    }
+    
+    .partner-icon {
+        width: 1rem;
+        height: 1rem;
+    }
+    
     .total-players {
         margin-bottom: 2rem;
     }
@@ -792,8 +1030,10 @@
     }
     
     .server-info-right {
-        justify-content: space-between;
-        gap: 1.2rem;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 0.8rem;
+        flex-shrink: 0;
     }
     
     .server-name {
@@ -828,8 +1068,10 @@
     }
     
     .server-group-info-right {
-        justify-content: space-between;
-        gap: 1.2rem;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 0.8rem;
+        flex-shrink: 0;
     }
     
     .server-group-name {
@@ -885,6 +1127,18 @@
         padding: 0 1rem 3rem;
     }
     
+    .partner-label {
+        font-size: 0.6rem;
+        padding: 0.15rem 0.5rem;
+        padding-left: 0.35rem;
+        min-height: 1.2rem;
+    }
+    
+    .partner-icon {
+        width: 0.9rem;
+        height: 0.9rem;
+    }
+    
     .total-players {
         margin-bottom: 1.5rem;
     }
@@ -915,8 +1169,10 @@
     }
     
     .server-info-right {
-        justify-content: space-between;
-        gap: 1rem;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 0.6rem;
+        flex-shrink: 0;
     }
     
     .server-name {
@@ -951,8 +1207,10 @@
     }
     
     .server-group-info-right {
-        justify-content: space-between;
-        gap: 1rem;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 0.6rem;
+        flex-shrink: 0;
     }
     
     .server-group-name {
@@ -1036,7 +1294,10 @@
     }
     
     .server-info-right {
-        gap: 0.8rem;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 0.5rem;
+        flex-shrink: 0;
     }
     
     .server-name {
@@ -1071,8 +1332,10 @@
     }
     
     .server-group-info-right {
-        justify-content: space-between;
-        gap: 0.8rem;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 0.5rem;
+        flex-shrink: 0;
     }
     
     .server-group-name {
@@ -1129,6 +1392,18 @@
         padding: 0 0.25rem 2rem;
     }
     
+    .partner-label {
+        font-size: 0.55rem;
+        padding: 0.1rem 0.4rem;
+        padding-left: 0.3rem;
+        min-height: 1rem;
+    }
+    
+    .partner-icon {
+        width: 0.85rem;
+        height: 0.85rem;
+    }
+    
     .total-players {
         margin-bottom: 1rem;
     }
@@ -1157,7 +1432,10 @@
     }
     
     .server-info-right {
-        gap: 0.6rem;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 0.4rem;
+        flex-shrink: 0;
     }
     
     .server-name {
@@ -1192,8 +1470,10 @@
     }
     
     .server-group-info-right {
-        justify-content: space-between;
-        gap: 0.6rem;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 0.4rem;
+        flex-shrink: 0;
     }
     
     .server-group-name {
