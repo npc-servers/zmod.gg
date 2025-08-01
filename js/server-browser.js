@@ -317,50 +317,14 @@ class ServerBrowser {
                     }
                 });
 
-                // Sort servers with partner favoritism
-                const partnerElements = [];
-                const regularElements = [];
-                
-                // Separate partner servers from regular servers
-                serverElements.forEach(serverElement => {
-                    const isPartner = serverElement.element.classList.contains('bg-mapsweepers');
-                    if (isPartner) {
-                        partnerElements.push(serverElement);
-                    } else {
-                        regularElements.push(serverElement);
-                    }
-                });
-                
-                // Sort regular servers by player count (highest first)
-                regularElements.sort((a, b) => b.playerCount - a.playerCount);
-                
-                // Sort partner servers by player count too (in case there are multiple partners in future)
-                partnerElements.sort((a, b) => b.playerCount - a.playerCount);
-                
-                // Create final ordered list with partner at position 3 (index 2)
-                const finalServerList = [];
-                const targetPartnerPosition = 2; // Position 3 (0-based index 2)
-                
-                // Add first servers before partner position
-                for (let i = 0; i < targetPartnerPosition && i < regularElements.length; i++) {
-                    finalServerList.push(regularElements[i]);
-                }
-                
-                // Add partner servers at position 3
-                partnerElements.forEach(partnerElement => {
-                    finalServerList.push(partnerElement);
-                });
-                
-                // Add remaining regular servers after partner position
-                for (let i = targetPartnerPosition; i < regularElements.length; i++) {
-                    finalServerList.push(regularElements[i]);
-                }
+                // Sort all servers by player count (highest first)
+                serverElements.sort((a, b) => b.playerCount - a.playerCount);
 
                 // Add sorted elements to the server list
-                if (finalServerList.length === 0) {
+                if (serverElements.length === 0) {
                     serverList.innerHTML = '<div class="loading-text">No servers online at the moment.</div>';
                 } else {
-                    finalServerList.forEach(({ element }, index) => {
+                    serverElements.forEach(({ element }, index) => {
                         // Highlight the #1 server (first in the list)
                         if (index === 0) {
                             const mainContainer = element.querySelector('.server-card') || element.querySelector('.server-group-main');
