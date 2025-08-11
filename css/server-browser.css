@@ -216,10 +216,40 @@
     white-space: nowrap;
 }
 
+.server-join-btn::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: 
+        /* Top-left L bracket */
+        linear-gradient(var(--color-red), var(--color-red)) 0 0/6px 1.5px,
+        linear-gradient(var(--color-red), var(--color-red)) 0 0/1.5px 6px,
+        /* Top-right L bracket */
+        linear-gradient(var(--color-red), var(--color-red)) 100% 0/6px 1.5px,
+        linear-gradient(var(--color-red), var(--color-red)) 100% 0/1.5px 6px,
+        /* Bottom-left L bracket */
+        linear-gradient(var(--color-red), var(--color-red)) 0 100%/6px 1.5px,
+        linear-gradient(var(--color-red), var(--color-red)) 0 100%/1.5px 6px,
+        /* Bottom-right L bracket */
+        linear-gradient(var(--color-red), var(--color-red)) 100% 100%/6px 1.5px,
+        linear-gradient(var(--color-red), var(--color-red)) 100% 100%/1.5px 6px;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
 .server-join-btn:hover {
-    color: var(--color-white);
-    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-red);
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
     transform: translateY(-1px);
+}
+
+.server-join-btn:hover::before {
+    opacity: 1;
 }
 
 .server-join-btn:disabled {
@@ -322,10 +352,40 @@
     gap: 0.5rem;
 }
 
+.server-expand-btn::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: 
+        /* Top-left L bracket */
+        linear-gradient(var(--color-red), var(--color-red)) 0 0/6px 1.5px,
+        linear-gradient(var(--color-red), var(--color-red)) 0 0/1.5px 6px,
+        /* Top-right L bracket */
+        linear-gradient(var(--color-red), var(--color-red)) 100% 0/6px 1.5px,
+        linear-gradient(var(--color-red), var(--color-red)) 100% 0/1.5px 6px,
+        /* Bottom-left L bracket */
+        linear-gradient(var(--color-red), var(--color-red)) 0 100%/6px 1.5px,
+        linear-gradient(var(--color-red), var(--color-red)) 0 100%/1.5px 6px,
+        /* Bottom-right L bracket */
+        linear-gradient(var(--color-red), var(--color-red)) 100% 100%/6px 1.5px,
+        linear-gradient(var(--color-red), var(--color-red)) 100% 100%/1.5px 6px;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
 .server-expand-btn:hover {
-    color: var(--color-white);
-    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-red);
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
     transform: translateY(-1px);
+}
+
+.server-expand-btn:hover::before {
+    opacity: 1;
 }
 
 .expand-arrow {
@@ -470,10 +530,40 @@
     white-space: nowrap;
 }
 
+.server-sub-join-btn::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: 
+        /* Top-left L bracket */
+        linear-gradient(var(--color-red), var(--color-red)) 0 0/6px 1.5px,
+        linear-gradient(var(--color-red), var(--color-red)) 0 0/1.5px 6px,
+        /* Top-right L bracket */
+        linear-gradient(var(--color-red), var(--color-red)) 100% 0/6px 1.5px,
+        linear-gradient(var(--color-red), var(--color-red)) 100% 0/1.5px 6px,
+        /* Bottom-left L bracket */
+        linear-gradient(var(--color-red), var(--color-red)) 0 100%/6px 1.5px,
+        linear-gradient(var(--color-red), var(--color-red)) 0 100%/1.5px 6px,
+        /* Bottom-right L bracket */
+        linear-gradient(var(--color-red), var(--color-red)) 100% 100%/6px 1.5px,
+        linear-gradient(var(--color-red), var(--color-red)) 100% 100%/1.5px 6px;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
 .server-sub-join-btn:hover {
-    color: var(--color-white);
-    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-red);
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
     transform: translateY(-1px);
+}
+
+.server-sub-join-btn:hover::before {
+    opacity: 1;
 }
 
 .server-sub-join-btn:disabled {
@@ -714,8 +804,9 @@
     font-family: 'Oxanium', monospace;
     font-size: 0.9rem;
     font-weight: 700;
-    color: var(--color-white);
-    background: #333333;
+    color: var(--color-red);
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 0.6rem 1.5rem;
     border-radius: 0;
@@ -729,7 +820,9 @@
 }
 
 .workshop-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-white);
+    background: #333333;
+    backdrop-filter: none;
     transform: translateY(-1px);
 }
 
@@ -737,8 +830,9 @@
     font-family: 'Oxanium', monospace;
     font-size: 0.9rem;
     font-weight: 700;
-    color: var(--color-white);
-    background: #2c2c2c;
+    color: var(--color-red);
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 0.6rem 1.5rem;
     border-radius: 0;
@@ -751,7 +845,9 @@
 }
 
 .learn-more-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-white);
+    background: #2c2c2c;
+    backdrop-filter: none;
     transform: translateY(-1px);
 }
 
