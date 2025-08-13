@@ -119,7 +119,7 @@ class Webstore {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        this.animateCount(entry.target, 0, 160, 2000);
+                        this.animateCount(entry.target, 0, 170, 2000);
                         observer.unobserve(entry.target);
                     }
                 });
