@@ -521,10 +521,38 @@
     .cta-content {
         align-items: center;
         height: auto; /* Reset height for mobile */
+        display: flex;
+        flex-direction: column;
+    }
+    
+    /* Reorder CTA content children on mobile */
+    .cta-title {
+        order: 2;
+    }
+    
+    .cta-subtitle {
+        order: 3;
     }
     
     .supporter-stat {
-        align-items: center;
+        order: 4;
+    }
+    
+    .webstore-button {
+        order: 5;
+    }
+    
+    .webstore-carousel {
+        order: 1; /* Carousel appears first in CTA, right after benefits section */
+        width: 100%;
+        max-width: 600px; /* Match benefits list width */
+        margin: 2rem auto 3rem auto;
+        align-self: center;
+    }
+    
+    /* Hide decorations on mobile */
+    .webstore-decorations {
+        display: none;
     }
     
     .supporter-count {
@@ -588,14 +616,10 @@
         max-width: 600px;
     }
     
-    .webstore-carousel {
-        max-width: 320px;
-        margin-top: 1.5rem;
-    }
-    
     .carousel-container {
         flex: 1;
-        min-height: 280px;
+        min-height: 320px; /* Increased for wider carousel */
+        height: 320px; /* Set fixed height for better proportions */
     }
     
     .caption-title {
@@ -614,6 +638,42 @@
     
     .webstore-content {
         gap: 3rem;
+    }
+    
+    .cta-content {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .cta-title {
+        order: 2;
+    }
+    
+    .cta-subtitle {
+        order: 3;
+    }
+    
+    .supporter-stat {
+        order: 4;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .webstore-button {
+        order: 5;
+    }
+    
+    .webstore-carousel {
+        order: 1;
+        width: 100%;
+        max-width: 600px; /* Match benefits list width */
+        margin: 1.5rem auto 2rem auto;
+        align-self: center;
+    }
+    
+    .webstore-decorations {
+        display: none;
     }
     
     .benefits-list {
@@ -674,14 +734,12 @@
         max-width: 100%;
     }
     
-    .webstore-carousel {
-        max-width: 300px;
-        margin-top: 1.2rem;
-    }
+
     
     .carousel-container {
         flex: 1;
-        min-height: 240px;
+        min-height: 280px; /* Increased for wider carousel */
+        height: 280px; /* Set fixed height for better proportions */
     }
     
     .carousel-caption {
@@ -694,10 +752,6 @@
     
     .caption-description {
         font-size: 0.75rem;
-    }
-    
-    .supporter-stat {
-        align-items: center;
     }
     
     .supporter-count {
@@ -721,6 +775,42 @@
     
     .webstore-content {
         gap: 2.5rem;
+    }
+    
+    .cta-content {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .cta-title {
+        order: 2;
+    }
+    
+    .cta-subtitle {
+        order: 3;
+    }
+    
+    .supporter-stat {
+        order: 4;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .webstore-button {
+        order: 5;
+    }
+    
+    .webstore-carousel {
+        order: 1;
+        width: 100%;
+        max-width: 600px; /* Match benefits list width */
+        margin: 1rem auto 1.5rem auto;
+        align-self: center;
+    }
+    
+    .webstore-decorations {
+        display: none;
     }
     
     .benefits-list {
@@ -781,14 +871,12 @@
         max-width: 100%;
     }
     
-    .webstore-carousel {
-        max-width: 280px;
-        margin-top: 1rem;
-    }
+
     
     .carousel-container {
         flex: 1;
-        min-height: 200px;
+        min-height: 240px; /* Increased for wider carousel */
+        height: 240px; /* Set fixed height for better proportions */
     }
     
     .carousel-caption {
@@ -813,10 +901,6 @@
         height: 2px;
     }
     
-    .supporter-stat {
-        align-items: center;
-    }
-    
     .supporter-count {
         font-size: 1.8rem;
     }
@@ -834,6 +918,42 @@
 @media (max-width: 360px) {
     .webstore {
         padding: 2.5rem 0.5rem;
+    }
+    
+    .cta-content {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .cta-title {
+        order: 2;
+    }
+    
+    .cta-subtitle {
+        order: 3;
+    }
+    
+    .supporter-stat {
+        order: 4;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .webstore-button {
+        order: 5;
+    }
+    
+    .webstore-carousel {
+        order: 1;
+        width: 100%;
+        max-width: 600px; /* Match benefits list width */
+        margin: 0.8rem auto 1rem auto;
+        align-self: center;
+    }
+    
+    .webstore-decorations {
+        display: none;
     }
     
     .benefit-item {
@@ -871,10 +991,6 @@
         padding: 0.7rem 1.5rem;
     }
     
-    .supporter-stat {
-        align-items: center;
-    }
-    
     .supporter-count {
         font-size: 1.5rem;
     }
@@ -890,14 +1006,12 @@
         max-width: 100%;
     }
     
-    .webstore-carousel {
-        max-width: 260px;
-        margin-top: 0.8rem;
-    }
+
     
     .carousel-container {
         flex: 1;
-        min-height: 180px;
+        min-height: 200px; /* Increased for wider carousel */
+        height: 200px; /* Set fixed height for better proportions */
     }
     
     .carousel-caption {
