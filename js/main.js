@@ -7,6 +7,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const servers = new Servers();
     const serverBrowser = new ServerBrowser();
     
+    if (typeof Webstore !== 'undefined') {
+        const webstore = new Webstore();
+        window.ZModWebstore = webstore;
+    }
+    
     // Expose navbar functions globally for debugging and external access
     window.ZModTracking = {
         getCurrentPage: () => navbar.getCurrentPage(),

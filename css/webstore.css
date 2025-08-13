@@ -52,6 +52,16 @@
     background-repeat: no-repeat;
 }
 
+.webstore-benefits-subtitle {
+    font-family: 'Oxanium', monospace;
+    font-size: 1.2rem;
+    color: var(--color-light-gray);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    margin-bottom: 2rem;
+    line-height: 1.5;
+    max-width: 500px;
+}
+
 .benefits-list {
     display: flex;
     flex-direction: column;
@@ -157,6 +167,7 @@
     align-items: flex-end;
     text-align: right;
     position: relative;
+    height: 100%; /* Match the height of benefits section */
 }
 
 .cta-content {
@@ -164,6 +175,7 @@
     flex-direction: column;
     align-items: flex-end;
     gap: 2rem;
+    height: 100%;
 }
 
 .cta-title {
@@ -255,6 +267,106 @@
 
 .webstore-button:active {
     transform: translateY(0);
+}
+
+/* Image Carousel - Vertical Panel */
+.webstore-carousel {
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 350px;
+    flex: 1; /* Expand to fill remaining space */
+    display: flex;
+    flex-direction: column;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    flex: 1; /* Fill available carousel space */
+    min-height: 200px; /* Minimum height for functionality */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.carousel-caption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
+    padding: 1rem 1rem 2rem 1rem;
+    border-radius: 10px 10px 0 0;
+}
+
+.caption-title {
+    font-family: 'Oxanium', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-white);
+    margin: 0 0 0.3rem 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+    line-height: 1.1;
+    text-align: left;
+}
+
+.caption-description {
+    font-family: 'Oxanium', monospace;
+    font-size: 0.85rem;
+    color: var(--color-light-gray);
+    margin: 0;
+    line-height: 1.3;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
+    text-align: left;
+}
+
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.indicator {
+    width: 24px;
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.indicator:hover {
+    background: rgba(229, 62, 62, 0.8);
+    transform: scaleX(1.2);
+}
+
+.indicator.active {
+    background: var(--color-red);
+    box-shadow: 0 0 8px rgba(229, 62, 62, 0.5);
 }
 
 /* Scattered Decorative Images */
@@ -359,14 +471,16 @@
     }
     
     .webstore-benefits {
-        text-align: left;
+        text-align: center;
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 2rem;
     }
     
     .webstore-benefits-title {
         text-align: center;
+        margin-bottom: 0;
     }
     
     /* Add brackets to both titles on mobile */
@@ -401,10 +515,12 @@
     .webstore-cta {
         align-items: center;
         text-align: center;
+        height: auto; /* Reset height for mobile */
     }
     
     .cta-content {
         align-items: center;
+        height: auto; /* Reset height for mobile */
     }
     
     .supporter-stat {
@@ -457,6 +573,37 @@
     
     .benefit-text p {
         font-size: 0.95rem;
+    }
+    
+    .webstore-benefits-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 0;
+        text-align: center;
+        max-width: 100%;
+    }
+    
+    .benefits-list {
+        text-align: left;
+        width: 100%;
+        max-width: 600px;
+    }
+    
+    .webstore-carousel {
+        max-width: 320px;
+        margin-top: 1.5rem;
+    }
+    
+    .carousel-container {
+        flex: 1;
+        min-height: 280px;
+    }
+    
+    .caption-title {
+        font-size: 0.95rem;
+    }
+    
+    .caption-description {
+        font-size: 0.8rem;
     }
 }
 
@@ -518,6 +665,35 @@
     
     .cta-subtitle {
         font-size: 1.1rem;
+    }
+    
+    .webstore-benefits-subtitle {
+        font-size: 1.05rem;
+        margin-bottom: 0;
+        text-align: center;
+        max-width: 100%;
+    }
+    
+    .webstore-carousel {
+        max-width: 300px;
+        margin-top: 1.2rem;
+    }
+    
+    .carousel-container {
+        flex: 1;
+        min-height: 240px;
+    }
+    
+    .carousel-caption {
+        padding: 0.8rem 0.8rem 1.6rem 0.8rem;
+    }
+    
+    .caption-title {
+        font-size: 0.9rem;
+    }
+    
+    .caption-description {
+        font-size: 0.75rem;
     }
     
     .supporter-stat {
@@ -598,6 +774,45 @@
         font-size: 1rem;
     }
     
+    .webstore-benefits-subtitle {
+        font-size: 1rem;
+        margin-bottom: 0;
+        text-align: center;
+        max-width: 100%;
+    }
+    
+    .webstore-carousel {
+        max-width: 280px;
+        margin-top: 1rem;
+    }
+    
+    .carousel-container {
+        flex: 1;
+        min-height: 200px;
+    }
+    
+    .carousel-caption {
+        padding: 0.7rem 0.7rem 1.4rem 0.7rem;
+    }
+    
+    .caption-title {
+        font-size: 0.85rem;
+    }
+    
+    .caption-description {
+        font-size: 0.7rem;
+    }
+    
+    .carousel-indicators {
+        margin-top: 0.8rem;
+        gap: 0.6rem;
+    }
+    
+    .indicator {
+        width: 20px;
+        height: 2px;
+    }
+    
     .supporter-stat {
         align-items: center;
     }
@@ -666,5 +881,44 @@
     
     .supporter-label {
         font-size: 0.75rem;
+    }
+    
+    .webstore-benefits-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 0;
+        text-align: center;
+        max-width: 100%;
+    }
+    
+    .webstore-carousel {
+        max-width: 260px;
+        margin-top: 0.8rem;
+    }
+    
+    .carousel-container {
+        flex: 1;
+        min-height: 180px;
+    }
+    
+    .carousel-caption {
+        padding: 0.6rem 0.6rem 1.2rem 0.6rem;
+    }
+    
+    .caption-title {
+        font-size: 0.8rem;
+    }
+    
+    .caption-description {
+        font-size: 0.65rem;
+    }
+    
+    .carousel-indicators {
+        margin-top: 0.6rem;
+        gap: 0.5rem;
+    }
+    
+    .indicator {
+        width: 18px;
+        height: 2px;
     }
 }
