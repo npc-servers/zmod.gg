@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const landing = new Landing();
     const servers = new Servers();
     const serverBrowser = new ServerBrowser();
+    const community = new Community();
     
     if (typeof Webstore !== 'undefined') {
         const webstore = new Webstore();
@@ -18,6 +19,9 @@ document.addEventListener('DOMContentLoaded', function() {
         getPageStats: () => navbar.getPageStats(),
         setCurrentPage: (page) => navbar.setCurrentPage(page)
     };
+    
+    // Expose community functions globally for debugging and external access
+    window.ZModCommunity = community;
     
     console.log('ZMod website initialized successfully');
     

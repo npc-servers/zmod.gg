@@ -244,43 +244,48 @@
             <div class="separator-line"></div>
             <div class="community-content">
                 <h2 class="community-title">COMMUNITY GUIDELINES</h2>
+                <p class="community-description">Maintain a positive environment for all players. Follow our comprehensive guidelines to ensure everyone has a great experience on our servers.</p>
                 
                 <div class="guidelines-main">
-                    <a href="#" class="main-guidelines-link">View Community Guidelines</a>
+                    <a href="#" class="main-guidelines-link">
+                        <span>Community Guidelines</span>
+                        <img src="assets/svgs/arrow_diagonal.svg" alt="" class="main-guidelines-arrow">
+                    </a>
                 </div>
                 
-                <div class="server-guidelines">
-                    <a href="#" class="server-guideline-box">
-                        <h3 class="server-guideline-title">Homigrad Guidelines</h3>
-                        <p class="server-guideline-desc">Tactical survival server rules and conduct expectations</p>
-                        <div class="guideline-arrow">
-                            <span class="arrow-icon">→</span>
-                        </div>
-                    </a>
+                <div class="server-guidelines-container">
+                    <button class="server-guidelines-toggle" aria-expanded="false" aria-controls="server-guidelines">
+                        <span class="toggle-text">Server Specific Guidelines</span>
+                        <span class="toggle-arrow">
+                            <img src="assets/svgs/arrow_down.svg" alt="" class="toggle-arrow-icon">
+                        </span>
+                    </button>
                     
-                    <a href="#" class="server-guideline-box">
-                        <h3 class="server-guideline-title">Horde Guidelines</h3>
-                        <p class="server-guideline-desc">Cooperative gameplay rules and team coordination standards</p>
-                        <div class="guideline-arrow">
-                            <span class="arrow-icon">→</span>
-                        </div>
-                    </a>
-                    
-                    <a href="#" class="server-guideline-box">
-                        <h3 class="server-guideline-title">Sandbox Guidelines</h3>
-                        <p class="server-guideline-desc">Creative building server rules and property guidelines</p>
-                        <div class="guideline-arrow">
-                            <span class="arrow-icon">→</span>
-                        </div>
-                    </a>
-                    
-                    <a href="#" class="server-guideline-box">
-                        <h3 class="server-guideline-title">General Server Rules</h3>
-                        <p class="server-guideline-desc">Universal rules that apply across all ZMod servers</p>
-                        <div class="guideline-arrow">
-                            <span class="arrow-icon">→</span>
-                        </div>
-                    </a>
+                    <div class="server-guidelines collapsed" id="server-guidelines">
+                        <a href="#" class="server-guideline-box">
+                            <h3 class="server-guideline-title">Homigrad Guidelines</h3>
+                            <p class="server-guideline-desc">Tactical survival server rules and conduct expectations</p>
+                            <img src="assets/svgs/arrow_diagonal.svg" alt="" class="guideline-arrow">
+                        </a>
+                        
+                        <a href="#" class="server-guideline-box">
+                            <h3 class="server-guideline-title">Horde Guidelines</h3>
+                            <p class="server-guideline-desc">Cooperative gameplay rules and team coordination standards</p>
+                            <img src="assets/svgs/arrow_diagonal.svg" alt="" class="guideline-arrow">
+                        </a>
+                        
+                        <a href="#" class="server-guideline-box">
+                            <h3 class="server-guideline-title">Sandbox Guidelines</h3>
+                            <p class="server-guideline-desc">Creative building server rules and property guidelines</p>
+                            <img src="assets/svgs/arrow_diagonal.svg" alt="" class="guideline-arrow">
+                        </a>
+                        
+                        <a href="#" class="server-guideline-box">
+                            <h3 class="server-guideline-title">General Server Rules</h3>
+                            <p class="server-guideline-desc">Universal rules that apply across all ZMod servers</p>
+                            <img src="assets/svgs/arrow_diagonal.svg" alt="" class="guideline-arrow">
+                        </a>
+                    </div>
                 </div>
                 
                 <!-- Help Section within Community Guidelines -->
@@ -302,6 +307,7 @@
     <script src="js/servers.js"></script>
     <script src="js/server-browser.js"></script>
     <script src="js/webstore.js"></script>
+    <script src="js/community.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html> 
