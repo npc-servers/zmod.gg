@@ -360,7 +360,7 @@
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 12px;
-    padding: 3rem 2rem;
+    padding: 2rem 2rem;
     width: 100%;
     display: flex;
     align-items: center;
@@ -370,6 +370,27 @@
     box-shadow: 
         0 4px 24px rgba(0, 0, 0, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.help-box::before,
+.help-box::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, var(--color-red), transparent);
+    border-radius: 12px;
+}
+
+.help-box::before {
+    left: 0;
+}
+
+.help-box::after {
+    right: 0;
 }
 
 .help-message {
@@ -491,7 +512,7 @@
     }
     
     .help-box {
-        padding: 2.5rem 1.5rem;
+        padding: 1.8rem 1.5rem;
     }
     
     .help-message {
@@ -570,7 +591,7 @@
     }
     
     .help-box {
-        padding: 2rem 1.2rem;
+        padding: 1.5rem 1.2rem;
     }
     
     .help-message {
@@ -655,7 +676,7 @@
     }
     
     .help-box {
-        padding: 1.5rem 1rem;
+        padding: 1.2rem 1rem;
     }
     
     .help-message {
@@ -737,7 +758,7 @@
     }
     
     .help-box {
-        padding: 1.2rem 0.8rem;
+        padding: 1rem 0.8rem;
     }
     
     .help-message {
