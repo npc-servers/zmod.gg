@@ -15,10 +15,22 @@ class Community {
         const subGuidelines = document.querySelector('.server-guidelines');
         
         if (toggleButton && subGuidelines) {
-            toggleButton.addEventListener('click', () => {
+            toggleButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                event.stopPropagation();
                 this.toggleSubGuidelines();
             });
         }
+
+        // Handle clicks on individual guideline boxes to prevent unwanted navigation
+        const guidelineBoxes = document.querySelectorAll('.server-guideline-box');
+        guidelineBoxes.forEach(box => {
+            box.addEventListener('click', (event) => {
+                event.preventDefault();
+                // Here you can add functionality to navigate to actual guideline pages
+                console.log('Guideline clicked:', box.querySelector('.server-guideline-title').textContent);
+            });
+        });
     }
 
     toggleSubGuidelines() {

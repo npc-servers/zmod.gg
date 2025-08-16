@@ -51,7 +51,7 @@
     margin-bottom: 2rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
     text-align: center;
-    max-width: 600px;
+    max-width: 750px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -107,6 +107,8 @@
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(229, 62, 62, 0.6), transparent);
     border-radius: 8px 8px 0 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .main-guidelines-link:hover {
@@ -117,6 +119,10 @@
         0 12px 40px rgba(229, 62, 62, 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.15);
     color: var(--color-white);
+}
+
+.main-guidelines-link:hover::before {
+    opacity: 1;
 }
 
 .main-guidelines-link:hover .main-guidelines-arrow {
@@ -221,17 +227,16 @@
     justify-content: center;
     gap: 1.5rem;
     width: 100%;
-    max-height: 1000px;
     overflow: visible;
-    transition: all 0.5s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease;
     z-index: 10;
     position: relative;
 }
 
 .server-guidelines.collapsed {
-    max-height: 0;
     opacity: 0;
-    margin-top: -2rem;
+    transform: translateY(-10px);
+    pointer-events: none;
 }
 
 .server-guideline-box {
@@ -262,6 +267,8 @@
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
     border-radius: 4px 4px 0 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .server-guideline-box:hover {
@@ -273,6 +280,10 @@
         inset 0 1px 0 rgba(255, 255, 255, 0.15);
     z-index: 20;
     position: relative;
+}
+
+.server-guideline-box:hover::before {
+    opacity: 1;
 }
 
 .server-guideline-title {
@@ -316,8 +327,8 @@
     align-items: flex-start;
     gap: 2rem;
     text-align: left;
-    margin-top: 4rem;
-    padding-top: 3rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
 }
 
 .help-title {
@@ -441,6 +452,10 @@
     color: var(--color-white);
 }
 
+.discord-button:hover::before {
+    opacity: 1;
+}
+
 .discord-button::before {
     content: '';
     position: absolute;
@@ -450,6 +465,8 @@
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(88, 101, 242, 0.6), transparent);
     border-radius: 8px 8px 0 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .discord-button:active {
@@ -507,8 +524,8 @@
     }
     
     .help-section-content {
-        margin-top: 3rem;
-        padding-top: 2.5rem;
+        margin-top: 2rem;
+        padding-top: 2rem;
     }
     
     .help-box {
@@ -586,8 +603,8 @@
     }
     
     .help-section-content {
-        margin-top: 3rem;
-        padding-top: 2rem;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
     }
     
     .help-box {
@@ -670,8 +687,8 @@
     }
     
     .help-section-content {
-        margin-top: 2.5rem;
-        padding-top: 1.5rem;
+        margin-top: 1.5rem;
+        padding-top: 1rem;
         gap: 1.5rem;
     }
     
@@ -752,8 +769,8 @@
     }
     
     .help-section-content {
-        margin-top: 2rem;
-        padding-top: 1.2rem;
+        margin-top: 1rem;
+        padding-top: 1rem;
         gap: 1.2rem;
     }
     
