@@ -96,20 +96,7 @@ class Webstore {
             observer.observe(ctaContent);
         }
         
-        // Add subtle hover effects for benefit items
-        const hoverBenefitItems = document.querySelectorAll('.benefit-item');
-        
-        hoverBenefitItems.forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                item.style.borderLeftColor = 'var(--color-red)';
-                item.style.borderLeftWidth = '6px';
-            });
-            
-            item.addEventListener('mouseleave', () => {
-                item.style.borderLeftColor = 'var(--color-red)';
-                item.style.borderLeftWidth = '4px';
-            });
-        });
+        // Hover effects removed per user request
     }
     
     setupSupporterCountAnimation() {
@@ -191,16 +178,7 @@ class Webstore {
                 benefitItem.style.transform = 'translateY(0)';
             }, 100);
             
-            // Add hover effects to the new item
-            benefitItem.addEventListener('mouseenter', () => {
-                benefitItem.style.borderLeftColor = 'var(--color-red)';
-                benefitItem.style.borderLeftWidth = '6px';
-            });
-            
-            benefitItem.addEventListener('mouseleave', () => {
-                benefitItem.style.borderLeftColor = 'var(--color-red)';
-                benefitItem.style.borderLeftWidth = '4px';
-            });
+            // Hover effects removed per user request
         }
     }
     

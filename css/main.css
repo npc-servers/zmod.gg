@@ -45,3 +45,8 @@ body {
     color: var(--color-white);
     line-height: 1.6;
 }
+
+/* Make zmod logo red globally */
+img[src*="zmod_logo"] {
+    filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7471%) hue-rotate(356deg) brightness(91%) contrast(111%);
+}

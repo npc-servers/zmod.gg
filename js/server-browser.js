@@ -33,12 +33,6 @@ class ServerBrowser {
                 ]
             },
             {
-                id: 'zscenario',
-                name: 'ZScenario',
-                type: 'single',
-                servers: [{ id: 'zscenario', name: 'ZScenario', ip: '193.243.190.18', port: '27025' }]
-            },
-            {
                 id: 'mapsweepers',
                 name: 'Map Sweepers',
                 type: 'single',
@@ -77,11 +71,6 @@ class ServerBrowser {
         // For ZBox (sandbox-like), use sandbox background
         if (serverId.includes('zbox') || serverName.toLowerCase().includes('zbox')) {
             return 'bg-sandbox';
-        }
-        
-        // For ZScenario, use homigrad as it's tactical/scenario based
-        if (serverId.includes('zscenario') || serverName.toLowerCase().includes('zscenario')) {
-            return 'bg-homigrad';
         }
         
         // For MapSweepers, use its own background
