@@ -94,6 +94,25 @@
     text-transform: uppercase;
 }
 
+.pc-steam-notice {
+    font-family: 'Oxanium', monospace;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-red);
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    border-radius: 6px;
+    padding: 0.8rem 1.5rem;
+    margin-top: 1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: none; /* Hidden on desktop by default */
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.15);
+}
+
 .server-list {
     width: 100%;
     max-width: 1200px;
@@ -196,6 +215,18 @@
     color: var(--color-white);
     text-align: right;
     min-width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.3rem;
+}
+
+.player-icon {
+    width: 1.4rem;
+    height: 1.4rem;
+    opacity: 0.7;
+    filter: brightness(0) invert(1); /* Make SVG white */
+    flex-shrink: 0;
 }
 
 .server-join-btn {
@@ -330,6 +361,10 @@
     color: var(--color-white);
     text-align: right;
     min-width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.3rem;
 }
 
 .server-expand-btn {
@@ -512,6 +547,10 @@
     color: var(--color-white);
     text-align: right;
     min-width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.3rem;
 }
 
 .server-sub-join-btn {
@@ -771,6 +810,30 @@
 
 /* Partner Server Container Styling - No special outline */
 
+/* PC Only Tag */
+.pc-only-tag {
+    position: absolute !important;
+    bottom: 2rem !important;
+    left: 2rem !important;
+    background: rgba(0, 0, 0, 0.3);
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'Oxanium', monospace;
+    font-size: 0.6rem;
+    font-weight: 400;
+    padding: 0.15rem 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    z-index: 12 !important;
+    pointer-events: none;
+    box-shadow: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    display: none; /* Hidden on desktop by default */
+    align-items: center;
+    min-height: 1rem;
+    opacity: 0.7;
+}
+
 /* Partner Label */
 .partner-label {
     position: absolute !important;
@@ -956,6 +1019,22 @@
 
 /* Responsive Design - Server Browser */
 @media (max-width: 992px) {
+    /* Show PC/Steam notice on mobile */
+    .pc-steam-notice {
+        display: block;
+    }
+    
+    /* Show PC ONLY tags on mobile */
+    .pc-only-tag {
+        display: flex;
+    }
+    
+    /* Hide connect buttons on mobile */
+    .server-join-btn,
+    .server-expand-btn,
+    .server-sub-join-btn {
+        display: none;
+    }
     .server-browser .separator-line {
         margin-bottom: 3rem;
     }
@@ -1085,6 +1164,14 @@
     
     .server-browser {
         padding: 0 2rem 4rem;
+    }
+    
+    .pc-only-tag {
+        font-size: 0.55rem;
+        padding: 0.1rem 0.4rem;
+        min-height: 0.9rem;
+        bottom: 1.2rem !important;
+        left: 1.5rem !important;
     }
     
     .partner-label {
@@ -1224,6 +1311,14 @@
     
     .server-browser {
         padding: 0 1rem 3rem;
+    }
+    
+    .pc-only-tag {
+        font-size: 0.5rem;
+        padding: 0.08rem 0.35rem;
+        min-height: 0.8rem;
+        bottom: 1rem !important;
+        left: 1.2rem !important;
     }
     
     .partner-label {
@@ -1489,6 +1584,14 @@
     
     .server-browser {
         padding: 0 0.25rem 2rem;
+    }
+    
+    .pc-only-tag {
+        font-size: 0.45rem;
+        padding: 0.06rem 0.3rem;
+        min-height: 0.7rem;
+        bottom: 0.8rem !important;
+        left: 0.8rem !important;
     }
     
     .partner-label {
