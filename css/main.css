@@ -22,8 +22,8 @@
     --color-gray: #4a4a4a;
     --color-light-gray: #8a8a8a;
     --color-white: #ffffff;
-    --color-red: #e53e3e;
-    --color-red-hover: #c53030;
+    --color-red: #ff0000;
+    --color-red-hover: #cc0000;
 }
 
 /* Reset and Base Styles */
@@ -48,5 +48,5 @@ body {
 
 /* Make zmod logo red globally */
 img[src*="zmod_logo"] {
-    filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7471%) hue-rotate(356deg) brightness(91%) contrast(111%);
+    filter: brightness(0) saturate(100%) invert(13%) sepia(100%) saturate(7500%) hue-rotate(0deg) brightness(100%) contrast(100%);
 }

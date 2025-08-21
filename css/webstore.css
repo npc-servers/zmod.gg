@@ -3,7 +3,53 @@
     background-color: var(--color-black);
     padding: 6rem 4rem;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+}
+
+.webstore::before,
+.webstore::after {
+    content: '';
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.webstore::before {
+    top: -10%;
+    left: -300px;
+    animation: redGlowLeft 4s ease-in-out infinite;
+}
+
+.webstore::after {
+    bottom: 10%;
+    right: -400px;
+    animation: redGlowRight 5s ease-in-out infinite;
+}
+
+@keyframes redGlowLeft {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes redGlowRight {
+    0%, 100% {
+        opacity: 0.2;
+        transform: scale(0.9);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1);
+    }
 }
 
 .webstore-content {
@@ -73,8 +119,7 @@
     align-items: flex-start;
     padding: 2rem;
     background: 
-        linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%),
-        radial-gradient(ellipse at top left, rgba(229, 62, 62, 0.08) 0%, transparent 50%);
+        linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 16px;
     backdrop-filter: blur(20px);
@@ -83,11 +128,37 @@
     overflow: hidden;
     box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.12),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15),
-        inset 0 0 0 1px rgba(229, 62, 62, 0.05);
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.benefit-emojis {
+    position: absolute;
+    left: -180px;
+    top: -20px;
+    transform: rotate(-45deg);
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 1;
+    user-select: none;
+    mask: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 1) 30%, rgba(255, 255, 255, 1) 70%, transparent 100%);
+    -webkit-mask: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 1) 30%, rgba(255, 255, 255, 1) 70%, transparent 100%);
+}
+
+.emoji-row {
+    display: block;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    letter-spacing: 0.5rem;
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
 }
 
 
+
+.benefit-text {
+    position: relative;
+    z-index: 2;
+}
 
 .benefit-text h3 {
     font-family: 'Oxanium', monospace;
@@ -109,6 +180,45 @@
     line-height: 1.6;
     font-weight: 400;
     letter-spacing: 0.2px;
+}
+
+/* Unique outline colors for each benefit */
+.benefit-reserved-slot {
+    border-color: rgba(249, 115, 22, 0.4); /* Orange - reserved/priority access */
+}
+
+.benefit-fittr {
+    border-color: rgba(59, 130, 246, 0.4); /* Blue - customization/personalization */
+}
+
+.benefit-noclip {
+    border-color: rgba(147, 51, 234, 0.4); /* Purple - mystical/supernatural */
+}
+
+.benefit-cosmetics {
+    border-color: rgba(251, 191, 36, 0.4); /* Gold - premium/luxury */
+}
+
+.benefit-economy {
+    border-color: rgba(34, 197, 94, 0.4); /* Green - wealth/growth */
+}
+
+.webstore-disclaimer {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.webstore-disclaimer-text {
+    font-family: 'Oxanium', monospace;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.6);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+    letter-spacing: 0.2px;
+    line-height: 1.3;
+    margin: 0;
+    text-align: left;
 }
 
 
@@ -235,7 +345,7 @@
     color: var(--color-red);
     text-shadow: 
         3px 3px 6px rgba(0, 0, 0, 0.8),
-        0 0 15px rgba(229, 62, 62, 0.5);
+        0 0 15px rgba(255, 0, 0, 0.5);
     letter-spacing: 1px;
     line-height: 1;
 }
@@ -255,8 +365,8 @@
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--color-white);
-    background: rgba(229, 62, 62, 0.15);
-    border: 1px solid rgba(229, 62, 62, 0.3);
+    background: rgba(255, 0, 0, 0.15);
+    border: 1px solid rgba(255, 0, 0, 0.3);
     padding: 1.2rem 3rem;
     border-radius: 8px;
     backdrop-filter: blur(20px);
@@ -268,7 +378,7 @@
     position: relative;
     overflow: hidden;
     box-shadow: 
-        0 8px 32px rgba(229, 62, 62, 0.2),
+        0 8px 32px rgba(255, 0, 0, 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
@@ -279,18 +389,18 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(229, 62, 62, 0.6), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.6), transparent);
     border-radius: 8px 8px 0 0;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
 .webstore-button:hover {
-    background: rgba(229, 62, 62, 0.25);
-    border-color: rgba(229, 62, 62, 0.5);
+    background: rgba(255, 0, 0, 0.25);
+    border-color: rgba(255, 0, 0, 0.5);
     transform: translateY(-3px);
     box-shadow: 
-        0 12px 40px rgba(229, 62, 62, 0.3),
+        0 12px 40px rgba(255, 0, 0, 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.15);
     color: var(--color-white);
 }
@@ -394,13 +504,13 @@
 }
 
 .indicator:hover {
-    background: rgba(229, 62, 62, 0.8);
+    background: rgba(255, 0, 0, 0.8);
     transform: scaleX(1.2);
 }
 
 .indicator.active {
     background: var(--color-red);
-    box-shadow: 0 0 8px rgba(229, 62, 62, 0.5);
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
 }
 
 /* Scattered Decorative Images */
@@ -467,7 +577,7 @@
 
 /* Make zmod logo red */
 .decoration-svg[src*="zmod_logo"] {
-    filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7471%) hue-rotate(356deg) brightness(91%) contrast(111%);
+    filter: brightness(0) saturate(100%) invert(13%) sepia(100%) saturate(7500%) hue-rotate(0deg) brightness(100%) contrast(100%);
 }
 
 /* Floating Animation */
@@ -593,6 +703,21 @@
         display: none;
     }
     
+    .webstore::before,
+    .webstore::after {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(255, 0, 0, 0.1) 0%, transparent 70%);
+    }
+    
+    .webstore::before {
+        left: -300px;
+    }
+    
+    .webstore::after {
+        right: -300px;
+    }
+    
     .supporter-count {
         font-size: 2.5rem;
     }
@@ -666,6 +791,18 @@
     
     .caption-description {
         font-size: 0.8rem;
+    }
+    
+    .webstore-disclaimer-text {
+        font-size: 0.75rem;
+        text-align: center;
+    }
+    
+    .benefit-emojis {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        opacity: 0.08;
     }
 }
 
@@ -819,6 +956,30 @@
     /* Hide decorations on smaller screens */
     .webstore-decorations {
         display: none;
+    }
+    
+    .webstore::before,
+    .webstore::after {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(255, 0, 0, 0.08) 0%, transparent 70%);
+    }
+    
+    .webstore::before {
+        left: -200px;
+    }
+    
+    .webstore::after {
+        right: -200px;
+    }
+    
+    .webstore-disclaimer-text {
+        font-size: 0.7rem;
+        text-align: center;
+    }
+    
+    .benefit-emojis {
+        opacity: 0.06;
     }
 }
 
@@ -983,6 +1144,36 @@
     .webstore-decorations {
         display: none;
     }
+    
+    .webstore::before,
+    .webstore::after {
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(255, 0, 0, 0.06) 0%, transparent 70%);
+    }
+    
+    .webstore::before {
+        left: -150px;
+    }
+    
+    .webstore::after {
+        right: -150px;
+    }
+    
+    .webstore-disclaimer-text {
+        font-size: 0.65rem;
+        text-align: center;
+    }
+    
+    .benefit-emojis {
+        opacity: 0.04;
+    }
+    
+    .emoji-row {
+        font-size: 1.2rem;
+        line-height: 1.8rem;
+        letter-spacing: 0.3rem;
+    }
 }
 
 @media (max-width: 360px) {
@@ -1123,5 +1314,25 @@
     .indicator {
         width: 18px;
         height: 2px;
+    }
+    
+    .webstore-disclaimer-text {
+        font-size: 0.6rem;
+        text-align: center;
+    }
+    
+    .webstore::before,
+    .webstore::after {
+        display: none;
+    }
+    
+    .benefit-emojis {
+        opacity: 0.03;
+    }
+    
+    .emoji-row {
+        font-size: 1rem;
+        line-height: 1.5rem;
+        letter-spacing: 0.2rem;
     }
 }
