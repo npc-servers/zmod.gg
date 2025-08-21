@@ -127,8 +127,7 @@
     position: relative;
     overflow: hidden;
     box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.12),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        0 8px 32px rgba(0, 0, 0, 0.12);
 }
 
 .benefit-emojis {
@@ -185,22 +184,37 @@
 /* Unique outline colors for each benefit */
 .benefit-reserved-slot {
     border-color: rgba(249, 115, 22, 0.4); /* Orange - reserved/priority access */
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(249, 115, 22, 0.3);
 }
 
 .benefit-fittr {
     border-color: rgba(59, 130, 246, 0.4); /* Blue - customization/personalization */
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(59, 130, 246, 0.3);
 }
 
 .benefit-noclip {
     border-color: rgba(147, 51, 234, 0.4); /* Purple - mystical/supernatural */
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(147, 51, 234, 0.3);
 }
 
 .benefit-cosmetics {
     border-color: rgba(251, 191, 36, 0.4); /* Gold - premium/luxury */
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(251, 191, 36, 0.3);
 }
 
 .benefit-economy {
     border-color: rgba(34, 197, 94, 0.4); /* Green - wealth/growth */
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(34, 197, 94, 0.3);
 }
 
 .webstore-disclaimer {

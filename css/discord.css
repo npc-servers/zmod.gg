@@ -14,7 +14,7 @@
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 350px;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto auto auto;
     gap: 2rem 5rem;
     position: relative;
     z-index: 2;
@@ -60,6 +60,11 @@
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
+}
+
+.discord-disclaimer {
+    grid-column: 1;
+    grid-row: 3;
 }
 
 
@@ -208,8 +213,8 @@
     flex: 1;
     overflow-y: auto;
     padding: 1rem;
-    min-height: 200px;
-    max-height: 400px;
+    min-height: 250px;
+    max-height: 500px;
 }
 
 .loading-members {
@@ -377,12 +382,24 @@
         text-align: center;
         grid-column: unset;
         grid-row: unset;
+        order: 1;
     }
     
     .discord-benefits {
         grid-column: unset;
         grid-row: unset;
         align-self: stretch;
+        order: 2;
+    }
+    
+    .discord-disclaimer {
+        grid-column: unset;
+        grid-row: unset;
+        order: 4;
+    }
+    
+    .discord-widget {
+        order: 3;
     }
     
     .discord-content::after {
@@ -510,7 +527,8 @@
     
     .discord-members-list {
         flex: 1;
-        min-height: 180px;
+        min-height: 220px;
+        max-height: 400px;
     }
 }
 
@@ -555,7 +573,8 @@
     
     .discord-members-list {
         flex: 1;
-        min-height: 150px;
+        min-height: 180px;
+        max-height: 350px;
     }
     
     .member-avatar {
