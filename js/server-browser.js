@@ -117,7 +117,7 @@ class ServerBrowser {
         card.className = `server-card ${status.online ? 'online' : 'offline'} ${backgroundClass}`;
         card.innerHTML = `
             <div class="server-status-indicator ${status.online ? 'online' : 'offline'}"></div>
-            <div class="pc-only-tag">PC ONLY</div>
+            <div class="pc-only-tag pc-only-tag-desktop">PC ONLY</div>
             ${isMapSweepers ? '<div class="partner-label"><img src="assets/logos/a_octantisaddons.png" alt="Partner" class="partner-icon">Partner</div>' : ''}
             <div class="server-info-left">
                 <div class="server-details">
@@ -129,6 +129,7 @@ class ServerBrowser {
                 </div>
             </div>
             <div class="server-info-right">
+                <div class="pc-only-tag pc-only-tag-mobile">PC ONLY</div>
                 <div class="server-players">${status.players}/${status.maxPlayers} <img src="assets/svgs/player.svg" alt="Players" class="player-icon"></div>
                 ${isMapSweepers ? '<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3179978923" target="_blank" class="workshop-btn">View on Workshop</a>' : ''}
                 ${isSandbox ? '<a href="https://zmod.gg/npcz" target="_blank" class="learn-more-btn">Learn More</a>' : ''}
@@ -178,7 +179,7 @@ class ServerBrowser {
         groupContainer.className = 'server-group';
         groupContainer.innerHTML = `
             <div class="server-group-main ${backgroundClass}" onclick="toggleServerGroup('${group.id}')">
-                <div class="pc-only-tag">PC ONLY</div>
+                <div class="pc-only-tag pc-only-tag-desktop">PC ONLY</div>
                 <div class="server-group-info-left">
                     <div class="server-group-details">
                         <div style="display: flex; align-items: center;">
@@ -205,6 +206,7 @@ class ServerBrowser {
                     </div>
                 </div>
                 <div class="server-group-info-right">
+                    <div class="pc-only-tag pc-only-tag-mobile">PC ONLY</div>
                     <div class="server-group-players">${totalPlayers}/${totalMaxPlayers > 0 ? totalMaxPlayers : '?'} <img src="assets/svgs/player.svg" alt="Players" class="player-icon"></div>
                     ${isZGRAD ? '<a href="https://zmod.gg/zgrad" target="_blank" class="learn-more-btn">Learn More</a>' : ''}
                     <button class="server-expand-btn" onclick="event.stopPropagation(); toggleServerGroup('${group.id}')">
