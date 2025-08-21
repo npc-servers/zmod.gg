@@ -362,7 +362,7 @@
 .help-title::after {
     content: '';
     flex: 1;
-    height: 1px;
+    height: 2px;
     background: var(--color-red);
     margin-left: 2rem;
 }
@@ -385,24 +385,7 @@
     overflow: hidden;
 }
 
-.help-box::before,
-.help-box::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: linear-gradient(180deg, transparent, var(--color-red), transparent);
-    border-radius: 12px;
-}
 
-.help-box::before {
-    left: 0;
-}
-
-.help-box::after {
-    right: 0;
-}
 
 .help-message {
     font-family: 'Oxanium', monospace;
@@ -437,9 +420,7 @@
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
     display: inline-block;
     flex-shrink: 0;
-    text-shadow: 
-        2px 2px 4px rgba(0, 0, 0, 0.8),
-        0 0 20px rgba(88, 101, 242, 0.3);
+
 }
 
 .discord-button:hover {
@@ -694,17 +675,22 @@
     
     .help-box {
         padding: 1.2rem 1rem;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.5rem;
     }
     
     .help-message {
         font-size: 1rem;
-        margin-bottom: 1.5rem;
+        margin-right: 0;
+        text-align: center;
     }
     
     .discord-button {
         font-size: 1rem;
         padding: 0.9rem 2rem;
         border-radius: 5px;
+        align-self: center;
     }
     
     .guideline-arrow {
@@ -776,16 +762,22 @@
     
     .help-box {
         padding: 1rem 0.8rem;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.2rem;
     }
     
     .help-message {
         font-size: 0.95rem;
+        margin-right: 0;
+        text-align: center;
     }
     
     .discord-button {
         font-size: 0.9rem;
         padding: 0.8rem 1.5rem;
         border-radius: 4px;
+        align-self: center;
     }
     
     .guideline-arrow {

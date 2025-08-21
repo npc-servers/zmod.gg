@@ -206,7 +206,7 @@
     background: #181818;
     border: 2px solid transparent;
     padding: 0.8rem 2rem;
-    border-radius: 0;
+    border-radius: 4px;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -246,6 +246,7 @@
     background: rgba(255, 255, 255, 0.02);
     backdrop-filter: blur(10px);
     transform: translateY(-1px);
+    border-radius: 0;
 }
 
 .server-join-btn:hover::before {
@@ -339,7 +340,7 @@
     background: #181818;
     border: 2px solid transparent;
     padding: 0.8rem 2rem;
-    border-radius: 0;
+    border-radius: 4px;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -382,6 +383,7 @@
     background: rgba(255, 255, 255, 0.02);
     backdrop-filter: blur(10px);
     transform: translateY(-1px);
+    border-radius: 0;
 }
 
 .server-expand-btn:hover::before {
@@ -520,7 +522,7 @@
     background: #181818;
     border: 2px solid transparent;
     padding: 0.6rem 1.5rem;
-    border-radius: 0;
+    border-radius: 4px;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -560,6 +562,7 @@
     background: rgba(255, 255, 255, 0.02);
     backdrop-filter: blur(10px);
     transform: translateY(-1px);
+    border-radius: 0;
 }
 
 .server-sub-join-btn:hover::before {
@@ -809,7 +812,7 @@
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 0.6rem 1.5rem;
-    border-radius: 0;
+    border-radius: 4px;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -835,7 +838,7 @@
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 0.6rem 1.5rem;
-    border-radius: 0;
+    border-radius: 4px;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.5px;
