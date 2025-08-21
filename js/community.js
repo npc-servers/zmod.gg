@@ -38,12 +38,49 @@ class Community {
         const subGuidelines = document.querySelector('.server-guidelines');
         
         if (toggleButton && subGuidelines) {
-            // Toggle the classes
+            const isCurrentlyCollapsed = subGuidelines.classList.contains('collapsed');
+            
+            if (isCurrentlyCollapsed) {
+                // Expanding: first remove collapsed class to measure height
+                subGuidelines.classList.remove('collapsed');
+                const fullHeight = subGuidelines.scrollHeight;
+                
+                // Set height to 0 temporarily to animate from
+                subGuidelines.style.height = '0px';
+                
+                // Force reflow
+                subGuidelines.offsetHeight;
+                
+                // Animate to full height (including padding)
+                subGuidelines.style.height = fullHeight + 'px';
+                
+                // Clean up after animation
+                setTimeout(() => {
+                    subGuidelines.style.height = 'auto';
+                }, 400);
+                
+            } else {
+                // Collapsing: set explicit height first
+                const currentHeight = subGuidelines.scrollHeight;
+                subGuidelines.style.height = currentHeight + 'px';
+                
+                // Force reflow
+                subGuidelines.offsetHeight;
+                
+                // Animate to 0 height
+                subGuidelines.style.height = '0px';
+                
+                // Add collapsed class after a brief delay to allow height animation to start
+                setTimeout(() => {
+                    subGuidelines.classList.add('collapsed');
+                }, 10);
+            }
+            
+            // Toggle button state
             toggleButton.classList.toggle('expanded');
-            subGuidelines.classList.toggle('collapsed');
             
             // Update ARIA attributes for accessibility
-            const isExpanded = !subGuidelines.classList.contains('collapsed');
+            const isExpanded = !isCurrentlyCollapsed;
             toggleButton.setAttribute('aria-expanded', isExpanded);
             
             // Update the arrow content

@@ -228,15 +228,18 @@
     justify-content: center;
     gap: 1.5rem;
     width: 100%;
-    overflow: visible;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    overflow: hidden;
+    transition: height 0.4s ease, opacity 0.3s ease;
     z-index: 10;
     position: relative;
+    height: auto;
+    padding: 1rem 0;
+    margin: -1rem 0;
 }
 
 .server-guidelines.collapsed {
+    height: 0;
     opacity: 0;
-    transform: translateY(-10px);
     pointer-events: none;
 }
 
@@ -765,6 +768,10 @@
     
     .community-content {
         gap: 2rem;
+    }
+    
+    .help-title::after {
+        display: none;
     }
     
     .server-guideline-box {
