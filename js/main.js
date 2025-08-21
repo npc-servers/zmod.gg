@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const serverBrowser = new ServerBrowser();
     const discord = new Discord();
     const community = new Community();
+    const footer = new Footer();
     
     if (typeof Webstore !== 'undefined') {
         const webstore = new Webstore();
