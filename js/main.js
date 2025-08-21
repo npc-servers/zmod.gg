@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const landing = new Landing();
     const servers = new Servers();
     const serverBrowser = new ServerBrowser();
+    const discord = new Discord();
     const community = new Community();
     
     if (typeof Webstore !== 'undefined') {
