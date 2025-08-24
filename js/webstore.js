@@ -192,16 +192,29 @@ class Webstore {
         }
         
         const carousel = document.querySelector('.webstore-carousel');
-        if (!carousel) return;
+        if (!carousel) {
+            console.warn('Carousel container not found');
+            return;
+        }
         
         const slides = carousel.querySelectorAll('.carousel-slide');
         const indicators = carousel.querySelectorAll('.indicator');
+        const leftArrow = carousel.querySelector('.carousel-arrow-left');
+        const rightArrow = carousel.querySelector('.carousel-arrow-right');
         
-        if (slides.length === 0) return;
+        if (slides.length === 0) {
+            console.warn('No carousel slides found');
+            return;
+        }
+        
+        console.log(`Initializing GSAP carousel with ${slides.length} slides`);
         
         let currentSlide = 0;
         let autoSlideInterval;
         let isAnimating = false;
+        
+        // Mark slides as GSAP-enabled to prevent CSS transition conflicts
+        slides.forEach(slide => slide.classList.add('gsap-enabled'));
         
         // Set initial states
         gsap.set(slides, { opacity: 0 });
@@ -215,27 +228,27 @@ class Webstore {
             const outgoingSlide = slides[currentSlide];
             const incomingSlide = slides[index];
             
+            // Update indicators immediately for instant feedback
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+            indicators[index].classList.add('active');
+            currentSlide = index;
+            
             // Simple crossfade animation
             gsap.timeline({
                 onComplete: () => {
                     isAnimating = false;
-                    currentSlide = index;
-                    
-                    // Update indicators
-                    indicators.forEach(indicator => indicator.classList.remove('active'));
-                    indicators[index].classList.add('active');
                 }
             })
             .to(outgoingSlide, { 
                 opacity: 0, 
-                duration: 0.15, 
+                duration: 0.4, 
                 ease: "power2.inOut" 
             })
             .to(incomingSlide, { 
                 opacity: 1, 
-                duration: 0.15, 
+                duration: 0.4, 
                 ease: "power2.inOut" 
-            }, "-=0.1"); // Overlap animations slightly for smooth crossfade
+            }, "-=0.2"); // Overlap animations slightly for smooth crossfade
         };
         
         // Function to go to next slide
@@ -277,13 +290,56 @@ class Webstore {
                 stopAutoSlide();
                 
                 // Restart auto-slide after manual interaction with delay
-                gsap.delayedCall(5, startAutoSlide);
+                // Use a timeout to prevent multiple timers
+                setTimeout(() => {
+                    if (!autoSlideInterval) { // Only start if not already running
+                        startAutoSlide();
+                    }
+                }, 5000);
             });
         });
         
+        // Add click events to navigation arrows
+        if (leftArrow) {
+            leftArrow.addEventListener('click', (e) => {
+                e.preventDefault();
+                prevSlide();
+                stopAutoSlide();
+                
+                // Restart auto-slide after manual interaction with delay
+                setTimeout(() => {
+                    if (!autoSlideInterval) {
+                        startAutoSlide();
+                    }
+                }, 5000);
+            });
+        }
+        
+        if (rightArrow) {
+            rightArrow.addEventListener('click', (e) => {
+                e.preventDefault();
+                nextSlide();
+                stopAutoSlide();
+                
+                // Restart auto-slide after manual interaction with delay
+                setTimeout(() => {
+                    if (!autoSlideInterval) {
+                        startAutoSlide();
+                    }
+                }, 5000);
+            });
+        }
+        
         // Simple hover effects for carousel
         carousel.addEventListener('mouseenter', stopAutoSlide);
-        carousel.addEventListener('mouseleave', startAutoSlide);
+        carousel.addEventListener('mouseleave', () => {
+            // Add a small delay before restarting to prevent rapid toggling
+            setTimeout(() => {
+                if (!autoSlideInterval) { // Only start if not already running
+                    startAutoSlide();
+                }
+            }, 500);
+        });
         
         // Initialize first slide
         indicators[0].classList.add('active');
@@ -349,6 +405,8 @@ class Webstore {
         
         const slides = carousel.querySelectorAll('.carousel-slide');
         const indicators = carousel.querySelectorAll('.indicator');
+        const leftArrow = carousel.querySelector('.carousel-arrow-left');
+        const rightArrow = carousel.querySelector('.carousel-arrow-right');
         
         if (slides.length === 0) return;
         
@@ -357,13 +415,15 @@ class Webstore {
         
         // Function to show specific slide
         const showSlide = (index) => {
-            // Remove active class from all slides and indicators
-            slides.forEach(slide => slide.classList.remove('active'));
+            // Update indicators immediately for instant feedback
             indicators.forEach(indicator => indicator.classList.remove('active'));
-            
-            // Add active class to current slide and indicator
-            slides[index].classList.add('active');
             indicators[index].classList.add('active');
+            
+            // Remove active class from all slides
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            // Add active class to current slide
+            slides[index].classList.add('active');
             
             currentSlide = index;
         };
@@ -382,6 +442,7 @@ class Webstore {
         // Stop automatic slideshow
         const stopAutoSlide = () => {
             clearInterval(autoSlideInterval);
+            autoSlideInterval = null;
         };
         
         // Add click events to indicators
@@ -390,13 +451,52 @@ class Webstore {
                 e.preventDefault();
                 showSlide(index);
                 stopAutoSlide();
-                setTimeout(startAutoSlide, 5000); // Restart after 5 seconds
+                setTimeout(() => {
+                    if (!autoSlideInterval) { // Only start if not already running
+                        startAutoSlide();
+                    }
+                }, 5000);
             });
         });
         
+        // Add click events to navigation arrows
+        if (leftArrow) {
+            leftArrow.addEventListener('click', (e) => {
+                e.preventDefault();
+                const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(prevIndex);
+                stopAutoSlide();
+                setTimeout(() => {
+                    if (!autoSlideInterval) {
+                        startAutoSlide();
+                    }
+                }, 5000);
+            });
+        }
+        
+        if (rightArrow) {
+            rightArrow.addEventListener('click', (e) => {
+                e.preventDefault();
+                nextSlide();
+                stopAutoSlide();
+                setTimeout(() => {
+                    if (!autoSlideInterval) {
+                        startAutoSlide();
+                    }
+                }, 5000);
+            });
+        }
+        
         // Pause auto-slide on hover, resume on mouse leave
         carousel.addEventListener('mouseenter', stopAutoSlide);
-        carousel.addEventListener('mouseleave', startAutoSlide);
+        carousel.addEventListener('mouseleave', () => {
+            // Add a small delay before restarting to prevent rapid toggling
+            setTimeout(() => {
+                if (!autoSlideInterval) { // Only start if not already running
+                    startAutoSlide();
+                }
+            }, 500);
+        });
         
         // Initialize carousel
         showSlide(0);
