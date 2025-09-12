@@ -211,3 +211,67 @@
 [data-theme="light"] .project-name {
     text-shadow: 0 2px 8px rgba(255, 255, 255, 0.8);
 }
+
+/* Discord Section */
+.discord-section {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.discord-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, #5865F2 0%, #4752C4 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
+    text-decoration: none;
+}
+
+.discord-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(88, 101, 242, 0.4);
+    background: linear-gradient(135deg, #4752C4 0%, #3C45A5 100%);
+}
+
+.discord-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(88, 101, 242, 0.3);
+}
+
+.discord-btn i {
+    font-size: 1.3rem;
+}
+
+/* Responsive Discord Button */
+@media (max-width: 768px) {
+    .discord-btn {
+        padding: 14px 28px;
+        font-size: 1rem;
+    }
+    
+    .discord-btn i {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .discord-btn {
+        padding: 12px 24px;
+        font-size: 0.95rem;
+    }
+    
+    .discord-btn i {
+        font-size: 1.1rem;
+    }
+}
