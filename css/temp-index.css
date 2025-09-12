@@ -99,14 +99,14 @@
 
 /* ZGRAD Card */
 .zgrad-card {
-    background-image: url('../assets/images/background.png');
+    background-image: url('../assets/gamemodes/homigrad.png');
     background-size: cover;
     background-position: center;
 }
 
 /* NPCZ Card */
 .npcz-card {
-    background-image: url('../assets/gamemodes/homigrad.png');
+    background-image: url('../assets/images/background.png');
     background-size: cover;
     background-position: center;
 }
