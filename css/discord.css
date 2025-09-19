@@ -433,8 +433,7 @@
     
     .discord-widget {
         width: 100%;
-        max-width: 400px;
-        align-self: center;
+        align-self: stretch;
         grid-column: unset;
         grid-row: unset;
     }
@@ -471,8 +470,7 @@
     
     .discord-widget {
         width: 100%;
-        max-width: 350px;
-        align-self: center;
+        align-self: stretch;
         grid-column: unset;
         grid-row: unset;
     }
@@ -513,8 +511,7 @@
     
     .discord-widget {
         width: 100%;
-        max-width: 320px;
-        align-self: center;
+        align-self: stretch;
         grid-column: unset;
         grid-row: unset;
     }
@@ -561,8 +558,7 @@
     
     .discord-widget {
         width: 100%;
-        max-width: 300px;
-        align-self: center;
+        align-self: stretch;
     }
     
     .disclaimer-text {
