@@ -56,271 +56,116 @@
     margin-right: auto;
 }
 
-.guidelines-main {
+/* Guidelines Box */
+.guidelines-box {
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+
+.guidelines-label {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
-    margin-bottom: 1.5rem;
+    gap: 1rem;
+    flex-shrink: 0;
+    min-height: 100%;
 }
 
-.main-guidelines-link {
-    font-family: 'Oxanium', monospace;
-    font-size: 1.4rem;
+.guidelines-text {
+    font-family: 'BankGothic', 'Special Gothic Expanded One', sans-serif;
+    font-size: 1.2rem;
     font-weight: 700;
-    color: var(--color-white);
-    background: rgba(255, 0, 0, 0.15);
-    border: 1px solid rgba(255, 0, 0, 0.3);
-    padding: 1.5rem 4rem;
-    border-radius: 8px;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    color: rgba(255, 255, 255, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}
+
+.guidelines-line {
+    width: 2px;
+    background: linear-gradient(to bottom, var(--color-red), transparent);
+    flex: 1;
+    min-height: 200px;
+}
+
+
+.guidelines-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+}
+
+
+
+.guideline-link {
+    font-family: 'Oxanium', monospace;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    box-shadow: 
-        0 8px 32px rgba(255, 0, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 1rem;
+    gap: 0.5rem;
+    flex: 1;
 }
 
-.main-guidelines-arrow {
-    width: 32px;
-    height: 32px;
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
+.guideline-arrow {
+    width: 20px;
+    height: 20px;
     filter: brightness(0) invert(1);
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    margin-left: 0.5rem;
 }
 
-.main-guidelines-link::before {
+.guideline-link::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.6), transparent);
+    background: linear-gradient(90deg, transparent, var(--color-red), transparent);
     border-radius: 8px 8px 0 0;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
-.main-guidelines-link:hover {
-    background: rgba(255, 0, 0, 0.25);
-    border-color: rgba(255, 0, 0, 0.5);
-    transform: translateY(-3px);
+.guideline-link:hover {
+    background: rgba(255, 0, 0, 0.05);
+    border-color: rgba(255, 0, 0, 0.3);
+    color: var(--color-white);
+    transform: translateX(5px);
     box-shadow: 
-        0 12px 40px rgba(255, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    color: var(--color-white);
-}
-
-.main-guidelines-link:hover::before {
-    opacity: 1;
-}
-
-.main-guidelines-link:hover .main-guidelines-arrow {
-    opacity: 1;
-}
-
-.main-guidelines-link:active {
-    transform: translateY(-1px);
-}
-
-.server-guidelines-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: visible;
-    position: relative;
-    z-index: 5;
-}
-
-.server-guidelines-toggle {
-    font-family: 'Oxanium', monospace;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.6);
-    background: none;
-    border: none;
-    padding: 0;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.8rem;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-}
-
-.server-guidelines-toggle:hover {
-    color: var(--color-white);
-}
-
-.server-guidelines-toggle:hover .toggle-arrow {
-    opacity: 1;
-}
-
-.server-guidelines-toggle:hover .toggle-arrow-icon {
-    filter: brightness(0) invert(1);
-}
-
-.server-guidelines-toggle:hover .toggle-arrow.text-mode {
-    color: var(--color-white);
-}
-
-.server-guidelines-toggle.expanded .toggle-arrow-icon {
-    filter: brightness(0) invert(1);
-}
-
-.server-guidelines-toggle.expanded .toggle-arrow.text-mode {
-    color: var(--color-white);
-}
-
-.server-guidelines-toggle.expanded {
-    color: var(--color-white);
-}
-
-.toggle-arrow {
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    opacity: 0.6;
-    flex-shrink: 0;
-}
-
-.toggle-arrow-icon {
-    width: 24px;
-    height: 24px;
-    filter: brightness(0) invert(1) opacity(0.6);
-    transition: all 0.3s ease;
-}
-
-.toggle-arrow.text-mode {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.6);
-    font-weight: bold;
-    line-height: 1;
-}
-
-.server-guidelines-toggle.expanded .toggle-arrow {
-    opacity: 1;
-}
-
-.server-guidelines {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-    width: 100%;
-    overflow: hidden;
-    transition: height 0.4s ease, opacity 0.3s ease;
-    z-index: 10;
-    position: relative;
-    height: auto;
-    padding: 1rem 0;
-    margin: -1rem 0;
-}
-
-.server-guidelines.collapsed {
-    height: 0;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.server-guideline-box {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    padding: 1rem 1.5rem;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow: 
-        0 6px 24px rgba(0, 0, 0, 0.1),
+        0 4px 16px rgba(255, 0, 0, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    min-height: 55px;
-    position: relative;
 }
 
-.server-guideline-box::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    border-radius: 4px 4px 0 0;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.server-guideline-box:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-3px);
-    box-shadow: 
-        0 12px 40px rgba(0, 0, 0, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    z-index: 20;
-    position: relative;
-}
-
-.server-guideline-box:hover::before {
+.guideline-link:hover::before {
     opacity: 1;
 }
 
-.server-guideline-title {
-    font-family: 'Oxanium', monospace;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--color-white);
-    text-shadow: 
-        2px 2px 4px rgba(0, 0, 0, 0.8),
-        0 0 20px rgba(255, 255, 255, 0.1);
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-    text-align: center;
-    line-height: 1.4;
-    position: relative;
-    z-index: 1;
-}
-
-.server-guideline-desc {
-    display: none;
-}
-
-.guideline-arrow {
-    width: 24px;
-    height: 24px;
-    opacity: 0.7;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
-    filter: brightness(0) invert(1);
-}
-
-.server-guideline-box:hover .guideline-arrow {
+.guideline-link:hover .guideline-arrow {
     opacity: 1;
+    transform: translateX(2px) translateY(-1px);
 }
 
 /* Help Section Content within Community Guidelines */
@@ -578,44 +423,18 @@
         margin-bottom: 3rem;
     }
     
-    .server-guidelines {
-        gap: 1.3rem;
-        overflow: visible;
+    .guidelines-box {
+        padding: 1.5rem;
     }
     
-    .server-guideline-box {
-        padding: 0.8rem 1.5rem;
-        min-height: 50px;
-    }
-    
-    .server-guidelines-toggle {
-        font-size: 1.2rem;
-        gap: 0.7rem;
-    }
-    
-    .main-guidelines-arrow {
-        width: 30px;
-        height: 30px;
-    }
-    
-    .guideline-arrow {
-        width: 22px;
-        height: 22px;
-    }
-    
-    .toggle-arrow {
-        width: 30px;
-        height: 30px;
-    }
-    
-    .toggle-arrow-icon {
-        width: 22px;
-        height: 22px;
-    }
-    
-    .toggle-arrow.text-mode {
+    .guideline-link {
         font-size: 1.1rem;
-        color: rgba(255, 255, 255, 0.6);
+        padding: 0.9rem 1.3rem;
+    }
+    
+    
+    .guidelines-label {
+        display: none;
     }
     
     .help-section-content {
@@ -663,55 +482,13 @@
         margin-bottom: 2.5rem;
     }
     
-    .server-guidelines {
-        gap: 1.2rem;
-        overflow: visible;
+    .guidelines-box {
+        padding: 1.3rem;
     }
     
-    .server-guideline-box {
-        padding: 0.8rem 1.3rem;
-        min-height: 45px;
-    }
-    
-    .server-guidelines-toggle {
-        font-size: 1.1rem;
-        gap: 0.6rem;
-    }
-    
-    .main-guidelines-arrow {
-        width: 28px;
-        height: 28px;
-    }
-    
-    .guideline-arrow {
-        width: 20px;
-        height: 20px;
-    }
-    
-    .toggle-arrow {
-        width: 28px;
-        height: 28px;
-    }
-    
-    .toggle-arrow-icon {
-        width: 20px;
-        height: 20px;
-    }
-    
-    .toggle-arrow.text-mode {
+    .guideline-link {
         font-size: 1rem;
-        color: rgba(255, 255, 255, 0.6);
-    }
-    
-    .server-guideline-title {
-        font-size: 1rem;
-        letter-spacing: 0.3px;
-    }
-    
-    .main-guidelines-link {
-        font-size: 1.2rem;
-        padding: 1.2rem 3rem;
-        border-radius: 6px;
+        padding: 0.8rem 1.2rem;
     }
     
     .help-section-content {
@@ -750,10 +527,6 @@
         border-radius: 6px;
     }
     
-    .guideline-arrow {
-        width: 16px;
-        height: 16px;
-    }
 }
 
 @media (max-width: 480px) {
@@ -862,10 +635,6 @@
         align-self: center;
     }
     
-    .guideline-arrow {
-        width: 16px;
-        height: 16px;
-    }
 }
 
 @media (max-width: 360px) {
@@ -877,50 +646,13 @@
         margin-bottom: 2rem;
     }
     
-    .server-guideline-box {
-        padding: 0.6rem 0.9rem;
-        min-height: 38px;
+    .guidelines-box {
+        padding: 0.8rem;
     }
     
-    .server-guidelines-toggle {
-        font-size: 0.95rem;
-        gap: 0.5rem;
-    }
-    
-    .main-guidelines-arrow {
-        width: 26px;
-        height: 26px;
-    }
-    
-    .guideline-arrow {
-        width: 18px;
-        height: 18px;
-    }
-    
-    .toggle-arrow {
-        width: 26px;
-        height: 26px;
-    }
-    
-    .toggle-arrow-icon {
-        width: 18px;
-        height: 18px;
-    }
-    
-    .toggle-arrow.text-mode {
-        font-size: 0.9rem;
-        color: rgba(255, 255, 255, 0.6);
-    }
-    
-    .server-guideline-title {
-        font-size: 0.9rem;
-        letter-spacing: 0.2px;
-    }
-    
-    .main-guidelines-link {
-        font-size: 1rem;
-        padding: 0.8rem 2rem;
-        border-radius: 4px;
+    .guideline-link {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.8rem;
     }
     
     .help-section-content {
