@@ -1,12 +1,15 @@
 /* Servers Section */
 .servers {
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.6) 100%), url('../assets/textures/redish-texture.jpg');
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 20%, rgba(0, 0, 0, 0.2) 80%, rgba(0, 0, 0, 0.8) 100%), url('../assets/textures/redish-texture.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     padding: 6rem 4rem;
     text-align: center;
+    position: relative;
 }
+
+
 
 .servers-title {
     font-family: 'BankGothic', 'Special Gothic Expanded One', sans-serif;
