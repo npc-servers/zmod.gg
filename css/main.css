@@ -42,6 +42,12 @@ html, body {
 body {
     font-family: 'Arial', sans-serif;
     background-color: var(--color-black);
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+        url('../assets/backgrounds/textured-bg.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% auto;
     color: var(--color-white);
     line-height: 1.6;
 }

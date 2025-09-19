@@ -42,7 +42,6 @@
 
 /* Server Browser Section */
 .server-browser {
-    background-color: var(--color-black);
     padding: 0 4rem 6rem;
     text-align: center;
     display: flex;
