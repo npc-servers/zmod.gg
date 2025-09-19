@@ -1,16 +1,18 @@
 /* Landing Section */
 .landing {
     min-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    padding: 8rem 4rem 0;
+    align-items: center;
+    padding: 0;
     background-image: url('../assets/backgrounds/paradise.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
+    overflow: hidden;
 }
 
 .landing::before {
@@ -26,82 +28,118 @@
     z-index: 1;
 }
 
+.landing::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0.9) 100%),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 100% 100%, 50px 50px, 50px 50px;
+    z-index: 1;
+    mask: radial-gradient(ellipse at center, transparent 0%, black 60%);
+    -webkit-mask: radial-gradient(ellipse at center, transparent 0%, black 60%);
+}
+
 .landing-content {
-    text-align: left;
-    max-width: min(1000px, 95vw);
+    text-align: center;
+    max-width: 100%;
     width: 100%;
+    height: 100vh;
     position: relative;
     z-index: 2;
-    animation: fadeInUp 1s ease-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    box-sizing: border-box;
 }
 
-.bottom-cutout {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-}
 
-.cutout-svg {
-    width: min(500px, 90vw);
-    height: 30px;
-    display: block;
-    filter: brightness(0);
-    object-fit: cover;
+
+.hero-text {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    max-width: 800px;
 }
 
 .hero-title {
-    font-family: 'BankGothic', 'Special Gothic Expanded One', sans-serif;
+    font-family: 'Oxanium', monospace;
     font-size: clamp(2.5rem, 7vw, 5.5rem);
     font-weight: 700;
     margin-bottom: 2rem;
     color: var(--color-white);
-    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);
     letter-spacing: 0.5px;
     line-height: 1.1;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    position: relative;
+    white-space: nowrap;
 }
 
-.hero-title::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: -8px;
-    width: 12px;
-    height: 12px;
-    background: 
-        /* Top-left L bracket */
-        linear-gradient(var(--color-red), var(--color-red)) 0 0/12px 3px,
-        linear-gradient(var(--color-red), var(--color-red)) 0 0/3px 12px;
-    background-repeat: no-repeat;
-}
-
-.hero-title::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    right: -8px;
-    width: 12px;
-    height: 12px;
-    background: 
-        /* Bottom-right L bracket */
-        linear-gradient(var(--color-red), var(--color-red)) 100% 100%/12px 3px,
-        linear-gradient(var(--color-red), var(--color-red)) 100% 100%/3px 12px;
-    background-repeat: no-repeat;
-}
-
-.hero-subtitle {
+.hero-description {
     font-family: 'Oxanium', monospace;
-    font-size: clamp(1.4rem, 3.5vw, 2.2rem);
-    margin-bottom: 0;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    margin-bottom: 3rem;
     color: var(--color-white);
     font-weight: 400;
-    line-height: 1.4;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-    max-width: 900px;
+    line-height: 1.6;
+    max-width: 600px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.hero-button {
+    font-family: 'Oxanium', monospace;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    min-width: 160px;
+    text-align: center;
+}
+
+.discord-button {
+    background: linear-gradient(135deg, #5865F2 0%, #4752C4 100%);
+    color: var(--color-white);
+    border: 2px solid transparent;
+    box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
+}
+
+.discord-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(88, 101, 242, 0.4);
+    background: linear-gradient(135deg, #4752C4 0%, #3B4BCC 100%);
+}
+
+.servers-button {
+    background: transparent;
+    color: var(--color-white);
+    border: 2px solid var(--color-red);
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.2);
+}
+
+.servers-button:hover {
+    background: var(--color-red);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 0, 0, 0.3);
 }
 
 /* Animations */
@@ -119,59 +157,79 @@
 /* Responsive Design - Landing */
 @media (max-width: 992px) {
     .landing {
-        padding: 0 3rem;
+        padding: 0;
         align-items: center;
         text-align: center;
-        padding-top: 8rem;
     }
     
     .landing-content {
         text-align: center;
+        padding: 1.5rem;
+    }
+    
+    
+    .hero-title {
+        font-size: clamp(1.8rem, 5vw, 4rem);
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-description {
+        font-size: clamp(1rem, 2.5vw, 1.5rem);
+        margin-bottom: 2.5rem;
+    }
+    
+    .hero-buttons {
+        gap: 1.5rem;
+    }
+    
+    .hero-button {
+        font-size: 1.1rem;
+        padding: 0.8rem 1.5rem;
+        min-width: 140px;
     }
 }
 
 @media (max-width: 768px) {
     .landing {
-        padding: 0 2rem;
-        padding-top: 7rem;
+        padding: 0;
     }
+    
+    .landing-content {
+        padding: 1rem;
+    }
+    
 }
 
 @media (max-width: 480px) {
     .landing {
-        padding: 0 1rem;
-        padding-top: 6rem;
+        padding: 0;
     }
+    
+    .landing-content {
+        padding: 0.75rem;
+    }
+    
 }
 
 @media (max-width: 360px) {
     .landing {
-        padding: 0 0.5rem;
-        padding-top: 5rem;
+        padding: 0;
     }
+    
+    .landing-content {
+        padding: 0.5rem;
+    }
+    
 }
 
 @media (max-width: 320px) {
     .landing {
-        padding: 0 0.25rem;
-        padding-top: 4.5rem;
+        padding: 0;
     }
     
     .landing-content {
         max-width: 100%;
-        padding: 0;
+        padding: 0.25rem;
     }
     
-    .cutout-svg {
-        width: min(400px, 95vw);
-        height: 25px;
-    }
-    
-    .hero-title {
-        margin-bottom: 1.5rem;
-    }
-    
-    .hero-subtitle {
-        font-size: clamp(1.1rem, 4vw, 1.8rem);
-    }
 }

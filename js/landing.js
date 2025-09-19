@@ -127,7 +127,7 @@ class Landing {
         }, animationObserverOptions);
         
         // Observe elements for animation
-        const animateElements = document.querySelectorAll('.landing-content');
+        const animateElements = document.querySelectorAll('.landing-content, .hero-logo');
         animateElements.forEach(el => animationObserver.observe(el));
     }
 }
