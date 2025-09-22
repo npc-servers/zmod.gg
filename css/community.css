@@ -335,6 +335,9 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
 }
 
 .faq-item:hover {
@@ -344,10 +347,14 @@
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
+.faq-question-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
 .faq-paperclip {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
     background: none;
     border: none;
     opacity: 0.6;
@@ -360,6 +367,7 @@
     justify-content: center;
     min-width: 2rem;
     min-height: 2rem;
+    flex-shrink: 0;
 }
 
 .paperclip-icon {
@@ -418,7 +426,6 @@
     color: var(--color-white);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     letter-spacing: 0.3px;
-    margin-bottom: 0.8rem;
     line-height: 1.4;
 }
 
@@ -519,11 +526,6 @@
         padding: 1.2rem;
     }
     
-    .faq-paperclip {
-        top: 1.2rem;
-        right: 1.2rem;
-    }
-    
     .paperclip-icon {
         width: 1rem;
         height: 1rem;
@@ -581,11 +583,6 @@
     
     .faq-item {
         padding: 1rem;
-    }
-    
-    .faq-paperclip {
-        top: 1rem;
-        right: 1rem;
     }
     
     .paperclip-icon {
@@ -698,11 +695,6 @@
         padding: 0.8rem;
     }
     
-    .faq-paperclip {
-        top: 0.8rem;
-        right: 0.8rem;
-    }
-    
     .paperclip-icon {
         width: 0.8rem;
         height: 0.8rem;
@@ -769,11 +761,6 @@
     
     .faq-item {
         padding: 0.6rem;
-    }
-    
-    .faq-paperclip {
-        top: 0.6rem;
-        right: 0.6rem;
     }
     
     .paperclip-icon {
