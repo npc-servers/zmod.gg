@@ -6,6 +6,8 @@ class Community {
 
     init() {
         this.bindEvents();
+        this.handleHashChange(); // Check for existing hash on page load
+        window.addEventListener('hashchange', () => this.handleHashChange());
         console.log('Community module initialized');
     }
 
@@ -31,6 +33,114 @@ class Community {
                 console.log('Guideline clicked:', box.querySelector('.server-guideline-title').textContent);
             });
         });
+
+        // Handle FAQ item clicks
+        this.bindFAQEvents();
+    }
+
+    bindFAQEvents() {
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            // Add copy link functionality to paperclip icons
+            const paperclipIcon = item.querySelector('.faq-paperclip');
+            if (paperclipIcon) {
+                paperclipIcon.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    this.copyFAQLink(item);
+                });
+            }
+        });
+    }
+
+    copyFAQLink(faqItem) {
+        const faqId = faqItem.id;
+        if (faqId) {
+            const currentUrl = new URL(window.location);
+            currentUrl.hash = faqId;
+            const linkToCopy = currentUrl.toString();
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(linkToCopy).then(() => {
+                this.showCopyFeedback(faqItem);
+            }).catch(() => {
+                // Fallback for older browsers
+                this.fallbackCopyToClipboard(linkToCopy, faqItem);
+            });
+        }
+    }
+
+    fallbackCopyToClipboard(text, faqItem) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            this.showCopyFeedback(faqItem);
+        } catch (err) {
+            console.error('Failed to copy text: ', err);
+        }
+        document.body.removeChild(textArea);
+    }
+
+    showCopyFeedback(faqItem) {
+        const paperclipButton = faqItem.querySelector('.faq-paperclip');
+        if (paperclipButton) {
+            // Add the copied class to change the icon color to green
+            paperclipButton.classList.add('copied');
+            
+            // Remove the copied class after 2 seconds to return to white
+            setTimeout(() => {
+                paperclipButton.classList.remove('copied');
+            }, 2000);
+        }
+    }
+
+    // Method to handle URL hash changes
+    handleHashChange() {
+        const hash = window.location.hash;
+        if (hash && hash.startsWith('#faq-')) {
+            const faqId = hash.substring(1);
+            
+            // Scroll to the FAQ item
+            const faqItem = document.getElementById(faqId);
+            if (faqItem) {
+                // Use a small delay to ensure the page is ready
+                setTimeout(() => {
+                    // Get the element's position and dimensions
+                    const elementRect = faqItem.getBoundingClientRect();
+                    const elementTop = elementRect.top + window.pageYOffset;
+                    const elementHeight = elementRect.height;
+                    const windowHeight = window.innerHeight;
+                    
+                    // Calculate scroll position to perfectly center the element
+                    const scrollPosition = elementTop - (windowHeight / 2) + (elementHeight / 2);
+                    
+                    // Scroll to the calculated position
+                    window.scrollTo({
+                        top: Math.max(0, scrollPosition),
+                        behavior: 'smooth'
+                    });
+                    
+                    // Add highlight effect after scrolling starts
+                    setTimeout(() => {
+                        this.highlightFAQItem(faqItem);
+                    }, 100);
+                }, 100);
+            }
+        }
+    }
+
+    highlightFAQItem(faqItem) {
+        // Add highlight class
+        faqItem.classList.add('highlighted');
+        
+        // Remove highlight class after animation completes
+        setTimeout(() => {
+            faqItem.classList.remove('highlighted');
+        }, 2000);
     }
 
     toggleSubGuidelines() {
