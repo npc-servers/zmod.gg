@@ -1,38 +1,31 @@
 // TOS Page JavaScript
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize navbar first
+    const navbar = new Navbar();
+    
     // Initialize TOS page functionality
     initTOSScrollEffects();
     initTOSAnimations();
+    
+    // Expose navbar functions globally for debugging
+    window.ZModTracking = {
+        getCurrentPage: () => navbar.getCurrentPage(),
+        getPageStats: () => navbar.getPageStats(),
+        setCurrentPage: (page) => navbar.setCurrentPage(page)
+    };
 });
 
 
-// Initialize TOS scroll effects
+// Initialize TOS scroll effects (navbar handles header scroll effects)
 function initTOSScrollEffects() {
-    const header = document.querySelector('.header');
-    const tosSections = document.querySelector('.tos-sections');
-    
+    // Only handle TOS-specific scroll effects, navbar handles header
     let lastScrollY = window.scrollY;
     let ticking = false;
     
     function updateScrollEffects() {
         const scrollY = window.scrollY;
-        const headerHeight = header.offsetHeight;
         
-        // Header scroll effects
-        if (scrollY > 100) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-        
-        // Hide header on scroll down, show on scroll up
-        if (scrollY > lastScrollY && scrollY > 200) {
-            header.classList.add('hidden');
-        } else {
-            header.classList.remove('hidden');
-        }
-        
-        // Parallax effect for hero section
+        // Parallax effect for hero section only
         const hero = document.querySelector('.tos-hero');
         if (hero) {
             const heroHeight = hero.offsetHeight;
@@ -42,7 +35,6 @@ function initTOSScrollEffects() {
                 hero.style.transform = `translateY(${parallaxOffset}px)`;
             }
         }
-        
         
         lastScrollY = scrollY;
         ticking = false;
@@ -56,7 +48,6 @@ function initTOSScrollEffects() {
     }
     
     window.addEventListener('scroll', requestTick);
-    
 }
 
 // Initialize TOS animations
