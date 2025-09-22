@@ -161,6 +161,57 @@
     background: linear-gradient(135deg, #4752C4 0%, #3B4BCC 100%);
 }
 
+.gray-button {
+    font-family: 'Oxanium', monospace;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-white);
+    background: rgba(160, 160, 160, 0.15);
+    border: 1px solid rgba(160, 160, 160, 0.3);
+    padding: 1.2rem 3rem;
+    border-radius: 8px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 8px 32px rgba(160, 160, 160, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.gray-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(160, 160, 160, 0.6), transparent);
+    border-radius: 8px 8px 0 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gray-button:hover {
+    background: rgba(160, 160, 160, 0.25);
+    border-color: rgba(160, 160, 160, 0.5);
+    transform: translateY(-3px);
+    box-shadow: 
+        0 12px 40px rgba(160, 160, 160, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    color: var(--color-white);
+}
+
+.gray-button:hover::before {
+    opacity: 1;
+}
+
 
 /* Animations */
 @keyframes fadeInUp {
