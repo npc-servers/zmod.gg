@@ -1,36 +1,20 @@
 // TOS Page JavaScript
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize TOS page functionality
+    // Initialize navbar functionality
+    const navbar = new Navbar();
+    
+    // Initialize TOS-specific functionality
     initTOSScrollEffects();
     initTOSAnimations();
 });
 
 
-// Initialize TOS scroll effects
+// Initialize TOS-specific scroll effects (non-navbar related)
 function initTOSScrollEffects() {
-    const header = document.querySelector('.header');
-    const tosSections = document.querySelector('.tos-sections');
-    
-    let lastScrollY = window.scrollY;
     let ticking = false;
     
     function updateScrollEffects() {
         const scrollY = window.scrollY;
-        const headerHeight = header.offsetHeight;
-        
-        // Header scroll effects
-        if (scrollY > 100) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-        
-        // Hide header on scroll down, show on scroll up
-        if (scrollY > lastScrollY && scrollY > 200) {
-            header.classList.add('hidden');
-        } else {
-            header.classList.remove('hidden');
-        }
         
         // Parallax effect for hero section
         const hero = document.querySelector('.tos-hero');
@@ -43,8 +27,6 @@ function initTOSScrollEffects() {
             }
         }
         
-        
-        lastScrollY = scrollY;
         ticking = false;
     }
     
@@ -56,7 +38,6 @@ function initTOSScrollEffects() {
     }
     
     window.addEventListener('scroll', requestTick);
-    
 }
 
 // Initialize TOS animations
@@ -142,18 +123,7 @@ function improveAccessibility() {
     document.body.insertBefore(skipLink, document.body.firstChild);
     
     
-    // Add focus indicators
-    const focusableElements = document.querySelectorAll('a, button, [tabindex]');
-    focusableElements.forEach(element => {
-        element.addEventListener('focus', function() {
-            this.style.outline = '2px solid var(--color-red)';
-            this.style.outlineOffset = '2px';
-        });
-        
-        element.addEventListener('blur', function() {
-            this.style.outline = 'none';
-        });
-    });
+    // Note: Focus styles are handled by CSS, not overridden here
 }
 
 // Initialize accessibility improvements

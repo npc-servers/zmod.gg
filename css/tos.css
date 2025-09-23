@@ -220,6 +220,18 @@
     border-radius: 2px;
 }
 
+/* Override default focus styles for navbar elements */
+.nav-link:focus,
+.mobile-nav-link:focus,
+.hamburger:focus {
+    outline: none;
+}
+
+/* Remove default focus styles from all elements except content links */
+*:focus:not(.tos-section-content a):not(input):not(textarea):not(select) {
+    outline: none;
+}
+
 .tos-section-content a:visited {
     color: #cc0000;
 }
@@ -470,10 +482,6 @@
         font-size: 1rem;
     }
     
-    .tos-nav-link {
-        font-size: 0.85rem;
-        padding: 0.5rem 0.6rem;
-    }
     
     .tos-sections {
         padding: 1rem;
