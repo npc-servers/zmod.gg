@@ -10,6 +10,11 @@ class Navbar {
         this.ticking = false;
         this.scrambleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
         
+        // Track initial page load to prevent intersection observer from overriding hash navigation
+        this.isInitialLoad = true;
+        this.pageLoadTime = Date.now();
+        this.debugMode = false; // Set to true to enable debug logging
+        
         this.init();
     }
     
@@ -66,10 +71,20 @@ class Navbar {
         // Handle mobile navigation links
         this.mobileNavLinks.forEach(link => {
             link.addEventListener('click', (e) => {
+                const targetPage = link.getAttribute('data-page');
+                const href = link.getAttribute('href');
+                
+                // Check if the link is pointing to a different page
+                if (href.startsWith('index.html') || href.startsWith('../index.html')) {
+                    // Close mobile menu but allow default navigation
+                    this.closeHamburgerMenu();
+                    return;
+                }
+                
+                // Only prevent default and handle smooth scrolling for same-page navigation
                 e.preventDefault();
                 
-                const targetPage = link.getAttribute('data-page');
-                const targetId = link.getAttribute('href');
+                const targetId = href;
                 const targetElement = document.querySelector(targetId) || document.querySelector('.landing');
                 
                 // Close mobile menu
@@ -80,7 +95,13 @@ class Navbar {
                 
                 if (targetElement) {
                     // Smooth scroll to target
-                    const offsetTop = targetElement.offsetTop - 100;
+                    let offsetTop = targetElement.offsetTop - 100;
+                    
+                    // Special offset for webstore section due to large top padding (6rem = 96px)
+                    if (targetPage === 'webstore') {
+                        offsetTop = targetElement.offsetTop + 200; // Scroll INTO the section to account for padding
+                    }
+                    
                     window.scrollTo({
                         top: offsetTop,
                         behavior: 'smooth'
@@ -186,10 +207,19 @@ class Navbar {
     setupNavigationLinks() {
         this.navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
+                const targetPage = link.getAttribute('data-page');
+                const href = link.getAttribute('href');
+                
+                // Check if the link is pointing to a different page
+                if (href.startsWith('index.html') || href.startsWith('../index.html')) {
+                    // Allow default behavior for external page navigation
+                    return;
+                }
+                
+                // Only prevent default and handle smooth scrolling for same-page navigation
                 e.preventDefault();
                 
-                const targetPage = link.getAttribute('data-page');
-                const targetId = link.getAttribute('href');
+                const targetId = href;
                 const targetElement = document.querySelector(targetId) || document.querySelector('.landing');
                 
                 // Update active state immediately for better UX
@@ -197,7 +227,13 @@ class Navbar {
                 
                 if (targetElement) {
                     // Smooth scroll to target
-                    const offsetTop = targetElement.offsetTop - 100; // Account for navbar height
+                    let offsetTop = targetElement.offsetTop - 100; // Account for navbar height
+                    
+                    // Special offset for webstore section due to large top padding (6rem = 96px)
+                    if (targetPage === 'webstore') {
+                        offsetTop = targetElement.offsetTop + 200; // Scroll INTO the section to account for padding
+                    }
+                    
                     window.scrollTo({
                         top: offsetTop,
                         behavior: 'smooth'
@@ -209,13 +245,22 @@ class Navbar {
             });
         });
         
-        // Handle smooth scrolling for server section links
+        // Handle smooth scrolling for server section links (only for same-page navigation)
         document.addEventListener('click', (e) => {
             if (e.target.matches('a[href="#servers"]') || e.target.matches('a[data-page="servers"]')) {
+                // Check if this is a cross-page navigation
+                const href = e.target.getAttribute('href');
+                if (href && (href.startsWith('index.html') || href.startsWith('../index.html'))) {
+                    // Allow default behavior for external page navigation
+                    return;
+                }
+                
                 e.preventDefault();
                 const serversSection = document.querySelector('.servers');
                 if (serversSection) {
-                    const offsetTop = serversSection.offsetTop - 100;
+                    let offsetTop = serversSection.offsetTop - 100;
+                    
+                    // This is specifically for servers, but keeping consistent pattern
                     window.scrollTo({
                         top: offsetTop,
                         behavior: 'smooth'
@@ -230,23 +275,39 @@ class Navbar {
     initializePageTracking() {
         // Set up intersection observer for automatic page detection
         const observerOptions = {
-            threshold: 0.3,
-            rootMargin: '-100px 0px -100px 0px'
+            threshold: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7], // Multiple thresholds for precise ratio detection
+            rootMargin: '-120px 0px -300px 0px' // More conservative margins to prevent false triggers
         };
         
         const sectionObserver = new IntersectionObserver((entries) => {
+            // Find the most intersecting entry (highest intersection ratio)
+            let mostIntersecting = null;
+            let highestRatio = 0;
+            
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const sectionId = entry.target.id || 'home';
-                    this.setCurrentPage(sectionId);
+                // Only consider sections that are at least 30% visible
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.3 && entry.intersectionRatio > highestRatio) {
+                    mostIntersecting = entry;
+                    highestRatio = entry.intersectionRatio;
                 }
             });
+            
+            // Only process the most intersecting section
+            if (mostIntersecting) {
+                const sectionId = mostIntersecting.target.id || 'home';
+                
+                // Don't override hash navigation during initial page load (first 2 seconds)
+                if (this.isInitialLoad && Date.now() - this.pageLoadTime < 2000) {
+                    return;
+                }
+                
+                this.setCurrentPage(sectionId);
+            }
         }, observerOptions);
         
         // Observe the landing section (home)
         const landingSection = document.querySelector('.landing');
         if (landingSection) {
-            landingSection.id = 'home';
             sectionObserver.observe(landingSection);
         }
         
@@ -262,8 +323,58 @@ class Navbar {
             sectionObserver.observe(serverBrowserSection);
         }
         
-        // Set initial active state
-        this.updateActiveNavLink('home');
+        // Observer for webstore section
+        const webstoreSection = document.querySelector('.webstore');
+        if (webstoreSection) {
+            sectionObserver.observe(webstoreSection);
+        }
+        
+        // Observer for community guidelines section
+        const communitySection = document.querySelector('.community-guidelines');
+        if (communitySection) {
+            sectionObserver.observe(communitySection);
+        }
+        
+        // Observer for discord section
+        const discordSection = document.querySelector('.discord-section');
+        if (discordSection) {
+            sectionObserver.observe(discordSection);
+        }
+        
+        // Handle initial hash navigation if present
+        const initialHash = window.location.hash.slice(1);
+        if (initialHash && initialHash !== 'home') {
+            // Set the current page to match the hash
+            this.currentPage = initialHash;
+            this.updateActiveNavLink(initialHash);
+            this.trackPageView(initialHash);
+            
+            // Apply proper scroll position after a short delay to override browser's default scroll
+            setTimeout(() => {
+                const targetElement = document.querySelector(`#${initialHash}`);
+                if (targetElement) {
+                    let offsetTop = targetElement.offsetTop - 100;
+                    
+                    // Special offset for webstore section due to large top padding (6rem = 96px)
+                    if (initialHash === 'webstore') {
+                        offsetTop = targetElement.offsetTop + 200; // Scroll INTO the section to account for padding
+                    }
+                    
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 100); // Small delay to let the page fully load
+        } else {
+            // Set initial active state for home
+            this.updateActiveNavLink('home');
+        }
+        
+        // Reset initial load flag after a delay to allow normal intersection observer behavior
+        setTimeout(() => {
+            this.isInitialLoad = false;
+        }, 2000);
         
         // Track page visibility changes
         document.addEventListener('visibilitychange', () => {
@@ -272,8 +383,11 @@ class Navbar {
             }
         });
         
-        // Track initial page load
-        this.trackPageView('home');
+        // Track initial page load (only if no hash present)  
+        const currentHash = window.location.hash.slice(1);
+        if (!currentHash || currentHash === 'home') {
+            this.trackPageView('home');
+        }
     }
     
     // Update current page and navigation state
@@ -349,7 +463,13 @@ class Navbar {
             // Scroll to section if it exists
             const targetElement = document.querySelector(`#${hash}`) || document.querySelector('.landing');
             if (targetElement) {
-                const offsetTop = targetElement.offsetTop - 100;
+                let offsetTop = targetElement.offsetTop - 100;
+                
+                // Special offset for webstore section due to large top padding (6rem = 96px)
+                if (hash === 'webstore') {
+                    offsetTop = targetElement.offsetTop + 200; // Scroll INTO the section to account for padding
+                }
+                
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'

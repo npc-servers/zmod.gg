@@ -15,14 +15,14 @@ document.addEventListener('DOMContentLoaded', function() {
         window.ZModWebstore = webstore;
     }
     
-    // Expose navbar functions globally for debugging and external access
+    // Expose navbar functions globally for external access
     window.ZModTracking = {
         getCurrentPage: () => navbar.getCurrentPage(),
         getPageStats: () => navbar.getPageStats(),
         setCurrentPage: (page) => navbar.setCurrentPage(page)
     };
     
-    // Expose community functions globally for debugging and external access
+    // Expose community functions globally for external access
     window.ZModCommunity = community;
     
     console.log('ZMod website initialized successfully');
