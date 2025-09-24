@@ -65,7 +65,11 @@
     height: 100%;
     display: flex;
     opacity: 1;
-    transition: opacity 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.server-content.transitioning {
+    opacity: 0;
 }
 
 .server-info {
@@ -202,6 +206,7 @@
     margin-left: auto;
     margin-right: auto;
     min-height: 300px;
+    padding: 0 2rem; /* Add consistent padding */
 }
 
 .content-image {
@@ -222,7 +227,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 .content-image:hover .rectangular-image {
@@ -237,6 +242,8 @@
     align-items: flex-start;
     padding: 0 1rem 0 0;
     text-align: left;
+    min-width: 0; /* Allow text to shrink properly */
+    overflow-wrap: break-word; /* Better text wrapping */
 }
 
 .content-buttons {
@@ -247,6 +254,7 @@
     align-items: stretch;
     gap: 1.5rem;
     padding: 0;
+    min-width: 180px; /* Ensure minimum button width */
 }
 
 .content-button {
@@ -329,14 +337,32 @@
     transform: translateY(0);
 }
 
-.content-button.popular-server {
+.content-button[data-action="next-gamemode"] {
     background: var(--color-red);
     color: var(--color-white);
+    border: 1px solid var(--color-red);
 }
 
-.content-button.popular-server:hover {
+.content-button[data-action="next-gamemode"]:hover {
     background: var(--color-red-hover);
     color: var(--color-white);
+    border: 1px solid var(--color-red-hover);
+}
+
+.content-button[data-action="next-gamemode"]::before {
+    display: none;
+}
+
+/* Single button layout styling */
+.content-buttons.single-button {
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto; /* Ensure single button container is centered */
+}
+
+.content-buttons.single-button .content-button {
+    width: 100%;
+    max-width: 200px;
 }
 
 .content-title {
@@ -383,12 +409,13 @@
 @media (max-width: 1261px) and (min-width: 769px) {
     .additional-content {
         display: grid;
-        grid-template-columns: 1fr 400px;
+        grid-template-columns: 1fr 280px; /* Reduced button column width */
         grid-template-rows: auto auto;
         gap: 2rem;
         margin-top: 3rem;
         min-height: 300px;
         align-items: start;
+        padding: 0 1.5rem; /* Adjusted padding */
     }
     
     .content-text {
@@ -413,6 +440,7 @@
         gap: 1.2rem;
         align-items: stretch;
         margin-top: 1rem;
+        min-width: 240px; /* Ensure buttons don't get too narrow */
     }
 }
 
@@ -502,6 +530,7 @@
         gap: 2rem;
         margin-top: 2.5rem;
         min-height: auto;
+        padding: 0 1.5rem; /* Better padding for tablets */
     }
     
     .content-text {
@@ -523,12 +552,13 @@
     .content-buttons {
         flex: none;
         flex-direction: row;
-        justify-content: flex-start;
+        justify-content: center; /* Center buttons on tablets */
         gap: 1.5rem;
         padding: 1rem 0 0 0;
         max-width: 500px;
-        margin: 0;
+        margin: 0 auto; /* Center the button container */
         order: 3;
+        flex-wrap: wrap; /* Allow wrapping on smaller tablets */
     }
     
     .content-button {
@@ -576,6 +606,7 @@
     .additional-content {
         margin-top: 2rem;
         gap: 1.5rem;
+        padding: 0 1rem; /* Better mobile padding */
     }
     
     .content-text {
@@ -592,9 +623,10 @@
     .content-buttons {
         gap: 1rem;
         max-width: 400px;
-        justify-content: flex-start;
-        margin: 0;
+        justify-content: center; /* Center buttons */
+        margin: 0 auto; /* Center the button container */
         order: 3;
+        flex-wrap: wrap; /* Allow wrapping */
     }
     
     .content-button {
@@ -638,6 +670,7 @@
     .additional-content {
         margin-top: 1.5rem;
         gap: 1rem;
+        padding: 0 0.75rem; /* Tighter padding for very small screens */
     }
     
     .content-text {
@@ -654,17 +687,26 @@
     .content-buttons {
         flex-direction: column;
         gap: 0.8rem;
-        max-width: 280px;
-        justify-content: flex-start;
-        align-items: flex-start;
-        margin: 0;
+        max-width: 260px; /* Slightly smaller for very small screens */
+        justify-content: center; /* Center buttons */
+        align-items: center; /* Center buttons horizontally in column layout */
+        margin: 0 auto; /* Center the button container */
         order: 3;
+    }
+    
+    .content-buttons.single-button {
+        align-items: center;
+        justify-content: center;
+        max-width: 200px;
+        margin: 0 auto; /* Ensure single button is centered */
     }
     
     .content-button {
         font-size: 0.8rem;
         padding: 0.6rem 1rem;
-        min-width: auto;
+        min-width: 100px; /* Ensure buttons maintain minimum width on mobile */
+        width: 100%; /* Take full width of container for better touch targets */
+        max-width: 200px; /* Prevent buttons from becoming too wide */
     }
     
     .content-title {
@@ -675,5 +717,14 @@
     .content-description {
         font-size: 0.85rem;
         margin-bottom: 0.8rem;
+    }
+    
+    /* Enhanced button styling for very small screens */
+    .content-button {
+        font-size: 0.75rem;
+        padding: 0.6rem 0.8rem;
+        min-width: 90px; /* Slightly smaller min-width for very small screens */
+        width: 100%;
+        max-width: 180px; /* Prevent buttons from being too wide on tiny screens */
     }
 }

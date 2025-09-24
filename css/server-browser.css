@@ -6,6 +6,28 @@
     background: var(--color-red);
 }
 
+/* Server Highlighting Effect */
+.server-highlight {
+    animation: serverHighlight 5s ease-in-out;
+    border: 2px solid var(--color-red) !important;
+    box-shadow: 0 0 20px rgba(255, 69, 69, 0.5) !important;
+}
+
+@keyframes serverHighlight {
+    0% {
+        box-shadow: 0 0 20px rgba(255, 69, 69, 0.8);
+        border-color: var(--color-red);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(255, 69, 69, 0.6);
+        border-color: var(--color-red);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(255, 69, 69, 0.3);
+        border-color: rgba(255, 69, 69, 0.5);
+    }
+}
+
 .separator-line:before,
 .separator-line:after {
     content: '';
