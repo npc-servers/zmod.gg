@@ -13,7 +13,7 @@ class Servers {
                 expandedDescription: 'ZGRAD (formerly Homigrad) is our flagship tactical survival experience featuring realistic combat mechanics, strategic base building, and intense PvP encounters. Players must scavenge for resources, craft weapons and equipment, and survive against both the environment and other players. With advanced ballistics, medical systems, and group dynamics, every decision matters in this unforgiving world where teamwork and strategy are essential for survival.',
                 showcaseImage: 'assets/gamemodes/homigrad.png',
                 sideImage: 'assets/gamemodes/sandbox.jpg',
-                website: 'https://zmod.gg/zgrad',
+                website: 'https://zgrad.gg',
                 hasWebsite: true,
                 serverGroupId: 'zgrad'
             },
@@ -35,7 +35,7 @@ class Servers {
                 expandedDescription: 'Experience classic zombie survival gameplay with intelligent NPC enemies and cooperative multiplayer action. Build bases, craft weapons, and work together to survive against waves of zombies and other threats. Features advanced AI systems, dynamic spawning, and extensive customization options for a unique survival experience every time you play.',
                 showcaseImage: 'assets/gamemodes/sandbox.jpg',
                 sideImage: 'assets/gamemodes/horde.jpg',
-                website: 'https://zmod.gg/npcz',
+                website: 'https://npcz.gg',
                 hasWebsite: true,
                 serverGroupId: 'sandbox'
             },

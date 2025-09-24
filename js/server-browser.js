@@ -132,7 +132,7 @@ class ServerBrowser {
                 <div class="pc-only-tag pc-only-tag-mobile">PC ONLY</div>
                 <div class="server-players">${status.players}/${status.maxPlayers} <img src="assets/svgs/player.svg" alt="Players" class="player-icon"></div>
                 ${isMapSweepers ? '<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3179978923" target="_blank" class="workshop-btn">View on Workshop</a>' : ''}
-                ${isSandbox ? '<a href="https://zmod.gg/npcz" target="_blank" class="learn-more-btn">Learn More</a>' : ''}
+                ${isSandbox ? '<a href="https://npcz.gg" target="_blank" class="learn-more-btn">VIEW WEBSITE</a>' : ''}
                 <button class="server-join-btn" onclick="connectToServer('${server.ip}', '${server.port}')" ${!status.online ? 'disabled' : ''}>
                     ${status.online ? 'Connect' : 'Offline'}
                 </button>
@@ -208,7 +208,7 @@ class ServerBrowser {
                 <div class="server-group-info-right">
                     <div class="pc-only-tag pc-only-tag-mobile">PC ONLY</div>
                     <div class="server-group-players">${totalPlayers}/${totalMaxPlayers > 0 ? totalMaxPlayers : '?'} <img src="assets/svgs/player.svg" alt="Players" class="player-icon"></div>
-                    ${isZGRAD ? '<a href="https://zmod.gg/zgrad" target="_blank" class="learn-more-btn">Learn More</a>' : ''}
+                    ${isZGRAD ? '<a href="https://zgrad.gg" target="_blank" class="learn-more-btn">VIEW WEBSITE</a>' : ''}
                     <button class="server-expand-btn" onclick="event.stopPropagation(); toggleServerGroup('${group.id}')">
                         <span>${isZGRAD ? 'See All' : 'Expand'}</span>
                         <span class="expand-arrow">▼</span>
