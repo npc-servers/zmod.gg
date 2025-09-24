@@ -452,6 +452,27 @@
 }
 
 @media (max-width: 768px) {
+    /* Hide all decorative brackets on mobile */
+    .server-title::before,
+    .server-title::after {
+        display: none;
+    }
+    
+    .content-title::before,
+    .content-title::after {
+        display: none;
+    }
+    
+    .content-button::before,
+    .content-button::after {
+        display: none;
+    }
+    
+    .server-button::before,
+    .server-button::after {
+        display: none;
+    }
+    
     .servers {
         padding: 3rem 2rem;
     }

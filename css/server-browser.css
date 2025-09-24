@@ -994,6 +994,22 @@
 
 /* Adjust additional elements on smaller screens */
 @media (max-width: 768px) {
+    /* Hide all decorative brackets on mobile */
+    .server-join-btn::before,
+    .server-join-btn::after {
+        display: none;
+    }
+    
+    .server-expand-btn::before,
+    .server-expand-btn::after {
+        display: none;
+    }
+    
+    .server-sub-join-btn::before,
+    .server-sub-join-btn::after {
+        display: none;
+    }
+    
     .workshop-btn,
     .learn-more-btn {
         font-size: 0.8rem;

@@ -353,6 +353,17 @@
 }
 
 @media (max-width: 768px) {
+    /* Hide all decorative brackets on mobile */
+    .footer-section-title::before,
+    .footer-section-title::after {
+        display: none;
+    }
+    
+    .footer-link::before,
+    .footer-link::after {
+        display: none;
+    }
+    
     .footer {
         padding: 2.5rem 2rem 1.5rem;
     }
