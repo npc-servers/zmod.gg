@@ -9,8 +9,8 @@ class Servers {
             {
                 id: 'zgrad',
                 name: 'ZGRAD',
-                shortDescription: 'Experience intense tactical gameplay in our flagship survival server with realistic combat mechanics and strategic depth.',
-                expandedDescription: 'ZGRAD (formerly Homigrad) is our flagship tactical survival experience featuring realistic combat mechanics, strategic base building, and intense PvP encounters. Players must scavenge for resources, craft weapons and equipment, and survive against both the environment and other players. With advanced ballistics, medical systems, and group dynamics, every decision matters in this unforgiving world where teamwork and strategy are essential for survival.',
+                shortDescription: "The most chaotic experience on Garry's Mod. ZGRAD is the Homigrad gamemode, built from the ground up.",
+                expandedDescription: 'ZGRAD is the Homigrad gamemode. Imagine a mix of TTT, Murder, and the Homicide gamemode, all mixed into one. The most unique feature is full player ragdoll climbing, allowing you to scale buildings, tackle or drag people, and more. ZGRAD features a dozen subgamemodes, from TDM, Deathmatch, Zombie Survival, and more.',
                 showcaseImage: 'assets/gamemodes/homigrad.png',
                 sideImage: 'assets/gamemodes/sandbox.jpg',
                 website: 'https://zgrad.gg',
