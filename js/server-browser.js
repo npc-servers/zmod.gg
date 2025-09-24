@@ -338,7 +338,13 @@ class ServerBrowser {
         // Set up periodic refresh (every 30 seconds) - only if not already set
         if (!window.serverBrowserInterval) {
             window.serverBrowserInterval = setInterval(() => {
-                this.initializeServerBrowser();
+                // Check if any server groups are currently expanded
+                const expandedGroups = document.querySelectorAll('.server-sub-list.expanded');
+                
+                // Only update if no groups are expanded
+                if (expandedGroups.length === 0) {
+                    this.initializeServerBrowser();
+                }
             }, 30000);
         }
     }
