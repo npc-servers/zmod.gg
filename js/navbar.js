@@ -95,12 +95,7 @@ class Navbar {
                 
                 if (targetElement) {
                     // Smooth scroll to target
-                    let offsetTop = targetElement.offsetTop - 100;
-                    
-                    // Special offset for webstore section due to large top padding (6rem = 96px)
-                    if (targetPage === 'webstore') {
-                        offsetTop = targetElement.offsetTop + 200; // Scroll INTO the section to account for padding
-                    }
+                    const offsetTop = targetElement.offsetTop - 100;
                     
                     window.scrollTo({
                         top: offsetTop,
@@ -227,12 +222,7 @@ class Navbar {
                 
                 if (targetElement) {
                     // Smooth scroll to target
-                    let offsetTop = targetElement.offsetTop - 100; // Account for navbar height
-                    
-                    // Special offset for webstore section due to large top padding (6rem = 96px)
-                    if (targetPage === 'webstore') {
-                        offsetTop = targetElement.offsetTop + 200; // Scroll INTO the section to account for padding
-                    }
+                    const offsetTop = targetElement.offsetTop - 100; // Account for navbar height
                     
                     window.scrollTo({
                         top: offsetTop,
@@ -353,12 +343,7 @@ class Navbar {
             setTimeout(() => {
                 const targetElement = document.querySelector(`#${initialHash}`);
                 if (targetElement) {
-                    let offsetTop = targetElement.offsetTop - 100;
-                    
-                    // Special offset for webstore section due to large top padding (6rem = 96px)
-                    if (initialHash === 'webstore') {
-                        offsetTop = targetElement.offsetTop + 200; // Scroll INTO the section to account for padding
-                    }
+                    const offsetTop = targetElement.offsetTop - 100;
                     
                     window.scrollTo({
                         top: offsetTop,
@@ -463,12 +448,7 @@ class Navbar {
             // Scroll to section if it exists
             const targetElement = document.querySelector(`#${hash}`) || document.querySelector('.landing');
             if (targetElement) {
-                let offsetTop = targetElement.offsetTop - 100;
-                
-                // Special offset for webstore section due to large top padding (6rem = 96px)
-                if (hash === 'webstore') {
-                    offsetTop = targetElement.offsetTop + 200; // Scroll INTO the section to account for padding
-                }
+                const offsetTop = targetElement.offsetTop - 100;
                 
                 window.scrollTo({
                     top: offsetTop,
