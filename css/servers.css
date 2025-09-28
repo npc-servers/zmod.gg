@@ -201,7 +201,7 @@
     display: flex;
     align-items: stretch;
     gap: 3rem;
-    margin-top: 4rem;
+    margin-top: 2rem;
     max-width: 1500px;
     margin-left: auto;
     margin-right: auto;
@@ -412,7 +412,7 @@
         grid-template-columns: 1fr 280px; /* Reduced button column width */
         grid-template-rows: auto auto;
         gap: 2rem;
-        margin-top: 3rem;
+        margin-top: 2rem;
         min-height: 300px;
         align-items: start;
         padding: 0 1.5rem; /* Adjusted padding */
@@ -528,7 +528,7 @@
     .additional-content {
         flex-direction: column;
         gap: 2rem;
-        margin-top: 2.5rem;
+        margin-top: 1.5rem;
         min-height: auto;
         padding: 0 1.5rem; /* Better padding for tablets */
     }
@@ -604,7 +604,7 @@
     }
     
     .additional-content {
-        margin-top: 2rem;
+        margin-top: 1.5rem;
         gap: 1.5rem;
         padding: 0 1rem; /* Better mobile padding */
     }
@@ -668,7 +668,7 @@
     }
     
     .additional-content {
-        margin-top: 1.5rem;
+        margin-top: 1rem;
         gap: 1rem;
         padding: 0 0.75rem; /* Tighter padding for very small screens */
     }
