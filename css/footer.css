@@ -316,13 +316,6 @@
     transform: rotate(15deg);
 }
 
-.footer-decoration-2 {
-    bottom: 30%;
-    left: 5%;
-    width: 80px;
-    height: 80px;
-    transform: rotate(-25deg);
-}
 
 /* Responsive Design - Footer */
 @media (max-width: 1200px) {
