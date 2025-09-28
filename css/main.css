@@ -47,7 +47,8 @@ body {
         url('../assets/backgrounds/textured-bg.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: 100% auto;
+    background-size: cover;
+    background-position: center;
     color: var(--color-white);
     line-height: 1.6;
 }

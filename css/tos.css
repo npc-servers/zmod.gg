@@ -7,7 +7,8 @@
         url('../assets/backgrounds/textured-bg.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: 100% auto;
+    background-size: cover;
+    background-position: center;
     color: var(--color-white);
     padding-top: 120px;
     position: relative;
@@ -40,7 +41,7 @@
 .tos-hero-content {
     position: relative;
     z-index: 2;
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
 }
@@ -354,7 +355,17 @@
 }
 
 /* Responsive Design - TOS */
+@media (max-width: 1400px) {
+    .tos-hero-content {
+        max-width: 1000px;
+    }
+}
+
 @media (max-width: 1200px) {
+    .tos-hero-content {
+        max-width: 900px;
+    }
+    
     .tos-container {
         max-width: 900px;
     }
@@ -367,6 +378,10 @@
 @media (max-width: 992px) {
     .tos-main {
         padding-top: 100px;
+    }
+    
+    .tos-hero-content {
+        max-width: 800px;
     }
     
     .tos-container {
@@ -393,6 +408,7 @@
     }
     
     .tos-hero-content {
+        max-width: 100%;
         padding: 0 1rem;
     }
     
