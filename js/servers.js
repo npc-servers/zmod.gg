@@ -101,9 +101,6 @@ class Servers {
                 // Update expanded description
                 if (contentDescription.length > 0) {
                     contentDescription[0].textContent = gamemode.expandedDescription;
-                    if (contentDescription.length > 1) {
-                        contentDescription[1].textContent = 'Our dedicated development team continuously works to improve and expand our offerings, ensuring fresh content and innovative features that keep our community engaged and excited about what\'s next.';
-                    }
                 }
                 
                 // Remove transition class
