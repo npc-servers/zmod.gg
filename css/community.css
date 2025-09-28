@@ -58,23 +58,17 @@
 
 /* Guidelines Box */
 .guidelines-box {
-    padding: 2rem;
+    padding: 1.5rem;
     position: relative;
     overflow: hidden;
     width: 100%;
     display: flex;
-    gap: 2rem;
     align-items: flex-start;
 }
 
 
 .guidelines-label {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    flex-shrink: 0;
-    min-height: 100%;
+    display: none;
 }
 
 .guidelines-text {
@@ -93,7 +87,7 @@
     width: 2px;
     background: linear-gradient(to bottom, var(--color-red), transparent);
     flex: 1;
-    min-height: 200px;
+    min-height: 100px;
 }
 
 
