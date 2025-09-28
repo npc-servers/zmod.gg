@@ -20,8 +20,8 @@ class Servers {
             {
                 id: 'horde',
                 name: 'HORDE',
-                shortDescription: 'Survive endless waves of enemies in this cooperative survival mode with friends.',
-                expandedDescription: 'Face endless waves of increasingly difficult enemies in this cooperative survival experience. Team up with friends to build defenses, share resources, and survive as long as possible against relentless hordes. Features dynamic wave generation, progressive difficulty scaling, and strategic base building elements that require coordination and teamwork to master.',
+                shortDescription: 'Survive waves of zombies in this cooperative survival experience.',
+                expandedDescription: 'Horde is chalked full of deep strategy and co-op gameplay. Choose a class, build your loadout, and survive waves of zombies as long as you can in different difficulties.',
                 showcaseImage: 'assets/gamemodes/horde.jpg',
                 sideImage: 'assets/gamemodes/mapsweepers.png',
                 website: null,
@@ -31,8 +31,8 @@ class Servers {
             {
                 id: 'sandbox',
                 name: 'NPC ZOMBIES VS. PLAYERS',
-                shortDescription: 'Classic zombie survival with NPC enemies and cooperative gameplay.',
-                expandedDescription: 'Experience classic zombie survival gameplay with intelligent NPC enemies and cooperative multiplayer action. Build bases, craft weapons, and work together to survive against waves of zombies and other threats. Features advanced AI systems, dynamic spawning, and extensive customization options for a unique survival experience every time you play.',
+                shortDescription: 'Classic sandbox with a zombie survival twist.',
+                expandedDescription: 'NPC Zombies Vs. Players is our first ever server. Get a unique blend of regular Garry\'s Mod sandbox, expanded with WireMod, Starfall, vehicles, an economy, and on top of that, a fully custom zombie spawning system. Choose between PVE or PVP gameplay, and play with friends using our squad system.',
                 showcaseImage: 'assets/gamemodes/sandbox.jpg',
                 sideImage: 'assets/gamemodes/horde.jpg',
                 website: 'https://npcz.gg',
@@ -42,8 +42,8 @@ class Servers {
             {
                 id: 'mapsweepers',
                 name: 'MAP SWEEPERS',
-                shortDescription: 'Strategic team-based gameplay with unique mechanics and objectives.',
-                expandedDescription: 'Engage in strategic team-based combat with unique map control mechanics and objective-based gameplay. Teams must work together to secure territory, complete objectives, and outmaneuver their opponents using tactical coordination and strategic thinking. Features dynamic map elements, specialized roles, and competitive gameplay designed for skilled players.',
+                shortDescription: 'Like Helldivers 2, in Garry\'s Mod.',
+                expandedDescription: 'Drop in a mission with up to 32 other players, and work together to complete objectives. Face unrelenting waves of enemies, and work together to survive and extract.',
                 showcaseImage: 'assets/gamemodes/mapsweepers.png',
                 sideImage: 'assets/gamemodes/homigrad.png',
                 website: null,
