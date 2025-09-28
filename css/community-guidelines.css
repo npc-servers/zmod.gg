@@ -1,0 +1,323 @@
+/* Community Guidelines Page Styles */
+.guidelines-page {
+    min-height: 100vh;
+    padding: 8rem 4rem 6rem;
+    position: relative;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: transparent;
+}
+
+.guidelines-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    max-width: 1000px;
+}
+
+.guidelines-title {
+    font-family: 'BankGothic', 'Special Gothic Expanded One', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--color-white);
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.guidelines-subtitle {
+    font-family: 'Oxanium', monospace;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.guidelines-content {
+    max-width: 1000px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Guideline Category Styles */
+.guideline-category {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 
+        0 4px 24px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.guideline-category:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.category-toggle {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.category-toggle:hover {
+    background: rgba(255, 0, 0, 0.05);
+}
+
+.category-toggle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-red), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.category-toggle:hover::before {
+    opacity: 1;
+}
+
+.category-title {
+    font-family: 'Oxanium', monospace;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-white);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.category-arrow {
+    font-family: 'Oxanium', monospace;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-red);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.category-toggle.expanded .category-arrow {
+    transform: rotate(180deg);
+    color: var(--color-white);
+}
+
+.category-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.category-content.expanded {
+    max-height: 1000px;
+    padding: 0 2rem 2rem 2rem;
+}
+
+.rules-list {
+    list-style: none;
+    counter-reset: rule-counter;
+    padding: 0;
+    margin: 0;
+}
+
+.rules-list li {
+    counter-increment: rule-counter;
+    position: relative;
+    padding: 1.2rem 0 1.2rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-family: 'Oxanium', monospace;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.rules-list li:last-child {
+    border-bottom: none;
+}
+
+.rules-list li::before {
+    content: counter(rule-counter);
+    position: static;
+    flex-shrink: 0;
+    width: 2.2rem;
+    height: 2.2rem;
+    background: rgba(255, 0, 0, 0.15);
+    color: var(--color-red);
+    border: 2px solid rgba(255, 0, 0, 0.3);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Oxanium', monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-shadow: none;
+    box-shadow: none;
+}
+
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .guidelines-page {
+        padding: 7rem 3rem 5rem;
+    }
+    
+    .guidelines-content {
+        gap: 1.2rem;
+    }
+    
+    .category-toggle {
+        padding: 1.2rem 1.5rem;
+    }
+    
+    .category-title {
+        font-size: 1.2rem;
+    }
+    
+    .category-content.expanded {
+        padding: 0 1.5rem 1.5rem 1.5rem;
+    }
+    
+    .rules-list li {
+        padding: 1rem 0 1rem 0;
+        font-size: 0.95rem;
+    }
+    
+    .rules-list li::before {
+        width: 2rem;
+        height: 2rem;
+        font-size: 0.8rem;
+    }
+    
+}
+
+@media (max-width: 768px) {
+    .guidelines-page {
+        padding: 6rem 2rem 4rem;
+    }
+    
+    .guidelines-content {
+        gap: 1rem;
+    }
+    
+    .category-toggle {
+        padding: 1rem 1.2rem;
+    }
+    
+    .category-title {
+        font-size: 1.1rem;
+    }
+    
+    .category-content.expanded {
+        padding: 0 1.2rem 1.2rem 1.2rem;
+    }
+    
+    .rules-list li {
+        padding: 0.9rem 0 0.9rem 0;
+        font-size: 0.9rem;
+    }
+    
+    .rules-list li::before {
+        width: 1.8rem;
+        height: 1.8rem;
+        font-size: 0.75rem;
+    }
+    
+}
+
+@media (max-width: 480px) {
+    .guidelines-page {
+        padding: 5rem 1rem 3rem;
+    }
+    
+    .guidelines-content {
+        gap: 0.8rem;
+    }
+    
+    .category-toggle {
+        padding: 0.8rem 1rem;
+    }
+    
+    .category-title {
+        font-size: 1rem;
+    }
+    
+    .category-content.expanded {
+        padding: 0 1rem 1rem 1rem;
+    }
+    
+    .rules-list li {
+        padding: 0.8rem 0 0.8rem 0;
+        font-size: 0.85rem;
+    }
+    
+    .rules-list li::before {
+        width: 1.6rem;
+        height: 1.6rem;
+        font-size: 0.7rem;
+    }
+    
+}
+
+@media (max-width: 360px) {
+    .guidelines-page {
+        padding: 4.5rem 0.5rem 2.5rem;
+    }
+    
+    .category-toggle {
+        padding: 0.7rem 0.8rem;
+    }
+    
+    .category-title {
+        font-size: 0.95rem;
+    }
+    
+    .category-content.expanded {
+        padding: 0 0.8rem 0.8rem 0.8rem;
+    }
+    
+    .rules-list li {
+        padding: 0.7rem 0 0.7rem 0;
+        font-size: 0.8rem;
+    }
+    
+    .rules-list li::before {
+        width: 1.4rem;
+        height: 1.4rem;
+        font-size: 0.65rem;
+    }
+    
+}
