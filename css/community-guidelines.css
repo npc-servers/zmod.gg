@@ -1,7 +1,7 @@
 /* Community Guidelines Page Styles */
 .guidelines-page {
     min-height: 100vh;
-    padding: 8rem 4rem 6rem;
+    padding: 10rem 4rem 6rem;
     position: relative;
     overflow: visible;
     display: flex;
@@ -17,7 +17,7 @@
 }
 
 .guidelines-title {
-    font-family: 'BankGothic', 'Special Gothic Expanded One', sans-serif;
+    font-family: 'Oxanium', monospace;
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 700;
     color: var(--color-white);
@@ -192,7 +192,7 @@
 /* Responsive Design */
 @media (max-width: 992px) {
     .guidelines-page {
-        padding: 7rem 3rem 5rem;
+        padding: 9rem 3rem 5rem;
     }
     
     .guidelines-content {
@@ -226,7 +226,7 @@
 
 @media (max-width: 768px) {
     .guidelines-page {
-        padding: 6rem 2rem 4rem;
+        padding: 8rem 2rem 4rem;
     }
     
     .guidelines-content {
@@ -260,7 +260,7 @@
 
 @media (max-width: 480px) {
     .guidelines-page {
-        padding: 5rem 1rem 3rem;
+        padding: 7rem 1rem 3rem;
     }
     
     .guidelines-content {
@@ -294,7 +294,7 @@
 
 @media (max-width: 360px) {
     .guidelines-page {
-        padding: 4.5rem 0.5rem 2.5rem;
+        padding: 6.5rem 0.5rem 2.5rem;
     }
     
     .category-toggle {
