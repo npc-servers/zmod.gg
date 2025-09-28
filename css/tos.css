@@ -17,7 +17,7 @@
 /* TOS Hero Section */
 .tos-hero {
     background: linear-gradient(135deg, rgba(255, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
-    padding: 4rem 0;
+    padding: 4rem 0 8rem 0;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -36,6 +36,25 @@
         linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
     background-size: 100% 100%, 50px 50px, 50px 50px;
     z-index: 1;
+}
+
+.tos-hero {
+    -webkit-mask: linear-gradient(to bottom, transparent 0%, black 15%, black 50%, transparent 100%);
+    mask: linear-gradient(to bottom, transparent 0%, black 15%, black 50%, transparent 100%);
+}
+
+@media (max-width: 768px) {
+    .tos-hero {
+        -webkit-mask: linear-gradient(to bottom, transparent 0%, black 20%, black 45%, transparent 100%);
+        mask: linear-gradient(to bottom, transparent 0%, black 20%, black 45%, transparent 100%);
+    }
+}
+
+@media (max-width: 480px) {
+    .tos-hero {
+        -webkit-mask: linear-gradient(to bottom, transparent 0%, black 25%, black 40%, transparent 100%);
+        mask: linear-gradient(to bottom, transparent 0%, black 25%, black 40%, transparent 100%);
+    }
 }
 
 .tos-hero-content {
@@ -83,7 +102,7 @@
 
 /* TOS Content */
 .tos-content {
-    padding: 4rem 0;
+    padding: 2rem 0 4rem 0;
     position: relative;
     z-index: 2;
 }
@@ -404,7 +423,7 @@
     }
     
     .tos-hero {
-        padding: 3rem 0;
+        padding: 3rem 0 6rem 0;
     }
     
     .tos-hero-content {
@@ -460,7 +479,7 @@
     }
     
     .tos-hero {
-        padding: 2rem 0;
+        padding: 2rem 0 5rem 0;
     }
     
     .tos-title {
