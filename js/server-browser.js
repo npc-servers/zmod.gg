@@ -31,12 +31,6 @@ class ServerBrowser {
                     { id: 'zgrad-us3', name: 'ZGRAD US3', ip: '193.243.190.18', port: '27053' },
                     { id: 'zgrad-us4', name: 'ZGRAD US4', ip: '193.243.190.18', port: '27052' }
                 ]
-            },
-            {
-                id: 'mapsweepers',
-                name: 'Map Sweepers',
-                type: 'single',
-                servers: [{ id: 'mapsweepers', name: 'Map Sweepers Official Server', ip: '193.243.190.18', port: '27027' }]
             }
         ];
         
@@ -73,11 +67,6 @@ class ServerBrowser {
             return 'bg-sandbox';
         }
         
-        // For MapSweepers, use its own background
-        if (serverId.includes('mapsweepers') || serverName.toLowerCase().includes('mapsweepers')) {
-            return 'bg-mapsweepers';
-        }
-        
         // Default fallback - no background
         return '';
     }
@@ -111,14 +100,12 @@ class ServerBrowser {
     createServerCard(server, status) {
         const card = document.createElement('div');
         const backgroundClass = this.getServerBackgroundClass(server);
-        const isMapSweepers = server.id.includes('mapsweepers') || server.name.toLowerCase().includes('mapsweepers');
         const isSandbox = server.id.includes('sandbox');
         
         card.className = `server-card ${status.online ? 'online' : 'offline'} ${backgroundClass}`;
         card.innerHTML = `
             <div class="server-status-indicator ${status.online ? 'online' : 'offline'}"></div>
             <div class="pc-only-tag pc-only-tag-desktop">PC ONLY</div>
-            ${isMapSweepers ? '<div class="partner-label"><img src="assets/logos/a_octantisaddons.png" alt="Partner" class="partner-icon">Partner</div>' : ''}
             <div class="server-info-left">
                 <div class="server-details">
                     <div style="display: flex; align-items: center;">
@@ -131,7 +118,6 @@ class ServerBrowser {
             <div class="server-info-right">
                 <div class="pc-only-tag pc-only-tag-mobile">PC ONLY</div>
                 <div class="server-players">${status.players}/${status.maxPlayers} <img src="assets/svgs/player.svg" alt="Players" class="player-icon"></div>
-                ${isMapSweepers ? '<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3179978923" target="_blank" class="workshop-btn">View on Workshop</a>' : ''}
                 ${isSandbox ? '<a href="https://npcz.gg" target="_blank" class="learn-more-btn">VIEW WEBSITE</a>' : ''}
                 <button class="server-join-btn" onclick="connectToServer('${server.ip}', '${server.port}')" ${!status.online ? 'disabled' : ''}>
                     ${status.online ? 'Connect' : 'Offline'}
@@ -143,13 +129,10 @@ class ServerBrowser {
     
     createSubServerCard(server, status) {
         const card = document.createElement('div');
-        const backgroundClass = this.getServerBackgroundClass(server);
-        const isMapSweepers = server.id.includes('mapsweepers') || server.name.toLowerCase().includes('mapsweepers');
         
-        card.className = `server-sub-card ${status.online ? 'online' : 'offline'} ${backgroundClass}`;
+        card.className = `server-sub-card ${status.online ? 'online' : 'offline'}`;
         card.innerHTML = `
             <div class="server-sub-status-indicator ${status.online ? 'online' : 'offline'}"></div>
-            ${isMapSweepers ? '<div class="partner-label"><img src="assets/logos/a_octantisaddons.png" alt="Partner" class="partner-icon">Partner</div>' : ''}
             <div class="server-sub-info-left">
                 <div class="server-sub-details">
                     <h4 class="server-sub-name">${server.name}</h4>

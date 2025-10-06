@@ -38,17 +38,6 @@ class Servers {
                 website: 'https://npcz.gg',
                 hasWebsite: true,
                 serverGroupId: 'sandbox'
-            },
-            {
-                id: 'mapsweepers',
-                name: 'MAP SWEEPERS',
-                shortDescription: 'Like Helldivers 2, in Garry\'s Mod.',
-                expandedDescription: 'Drop in a mission with up to 32 other players, and work together to complete objectives. Face unrelenting waves of enemies, and work together to survive and extract.',
-                showcaseImage: 'assets/gamemodes/mapsweepers.png',
-                sideImage: 'assets/gamemodes/homigrad.png',
-                website: null,
-                hasWebsite: false,
-                serverGroupId: 'mapsweepers'
             }
         ];
         this.init();
@@ -251,8 +240,6 @@ class Servers {
                 return serverName.includes('horde');
             case 'sandbox':
                 return serverName.includes('npc zombies') || serverName.includes('sandbox');
-            case 'mapsweepers':
-                return serverName.includes('map sweepers');
             default:
                 return false;
         }
