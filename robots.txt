@@ -1,0 +1,8 @@
+# robots.txt for zmod.gg
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://zmod.gg/sitemap.xml
+

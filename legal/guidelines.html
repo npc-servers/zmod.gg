@@ -3,7 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Platform Guidelines - ZMod</title>
+    <title>Platform Guidelines</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="ZMod's Platform Guidelines. Maintain a positive environment for all players by following our comprehensive guidelines.">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Redirect .html to extensionless URLs (production only) -->
+    <script>
+        if (window.location.pathname.endsWith('.html') && 
+            !window.location.hostname.includes('localhost') && 
+            !window.location.hostname.includes('127.0.0.1') &&
+            window.location.protocol !== 'file:') {
+            window.location.replace(window.location.pathname.slice(0, -5) + window.location.search + window.location.hash);
+        }
+    </script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;700&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
