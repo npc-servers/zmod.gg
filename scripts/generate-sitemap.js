@@ -32,6 +32,18 @@ const pages = [
         ]
     },
     {
+        loc: 'https://zmod.gg/servers',
+        file: 'servers.html',
+        changefreq: 'daily',
+        priority: '0.9'
+    },
+    {
+        loc: 'https://zmod.gg/discord',
+        file: 'discord.html',
+        changefreq: 'monthly',
+        priority: '0.8'
+    },
+    {
         loc: 'https://zmod.gg/tos',
         file: 'tos.html',
         changefreq: 'monthly',
