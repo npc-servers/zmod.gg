@@ -345,6 +345,17 @@
     text-align: center;
 }
 
+.disclaimer-link {
+    color: var(--color-red);
+    text-decoration: underline;
+    transition: all 0.3s ease;
+}
+
+.disclaimer-link:hover {
+    color: var(--color-white);
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+}
+
 @media (max-width: 768px) {
     .guidelines-disclaimer {
         padding: 1.5rem;
