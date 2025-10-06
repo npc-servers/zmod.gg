@@ -154,6 +154,19 @@ class Navbar {
     
     // Initialize page tracking system
     initializePageTracking() {
+        // Check if we're on the index page
+        const currentPath = window.location.pathname;
+        const isOnIndexPage = currentPath === '/' || currentPath.endsWith('/index.html') || currentPath.endsWith('/');
+        
+        // If not on index page, don't set any active state or observe sections
+        if (!isOnIndexPage) {
+            this.currentPage = null;
+            // Remove all active states
+            this.navLinks.forEach(link => link.classList.remove('active'));
+            this.mobileNavLinks.forEach(link => link.classList.remove('active'));
+            return;
+        }
+        
         const observerOptions = {
             threshold: [0.3, 0.5, 0.7],
             rootMargin: '-120px 0px -300px 0px'
