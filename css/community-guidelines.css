@@ -321,3 +321,48 @@
     }
     
 }
+
+/* Guidelines Disclaimer */
+.guidelines-disclaimer {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.guidelines-disclaimer-text {
+    font-family: 'Oxanium', monospace;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    letter-spacing: 0.2px;
+    line-height: 1.6;
+    margin: 0;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .guidelines-disclaimer {
+        padding: 1.5rem;
+        margin-top: 2rem;
+    }
+    
+    .guidelines-disclaimer-text {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .guidelines-disclaimer {
+        padding: 1rem;
+        margin-top: 1.5rem;
+    }
+    
+    .guidelines-disclaimer-text {
+        font-size: 0.8rem;
+    }
+}
