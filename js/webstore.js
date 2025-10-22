@@ -15,25 +15,17 @@ class Webstore {
         if (webstoreButton) {
             webstoreButton.addEventListener('click', (e) => {
                 e.preventDefault();
-                
+
                 // Add click animation
                 webstoreButton.style.transform = 'translateY(2px)';
                 setTimeout(() => {
                     webstoreButton.style.transform = 'translateY(-2px)';
                 }, 100);
-                
-                // Placeholder for webstore URL - replace with actual URL when available
-                const webstoreUrl = '#webstore'; // Replace with actual webstore URL
-                
-                // For now, just show an alert or redirect to a placeholder
-                // In production, this would navigate to the actual webstore
+
+                // Navigate to the live webstore
+                const webstoreUrl = 'https://store.npcz.gg';
                 console.log('Navigating to webstore:', webstoreUrl);
-                
-                // Uncomment the line below when you have an actual webstore URL
-                // window.open(webstoreUrl, '_blank');
-                
-                // Temporary alert for demonstration
-                alert('Webstore coming soon! Stay tuned for exclusive supporter benefits.');
+                window.open(webstoreUrl, '_blank');
             });
         }
     }
